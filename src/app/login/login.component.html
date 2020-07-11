@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-6 mx-auto my-5">
+        <section class="form-elegant">
+            <mdb-card>
+                <mdb-card-body class="mx-4">
+                    <!--Header-->
+                    <div class="text-center">
+                        <h3 class="dark-grey-text mb-5">
+                            <strong>Log in</strong>
+                        </h3>
+                    </div>
+
+                    <form [formGroup]="elegantForm" (ngSubmit)="onSubmit()">
+                        
+                          <div class="md-form">
+                            <input type="text" id="elegantFormEmailEx" class="form-control"
+                                formControlName="elegantFormEmailEx" mdbInput>
+                            <label for="elegantFormEmailEx">Your email</label>
+                            <div [hidden]="this.elegantForm.controls['elegantFormEmailEx'].valid || this.elegantForm.controls['elegantFormEmailEx'].untouched">
+                                <div class="form-error">
+                                    Invalid Email
+                                </div>
+                        </div>
+                        </div>
+                        <div class="md-form">
+                            <input type="password" id="elegantFormPasswordEx"
+                                formControlName="elegantFormPasswordEx" class="form-control" mdbInput>
+                            <label for="elegantFormPasswordEx">Password</label>
+                            <div [hidden]="this.elegantForm.controls['elegantFormPasswordEx'].valid || this.elegantForm.controls['elegantFormPasswordEx'].untouched">
+                                <div class="form-error">
+                                Password is required
+                                </div>
+                        </div>
+                        </div>
+                        
+                        <div class="text-center mb-3">
+                            <button type="submit" mdbBtn gradient="blue" block="true" rounded="true"
+                                class="z-depth-1a waves-light"  mdbWavesEffect>Sign in</button>
+                        </div>
+                        <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
+                            with:</p>
+                    </form>
+                    <!--Body-->
+
+                   
+
+                    <div class="row my-3 d-flex justify-content-center">
+                        <!--Facebook-->
+                        <button type="button" mdbBtn color="white" (click)="facebookLogin()" rounded="true" class="mr-md-3 z-depth-1a waves-light"
+                            mdbWavesEffect>
+                            <mdb-icon fab icon="facebook" class="blue-text text-center"></mdb-icon>
+                        </button>
+                        <!--Twitter-->
+                        <button type="button" mdbBtn color="white" rounded="true" class="mr-md-3 z-depth-1a waves-light"
+                            mdbWavesEffect>
+                            <mdb-icon fab icon="twitter" class="blue-text"></mdb-icon>
+                        </button>
+                        <!--Google +-->
+                        <button type="button" mdbBtn color="white" rounded="true" (click)="googleLogin()" class="z-depth-1a waves-light"
+                            mdbWavesEffect>
+                            <mdb-icon fab fab icon="google-plus" class="blue-text"></mdb-icon>
+                        </button>
+                    </div>
+                </mdb-card-body>
+                <!--Footer-->
+                <div class="modal-footer mx-5 pt-3 mb-1">
+                    <p class="font-small grey-text d-flex justify-content-end">Not a member?
+                        <a href="#" class="blue-text ml-1"> Sign Up</a>
+                    </p>
+                </div>
+            </mdb-card>
+
+        </section>
+    </div>
+</div>
