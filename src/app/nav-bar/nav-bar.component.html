@@ -1,13 +1,18 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue  lighten-1" [containerInside]="false">
-
-    <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
+<!-- Navbar -->
+<mdb-navbar
+SideClass="navbar top-nav-collapse fixed-top navbar-expand-lg navbar-dark  intro-fixed-nav"
+[containerInside]="false"
+>
   
-    <!-- Collapsible content -->
-    <links>
-  
-      <!-- Links -->
+  <mdb-navbar-brand>
+    <a class="navbar-brand" href="#" target="_blank">
+      <strong>Edunaut</strong>
+    </a>
+  </mdb-navbar-brand>
+   
+ 
+  <links>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
@@ -33,7 +38,7 @@
         </li>
   
       </ul>
-      <!-- Links -->
+    
   
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item">
@@ -48,8 +53,7 @@
           </div>
         </li>
       </ul>
-    </links>
-    <!-- Collapsible content -->
-  
+      </links>
+    
   </mdb-navbar>
-  <!--/.Navbar-->
+

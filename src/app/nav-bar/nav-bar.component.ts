@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgwWowService } from 'ngx-wow';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wowService: NgwWowService) {
+  
+  }
+
 
   ngOnInit(): void {
   }
