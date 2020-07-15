@@ -10,8 +10,10 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class RegisterComponent implements OnInit {
   elegantForm: FormGroup;
-
-  constructor(public fb: FormBuilder,public authenticationService: AuthenticationService) {
+  loading = false;
+  showErrormessage=false;
+  errorMessage=""
+constructor(public fb: FormBuilder,public authenticationService: AuthenticationService) {
     this.elegantForm = fb.group({
       elegantFormEmailEx: ['', [Validators.required, Validators.email]],
       elegantFormPasswordEx: ['', Validators.required],
@@ -25,8 +27,21 @@ export class RegisterComponent implements OnInit {
     onSubmit() {
       console.log(this.elegantForm);
       var email= this.elegantForm.value['elegantFormEmailEx'];
-      var password = this.elegantForm.value['elegantFormEmailEx'];
-      this.authenticationService.SignUp(email, password);
+      var password = this.elegantForm.value['elegantFormPasswordEx'];
+      this.loading= true;
+      console.log("loading")
+      this.authenticationService.SignUp(email, password).then(
+        res=>{
+          console.log("sign up successful",res);
+          this.loading=false;
+        },
+        err=>{
+          console.log("sign up not successful",err);
+          this.showErrormessage=true;
+          this.errorMessage=err.message;
+          this.loading=false;
+        }
+      );
        }
        googleLogin(event: Event){
         this.authenticationService.googleAuthLogin();

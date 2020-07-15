@@ -12,18 +12,22 @@ import { ReactiveFormsModule  } from '@angular/forms';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
-
+import {SpringSpinnerModule} from 'angular-epic-spinners'
 /* Auth service */
 import { AuthenticationService } from './services/authentication.service';
 import { LoginComponent } from './login/login.component';
-
+import { FooterComponent } from './footer/footer.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { NgwWowModule } from 'ngx-wow';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,8 @@ AppRoutingModule,
 ReactiveFormsModule ,
 AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    NgwWowModule,
+    SpringSpinnerModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

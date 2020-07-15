@@ -1,3 +1,5 @@
+<br>
+<br>
 <div class="row">
     <div class="col-md-6 mx-auto my-5">
         <section class="form-elegant">
@@ -6,7 +8,7 @@
                     <!--Header-->
                     <div class="text-center">
                         <h3 class="dark-grey-text mb-5">
-                            <strong>Sign in</strong>
+                            <strong>Sign Up</strong>
                         </h3>
                     </div>
 
@@ -62,6 +64,9 @@
                                 </div>
                         </div>
                         </div>
+                        <div *ngIf="showErrormessage" class="text-center mb-3">
+                            <p class="form-error" >{{errorMessage}}</p>
+                         </div>
                         <div class="text-center mb-3">
                             <button type="submit" mdbBtn gradient="blue" block="true" rounded="true"
                                 class="z-depth-1a waves-light"  mdbWavesEffect>Sign in</button>
@@ -91,14 +96,17 @@
                         </button>
                     </div>
                 </mdb-card-body>
-                <!--Footer-->
-                <div class="modal-footer mx-5 pt-3 mb-1">
-                    <p class="font-small grey-text d-flex justify-content-end">Not a member?
-                        <a href="#" class="blue-text ml-1"> Sign Up</a>
-                    </p>
-                </div>
-            </mdb-card>
+              
+                </mdb-card>
 
         </section>
+        <div *ngIf="loading" class="center">
+           
+            <app-spring-spinner
+            [animationDuration]="3000"
+            [size]="100"
+            [color]="'#1c2331'"
+            ></app-spring-spinner>
+            </div>
     </div>
 </div>

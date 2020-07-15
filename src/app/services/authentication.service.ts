@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { auth } from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Router } from '@angular/router'
 
 @Injectable({
@@ -16,16 +16,11 @@ export class AuthenticationService {
   }
 
   /* Sign up */
-  SignUp(email: string, password: string) {
-    this.angularFireAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log('Successfully signed up!', res);
-      })
-      .catch(error => {
-        console.log('Something is wrong:', error.message);
-      });  
- }
+  SignUp(email: string, password: string):any {
+
+    return this.angularFireAuth
+      .createUserWithEmailAndPassword(email, password);
+       }
   googleAuthLogin() {
     var provider = new auth.GoogleAuthProvider();
     return this.angularFireAuth.signInWithPopup(provider)
@@ -56,22 +51,33 @@ export class AuthenticationService {
   }
 
   
-  SignIn(email: string, password: string) {
-    this.angularFireAuth
+  SignIn(email: string, password: string) :any{
+    
+   return  this.angularFireAuth
       .signInWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log('Successfully signed in!');
-        this.router.navigate(['register']);
-      })
-      .catch(err => {
-        console.log('Something is wrong:',err.message);
-      });
+      // .then(res => {
+      //   console.log('Successfully signed in!',res);
+      //   return new Observable(observer=>{
+      //     observer.next("successful");
+      //   });
+      //   },
+      //   msg=>{
+      //     console.log('Sign in unsuccessful!',msg);
+      //     return new Observable(observer=>{
+      //       observer.next("unsuccessful");
+      //     });
+      //   })
        }
 
  
   SignOut() {
     this.angularFireAuth
-        .signOut();
+        .signOut().then(res=>{
+          console.log("something 1",res)
+        }).catch(error=>
+        {
+          console.log("something 2")
+        });
   }  
 
 }

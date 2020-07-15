@@ -1,7 +1,12 @@
+<br>
+<br>
+
 <div class="row">
+    
     <div class="col-md-6 mx-auto my-5">
         <section class="form-elegant">
             <mdb-card>
+               
                 <mdb-card-body class="mx-4">
                     <!--Header-->
                     <div class="text-center">
@@ -32,17 +37,21 @@
                                 </div>
                         </div>
                         </div>
-                        
+                        <div *ngIf="showErrormessage" class="text-center mb-3">
+                           <p class="form-error" >{{errorMessage}}</p>
+                        </div>
                         <div class="text-center mb-3">
-                            <button type="submit" mdbBtn gradient="blue" block="true" rounded="true"
+                            <button type="submit" mdbBtn color="blue-grey" block="true" rounded="true"
                                 class="z-depth-1a waves-light"  mdbWavesEffect>Sign in</button>
                         </div>
                         <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
                             with:</p>
                     </form>
                     <!--Body-->
-
+                  
                    
+                  
+                 
 
                     <div class="row my-3 d-flex justify-content-center">
                         <!--Facebook-->
@@ -65,11 +74,19 @@
                 <!--Footer-->
                 <div class="modal-footer mx-5 pt-3 mb-1">
                     <p class="font-small grey-text d-flex justify-content-end">Not a member?
-                        <a href="#" class="blue-text ml-1"> Sign Up</a>
+                        <a href="register" class="blue-text ml-1"> Sign Up</a>
                     </p>
                 </div>
             </mdb-card>
 
         </section>
+        <div *ngIf="loading" class="center">
+           
+          <app-spring-spinner
+          [animationDuration]="3000"
+          [size]="100"
+          [color]="'#1c2331'"
+          ></app-spring-spinner>
+          </div>
     </div>
 </div>
