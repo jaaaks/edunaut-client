@@ -6,22 +6,22 @@ import {
 import { NguCarouselConfig } from '@ngu/carousel';
 import { interval, Observable } from 'rxjs';
 import { map, startWith, take } from 'rxjs/operators';
-import { slider } from '../tile/slide-animation';
+import { slider } from './slide-animation';
 
 @Component({
-  selector: 'app-companies-carousel',
-  templateUrl: './companies-carousel.component.html',
-  styleUrls: ['./companies-carousel.component.scss'],
+  selector: 'app-tile',
+  templateUrl: './tile.component.html',
+  styleUrls: ['./tile.component.scss'],
   animations: [slider],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CompaniesCarouselComponent implements OnInit {
+export class TileComponent implements OnInit {
 
-  images = ['assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png'];
+  images = ['assets/bg.jpg', 'assets/car.png', 'assets/canberra.jpg', 'assets/holi.jpg', 'assets/udemy.png', 'assets/bg.jpg', 'assets/car.png', 'assets/canberra.jpg', 'assets/holi.jpg', 'assets/udemy.png'];
 
   public carouselTileItems$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {
-    grid: { xs: 3, sm: 4, md: 6, lg: 9, all: 0 },
+    grid: { xs: 2, sm: 2, md: 4, lg: 5, all: 0 },
     speed: 250,
     point: {
       visible: true
@@ -40,7 +40,7 @@ export class CompaniesCarouselComponent implements OnInit {
 
     this.carouselTileItems$ = interval(20).pipe(
       startWith(-1),
-      take(15),
+      take(10),
       map(val => {
         const data = (this.tempData = [
           ...this.tempData,
@@ -52,3 +52,4 @@ export class CompaniesCarouselComponent implements OnInit {
   }
 
 }
+
