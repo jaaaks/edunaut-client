@@ -77,6 +77,10 @@ $spacing: -0.015em;
   font-weight: bold;
   color: black;
 }
+.domain{
+  padding-left: 13.63%;
+  padding-right: 13.63%;
+}
 .courses{
   background-color: #f5f5f5;
   margin-top: 4%;
@@ -152,6 +156,20 @@ textarea{
   .domain-title{
     padding-left: 6%; 
   }
+  .domain{
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  .brands{
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  .quick{
+    padding-left: 12%;
+  }
+  .quick-img{
+    padding-left: 12%;
+  }
 }
 @media screen and (max-width: 767px) {
   .heading {
@@ -161,6 +179,10 @@ textarea{
   }
   .brands-head {
     font-size: 1.2em;
+  }
+  .brands{
+    padding-left: 1%;
+    padding-right: 1%;
   }
   .brands-footer{
     font-size: 1.05em;
@@ -179,13 +201,23 @@ textarea{
   }
   .domain-title{
     font-size: 1.2em;
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .domain{
+    padding-left: 1%;
+    padding-right: 1%;
   }
   .quick{
     font-size: 1.2em;
+    padding-left: 1%;
   }
   .quick-right{
-    padding: 0% !important;
+    padding-left: 10% !important;
     margin: 0% !important;
+  }
+  .quick-img{
+    padding-left: 4%;
   }
   textarea{
     padding: 0% !important;

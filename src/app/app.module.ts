@@ -8,6 +8,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule  } from '@angular/forms';
+import { NguCarouselModule } from '@ngu/carousel';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -20,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NgwWowModule } from 'ngx-wow';
 import { CompaniesCarouselComponent } from './companies-carousel/companies-carousel.component';
+import { TileComponent } from './tile/tile.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { CompaniesCarouselComponent } from './companies-carousel/companies-carou
     LoginComponent,
     FooterComponent,
     HomepageComponent,
-    CompaniesCarouselComponent
+    CompaniesCarouselComponent,
+    TileComponent
   ],
   imports: [
     BrowserModule,
+    NguCarouselModule,
     MDBBootstrapModule.forRoot(),
 BrowserAnimationsModule,
 AppRoutingModule,
