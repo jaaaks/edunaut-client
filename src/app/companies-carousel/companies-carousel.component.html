@@ -1,0 +1,31 @@
+<div class="container-fluid domain">
+<mdb-carousel [animation]="'slide'" [ngSwitch]="carouselDisplayMode" [isControls]="false" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'">
+    <ng-container *ngSwitchCase="'single'">
+      <mdb-carousel-item *ngFor="let card of cards">
+        <mdb-card class="my-1">
+          <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+          <mdb-card-body>
+            <mdb-card-title>
+              <h4> {{ card.title }}</h4>
+            </mdb-card-title>
+          </mdb-card-body>
+        </mdb-card>
+      </mdb-carousel-item>
+    </ng-container>
+  
+    <ng-container *ngSwitchCase="'multiple'">
+      <mdb-carousel-item *ngFor="let item of slides; let i = index">
+        <div class="col-md-2" *ngFor="let card of item; let cardIndex = index">
+          <mdb-card class="my-1">
+            <mdb-card-img [src]="card.img" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body>
+              <mdb-card-title>
+                {{card.title}}
+              </mdb-card-title>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </mdb-carousel-item>
+    </ng-container>
+  </mdb-carousel>
+</div>  

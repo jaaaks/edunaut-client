@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NgwWowModule } from 'ngx-wow';
+import { CompaniesCarouselComponent } from './companies-carousel/companies-carousel.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NgwWowModule } from 'ngx-wow';
     RegisterComponent,
     LoginComponent,
     FooterComponent,
-    HomepageComponent
+    HomepageComponent,
+    CompaniesCarouselComponent
   ],
   imports: [
     BrowserModule,
