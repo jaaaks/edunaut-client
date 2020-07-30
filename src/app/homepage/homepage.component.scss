@@ -1,23 +1,237 @@
+$color1: #0087e5;
+$color2: #f8f8f8;
+$font1: Montserrat;
+$spacing: -0.015em;
 .jumbotron {
-    position: relative;
-    background: url("../../assets/homepage.jpg") no-repeat bottom center / cover;
-    
-    &:before {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, .5);
-    }
-    
-    .container {
-      padding: 75px 0;
-    }
-    
-    h1,
-    .lead {
-      color: #fff;
-    }
+  background-color: #f8f8f8;
+  box-shadow: none;
+}
+.heading {
+  padding-top: 4.529%;
+  padding-left: 1.186%;
+  font-family: $font1;
+  font-size: 2.75em;
+  letter-spacing: $spacing;
+  font-style: normal;
+  font-weight: normal;
+}
+.title-img {
+  padding-top: 2%;
+}
+.btn-primary {
+  background: $color1 !important;
+  color: $color2 !important;
+  font-size: 0.36em;
+  padding: 1.5% 8%;
+  border-radius: 4px;
+}
+.brands-head {
+  text-align: center;
+  font-family: $font1;
+  padding-top: 1%;
+  font-size: 1.8em;
+  letter-spacing: $spacing;
+  font-style: normal;
+  font-weight: bold;
+  color: #a2a2a2;
+}
+.brands-footer {
+  text-align: center;
+  font-family: $font1;
+  font-size: 1.5em;
+  letter-spacing: -0.015em;
+  font-style: normal;
+  font-weight: bold;
+  color: #000000;
+}
+.brands {
+  padding-left: 13%;
+  padding-right: 13%;
+}
+.skills{
+  margin-top: 2%;
+  padding-bottom: 4%;
+  padding-top: 1%;
+  padding-left: 15%;
+  background-color: #f5f5f5;
+}
+.skills-header{
+  padding-left: 36.5%;
+  font-family: $font1;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  font-size: 1.8em;
+  letter-spacing: $spacing;
+  font-style: normal;
+  font-weight: bold;
+  color: black;
+}
+.domain-title{
+  padding-left: 13.63%;
+  padding-top: 2.5%;
+  padding-bottom: 1%;
+  font-size: 1.8em;
+  font-family: $font1;
+  letter-spacing: $spacing;
+  font-style: normal;
+  font-weight: bold;
+  color: black;
+}
+.domain{
+  padding-left: 13.63%;
+  padding-right: 13.63%;
+}
+.courses{
+  background-color: #f5f5f5;
+  margin-top: 4%;
+}
+.quick{
+  padding-left: 27.63%;
+  padding-top: 2.5%;
+  padding-bottom: 1%;
+  font-size: 1.8em;
+  font-family: $font1;
+  letter-spacing: $spacing;
+  font-style: normal;
+  font-weight: bold;
+  color: black;
+}
+.btn-outline-primary{
+  border-color: $color1 !important;
+  border-radius: 1em;
+  color: $color1;
+  font-size: 0.4em;
+  padding: 0.5% 2.56% !important;
+}
+.quick-img{
+  padding-left: 27.63%;
+  width: 140%;
+}
+.quick-right{
+  padding-top: 5.75%;
+}
+textarea{
+  border-color: $color1 ;
+  padding: 5% !important;
+  border-width: 2px !important;
+  border-radius: 5px !important;
+  max-width: 70%;
+}
+.find{
+  padding-top: 2.5%;
+  font-family: $font1;
+  text-align: center;
+  font-size: 1.4em;
+  letter-spacing: -0.015em;
+  font-style: normal;
+  font-weight: normal;
+  color: #000000;
+}
+.btn1{
+  text-align: center;
+  padding-bottom: 2.5%;
+}
+.find-btn{
+  padding: 0.5% 4%;
+  font-family: $font1;
+  text-align: center;
+  font-size: 1em;
+  letter-spacing: -0.015em;
+  font-style: normal;
+  font-weight: normal;
+}
+@media screen and (max-width: 1024px) and (min-width: 768px)
+{
+  .skills{
+    margin-top: 2%;
+    padding-top: 1%;
+    padding-left: 4%;
+    background-color: #f5f5f5;
   }
+  .skills-header{
+    padding-left: 40%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+  .domain-title{
+    padding-left: 6%; 
+  }
+  .domain{
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  .brands{
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  .quick{
+    padding-left: 12%;
+  }
+  .quick-img{
+    padding-left: 12%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .heading {
+    padding-top: 12%;
+    padding-left: 4%;
+    font-size: 1.82em;
+  }
+  .brands-head {
+    font-size: 1.2em;
+  }
+  .brands{
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .brands-footer{
+    font-size: 1.05em;
+  }
+  .skills-header{
+    font-size: 1.2em;
+  }
+  .title-img {
+    padding-top: 15%;
+  }
+  .skills{
+    padding-left: 3.75%;
+  }
+  .skills-header{
+    padding-left: 35.7%;
+  }
+  .domain-title{
+    font-size: 1.2em;
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .domain{
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .quick{
+    font-size: 1.2em;
+    padding-left: 1%;
+  }
+  .quick-right{
+    padding-left: 10% !important;
+    margin: 0% !important;
+  }
+  .quick-img{
+    padding-left: 4%;
+  }
+  textarea{
+    padding: 0% !important;
+    margin: 0% !important;
+  }
+  .find{
+    font-size: 1em;
+    padding-bottom: 0%;
+  }
+  .find-btn{
+    font-size: 0.8em;
+  }
+  .btn1{
+    padding-bottom: 5%;
+  }
+}
+
