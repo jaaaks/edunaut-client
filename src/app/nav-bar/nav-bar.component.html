@@ -1,59 +1,42 @@
-<!--Navbar-->
-<!-- Navbar -->
-<mdb-navbar
-SideClass="navbar top-nav-collapse fixed-top navbar-expand-lg navbar-dark  intro-fixed-nav"
-[containerInside]="false"
->
-  
-  <mdb-navbar-brand>
-    <a class="navbar-brand" href="#" target="_blank">
-      <strong>Edunaut</strong>
-    </a>
-  </mdb-navbar-brand>
-   
- 
-  <links>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
-        </li>
-  
-        <!-- Dropdown -->
-        <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            Basic dropdown<span class="caret"></span></a>
-          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect >Action</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="">Another action</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
-            <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
-          </div>
-        </li>
-  
-      </ul>
-    
-  
-      <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-          <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
-        </li>
-        <li class="nav-item avatar dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="40" height="50" alt="" class="img-fluid h-auto d-inline-block rounded-circle z-depth-0"></a>
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="register">Sign up</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="login">Log In</a>
-          </div>
-        </li>
-      </ul>
-      </links>
-    
-  </mdb-navbar>
 
+<mdb-navbar SideClass="navbar  sticky-top navbar-expand-lg navbar-light white" [containerInside]="false" [iconBackground]="'blue'">
+
+
+  <mdb-navbar-brand class="navbar-brand">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/Capture.PNG" height="30" class="d-inline-block align-top" alt="Edunaut">
+</a>
+  </mdb-navbar-brand>
+
+  
+  
+   
+    <div class=" sample one ">
+      <input type="text" name="search" placeholder="search">
+      <button type="submit" class="fab fa-sistrix btn btn-search"></button>
+    </div>
+   
+    
+    <!-- Links -->
+    <links>
+    <ul class="navbar-nav ml-auto">
+    
+     
+     
+
+      <!-- Dropdown -->
+      <li class="nav-item">
+        <a href="#" class="nav-link m-2 menu-item " mdbWavesEffect>Community</a>
+    </li>
+      <li class="nav-item m-2 menu-item">
+        <button mat-raised-button  mdbWavesEffect>Log In</button>
+      </li>
+
+    </ul>
+   
+  
+     
+   
+  </links>
+
+</mdb-navbar>

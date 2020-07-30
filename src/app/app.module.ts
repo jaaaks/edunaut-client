@@ -19,6 +19,11 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NgwWowModule } from 'ngx-wow';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+
+
 
 @NgModule({
   declarations: [
@@ -38,7 +43,10 @@ ReactiveFormsModule ,
 AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NgwWowModule,
-    SpringSpinnerModule
+    SpringSpinnerModule,
+    NgbModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

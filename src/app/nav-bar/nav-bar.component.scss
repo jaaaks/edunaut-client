@@ -1,0 +1,134 @@
+
+
+
+
+
+/* Actionable Item */
+.navbar{
+  padding:0;
+}
+.navbar-brand{
+  position: relative;
+  left: 10%;
+}
+
+.nav-link{
+   
+    
+    
+    color: #9baec5;
+}
+
+
+input {
+    border: 1px solid #ccc;
+    font-size: 12px;
+    height: 30px;
+    padding: 4px 8px;
+  
+    width: 50%;
+    &:focus {
+      outline: none;
+    }
+  }
+  button {
+    text-align: center;
+    &:focus {
+      outline: none;
+    }
+    &.btn-search {
+      background:  #0376FE;
+      border: none;
+      height: 30px;
+      font-size: 12px;
+      padding: 4px;
+      position: absolute;
+      width: 30px;
+    }
+  }
+  @media only screen 
+
+  and (max-device-width: 812px) 
+   { 
+
+    /* Here are some changes*/
+    .sample {
+      float: left;
+  
+      margin: 0 0% !important;
+      position: relative;
+      width: 34%;
+      &.one,
+      &.two {
+        input {
+          border-radius: 15px;
+          right: 0;
+         width: 100%;
+          &:focus {
+            width: 100%;
+            ~ button {
+              &.btn-search {
+                background:  #0376FE;;
+                color: #fff;
+              }
+              
+            }
+          }
+        }
+        button {
+          transition: all .3s ease-in-out;
+          &.btn-search {
+            background: #ccc;
+            border-radius: 50%;
+            height: 26px;
+            right: 2px;
+            top: 2px;
+            transition: all .3s ease-in-out;
+            width: 26px;
+          }
+        
+        }
+      }
+  }
+}
+
+
+  .sample {
+    float: left;
+
+    margin: 0 25%;
+    position: relative;
+    width: 34%;
+    &.one,
+    &.two {
+      input {
+        border-radius: 15px;
+        right: 0;
+       width: 100%;
+        &:focus {
+          width: 100%;
+          ~ button {
+            &.btn-search {
+              background:  #0376FE;;
+              color: #fff;
+            }
+            
+          }
+        }
+      }
+      button {
+        transition: all .3s ease-in-out;
+        &.btn-search {
+          background: #ccc;
+          border-radius: 50%;
+          height: 26px;
+          right: 2px;
+          top: 2px;
+          transition: all .3s ease-in-out;
+          width: 26px;
+        }
+      
+      }
+    }
+}
+ 

@@ -25,20 +25,24 @@ export class AuthenticationService {
     var provider = new auth.GoogleAuthProvider();
     return this.angularFireAuth.signInWithPopup(provider)
     .then((result) => {
-        console.log('You have been successfully logged in!')
+        console.log('You have been successfully logged in!',result);
     }).catch((error) => {
         console.log(error)
     })
   }
   facebookAuthLogin(){
     var provider = new auth.FacebookAuthProvider();
-    return this.angularFireAuth.signInWithPopup(provider).then(function(result) {
+    console.log("inside facebook auth");
+    return this.angularFireAuth.signInWithPopup(provider).then( result=> {
       var token = result.credential;
   
       var user = result.user;
-      console.log(token);
-    
-    }).catch(function(error) {
+      console.log(result);
+    },err=>{
+
+    console.log(err);
+
+      }).catch( error=>{
      
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -46,6 +50,7 @@ export class AuthenticationService {
       var email = error.email;
       
       var credential = error.credential;
+      console.log(error);
     
     });
   }
@@ -78,6 +83,14 @@ export class AuthenticationService {
         {
           console.log("something 2")
         });
-  }  
-
+  }
+ 
+ updateProfile(display){
+  
+    return this.angularFireAuth.currentUser.then((result)=>{
+    result.updateProfile({displayName:display}).then(res=>{
+      console.log(res);
+    });
+  });
+  };
 }
