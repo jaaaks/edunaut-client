@@ -22,6 +22,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NgwWowModule } from 'ngx-wow';
 import { CompaniesCarouselComponent } from './companies-carousel/companies-carousel.component';
 import { TileComponent } from './tile/tile.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TileComponent } from './tile/tile.component';
     FooterComponent,
     HomepageComponent,
     CompaniesCarouselComponent,
-    TileComponent
+    TileComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,
