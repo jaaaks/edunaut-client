@@ -13,10 +13,7 @@
 }
 
 .nav-link{
-   
-    
-    
-    color: #9baec5;
+   color: #9baec5;
 }
 
 
@@ -44,14 +41,22 @@ input {
       padding: 4px;
       position: absolute;
       width: 30px;
+      top: -4px !important;
+      right: -4px !important;
     }
   }
+  
   @media only screen 
 
   and (max-device-width: 812px) 
    { 
 
     /* Here are some changes*/
+    button {
+      &.btn-search {
+        right:-8px !important;
+      }
+    }
     .sample {
       float: left;
   

@@ -17,7 +17,7 @@ import { slider } from '../tile/slide-animation';
 })
 export class CompaniesCarouselComponent implements OnInit {
 
-  images = ['assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png'];
+  images = ['assets/homepage/udemy.png', 'assets/homepage/coursera.png', 'assets/homepage/pluralsight.png', 'assets/homepage/skillshare.png','assets/homepage/edx.png', 'assets/homepage/future-learn.png', 'assets/homepage/open-learning.png', 'assets/homepage/the-great-courses.png', 'assets/homepage/udacity.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png'];
 
   public carouselTileItems$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {
