@@ -1,6 +1,6 @@
 $spacing: -0.015em;
 .title{
-    padding-top: 3.7%;
+    padding-top: 1%;
     padding-bottom: 0.7%;
     padding-left: 11%;
     font-family: Montserrat;
@@ -81,6 +81,7 @@ $spacing: -0.015em;
 .vision{
     padding-top: 2.5%;
     padding-left: 10%;
+    padding-right: 10%;
     font-size: 1.4em; 
     font-family: Montserrat;
 }
@@ -128,7 +129,7 @@ $spacing: -0.015em;
 }
 @media screen and (min-width: 940px) and (max-width:1024px){
     .title{
-        padding-top: 7%;
+        padding-top: 2%;
         padding-left: 4.5%;
     }
     .rule{
@@ -164,6 +165,7 @@ $spacing: -0.015em;
     }
     .vision{
         padding-left: 4.5%;
+        padding-right: 4.5%;
     }
     .team-body{
         padding-left: 4.5%;
@@ -173,7 +175,7 @@ $spacing: -0.015em;
 }
 @media screen and (min-width: 768px) and (max-width:940px){
     .title{
-        padding-top: 8.5%;
+        padding-top: 3%;
         padding-left: 2%;
     }
     .rule{
@@ -215,6 +217,7 @@ $spacing: -0.015em;
     }
     .vision{
         padding-left: 2.5%;
+        padding-right: 2.5%;
     }
     .team-body{
         padding-left: 2.5%;
@@ -223,7 +226,7 @@ $spacing: -0.015em;
 }
 @media screen and (max-width: 767px){
     .title{
-        padding-top: 16%;
+        padding-top: 4%;
         font-size: 1.45em;
         padding-left: 7%;
     }
@@ -261,6 +264,7 @@ $spacing: -0.015em;
     }
     .vision{
         padding-left: 4%;
+        padding-right: 4%;
         font-size: 1.2em;
     }
     .team-title{
