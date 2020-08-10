@@ -28,6 +28,7 @@ import {MatInputModule} from '@angular/material/input';
 import { CompaniesCarouselComponent } from './companies-carousel/companies-carousel.component';
 import { TileComponent } from './tile/tile.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     HomepageComponent,
     CompaniesCarouselComponent,
     TileComponent,
-    AboutusComponent
+    AboutusComponent,
+    ContactusComponent
   ],
   imports: [
     BrowserModule,
