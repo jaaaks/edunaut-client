@@ -80,20 +80,19 @@ textarea {
 .follow-header {
   padding-right: 26.5%;
 }
-.email{
-    padding-left: 0.65%;
-    font-size: 1.75em;
-    line-height: 70px;
-    font-family: Montserrat;
+.email {
+  padding-left: 0.65%;
+  font-size: 1.75em;
+  line-height: 70px;
+  font-family: Montserrat;
 }
-.text{
-    padding-left: 21.3%;
-    font-size: 1.75em;
-    font-family: Montserrat;
+.text {
+  padding-left: 21.3%;
+  font-size: 1.75em;
+  font-family: Montserrat;
 }
-.follow{
-    
-    padding-left: 18.4%;
+.follow {
+  padding-left: 18.4%;
 }
 .social-icons {
   margin-bottom: 0;
@@ -146,9 +145,30 @@ textarea {
   }
   a.dribbble {
     &:hover {
-        background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-        background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-        background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+      background: -moz-linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+      );
+      background: -webkit-linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+      );
+      background: linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+      );
     }
   }
 }
@@ -160,148 +180,149 @@ textarea {
     font-size: 14px;
   }
 }
-.footer{
-    padding-bottom: 4%;
+.footer {
+  padding-bottom: 4%;
 }
-@media screen and (max-width: 1596px){
-    .button{
-        margin-top: 11%;
-    }
-    .header{
-        text-align: left;
-    }
-    .email-header{
-        padding-left: 0.8%;
-    }
-    .text-header{
-        padding-left: 2%;
-    }
-    .follow-header{
-        padding-right: 10%;
-    }
-    .follow{
-        padding-left: 16.5%;
-    }
+@media screen and (max-width: 1596px) {
+  .button {
+    margin-top: 11%;
+  }
+  .header {
+    text-align: left;
+  }
+  .email-header {
+    padding-left: 0.8%;
+  }
+  .text-header {
+    padding-left: 2%;
+  }
+  .follow-header {
+    padding-right: 10%;
+  }
+  .follow {
+    padding-left: 16.5%;
+  }
 }
-@media screen and (max-width: 1596px){
-    .header{
-        text-align: justify;
-    }
-    .text-header{
-        padding-left: 0%;
-    }
-    .text{
-        padding-left: 17%;
-    }
-    .follow{
-        padding-left: 10%;
-    }
-    .follow-header{
-        padding-left: -20%;
-    }
+@media screen and (max-width: 1596px) {
+  .header {
+    text-align: justify;
+  }
+  .text-header {
+    padding-left: 0%;
+  }
+  .text {
+    padding-left: 17%;
+  }
+  .follow {
+    padding-left: 10%;
+  }
+  .follow-header {
+    padding-left: -20%;
+  }
 }
-@media screen and (max-width: 1092px){
-    .header{
-        text-align: start;
+@media screen and (max-width: 1092px) {
+  .header {
+    text-align: start;
+  }
+  .text-header {
+    padding-right: 0%;
+    padding-left: 26%;
+  }
+  .follow-header {
+    padding-left: 22%;
+    padding-right: 0%;
+  }
+  .email-header {
+    padding-right: 0%;
+  }
+  .text {
+    padding-left: 14%;
+    font-size: 1.5em;
+  }
+  .email {
+    font-size: 1.5em;
+  }
+  .follow {
+    font-size: 1.5em;
+    padding-left: 7%;
+  }
+  .button {
+    margin-top: 15%;
+  }
+  .social-icons {
+    a {
+      margin-right: 5px;
     }
-    .text-header{
-        padding-right: 0%;
-        padding-left: 26%
-    }
-    .follow-header{
-        padding-left: 22%;
-        padding-right: 0%;
-    }
-    .email-header{
-        padding-right: 0%;
-    }
-    .text{
-        padding-left: 14%;
-        font-size: 1.5em;
-    }
-    .email{
-        font-size: 1.5em;
-    }
-    .follow{
-        font-size: 1.5em;
-        padding-left: 7%;
-    }
-    .button{
-        margin-top: 15%;
-    }
-    .social-icons{ a{
-        margin-right: 5px;
-    }
+  }
 }
+@media screen and (max-width: 848px) {
+  .title {
+    font-size: 1.2em;
+  }
+  .got {
+    font-size: 1.2em;
+  }
+  .send {
+    font-size: 0.9em;
+  }
+  ::-webkit-input-placeholder {
+    font-size: 0.75em;
+  }
+
+  :-ms-input-placeholder {
+    font-size: 0.75em;
+  }
+
+  ::placeholder {
+    font-size: 0.75em;
+  }
+  .text {
+    padding-left: 11%;
+    font-size: 1.35em;
+  }
+  .follow {
+    padding-left: 6%;
+  }
+  .email {
+    font-size: 1.35em;
+    line-height: 60px;
+  }
+  .button {
+    font-size: 0.65em;
+    margin-top: 17%;
+  }
+  .header {
+    font-size: 0.8em;
+  }
+  .social-icons {
+    a {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 14px;
+    }
+  }
 }
-@media screen and (max-width: 848px){
-    .title{
-        font-size: 1.2em;
-    }
-    .got{
-        font-size: 1.2em;
-    }
-    .send{
-        font-size: 0.9em;
-    }
-    ::-webkit-input-placeholder {
-        font-size: 0.75em;
-      }
-      
-      :-ms-input-placeholder {
-        font-size: 0.75em;
-      }
-      
-      ::placeholder {
-        font-size: 0.75em;
-      }
-    .text{
-        padding-left: 11%;
-        font-size: 1.35em;
-    }
-    .follow{
-        padding-left: 6%;
-    }
-    .email{
-        font-size: 1.35em;
-        line-height: 60px;
-    }
-    .button{
-        font-size: 0.65em;
-        margin-top: 17%;
-    }
-    .header{
-        font-size: 0.8em;
-    }
-.social-icons{
-    a{
-        width: 24px;
-        height: 24px;
-        line-height: 24px;
-        font-size: 14px;
-    }
-}
-}
-@media screen and (max-width:480px){
-    .title{
-        padding-left: 8%;
-    }
-    .form-control{
-        width: 90%;
-    }
-    .email-header{
-        padding-right: 0px;
-        padding-left: 0%;
-    }
-    .text-header{
-        padding-left: 30%;
-    }
-    .email{
-        font-size: 1.1em;
-        line-height: 40px;
-    }
-    .text{
-        font-size: 1.1em;
-        padding-left: 13%;
-    }
+@media screen and (max-width: 480px) {
+  .title {
+    padding-left: 8%;
+  }
+  .form-control {
+    width: 90%;
+  }
+  .email-header {
+    padding-right: 0px;
+    padding-left: 0%;
+  }
+  .text-header {
+    padding-left: 30%;
+  }
+  .email {
+    font-size: 1.1em;
+    line-height: 40px;
+  }
+  .text {
+    font-size: 1.1em;
+    padding-left: 13%;
+  }
 }

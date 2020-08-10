@@ -29,6 +29,7 @@ import { CompaniesCarouselComponent } from './companies-carousel/companies-carou
 import { TileComponent } from './tile/tile.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { PolicyComponent } from './policy/policy.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ContactusComponent } from './contactus/contactus.component';
     CompaniesCarouselComponent,
     TileComponent,
     AboutusComponent,
-    ContactusComponent
+    ContactusComponent,
+    PolicyComponent
   ],
   imports: [
     BrowserModule,
