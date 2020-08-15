@@ -66,19 +66,29 @@ textarea {
   border-radius: 6px;
 }
 .header {
-  text-align: center;
   font-family: Montserrat;
   font-size: 0.9em;
   padding-top: 3%;
 }
 .email-header {
-  padding-right: 29.5%;
+  padding-left: 0.6%;
 }
 .text-header {
-  padding-right: 27.5%;
+  padding-left: 30%;
 }
 .follow-header {
-  padding-right: 26.5%;
+  padding-left: 27%;
+}
+@supports (-moz-appearance:none){
+  .email-header {
+    padding-left: 0.6%;
+  }
+  .text-header {
+    padding-left: 32%;
+  }
+  .follow-header {
+    padding-left: 29%;
+  }
 }
 .email {
   padding-left: 0.65%;
@@ -183,32 +193,10 @@ textarea {
 .footer {
   padding-bottom: 4%;
 }
+
 @media screen and (max-width: 1596px) {
-  .button {
-    margin-top: 11%;
-  }
-  .header {
-    text-align: left;
-  }
-  .email-header {
-    padding-left: 0.8%;
-  }
   .text-header {
-    padding-left: 2%;
-  }
-  .follow-header {
-    padding-right: 10%;
-  }
-  .follow {
-    padding-left: 16.5%;
-  }
-}
-@media screen and (max-width: 1596px) {
-  .header {
-    text-align: justify;
-  }
-  .text-header {
-    padding-left: 0%;
+    padding-left: 30%;
   }
   .text {
     padding-left: 17%;
@@ -216,8 +204,33 @@ textarea {
   .follow {
     padding-left: 10%;
   }
-  .follow-header {
-    padding-left: -20%;
+  .follow-header{
+    padding-left: 25%;
+  }
+  @supports (-moz-appearance:none){
+    .email-header {
+      padding-left: 0.6%;
+    }
+    .text-header {
+      padding-left: 30%;
+    }
+    .follow-header {
+      padding-left: 25%;
+    }
+    .button{
+      margin-top: 11%;
+    }
+    .text{
+      padding-left: 10%;
+    }
+    .follow{
+      padding-left: 10%;
+    }
+    .social-icons{
+      a{
+        margin-right: 8px;
+      }
+    }
   }
 }
 @media screen and (max-width: 1092px) {
@@ -234,6 +247,17 @@ textarea {
   }
   .email-header {
     padding-right: 0%;
+  }
+  @supports (-moz-appearance:none){
+    .email-header {
+      padding-left: 0.6%;
+    }
+    .text-header {
+      padding-left: 30%;
+    }
+    .follow {
+      padding-left: 0%;
+    }
   }
   .text {
     padding-left: 14%;
@@ -293,6 +317,23 @@ textarea {
   }
   .header {
     font-size: 0.8em;
+  }
+  @supports (-moz-appearance:none){
+    .email-header {
+      padding-left: 0.6%;
+    }
+    .text-header {
+      padding-left: 25%;
+    }
+    .text{
+      padding-left: 5%;
+    }
+    .follow-header{
+      padding-left: 20%;
+    }
+    .follow {
+      padding-left: 2%;
+    }
   }
   .social-icons {
     a {
