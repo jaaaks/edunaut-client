@@ -28,6 +28,10 @@ import {MatInputModule} from '@angular/material/input';
 import { CompaniesCarouselComponent } from './companies-carousel/companies-carousel.component';
 import { TileComponent } from './tile/tile.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { PolicyComponent } from './policy/policy.component';
+import { FAQComponent } from './faq/faq.component';
+import { ScrollSpyDirective } from './scroll-spy.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     HomepageComponent,
     CompaniesCarouselComponent,
     TileComponent,
-    AboutusComponent
+    AboutusComponent,
+    ContactusComponent,
+    PolicyComponent,
+    FAQComponent,
+    ScrollSpyDirective
   ],
   imports: [
     BrowserModule,
