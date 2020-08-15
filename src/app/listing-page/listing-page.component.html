@@ -1,0 +1,136 @@
+<div class="row main">
+    <div class="col-md-2">
+      <div class="refine">
+        Refine results
+      </div>
+      <mat-divider></mat-divider>
+      <strong>Domain</strong>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+          <button mat-icon-button disabled></button>
+          <mat-checkbox class="checklist-leaf-node"
+                        [checked]="checklistSelection.isSelected(node)"
+                        (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+        </mat-tree-node>
+    
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+          
+          <mat-checkbox  [checked]="descendantsAllSelected(node)"
+          [indeterminate]="descendantsPartiallySelected(node)"
+          (change)="todoItemSelectionToggle(node)" >{{node.item}}</mat-checkbox>
+
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'toggle ' + node.filename">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+        </mat-tree-node>
+      </mat-tree>
+      <mat-divider></mat-divider>
+      <strong>Program Type</strong>
+      <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl" class="example-tree">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+          <button mat-icon-button disabled></button>
+          <mat-checkbox class="checklist-leaf-node"
+                        [checked]="checklistSelection.isSelected(node)"
+                        (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+        </mat-tree-node>
+    
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+          
+          <mat-checkbox  [checked]="descendantsAllSelected(node)"
+          [indeterminate]="descendantsPartiallySelected(node)"
+          (change)="todoItemSelectionToggle(node)" >{{node.item}}</mat-checkbox>
+
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'toggle ' + node.filename">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+        </mat-tree-node>
+      </mat-tree>
+
+      <mat-divider></mat-divider>
+      <strong>Duration</strong>
+      
+  </div>
+  <div class="col-md-10" >
+    <div fxLayout="row" fxLayoutAlign="end">
+     
+      <div class="sortButton">
+        <div class="sort">
+        Sort
+        <button mat-icon-button aria-label="expand_more" (click)='sortCheck()'>
+          <mat-icon >{{sortChecker?'expand_more':'chevron_right'}}</mat-icon>
+        </button>
+        </div>
+
+      
+      </div>
+      <div class="compare">
+        <div class="sort">
+       Compare
+       <button mat-icon-button aria-label="expand_more" (click)='compareCheck()'>
+        <mat-icon >{{compareChecker?'expand_more':'chevron_right'}}</mat-icon>
+      </button>
+        </div>
+      </div>
+      </div>
+   <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutAlign="space-around center">
+     <ng-container *ngFor="let course of courseList"> 
+    <mat-card class="example-card"  fxFlex="27" >
+        <mat-card-header class="header">
+          <div class="strip"></div>
+          <div mat-card-avatar class="example-header-image"></div>
+        
+        </mat-card-header>
+        <mat-card-content >
+         <a> <strong>
+           {{course.course_name}}
+          </strong></a>
+          <br>
+          <br>
+          <br>
+          <div class="details" fxLayout="row" fxLayoutAlign="space-between" >
+            <div>
+              <fa-icon [icon]="faClock"></fa-icon>
+              {{course.course_time}}
+              </div>
+              <div>
+                <fa-icon [icon]="faHeart"></fa-icon>
+                {{course.course_review}}/5 (2695)
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between" >
+              <div>
+                <fa-icon [icon]="faDollarSign"></fa-icon>
+                {{course.course_fee}}
+                </div>
+                <div>
+                 {{course.course_diff}}
+                  </div>
+              </div>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+      
+
+        <mat-card-footer class="footer">	
+         <div fxLayout="row" fxLayoutAlign="space-between" >
+           <div >
+           <p>Indian Institue of technology</p>
+           </div>
+           <div>
+            <mat-icon>bookmark_border</mat-icon>
+        </div>
+        </div>
+ </mat-card-footer>
+        
+      </mat-card>
+
+     </ng-container>
+  
+</div>
+
+</div>

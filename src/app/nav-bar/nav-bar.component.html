@@ -12,8 +12,8 @@
   
    
     <div class="sample one">
-      <input type="text" name="search" placeholder="search">
-      <button type="submit" class="fab fa-sistrix btn btn-search"></button>
+      <input type="text" name="search" placeholder="search" [(ngModel)]='searchParameter'>
+      <button type="submit" (click)="sendMessage()" class="fab fa-sistrix btn btn-search"></button>
     </div>
    
     
