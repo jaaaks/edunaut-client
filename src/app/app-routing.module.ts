@@ -6,8 +6,10 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
+import {FAQComponent} from './faq/faq.component';
 
 const routes: Routes = [
+  {path:'faq', component:FAQComponent},
   {path: 'policy', component: PolicyComponent},
   { path: 'contactus', component: ContactusComponent },
   { path: 'aboutus', component: AboutusComponent },

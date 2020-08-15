@@ -30,6 +30,8 @@ import { TileComponent } from './tile/tile.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
+import { FAQComponent } from './faq/faq.component';
+import { ScrollSpyDirective } from './scroll-spy.directive';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { PolicyComponent } from './policy/policy.component';
     TileComponent,
     AboutusComponent,
     ContactusComponent,
-    PolicyComponent
+    PolicyComponent,
+    FAQComponent,
+    ScrollSpyDirective
   ],
   imports: [
     BrowserModule,
