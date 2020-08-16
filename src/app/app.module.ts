@@ -41,6 +41,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
+import { ContactusComponent } from './contactus/contactus.component';
+import { PolicyComponent } from './policy/policy.component';
+import { FAQComponent } from './faq/faq.component';
+import { ScrollSpyDirective } from './scroll-spy.directive';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CompaniesCarouselComponent,
     TileComponent,
     AboutusComponent,
-    ListingPageComponent
+    ListingPageComponent,
+    ContactusComponent,
+    PolicyComponent,
+    FAQComponent,
+    ScrollSpyDirective
   ],
   imports: [
     BrowserModule,

@@ -120,6 +120,7 @@ export class ListingPageComponent implements OnInit {
   faClock = faClock;
   faHeart = faHeart;
   public courseList;
+  totalResults:any;
   public regularDistribution=100/3;
   message: any;
   sortChecker:boolean=true;
@@ -161,6 +162,7 @@ export class ListingPageComponent implements OnInit {
 
     _database.dataChange1.subscribe(data => {
       this.dataSource1.data = data;
+      
     });
   }
   transformer = (node: TodoItemNode, level: number) => {
@@ -181,12 +183,15 @@ export class ListingPageComponent implements OnInit {
   ngOnInit(): void {
     this.searchService.getAllCourses().subscribe((response)=>{
        this.courseList=response;
+       this.totalResults=this.courseList.length;
+
     });
   }
   searchMethod(parameter):void{
-    console.log(parameter);
+   
     this.searchService.getCourseByKeyWord(parameter.text).subscribe((response)=>{
       this.courseList=response;
+      this.totalResults=this.courseList.length;
    });
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {

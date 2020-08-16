@@ -13,6 +13,10 @@ export class SeacrhServiceService {
     return this.httpClient.get(`http://server-env.eba-zdwqv4a8.ap-south-1.elasticbeanstalk.com/edunaut/getallcourses`);
   }
   public getCourseByKeyWord(tag){
+    if(tag==="")
+    {
+      return this.getAllCourses();
+    }
     return this.httpClient.get(`http://server-env.eba-zdwqv4a8.ap-south-1.elasticbeanstalk.com/edunaut/getbykeyword/`+tag);
 }
 }

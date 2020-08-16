@@ -1,9 +1,13 @@
+<div class="container-fluid">
 <div class="row main">
     <div class="col-md-2">
       <div class="refine">
         Refine results
       </div>
+     
       <mat-divider></mat-divider>
+      
+      
       <strong>Domain</strong>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
@@ -56,9 +60,15 @@
       <strong>Duration</strong>
       
   </div>
+
   <div class="col-md-10" >
-    <div fxLayout="row" fxLayoutAlign="end">
-     
+    <div class="row">
+      <div class="col-md-1 col-sm-1 col-xs-1" >
+    <mat-divider  vertical style="height:100%"></mat-divider>
+    </div>
+    <div class="col-md-11 col-sm-11 col-xs-11">
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px" class="comp">
+       <div fxFlexAlign="center" class="resultsNum">{{totalResults}} Results</div> 
       <div class="sortButton">
         <div class="sort">
         Sort
@@ -78,7 +88,8 @@
         </div>
       </div>
       </div>
-   <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutAlign="space-around center">
+     
+   <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutAlign="space-evenly">
      <ng-container *ngFor="let course of courseList"> 
     <mat-card class="example-card"  fxFlex="27" >
         <mat-card-header class="header">
@@ -132,5 +143,8 @@
      </ng-container>
   
 </div>
-
+</div>
+</div>
+</div>
+</div>
 </div>
