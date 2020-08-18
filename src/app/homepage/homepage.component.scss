@@ -7,79 +7,100 @@ $spacing: -0.015em;
   box-shadow: none;
 }
 .heading {
-  padding-top: 4.529%;
-  padding-left: 1.186%;
+  padding-top: 5%;
   font-family: $font1;
-  font-size: 2.75em;
   letter-spacing: $spacing;
   font-style: normal;
   font-weight: normal;
 }
+.title{
+  font-size: 2.1em;
+  line-height: 50px;
+}
+.title-body{
+  font-size: 1em;
+  line-height: 27px;
+  padding-top: 3%;
+}
 .title-img {
-  padding-top: 2%;
+  padding-top: 0%;
 }
 .btn-primary {
   background: $color1 !important;
   color: $color2 !important;
-  font-size: 0.36em;
+  font-size: 0.65em;
   padding: 1.5% 8%;
+  margin-top: 6%;
   border-radius: 4px;
 }
 .brands-head {
   text-align: center;
   font-family: $font1;
-  padding-top: 1%;
-  font-size: 1.8em;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 1.25em;
   letter-spacing: $spacing;
   font-style: normal;
   font-weight: bold;
   color: #a2a2a2;
 }
 .brands-footer {
-  text-align: center;
   font-family: $font1;
-  font-size: 1.5em;
+  font-size: 1.12em;
+  background-color: #DDF2FE;
   letter-spacing: -0.015em;
   font-style: normal;
-  font-weight: bold;
+  font-weight: normal;
   color: #000000;
+  padding-top: 0.7%;
+  padding-bottom: 0.7%;
+  margin-top: 2%;
+}
+.cors{
+  padding-left: 34%;
+}
+.providers{
+  padding-left: 4.3%;
+}
+.universities{
+  padding-left: 4.3%;
 }
 .brands {
   padding-left: 13%;
   padding-right: 13%;
 }
 .skills{
-  margin-top: 2%;
   padding-bottom: 4%;
   padding-top: 1%;
-  padding-left: 15%;
+  padding-left: 13%;
   background-color: #f5f5f5;
 }
 .skills-header{
   padding-left: 36.5%;
   font-family: $font1;
   padding-top: 2.5%;
-  padding-bottom: 2.5%;
-  font-size: 1.8em;
+  padding-bottom: 1.5%;
+  font-size: 1.25em;
   letter-spacing: $spacing;
   font-style: normal;
   font-weight: bold;
-  color: black;
+  color: #0087e5;
 }
 .domain-title{
   padding-left: 13.63%;
   padding-top: 2.5%;
   padding-bottom: 1%;
-  font-size: 1.8em;
+  font-size: 1.25em;
   font-family: $font1;
   letter-spacing: $spacing;
   font-style: normal;
   font-weight: bold;
-  color: black;
+  color: #0087e5;
 }
 .domain{
   padding-left: 13.63%;
   padding-right: 13.63%;
+ 
 }
 .courses{
   background-color: #f5f5f5;
@@ -89,7 +110,7 @@ $spacing: -0.015em;
   padding-left: 27.63%;
   padding-top: 2.5%;
   padding-bottom: 1%;
-  font-size: 1.8em;
+  font-size: 1.25em;
   font-family: $font1;
   letter-spacing: $spacing;
   font-style: normal;
@@ -100,7 +121,7 @@ $spacing: -0.015em;
   border-color: $color1 !important;
   border-radius: 1em;
   color: $color1;
-  font-size: 0.4em;
+  font-size: 0.45em;
   padding: 0.5% 2.56% !important;
 }
 .quick-img{
@@ -115,13 +136,17 @@ textarea{
   padding: 5% !important;
   border-width: 2px !important;
   border-radius: 5px !important;
-  max-width: 70%;
+}
+.form-control{
+  width: 80%;
 }
 .find{
   padding-top: 2.5%;
   font-family: $font1;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1em;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
   letter-spacing: -0.015em;
   font-style: normal;
   font-weight: normal;
@@ -135,23 +160,49 @@ textarea{
   padding: 0.5% 4%;
   font-family: $font1;
   text-align: center;
-  font-size: 1em;
+  font-size: 0.7em;
+  margin-top: 1%;
   letter-spacing: -0.015em;
   font-style: normal;
   font-weight: normal;
 }
-@media screen and (max-width: 1024px) and (min-width: 768px)
+@media screen and (max-width: 1510px)
+{
+  .cors{
+    padding-left: 30%;
+  }
+  .skills{
+    padding-left: 8%;
+  }
+  .skills-header{
+    padding-left: 38%;
+  }
+  .domain{
+    padding-left: 10%;
+  }
+  .domain-title{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  .quick{
+    padding-left: 21%;
+  }
+  .quick-img{
+    padding-left: 21%;
+  }
+}
+@media screen and (max-width: 1124px)
 {
   .skills{
-    margin-top: 2%;
-    padding-top: 1%;
+ 
     padding-left: 4%;
     background-color: #f5f5f5;
   }
+ .cors{
+   padding-left: 25%;
+ }
   .skills-header{
-    padding-left: 40%;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-left: 39%;
   }
   .domain-title{
     padding-left: 6%; 
@@ -171,11 +222,29 @@ textarea{
     padding-left: 12%;
   }
 }
+@media screen and (max-width: 962px){
+  .cors{
+    padding-left: 21%;
+  }
+}
 @media screen and (max-width: 767px) {
-  .heading {
-    padding-top: 12%;
-    padding-left: 4%;
-    font-size: 1.82em;
+  .jumbotron{
+    padding-top: 0px;
+    margin-top: 0%;
+  }
+  .heading{
+    padding-top: 0%;
+  }
+  .title{
+    font-size: 1.3em;
+    padding-top: 30%;
+  }
+  .title-body{
+    font-size: 0.75em;
+
+  }
+  .title-img{
+    margin-top: 0%;
   }
   .brands-head {
     font-size: 1.2em;
@@ -185,10 +254,10 @@ textarea{
     padding-right: 1%;
   }
   .brands-footer{
-    font-size: 1.05em;
+    font-size: 0.85em;
   }
   .skills-header{
-    font-size: 1.2em;
+    font-size: 1em;
   }
   .title-img {
     padding-top: 15%;
@@ -200,7 +269,7 @@ textarea{
     padding-left: 35.7%;
   }
   .domain-title{
-    font-size: 1.2em;
+    font-size: 1em;
     padding-left: 1%;
     padding-right: 1%;
   }
@@ -209,7 +278,7 @@ textarea{
     padding-right: 1%;
   }
   .quick{
-    font-size: 1.2em;
+    font-size: 1em;
     padding-left: 1%;
   }
   .quick-right{
@@ -224,14 +293,60 @@ textarea{
     margin: 0% !important;
   }
   .find{
-    font-size: 1em;
+    font-size: 0.85em;
     padding-bottom: 0%;
   }
   .find-btn{
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
   .btn1{
     padding-bottom: 5%;
   }
 }
-
+@media screen and (max-width: 580px){
+  .title{
+    line-height: 1.4em;
+    padding-top: 50%;
+  }
+  .btn-primary{
+    margin-top: 15%;
+  }
+  .title-body{
+    line-height: 1.3em;
+    font-size: 0.65em;
+  }
+  .cors{
+    padding-left: 14%;
+  }
+  .skills-header{
+    padding-left: 34%;
+  }
+  .brands-footer{
+    font-size: 0.8em;
+  }
+  .brands-head{
+    font-size: 0.9em;
+  }
+  .skills-header{
+    font-size: 0.9em;
+  }
+  .domain-header{
+    font-size: 0.9em;
+  }
+  .quick{
+    font-size: 0.9em;
+  }
+  .find{
+    font-size: 0.8em;
+  }
+  .find-btn{
+    margin-top: 2%;
+    font-size: 0.5em;
+  }
+}
+@media screen and (max-width: 444px)
+{
+  .cors{
+    padding-left: 3.5%;
+  }
+}
