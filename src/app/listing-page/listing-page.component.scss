@@ -1,0 +1,132 @@
+.example-tree-invisible {
+    display: none;
+  }
+  .example-tree{
+    background: #F5F5F5;
+  }
+  .main{
+    background: #F5F5F5;
+    width: 100%;
+  }
+  .example-tree ul,
+  .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+  .example-card {
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  
+  .example-header-image {
+    position: relative;
+    background-image: url('../../assets/courseImage/course.png');
+    background-size: cover;
+    z-index: 1;
+    top:10px;
+  }
+  .header{
+    margin-bottom: 20px;
+  }
+  .details{
+    margin-top: 20px;
+  }
+  
+  .footer{
+    padding: 16px;
+  }
+  .strip{
+    position: absolute;
+width: 100%;
+height: 15px;
+left: 0px;
+top: 42px;
+background: #B5FAFD;
+
+  }
+.refine{
+  
+
+/* Heading / H6 or subtitle */
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+/* identical to box height, or 150% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.0015em;
+
+color: #757575;
+}
+
+.sortButton{
+ 
+  position: relative;
+  width: 92px;
+  height: 31px;
+  
+  
+  background: #FFFFFF;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 27px;
+}
+.sort{
+ position: absolute; 
+width: 35px;
+height: 20px;
+left: 15px;
+top: 5px;
+
+/* body text / body 1 / bold */
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.005em;
+
+color: #757575;
+
+}
+.compare{
+  position: relative;
+  width: 133px;
+height: 31px;
+  
+  
+  background: #FFFFFF;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 27px;
+}
+.comp{
+  padding: 1% 4% 1% 0;
+}
+.resultsNum{
+  position: relative;
+  left: -64%;
+}
+.mat-divider-vertical{
+  position: absolute;
+  left: 30%;
+}
+.mat-divider{
+  position:absolute;
+  width: 100%;
+}
+.example-margin{
+  width:100%
+}
