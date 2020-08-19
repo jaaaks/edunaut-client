@@ -9,6 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule  } from '@angular/forms';
 import { NguCarouselModule } from '@ngu/carousel';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { SeacrhServiceService } from './services/seacrh-service.service';
+import {MatSliderModule} from '@angular/material/slider';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -23,15 +26,27 @@ import { NgwWowModule } from 'ngx-wow';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
 
 import { CompaniesCarouselComponent } from './companies-carousel/companies-carousel.component';
 import { TileComponent } from './tile/tile.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { ListingPageComponent } from './listing-page/listing-page.component';
+import {MatTreeModule} from '@angular/material/tree'
+import {MatIconModule} from '@angular/material/icon'
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
 import { FAQComponent } from './faq/faq.component';
 import { ScrollSpyDirective } from './scroll-spy.directive';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -44,6 +59,7 @@ import { ScrollSpyDirective } from './scroll-spy.directive';
     CompaniesCarouselComponent,
     TileComponent,
     AboutusComponent,
+    ListingPageComponent,
     ContactusComponent,
     PolicyComponent,
     FAQComponent,
@@ -62,9 +78,21 @@ AngularFireAuthModule,
     SpringSpinnerModule,
     NgbModule,
     MatButtonModule,
-    MatInputModule
-  ],
-  providers: [AuthenticationService],
+    MatInputModule,
+    MatTreeModule,
+    MatIconModule,
+    MatCardModule,
+   FlexLayoutModule,
+   MatDividerModule,
+   HttpClientModule,
+   FontAwesomeModule,
+   FormsModule,
+ CommonModule,
+ MatCheckboxModule,
+ MatSliderModule,
+ MatFormFieldModule
+],
+  providers: [AuthenticationService,SeacrhServiceService],
   bootstrap: [AppComponent],
   schemas:[NO_ERRORS_SCHEMA]
 })

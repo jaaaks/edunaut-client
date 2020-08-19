@@ -3,6 +3,7 @@ import { NgwWowService } from 'ngx-wow';
 import { AngularFireAuth } from "@angular/fire/auth";
 import {Router} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,7 +16,8 @@ export class NavBarComponent implements OnInit {
    public isMenuCollapsed = true;
    public displayName="";
    public loggedIn=false;
-  constructor(private wowService: NgwWowService,private afauth:AngularFireAuth,private router:Router) {
+   public searchParameter="";
+  constructor(private wowService: NgwWowService,private afauth:AngularFireAuth,private router:Router,private messageService:MessageService) {
     this.afauth.authState.subscribe(
       res => {
         if (res && res.uid) {
@@ -43,4 +45,10 @@ export class NavBarComponent implements OnInit {
   goToLogin(){
   this.router.navigateByUrl("/register");
   }
+  sendMessage(): void {
+    this.messageService.sendMessage(this.searchParameter);
+    this.router.navigateByUrl("/find");
+
+}
+
 }
