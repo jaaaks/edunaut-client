@@ -7,10 +7,10 @@
      
       <mat-divider></mat-divider>
       
-      
+      <section>
       <strong>Domain</strong>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
           <button mat-icon-button disabled></button>
           <mat-checkbox class="checklist-leaf-node"
                         [checked]="checklistSelection.isSelected(node)"
@@ -31,6 +31,8 @@
           </button>
         </mat-tree-node>
       </mat-tree>
+      </section>
+      <section>
       <mat-divider></mat-divider>
       <strong>Program Type</strong>
       <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl" class="example-tree">
@@ -55,10 +57,24 @@
           </button>
         </mat-tree-node>
       </mat-tree>
-
+         </section>
+         <section>
       <mat-divider></mat-divider>
       <strong>Duration</strong>
-      
+      <br>
+      <mat-slider
+      class="example-margin"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [(ngModel)]="value"
+      >
+  </mat-slider>
+  <mat-form-field class="example-margin">
+    <mat-label>Value</mat-label>
+    <input matInput  [(ngModel)]="value">
+    </mat-form-field>
+      </section>
   </div>
 
   <div class="col-md-10" >

@@ -11,6 +11,7 @@ import { ReactiveFormsModule  } from '@angular/forms';
 import { NguCarouselModule } from '@ngu/carousel';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { SeacrhServiceService } from './services/seacrh-service.service';
+import {MatSliderModule} from '@angular/material/slider';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -45,6 +46,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
 import { FAQComponent } from './faq/faq.component';
 import { ScrollSpyDirective } from './scroll-spy.directive';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -86,9 +88,10 @@ AngularFireAuthModule,
    FontAwesomeModule,
    FormsModule,
  CommonModule,
- MatCheckboxModule
-
-  ],
+ MatCheckboxModule,
+ MatSliderModule,
+ MatFormFieldModule
+],
   providers: [AuthenticationService,SeacrhServiceService],
   bootstrap: [AppComponent],
   schemas:[NO_ERRORS_SCHEMA]

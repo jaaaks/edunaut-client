@@ -142,6 +142,10 @@ export class ListingPageComponent implements OnInit {
  dataSource1: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
 
   getLevel = (node: TodoItemFlatNode) => node.level;
+  max=100000;
+  min=0;
+  value=0;
+  step=1;
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase) { 
   
