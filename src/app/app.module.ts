@@ -32,6 +32,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
 import { FAQComponent } from './faq/faq.component';
 import { ScrollSpyDirective } from './scroll-spy.directive';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ScrollSpyDirective } from './scroll-spy.directive';
     ContactusComponent,
     PolicyComponent,
     FAQComponent,
-    ScrollSpyDirective
+    ScrollSpyDirective,
+    ComingSoonComponent
   ],
   imports: [
     BrowserModule,

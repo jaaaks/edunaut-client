@@ -7,8 +7,10 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
 import {FAQComponent} from './faq/faq.component';
+import {ComingSoonComponent} from './coming-soon/coming-soon.component';
 
 const routes: Routes = [
+  {path:'coming-soon', component:ComingSoonComponent },
   {path:'faq', component:FAQComponent},
   {path: 'policy', component: PolicyComponent},
   { path: 'contactus', component: ContactusComponent },
