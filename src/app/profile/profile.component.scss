@@ -1,0 +1,48 @@
+.left{
+    background-color: #f5f5f5;
+}
+hr{
+    width: 87%;
+    border-top: 2px solid #e0e2e8;
+}
+.title{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-style: normal;
+    padding-left: 6.5%;
+    font-size: 1.88em;
+    letter-spacing: 0.0025em;
+    line-height: 114%;
+    padding-top: 4%;
+}
+.ongoing,.bookmark,.complete{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    padding-left: 6.5%;
+    color: #494949;
+    letter-spacing: 0.0025em;
+    font-size: 1.25em;
+    line-height: 0%;
+    padding-bottom: 3px;
+    padding-top: 4%;
+    margin-bottom: 0%;
+}
+.body{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.last{
+    margin-bottom: 4%;
+}
+.right{
+    position: fixed;
+    right: 0px;
+    text-align: center;
+    padding-top: 2%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    line-height: 114%;
+    letter-spacing: 0.0025em;
+    font-style: normal;
+}

@@ -9,19 +9,18 @@ import { map, startWith, take } from 'rxjs/operators';
 import { slider } from '../tile/slide-animation';
 
 @Component({
-  selector: 'app-companies-carousel',
-  templateUrl: './companies-carousel.component.html',
-  styleUrls: ['./companies-carousel.component.scss'],
+  selector: 'app-bookmarked-courses',
+  templateUrl: './bookmarked-courses.component.html',
+  styleUrls: ['./bookmarked-courses.component.scss'],
   animations: [slider],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CompaniesCarouselComponent implements OnInit {
-
-  images = ['assets/homepage/udemy.png', 'assets/homepage/coursera.png', 'assets/homepage/pluralsight.png','assets/homepage/the-great-courses.png','assets/homepage/edx.png', 'assets/homepage/future-learn.png', 'assets/homepage/open-learning1.png', 'assets/homepage/skillshare4.png', 'assets/homepage/udacity1.png',];
+export class BookmarkedCoursesComponent implements OnInit {
+  images = ['assets/homepage/udemy.png', 'assets/homepage/coursera.png', 'assets/homepage/pluralsight.png','assets/homepage/the-great-courses.png','assets/homepage/edx.png', 'assets/homepage/future-learn.png', 'assets/homepage/open-learning1.png', 'assets/homepage/skillshare4.png', 'assets/homepage/udacity1.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png'];
 
   public carouselTileItems$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {
-    grid: { xs: 3, sm: 5, md: 6, lg: 9, all: 0 },
+    grid: { xs: 1, sm: 2, md: 3, lg: 4, all: 0 },
     speed: 250,
     point: {
       visible: true
@@ -40,7 +39,7 @@ export class CompaniesCarouselComponent implements OnInit {
 
     this.carouselTileItems$ = interval(20).pipe(
       startWith(-1),
-      take(this.images.length),
+      take(15),
       map(val => {
         const data = (this.tempData = [
           ...this.tempData,
@@ -50,5 +49,4 @@ export class CompaniesCarouselComponent implements OnInit {
       })
     );
   }
-
 }

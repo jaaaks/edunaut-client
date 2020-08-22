@@ -46,7 +46,12 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
 import { FAQComponent } from './faq/faq.component';
 import { ScrollSpyDirective } from './scroll-spy.directive';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ProfileComponent } from './profile/profile.component';
+import { OngoingCoursesComponent } from './ongoing-courses/ongoing-courses.component';
+import { CompletedCoursesComponent } from './completed-courses/completed-courses.component';
+import { BookmarkedCoursesComponent } from './bookmarked-courses/bookmarked-courses.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ContactusComponent,
     PolicyComponent,
     FAQComponent,
-    ScrollSpyDirective
+    ScrollSpyDirective,
+    ComingSoonComponent,
+    ProfileComponent,
+    OngoingCoursesComponent,
+    CompletedCoursesComponent,
+    BookmarkedCoursesComponent
   ],
   imports: [
     BrowserModule,

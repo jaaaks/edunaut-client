@@ -1,284 +1,260 @@
 $spacing: -0.015em;
-.title{
-    padding-top: 1%;
-    padding-bottom: 0.7%;
+.title {
+  font-family: Montserrat;
+  font-style: normal;
+  color: #a1a1a1;
+  font-size: 1.5em;
+  font-weight: bolder;
+  padding-bottom: 4%;
+  letter-spacing: $spacing;
+}
+.about {
+  background-color: #f5f5f5;
+}
+
+.numbers {
+  font-size: 2.95em;
+  line-height: 0.8em;
+  word-spacing: 180px;
+  padding-top: 5%;
+  text-align: center;
+  font-family: Montserrat;
+}
+.numbers-footer {
+  font-size: 0.9em;
+  font-family: Montserrat;
+}
+.learn {
+  padding-left: 13.7%;
+}
+.page{
     padding-left: 11%;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    color: #a2a2a2;
-    letter-spacing: $spacing;
-    font-size: 1.8em;
 }
-.top{
-    background-color: #f5f5f5;
+.reviews {
+  padding-left: 11.5%;
 }
-
-.rule{
-    width: 60%;
-    height: 3px;
-    margin-left: 30%;
-    background-color: #31A8F7;
+.affiliates{
+    padding-left: 13.75%;
 }
-.ruler{
-    padding-right: 28%;
-    padding-top: 5%;
-    padding-bottom: 7%;
+.courses {
+  padding-left: 13%;
 }
-.details{
-    padding-left: 21.5%;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 130%;
-    line-height: 40px;
-    color: black;
-    letter-spacing: $spacing;
-    font-size: 2.15em;
+.explore {
+  padding-left: 41%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 0.6em;
+  margin-bottom: 2%;
 }
-.about-img{
-    margin-top: 5%;
+.btn-primary {
+  background-color: #0087e5 !important;
+  border-radius: 5px !important;
+  padding: 1.15% 6%;
+  font-family: Montserrat;
 }
-.numbers{
-    font-size: 2.95em;
-    line-height: 0.8em;
-    word-spacing: 180px;
-    padding-top: 4%;
-    text-align: center;
-    font-family: Montserrat;
+.vision-img {
+  margin-left: 32.5%;
+  margin-top: 9.5%;
+  margin-bottom: 9.5%;
+  max-width: 100%;
 }
-.numbers-footer{
-    font-size: 1.2em;
-    text-align: center;
-    word-spacing: 160px;
-    font-family: Montserrat;
+.vision {
+  padding-top: 2.5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-family: Montserrat;
 }
-.learn{
-    padding-right: 1.2%;
+.who,
+.what {
+  font-weight: 600;
+  font-family: Montserrat;
+  font-size: 1.25em;
+  padding-bottom: 2.5%;
+  color: #0087e5;
+  font-style: normal;
 }
-.reviews{
-    padding-right: 4%;
+.who-passage {
+  padding-bottom: 2.5%;
 }
-.courses{
-    padding-left: 1%;
-    padding-right: 1%;
+.vision-passage{
+    padding-bottom: 2.5%;
 }
-.explore{
-    padding-left: 42.8%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-size: 0.6em;
+.our {
+  font-weight: 600;
+  font-family: Montserrat;
+  font-size: 1.15em;
+  color: #a1a1a1;
+  font-style: normal;
 }
-.btn-primary{
-    background-color: #0087e5 !important;
-    border-radius: 5px !important;
-    padding: 1.15% 6%;
-    font-family: Montserrat;
+.missions {
+  font-weight: bold;
 }
-.vision-img{
-    margin-left: 32.5%;
-    margin-top: 9.5%;
-    margin-bottom: 9.5%;
-    max-width: 100%;
+.missions-passage{
+    padding-bottom: 8%;
 }
-.vision{
-    padding-top: 2.5%;
-    padding-left: 10%;
-    padding-right: 10%;
-    font-size: 1.4em; 
-    font-family: Montserrat;
+.team {
+  background-color: #f5f5f5;
 }
-.who{
-    font-weight: 600;
-    font-family: Montserrat;
-    font-size: 1.35em;
-    font-style: normal;
-
+.team-title {
+  padding-top: 3.5%;
+  padding-bottom: 3.5%;
+  padding-left: 44.5%;
+  font-size: 1.4em;
+  font-family: Montserrat;
+  font-weight: 600;
+  color: #0087e5;
 }
-.what{
-    font-weight: 600;
-    font-family: Montserrat;
-    font-size: 1.35em;
-    font-style: normal;
+.team-img {
+  padding-left: 14%;
+  padding-bottom: 3.5%;
 }
-.our{
-    font-weight: 600;
-    font-family: Montserrat;
-    font-size: 1.2em;
-    font-style: normal;
-}
-.missions{
-    font-weight: bold;
-}
-.team{
-    background-color: #f5f5f5;
-}
-.team-title{
-    text-align: center;
-    padding-top: 2%;
-    font-size: 2em;
-    font-family: Montserrat;
-    font-weight: 600;
-}
-.team-body{
-    padding: 1.6% 14%;
-    font-family: Montserrat;
-    font-size: 1.4em;
-    line-height: 130%;
-}
-.team-img{
-    padding-left: 14%;
-    padding-bottom: 3%;
-}
-@media screen and (min-width: 940px) and (max-width:1024px){
-    .title{
-        padding-top: 2%;
-        padding-left: 4.5%;
+@media screen and (max-width:1764px){
+    .learn{
+        padding-left: 12%;
     }
-    .rule{
-        width: 50%;
+    .reviews{
+        padding-left: 13%;
+    }
+}
+@media screen and (max-width: 1660px){
+    .learn{
         padding-left: 10%;
-        margin-left: 10%;
     }
-    .details{
-        padding-left: 6%;
+    .page{
+        padding-left: 11.5%;
     }
+    .affiliates{
+        padding-left: 16%;
+    }
+}
+@media screen and (max-width: 1496px){
     .numbers{
-        font-size: 2.95em;
-        word-spacing: 100px;
-        padding-top: 4%;
-        text-align: center;
-    }
-    .numbers-footer{
-        font-size: 1.2em;
-        text-align: center;
-        word-spacing: 95px;
+        word-spacing: 140px;
     }
     .learn{
-        padding-right: 1.2%;
+        padding-left: 8.3%;
+    }
+    .page{
+        padding-left: 12%;
     }
     .reviews{
-        padding-right: 3%;
+        padding-left: 12%;
     }
-    .courses{
-        padding-right: 1.8%;
+    .affiliates{
+        padding-left: 15%;
     }
-    .explore{
-        padding-left: 40%;
+}
+@media screen and (max-width: 1216px){
+    .numbers{
+        word-spacing: 90px;
     }
-    .vision{
-        padding-left: 4.5%;
-        padding-right: 4.5%;
+    .learn{
+        padding-left: 5%;
     }
-    .team-body{
-        padding-left: 4.5%;
-        padding-right: 4.5%;
+    .page{
+        padding-left: 10%;
     }
+}
 
+@media screen and (max-width: 1012px) {
+
+  .numbers {
+    font-size: 2.3em;
+    word-spacing: 70px;
+    text-align: center;
+  }
+  .numbers-footer {
+    font-size: 0.8em;
+  }
+  .learn {
+    padding-left: 8%;
+  }
+  .page{
+      padding-left: 8%;
+  }
+  .reviews {
+    padding-left: 8.5%;
+  }
+  .affiliates{
+      padding-left: 12%;
+  }
+  .courses {
+    padding-left: 10%;
+  }
+  .explore {
+    padding-left: 35%;
+  }
 }
-@media screen and (min-width: 768px) and (max-width:940px){
-    .title{
-        padding-top: 3%;
-        padding-left: 2%;
-    }
-    .rule{
-        width: 50%;
-        padding-left: 20%;
-        margin-left: 1%;
-    }
-    .details{
-        padding-left: 0%;
-    }
-    .about-img{
-        margin-top: 20%;
-    }
+@media screen and (max-width: 794px) {
+  .title {
+    font-size: 1.30em;
+  }
+  .what,.who{
+      font-size: 1.10em;
+  }
+  .missions{
+      font-size: 0.9em;
+  }
+  .numbers {
+    font-size: 1.8em;
+    word-spacing: 60px;
+    line-height: 0.5em;
+  }
+  .numbers-footer {
+    font-size: 0.7em;
+  }
+  .explore {
+    padding-left: 35%;
+  }
+  .btn-primary {
+    font-size: 1em;
+  }
+  p{
+      font-size: 0.8em;
+  }
+  .vision {
+    padding-left: 4%;
+    padding-right: 4%;
+    font-size: 1em;
+  }
+  .team-title {
+    font-size: 1.4em;
+    padding-left: 37%;
+  }
+  .explore{
+      margin-left: 2.2%;
+  }
+  .team-img {
+    padding-left: 13%;
+  }
+}
+@media screen and (max-width: 650px){
     .numbers{
-        font-size: 2.95em;
-        word-spacing: 45px;
-        padding-top: 4%;
-        text-align: center;
+        font-size: 1.45em;
+        word-spacing: 5px;
     }
     .numbers-footer{
-        font-size: 1.2em;
-        text-align: center;
-        word-spacing: 35px;
-    }
-    .learn{
-        padding-right: 1.2%;
-    }
-    .reviews{
-        padding-right: 5%;
-    }
-    .courses{
-        padding-right: 2.8%;
-    }
-    .explore{
-        padding-left: 35%;
-    }
-    .vision-img{
-        margin-left: 24%;
-    }
-    .vision{
-        padding-left: 2.5%;
-        padding-right: 2.5%;
-    }
-    .team-body{
-        padding-left: 2.5%;
-        padding-right: 2.5%;
-    }
-}
-@media screen and (max-width: 767px){
-    .title{
-        padding-top: 4%;
-        font-size: 1.45em;
-        padding-left: 7%;
-    }
-    .details{
-        font-size: 1.45em;
-        line-height: 25px;
-        padding-left: 6%;
-        text-align: center;
-    }
-    .rule{
-        padding-left: 0%;
-        width: 60%;
-        margin-left: 7%;
-    }
-    .numbers{
-        font-size: 1.5em;
-        word-spacing: 0.7em;
-        line-height: 0.5em;
-    }
-    .numbers-footer{
-        font-size: 0.7em;
-        word-spacing: 0.5em;
-    }
-    .explore{
-        padding-left: 35%;
-    }
-    .btn-primary{
-        font-size: 1em;
-    }
-    .vision-img{
-        margin-left: 0%;
-        max-width: 50%;
-        height: auto;
-        margin-left: 25%;
-    }
-    .vision{
-        padding-left: 4%;
-        padding-right: 4%;
-        font-size: 1.2em;
-    }
-    .team-title{
-        font-size: 1.4em;
-    }
-    .team-body{
-        padding-left: 2.5%;
-        padding-right: 2.5%;
-        font-size: 1.22em;
+        font-size: 0.55em;
     }
     .team-img{
-        padding-left: 2%;
+        padding-left: 7%;
+    }
+    .learn{
+        padding-left: 5%;
+    }
+    .reviews{
+        padding-left: 4%;
+    }
+    .affiliates{
+        padding-left: 6%;
+    }
+    .courses{
+        padding-left: 4%;
+    }
+    .page{
+        padding-left: 3%;
+    }
+    .explore{
+        font-size: 0.6em;
     }
 }
