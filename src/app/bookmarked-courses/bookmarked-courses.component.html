@@ -1,0 +1,32 @@
+<ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+    <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
+      <mdb-card class="card ">
+        <div class="col-12 title">
+          <img class="dots float-right" src="../../assets/profile/three-dots.png">
+          <img class="icon" src="../../assets//profile/icon1.png">
+        </div>
+        <mdb-card-body class="bod">
+          <mdb-card-title class="title-card">
+            Strategic Leadership and Management
+          </mdb-card-title>
+          <mdb-card-text>
+            <div class="university">University of Minnesota</div>
+            <div class="bag"><img src="../../assets/profile/bag.png">
+              <span class="icon-body">{{" "}}Free</span></div>
+            <div class="clock"><img src="../../assets/profile/clock.png"><span class="icon-body">{{" "}}6 Hrs</span></div>
+            <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}4.5/5 (215)</span></div>
+            <div class="bulb"><img src="../../assets/profile/bulb.png"><span class="icon-body">{{" "}}Intermediate</span></div>
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  
+    <button NguCarouselPrev class="leftRs" [style.opacity]="0.5">
+      &lt;
+    </button>
+    <button NguCarouselNext class="rightRs" [style.opacity]="0.5">
+      &gt;
+    </button>
+  
+  
+  </ngu-carousel>
