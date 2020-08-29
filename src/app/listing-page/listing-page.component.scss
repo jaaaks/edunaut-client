@@ -2,11 +2,15 @@
     display: none;
   }
   .example-tree{
-    background: #F5F5F5;
+    background: #FFFFFF;
+    padding: 10px 25px 0px 25px;
   }
   .main{
     background: #F5F5F5;
     width: 100%;
+  }
+  .tree{
+    background:#FFFFFF;
   }
   .example-tree ul,
   .example-tree li {
@@ -15,8 +19,10 @@
     list-style-type: none;
   }
   .example-card {
-    max-width: 400px;
+    width: 200 !important;
     margin-bottom: 20px;
+    height: 300 !important;
+    
   }
   
   .example-header-image {
@@ -33,9 +39,7 @@
     margin-top: 20px;
   }
   
-  .footer{
-    padding: 16px;
-  }
+  
   .strip{
     position: absolute;
 width: 100%;
@@ -49,7 +53,6 @@ background: #B5FAFD;
   
 
 /* Heading / H6 or subtitle */
-
 font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
@@ -61,8 +64,8 @@ display: flex;
 align-items: center;
 text-align: center;
 letter-spacing: 0.0015em;
-
 color: #757575;
+padding: 20px 20px 20px 25px;
 }
 
 .sortButton{
@@ -119,14 +122,79 @@ height: 31px;
   position: relative;
   left: -64%;
 }
-.mat-divider-vertical{
-  position: absolute;
-  left: 30%;
-}
+
 .mat-divider{
-  position:absolute;
+  position: absolute;;
   width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
 }
+
 .example-margin{
-  width:100%
+  width:100%;
+  width: 239px;
+height: 36px;
+  background: #F3F3F3;
+border: 1px solid #C4C4C4;
+box-sizing: border-box;
+border-radius: 6px;
 }
+.header-display{
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+.hover-button{
+  margin: 2px;
+  width: 170.91px;
+height: 26.77px ;
+ 
+background: #FFFFFF;
+border: 1px solid #757575;
+box-sizing: border-box;
+border-radius: 5px;
+}
+.mat-card-footer{
+  padding: 10px;
+}
+.content{
+  position: relative;
+  height: 150px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+
+
+.action{
+  margin-bottom: auto;
+  }
+  .icon{
+    position: relative;
+    right: 18px;
+  }
+  .icon1{
+    position: relative;
+    right: 14px;
+  }
+  .rate-button{
+
+background: #FFFFFF;
+border: 1px solid #C4C4C4;
+box-sizing: border-box;
+border-radius: 27px;
+  }
+
+  mat-expansion-panel{
+    position: fixed;
+  }
+  .left-filters{
+    background: #FFFFFF;
+    position: relative;
+  }
+  .tree-divider{
+  margin:-25px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .divider-node{
+    min-height: 5px !important;
+  }

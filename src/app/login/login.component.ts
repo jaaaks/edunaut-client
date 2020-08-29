@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup,AbstractControl } from '@angular/for
 import { AuthenticationService } from '../services/authentication.service';
 import {Router} from '@angular/router';
 import { AngularFireAuth } from "@angular/fire/auth";
+import { VirtualTimeScheduler, observable } from 'rxjs';
 
 
 
@@ -22,14 +23,18 @@ export class LoginComponent implements OnInit {
       elegantFormEmailEx: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       elegantFormPasswordEx: ['', Validators.required]
     });
+    
   this.afauth.authState.subscribe(
     res => {
       if (res && res.uid) {
         console.log('user is logged in');
+      
+  
       } else {
         console.log('user not logged in');
       }
     });
+  
   }
 
 
@@ -62,8 +67,19 @@ export class LoginComponent implements OnInit {
       this.authenticationService.SignIn(email, password)
         .then(res => {
             console.log('Successfully signed in!',res);
+            this.afauth.idToken.subscribe(idToken=>{
+              console.log(idToken);
+            })
+            ;
+            this.afauth.currentUser.then(user=>{
+             user.getIdToken().then(id=>{
+               console.log("token",id);
+             })
+              });
+          
             this.loading=false;
             this.router.navigateByUrl('/');
+            
             },
             msg=>{
               console.log('unsuccessful signed in!',msg);

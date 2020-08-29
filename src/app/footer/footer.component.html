@@ -62,4 +62,116 @@
       </div>
     </div>
   </div>
+ 
 </footer>
+<mat-accordion *ngIf="courseList.length!==0">
+  <mat-expansion-panel hideToggle="true" [disabled]="true" [expanded]="panelOpenState" #panel>
+<mat-expansion-panel-header>
+<mat-panel-description>
+   
+  <div class="expansion-icon">Compare</div>
+  <div class="expansion-icon circle" *ngIf="!panel.expanded">
+ <mat-icon (click)="open()">expand_less</mat-icon>
+ </div>
+ <div class="expansion-icon circle" *ngIf="panel.expanded">
+  <mat-icon (click)="close()">expand_more</mat-icon>
+  </div>
+  <div class="cross circle" *ngIf="panel.expanded">
+    <mat-icon (click)="close()" >close</mat-icon>
+    </div>
+
+
+</mat-panel-description>
+</mat-expansion-panel-header>
+<mat-divider></mat-divider>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+  <div  fxFlex="16" fxLayout="column" fxLayoutAlign="space-around center">
+    <button mat-raised-button [disabled]="bookmarkAllowed()" (click)="compare()" class="bookmark">Compare Courses</button>
+    <a>Clear All</a>
+</div>
+
+ <ng-container *ngFor="let course of courseList;index as i"> 
+  <mat-card class="example-card" (mouseenter)="changeTextMethod(course)" (mouseleave)="changeTextOutMethod(course)" fxFlex="16" >
+
+    <div class="remover circle">
+      <button mat-icon-button >
+      <mat-icon (click)="removeCourse(i)" >close</mat-icon>
+    </button>
+      </div>
+     
+    <mat-card-header class="header">
+      <div class="strip"></div>
+      <div mat-card-avatar class="example-header-image"></div>
+    </mat-card-header>
+
+    <mat-card-content class="card-content">
+      <div class="content" >
+     <a> <strong>
+      {{course.course_name}}
+      </strong></a>
+      </div>
+  </mat-card-content>
+  <mat-card-footer *ngIf="course.change" class="action">
+  <mat-card-action ><button fxFill mat-raised-button mat-icon-button  class="hover-button" > <mat-icon  class="icon">bookmark_border</mat-icon> Bookmark Course</button>
+  </mat-card-action>
+  </mat-card-footer>
+
+</mat-card>
+   </ng-container>
+   <ng-container *ngFor="let item of [].constructor(4-courseList.length)"> 
+    <mat-card class="example-card" fxFlex="16" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+      <mat-card-content class="card-content">
+        <div class="circle">
+          <button mat-icon-button >
+          <mat-icon (click)="removeCourse(i)" >add</mat-icon>
+        </button>
+          </div>
+             </mat-card-content>
+  
+  </mat-card>
+ </ng-container>
+  </div>
+  <table mdbTable striped="true" *ngIf='isCompare'>
+    <tbody>
+      <tr mdbTableCol *ngFor="let el of elements; index as indexOfelement;"  fxLayout="row" fxLayoutAlign="space-around center"  >
+        <th scope="row" fxFlex="16"  class="thead">{{el.id}}</th>
+        <ng-container  *ngIf="indexOfelement===0">
+        <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+        <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
+        </ng-container >
+        <ng-container  *ngIf="indexOfelement===1">
+          <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_university}}</td>
+          <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NAv</td>
+          </ng-container >
+          <ng-container  *ngIf="indexOfelement===2">
+            <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+            <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
+            </ng-container >
+            <ng-container  *ngIf="indexOfelement===3">
+              <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+              <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
+              </ng-container >
+              <ng-container  *ngIf="indexOfelement===4">
+                <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+                <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
+                </ng-container >
+                <ng-container  *ngIf="indexOfelement===5">
+                  <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+                  <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
+                  </ng-container >
+                  <ng-container  *ngIf="indexOfelement===6">
+                    <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+                    <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
+                    </ng-container >
+        <!-- <td fxFlex="16" *ngIf="showRating(indexOfelement)" [attr.data-index]="indexOfelement" ><ngb-rating [max]="5" [rate]="elements[indexOfelement].first" [readonly]="true"></ngb-rating>{{el.first}}</td>
+        <td fxFlex="16" *ngIf="!showRating(indexOfelement)" [attr.data-index]="indexOfelement" >{{el.first}}</td>
+        <td fxFlex="16" *ngIf="showRating2(indexOfelement)" ><ngb-rating [max]="5" [rate]="elements[indexOfelement].second" [readonly]="true"></ngb-rating>{{el.second}}</td>
+        <td fxFlex="16" *ngIf="!showRating2(indexOfelement)">{{el.second}}</td>
+        <td fxFlex="16" >{{el.handle}}</td>
+        <td fxFlex="16" >{{el.handle}}</td> -->
+      </tr>
+    </tbody>
+  </table>
+
+</mat-expansion-panel>
+  </mat-accordion>
