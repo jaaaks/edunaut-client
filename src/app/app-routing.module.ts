@@ -10,10 +10,11 @@ import { PolicyComponent } from './policy/policy.component';
 import {FAQComponent} from './faq/faq.component';
 import {ComingSoonComponent} from './coming-soon/coming-soon.component';
 import {ProfileComponent} from './profile/profile.component';
-
+import {RightCourseComponent} from './right-course/right-course.component';
   
 
 const routes: Routes = [
+  {path:'right-course', component:RightCourseComponent},
   {path:'profile', component:ProfileComponent},
   {path:'coming-soon', component:ComingSoonComponent },
   {path:'faq', component:FAQComponent},

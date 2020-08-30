@@ -120,32 +120,26 @@
                   <span *ngIf="!changeText">Hide</span>
                   <span *ngIf="changeText">Show</span>
                 </div>
-                <div class="details" fxLayout="row" fxLayoutAlign="space-between">
-                  <div>
-                    <fa-icon [icon]="faClock"></fa-icon>
-                    {{course.course_time}}
-                  </div>
-                  <div>
-                    <fa-icon [icon]="faHeart"></fa-icon>
-                    {{course.course_rating}}/5 (2695)
-                  </div>
+               
+                <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
+                  <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
+                    <span class="icon-body">{{" "}}{{course.course_fee}}</span></div>
+                  <div class="star"><img src="../../assets/profile/clock.png"><span class="icon-body">{{" "}}{{course.course_time}}</span></div>
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-between">
-                  <div>
-                    <fa-icon [icon]="faDollarSign"></fa-icon>
-                    {{course.course_fee}}
-                  </div>
-                  <div>
-                    {{course.course_diff}}
-                  </div>
+                      <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
+                  <div class="bulb"fxFlex="70" ><img src="../../assets/profile/bulb.png"><span
+                      class="icon-body">{{" "}}Intermediate</span></div>
+                  <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_rating}}/5
+                      (215)</span></div>
                 </div>
+                
 
               </mat-card-content>
               <mat-divider></mat-divider>
               <mat-card-footer>
                 <div fxLayout="row" class="footer" fxLayoutAlign="space-between" *ngIf="!course.change">
-                  <div>
-                    <p>Indian Institue of technology</p>
+                  <div class="footer-univ">
+                   <span class="icon-body"> Indian insititute of technology</span>
                   </div>
                   <div>
                     <mat-icon *ngIf="course.bookmarked" >bookmark</mat-icon>

@@ -43,6 +43,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
@@ -54,6 +55,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { OngoingCoursesComponent } from './ongoing-courses/ongoing-courses.component';
 import { CompletedCoursesComponent } from './completed-courses/completed-courses.component';
 import { BookmarkedCoursesComponent } from './bookmarked-courses/bookmarked-courses.component';
+import { RightCourseComponent } from './right-course/right-course.component';
+import { ComicComponent } from './comic/comic.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +79,10 @@ import { BookmarkedCoursesComponent } from './bookmarked-courses/bookmarked-cour
     ProfileComponent,
     OngoingCoursesComponent,
     CompletedCoursesComponent,
-    BookmarkedCoursesComponent
+    BookmarkedCoursesComponent,
+    RightCourseComponent,
+    ComicComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +111,8 @@ AngularFireAuthModule,
  MatSliderModule,
  MatFormFieldModule,
  MatExpansionModule,
- StarRatingModule.forRoot()
+ StarRatingModule.forRoot(),
+ MatStepperModule
 ],
   providers: [AuthenticationService,SeacrhServiceService],
   bootstrap: [AppComponent],

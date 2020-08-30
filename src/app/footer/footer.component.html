@@ -4,15 +4,14 @@
     <div class="row">
       <div class="col-sm-12 col-md-6">
         <div class="row left-footer-ex">
-
-          <p class="text-justify ">Find the best course <br> & become a Master! </p>
+          <p class="text-justify "><img src="../../assets/Capture.PNG" height="35"><br><br>Find The Right Courses <br>Become an Expert! </p>
         </div>
         <div class="row left-footer">
 
           <ul class="social-icons">
             <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
             <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
+            <li><a class="dribbble" href="https://www.instagram.com/edunaut/" target="_blank"><i class="fab fa-instagram"></i></a></li>
             <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
           </ul>
 
@@ -26,38 +25,41 @@
             <ul class="footer-links">
               <li><a href="/faq">FAQ</a></li>
               <li><a href="/find">Top Courses</a></li>
-              <li><a href="#">Community</a></li>
-              <li><a href="#">Educoins</a></li>
-              <li><a href="#">Code of Conduct</a></li>
-
+              <li><a href="/coming-soon">Community</a></li>
+              <li><a href="/coming-soon">Educoins</a></li>
+              <li><a href="/policy">Code of Conduct</a></li>
+              <li><a href="/coming-soon">Explore New</a></li>
             </ul>
           </div>
           <div class="col-xs-6 col-md-6 quicks">
             <h6>Abount Edunaut</h6>
             <ul class="footer-links">
               <li><a href="aboutus">About Us</a></li>
-              <li><a href="#">Team</a></li>
               <li><a href="contactus">Contact Us</a></li>
-              <li><a href="#">Affiliates</a></li>
-              <li><a href="#">Career</a></li>
-              <li><a href="#">Post/Add a course</a></li>
+              <li><a href="/coming-soon">Affiliates</a></li>
+              <li><a href="/coming-soon">Career</a></li>
+              <li><a href="/coming-soon">Post/Add a course</a></li>
             </ul>
           </div>
         </div>
 
- </div>
-      <div class="row">
-        <div class="copyright col-md-12 col-sm-12 col-xs-12">
-          <p class="copyright-text">Edunaut &copy; 2020 All Rights Reserved.
-          </p>
-        </div>
       </div>
-      <hr>
     </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row copy">
+      <div class="copyright col-12">
+        <p class="copyright-text">Edunaut &copy; 2020 All Rights Reserved.
+        </p>
+      </div>
+    </div>
+    <hr>
     <div class="container">
-      <div class="row">
+      <div class="row foot">
 
-
+        <div class="col-12 ">
+          <span class="terms"> Terms </span> <span class="privacy"> Privacy Policy </span> <span class="cookie">Cookie Policy </span>
+        </div>
 
       </div>
     </div>
@@ -136,7 +138,7 @@
       <tr mdbTableCol *ngFor="let el of elements; index as indexOfelement;"  fxLayout="row" fxLayoutAlign="space-around center"  >
         <th scope="row" fxFlex="16"  class="thead">{{el.id}}</th>
         <ng-container  *ngIf="indexOfelement===0">
-        <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+        <td fxFlex="16" *ngFor="let col of courseList;" ><ngb-rating [rate]="col.course_rating" [max]="5" [readonly]="true"></ngb-rating>{{" "}}{{col.course_rating}}/5</td>
         <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
         </ng-container >
         <ng-container  *ngIf="indexOfelement===1">
@@ -148,15 +150,15 @@
             <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
             </ng-container >
             <ng-container  *ngIf="indexOfelement===3">
-              <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+              <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_fee}}</td>
               <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
               </ng-container >
               <ng-container  *ngIf="indexOfelement===4">
-                <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+                <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_provider}}</td>
                 <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
                 </ng-container >
                 <ng-container  *ngIf="indexOfelement===5">
-                  <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_rating}}</td>
+                  <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_certificate}}</td>
                   <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
                   </ng-container >
                   <ng-container  *ngIf="indexOfelement===6">
