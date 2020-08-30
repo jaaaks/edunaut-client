@@ -17,7 +17,12 @@ import { slider } from '../tile/slide-animation';
 })
 export class CompaniesCarouselComponent implements OnInit {
 
-  images = ['assets/homepage/udemy.png', 'assets/homepage/coursera.png', 'assets/homepage/pluralsight.png','assets/homepage/the-great-courses.png','assets/homepage/edx.png', 'assets/homepage/future-learn.png', 'assets/homepage/open-learning1.png', 'assets/homepage/skillshare4.png', 'assets/homepage/udacity1.png',];
+  images = ['assets/homepage/coursera.png', 'assets/homepage/edx.png', 'assets/homepage/future-learn.png',
+    'assets/homepage/the-great-courses.png', 'assets/homepage/pluralsight.png', 'assets/homepage/udemy.png', 'assets/homepage/open-learning1.png',
+    'assets/homepage/udacity1.png', 'assets/homepage/skillshare4.png',  'assets/homepage/coggno.png', 'assets/homepage/lynda1.png',
+    'assets/homepage/unlocked.jpg','assets/homepage/tuts+.png', 'assets/homepage/alison.png', 'assets/homepage/simplilearn.png', 'assets/homepage/openuniversity.png',
+    'assets/homepage/kadenze.png', 'assets/homepage/mit.jpeg', 'assets/homepage/harvard.png', 'assets/homepage/treehouse.png', 'assets/homepage/open yale.png', 'assets/homepage/nptel.png',
+    'assets/homepage/swayam.jpeg', 'assets/homepage/upgrad.png'];
 
   public carouselTileItems$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {

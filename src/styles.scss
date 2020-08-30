@@ -1,7 +1,16 @@
 .navbar{
 	background-color: #1c2331;
 }
+.carousel .carousel-control-next-icon, .carousel .carousel-control-prev-icon{
+	background: rgb(70, 69, 69) ;
+  }
 
+@media screen and (max-width: 677px)
+{
+	html,body{
+		overflow-x: hidden;
+}
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

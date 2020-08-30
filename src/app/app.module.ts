@@ -40,7 +40,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { ContactusComponent } from './contactus/contactus.component';
 import { PolicyComponent } from './policy/policy.component';
@@ -52,6 +52,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { OngoingCoursesComponent } from './ongoing-courses/ongoing-courses.component';
 import { CompletedCoursesComponent } from './completed-courses/completed-courses.component';
 import { BookmarkedCoursesComponent } from './bookmarked-courses/bookmarked-courses.component';
+import { RightCourseComponent } from './right-course/right-course.component';
+import { ComicComponent } from './comic/comic.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,10 @@ import { BookmarkedCoursesComponent } from './bookmarked-courses/bookmarked-cour
     ProfileComponent,
     OngoingCoursesComponent,
     CompletedCoursesComponent,
-    BookmarkedCoursesComponent
+    BookmarkedCoursesComponent,
+    RightCourseComponent,
+    ComicComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +106,8 @@ AngularFireAuthModule,
  CommonModule,
  MatCheckboxModule,
  MatSliderModule,
- MatFormFieldModule
+ MatFormFieldModule,
+ MatStepperModule
 ],
   providers: [AuthenticationService,SeacrhServiceService],
   bootstrap: [AppComponent],

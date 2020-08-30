@@ -1,14 +1,16 @@
 <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
   <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
-    <div class="tile" [style.background]="'url(' + item + ')'">
-    </div>
+    <mdb-card class="car z-depth-0">
+      <!--Card image-->
+      <mdb-card-img class="im" [src]="item" alt="Card image cap"></mdb-card-img>
+    </mdb-card>
   </div>
 
-  <button NguCarouselPrev class="leftRs" [style.opacity]="0.5">
-    &lt;
+  <button NguCarouselPrev class="leftRs" >
+    <img src="../../assets/homepage/left.png">
   </button>
-  <button NguCarouselNext class="rightRs" [style.opacity]="0.5">
-    &gt;
+  <button NguCarouselNext class="rightRs" >
+    <img src="../../assets/homepage/right.png">
   </button>
 
   <ul class="myPoint" NguCarouselPoint>

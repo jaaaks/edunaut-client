@@ -1,5 +1,95 @@
 .left{
     background-color: #f5f5f5;
+    
+}
+.profile{
+    position: sticky;
+    top:9%;
+    left: 1%;
+    text-align: center;
+    padding-top: 2%;
+    font-family: Muli;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 114%;
+    letter-spacing: 0.0025em;
+    font-style: normal;
+    background-color: white;
+    height: 100%;
+    margin-bottom: 1%;
+}
+.bio{
+    text-align: left;
+    padding: 1% 8%;
+    font-weight: normal;
+    font-family: muli;
+    font-size: 0.88em;
+    color: #8A8886;
+}
+.icons{
+    text-align: left;
+    padding-top: 2%;
+    padding-left: 25%;
+}
+.settings{
+    padding-left: 12%;
+}
+.attachment{
+    padding-left: 12%;
+}
+.badges{
+    padding-left: 10%;
+    margin: 10% 4%;
+    padding-top: 2%;
+    padding: 3%;
+    border: 2px solid #e0e2e8;
+    border-radius: 5px;
+    color: #494949;
+    font-size: 14px;
+    letter-spacing: 0.0025em;
+    text-align: left;
+}
+.badges-header{
+    padding-left: 7%;
+}
+.badge{
+    padding-top: 7%;
+    padding-left: 2.4%;
+    padding-bottom: 5%;
+}
+.right-header{
+    text-align: left;
+    padding-left: 10%;
+    margin-top: 10%;
+    margin-left: 8%;
+    margin-right: 8%;
+    padding-top: 2%;
+    padding-left: 3%;
+    color: #494949;
+    font-size: 14px;
+    letter-spacing: 0.0025em;
+}
+.right-body{
+    font-size: 14px;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-style: normal;
+    font-weight: normal;
+    color: #8A8886;
+}
+.but1{
+    margin-left: 6%;
+    text-align: left;
+    margin-bottom: 5%;
+}
+.but{
+    background-color: #0376Fe !important;
+    padding: 6px 20px;
+    font-family: Muli;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px !important;
+    border-radius: 5px;
 }
 hr{
     width: 87%;
@@ -16,7 +106,7 @@ hr{
     padding-top: 4%;
 }
 .ongoing,.bookmark,.complete{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Muli;
     font-weight: bold;
     font-style: normal;
     padding-left: 6.5%;
@@ -35,14 +125,4 @@ hr{
 .last{
     margin-bottom: 4%;
 }
-.right{
-    position: fixed;
-    right: 0px;
-    text-align: center;
-    padding-top: 2%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1em;
-    line-height: 114%;
-    letter-spacing: 0.0025em;
-    font-style: normal;
-}
+

@@ -1,9 +1,9 @@
-$color1: #0087e5;
+$color1: #0376fe;
 $color2: #f8f8f8;
 $font1: Montserrat;
 $spacing: -0.015em;
 .jumbotron {
-  background-color: #f8f8f8;
+  background-color: #f5fcff;
   box-shadow: none;
 }
 .heading {
@@ -16,11 +16,15 @@ $spacing: -0.015em;
 .title{
   font-size: 2.1em;
   line-height: 50px;
+  color: #0376fe;
+  font-weight: 900;
 }
 .title-body{
   font-size: 1em;
   line-height: 27px;
   padding-top: 3%;
+  padding-left: 1%;
+  padding-right: 4%;
 }
 .title-img {
   padding-top: 0%;
@@ -29,7 +33,7 @@ $spacing: -0.015em;
   background: $color1 !important;
   color: $color2 !important;
   font-size: 0.65em;
-  padding: 1.5% 8%;
+  padding: 1.5% 10%;
   margin-top: 6%;
   border-radius: 4px;
 }
@@ -42,7 +46,7 @@ $spacing: -0.015em;
   letter-spacing: $spacing;
   font-style: normal;
   font-weight: bold;
-  color: #a2a2a2;
+  color: #0376fe;
 }
 .brands-footer {
   font-family: $font1;
@@ -73,21 +77,21 @@ $spacing: -0.015em;
   padding-bottom: 4%;
   padding-top: 1%;
   padding-left: 13%;
-  background-color: #f5f5f5;
+  background-color: white;
 }
 .skills-header{
   padding-left: 36.5%;
   font-family: $font1;
   padding-top: 2.5%;
-  padding-bottom: 1.5%;
+  padding-bottom: 2.5%;
   font-size: 1.25em;
   letter-spacing: $spacing;
   font-style: normal;
   font-weight: bold;
-  color: #0087e5;
+  color: #0376fe;
 }
 .domain-title{
-  padding-left: 13.63%;
+  padding-left: 45%;
   padding-top: 2.5%;
   padding-bottom: 1%;
   font-size: 1.25em;
@@ -95,27 +99,26 @@ $spacing: -0.015em;
   letter-spacing: $spacing;
   font-style: normal;
   font-weight: bold;
-  color: #0087e5;
+  color: #0376fe;
+  background-color: #eef9ff;
 }
 .domain{
   padding-left: 13.63%;
   padding-right: 13.63%;
+  padding-bottom: 2%;
+  background-color: #eef9ff;
  
 }
 .courses{
-  background-color: #f5f5f5;
-  margin-top: 4%;
+  text-align: center !important;
+  padding-left: 9%;
+  padding-right: 9%;
+  margin-top: 3.5%;
+  margin-bottom: 4%;
+  display: flex !important;
 }
-.quick{
-  padding-left: 27.63%;
-  padding-top: 2.5%;
-  padding-bottom: 1%;
-  font-size: 1.25em;
-  font-family: $font1;
-  letter-spacing: $spacing;
-  font-style: normal;
-  font-weight: bold;
-  color: black;
+@media screen and (max-width: 767px){
+  .courses{display: none !important;}
 }
 .btn-outline-primary{
   border-color: $color1 !important;
@@ -124,22 +127,28 @@ $spacing: -0.015em;
   font-size: 0.45em;
   padding: 0.5% 2.56% !important;
 }
-.quick-img{
-  padding-left: 27.63%;
-  width: 140%;
+.comic-zone{
+  text-align: center;
+  background-color: #f8f8f8;
+  color: #2086FE;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 36px;
+  letter-spacing: 0.015em;
+  padding-top: 2%;
+  padding-bottom: 3%;
 }
-.quick-right{
-  padding-top: 5.75%;
+.comic-title{
+  padding-bottom: 1.5%;
 }
-textarea{
-  border-color: $color1 ;
-  padding: 5% !important;
-  border-width: 2px !important;
-  border-radius: 5px !important;
+.hobbs{
+  padding-left: 20%;
+  padding-right: 20%;
 }
-.form-control{
-  width: 80%;
-}
+
+
 .find{
   padding-top: 2.5%;
   font-family: $font1;
@@ -157,15 +166,16 @@ textarea{
   padding-bottom: 2.5%;
 }
 .find-btn{
-  padding: 0.5% 4%;
+  padding: 0.65% 4%;
   font-family: $font1;
   text-align: center;
   font-size: 0.7em;
-  margin-top: 1%;
+  margin-top: 2%;
   letter-spacing: -0.015em;
   font-style: normal;
   font-weight: normal;
 }
+
 @media screen and (max-width: 1510px)
 {
   .cors{
@@ -183,12 +193,6 @@ textarea{
   .domain-title{
     padding-left: 10%;
     padding-right: 10%;
-  }
-  .quick{
-    padding-left: 21%;
-  }
-  .quick-img{
-    padding-left: 21%;
   }
 }
 @media screen and (max-width: 1124px)
@@ -214,12 +218,6 @@ textarea{
   .brands{
     padding-left: 6%;
     padding-right: 6%;
-  }
-  .quick{
-    padding-left: 12%;
-  }
-  .quick-img{
-    padding-left: 12%;
   }
 }
 @media screen and (max-width: 962px){
@@ -277,21 +275,6 @@ textarea{
     padding-left: 1%;
     padding-right: 1%;
   }
-  .quick{
-    font-size: 1em;
-    padding-left: 1%;
-  }
-  .quick-right{
-    padding-left: 10% !important;
-    margin: 0% !important;
-  }
-  .quick-img{
-    padding-left: 4%;
-  }
-  textarea{
-    padding: 0% !important;
-    margin: 0% !important;
-  }
   .find{
     font-size: 0.85em;
     padding-bottom: 0%;
@@ -331,9 +314,6 @@ textarea{
     font-size: 0.9em;
   }
   .domain-header{
-    font-size: 0.9em;
-  }
-  .quick{
     font-size: 0.9em;
   }
   .find{

@@ -45,6 +45,27 @@ input {
       right: -4px !important;
     }
   }
+
+  ::-webkit-input-placeholder {
+    /* Edge */
+    color: #a7a4a4;
+    font-size: 0.88em;
+    padding-left: 15px;
+  }
+  
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #a7a4a4;
+    font-size: 0.88em;
+    padding-left: 15px;
+  }
+  
+  ::placeholder {
+    color: #a7a4a4;
+    font-size: 0.88em;
+    font-family: Montserrat;
+    padding-left: 15px;
+  }
   
   @media only screen 
 
