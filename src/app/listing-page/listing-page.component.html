@@ -63,7 +63,7 @@
           </div>
         </mat-tree-node>
 
-        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" >
 
           <mat-checkbox [checked]="descendantsAllSelected(node)" [indeterminate]="descendantsPartiallySelected(node)"
             (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
@@ -148,14 +148,15 @@
                     <p>Indian Institue of technology</p>
                   </div>
                   <div>
-                    <mat-icon>bookmark_border</mat-icon>
-                  </div>
+                    <mat-icon *ngIf="course.bookmarked" >bookmark</mat-icon>
+                    <mat-icon *ngIf="!course.bookmarked" >bookmark_border</mat-icon>
+                 </div>
                 </div>
 
 
                 <div fxLayout="column wrap" class="footer" *ngIf="course.change">
 
-                  <mat-card-action class="action"><button fxFill mat-raised-button mat-icon-button class="hover-button">
+                  <mat-card-action class="action"><button fxFill mat-raised-button mat-icon-button (click)="bookmarkCourse(course)" class="hover-button">
                       <mat-icon class="icon1">bookmark_border</mat-icon> Bookmark Course
                     </button>
                   </mat-card-action>

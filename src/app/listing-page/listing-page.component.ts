@@ -29,7 +29,8 @@ export class TodoItemFlatNode {
   duration:boolean;
   rating:boolean;
   fee:boolean;
-  divider:boolean
+  divider:boolean;
+  firstChild:boolean;
 } 
 const personal='Personal Development';
 const TREE_DATA={};
@@ -45,9 +46,7 @@ divider:null,
   'Engineering': {
     'Mechanical Engineering': null,
     'chemical Engineering': null,
-    'Computer Science Engineering':{
-      'Checker value':null
-    }
+    'Computer Science Engineering':null
   }
 },
 divider1:null,
@@ -224,7 +223,8 @@ export class ListingPageComponent implements OnInit {
       'course_university':'oxford',
       'course_certificate':'Yes',
       'course_fee':'3266 INR',
-      'course_provider':'coursera'
+      'course_provider':'coursera',
+      'bookmarked':false
     },
   {
     'course_name':'randomly generated course that can help you identify glex box propertiesijefj jnc jefj f  ejf jerf  fierf jerf jnerf hjer jer jer ne vjher jer her dkfvj v vj vekjv je vjr  ;jgntg jtgirtbgrtngotrng rtgtrigntkonhotyj ihng ;k  hio5g  i hjt iot mtr gjet5 gie5g ty gkt htyngh  ibngrt ng trgn  hgitnhrth tjgn soem thinh very importwnat was about to cmome here buyt ',
@@ -234,7 +234,8 @@ export class ListingPageComponent implements OnInit {
     'course_university':'iitg',
     'course_certificate':'Yes',
     'course_fee':'FREE',
-    'course_provider':'edx'
+    'course_provider':'edx',
+    'bookmarked':false
   },{
     'course_name':'course 3',
     'course_time':'4h',
@@ -243,7 +244,8 @@ export class ListingPageComponent implements OnInit {
     'course_university':'MIT',
     'course_certificate':'Yes',
     'course_fee':'3266 INR',
-    'course_provider':'coursera'
+    'course_provider':'coursera',
+    'bookmarked':false
   },{
     'course_name':'course 4',
     'course_time':'4h',
@@ -252,7 +254,8 @@ export class ListingPageComponent implements OnInit {
     'course_university':'oxford',
     'course_certificate':'Yes',
     'course_fee':'3266 INR',
-    'course_provider':'coursera'
+    'course_provider':'coursera',
+    'bookmarked':false
   }
 
 ]
@@ -271,6 +274,9 @@ export class ListingPageComponent implements OnInit {
     }
     else{
       flatNode.header = false;
+    }
+    if(level===1){
+      flatNode.firstChild=true;
     }
     if(node.item==="duration"){
       flatNode.duration=true;
@@ -419,6 +425,9 @@ export class ListingPageComponent implements OnInit {
   comparator(course){
     console.log();
    this.messageService.addToCompare(course);
+  }
+  bookmarkCourse(course){
+    course.bookmarked=!course.bookmarked;
   }
 
 }

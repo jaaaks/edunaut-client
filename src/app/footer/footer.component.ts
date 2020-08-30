@@ -88,4 +88,7 @@ export class FooterComponent implements OnInit {
      var result= this.courseList.length>1? false:true;
      return result;
    }
+   clearAll(){
+    this.courseList.splice(0,this.courseList.length);
+ }
 }

@@ -272,6 +272,17 @@ background: #B5FAFD;
 }
 .expansion-icon{
  margin-left: auto;
+ font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 30px;
+/* identical to box height, or 187% */
+
+text-align: center;
+letter-spacing: 0.0015em;
+
+color: #000000;
 }
 .circle{
   width: 32px;
@@ -284,6 +295,7 @@ background: #B5FAFD;
 }
 .cross{
   margin-left: 10px;
+  color: #000000;
 }
 .thead{
   font-weight: bold;
@@ -325,6 +337,17 @@ ngb-rating {
     overflow: hidden;
     height: 80px;
   }
+.clear{
+  font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
 
+display: flex;
+align-items: flex-end;
+text-align: center;
 
-
+color: #0376FE;
+}

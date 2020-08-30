@@ -26,9 +26,9 @@
             <ul class="footer-links">
               <li><a href="/faq">FAQ</a></li>
               <li><a href="/find">Top Courses</a></li>
-              <li><a href="http://scanfcode.com/category/back-end-development/">Community</a></li>
-              <li><a href="http://scanfcode.com/category/java-programming-language/">Educoins</a></li>
-              <li><a href="/policy">Code of Conduct</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Educoins</a></li>
+              <li><a href="#">Code of Conduct</a></li>
 
             </ul>
           </div>
@@ -36,11 +36,11 @@
             <h6>Abount Edunaut</h6>
             <ul class="footer-links">
               <li><a href="aboutus">About Us</a></li>
-              <li><a href="http://scanfcode.com/contact/">Team</a></li>
+              <li><a href="#">Team</a></li>
               <li><a href="contactus">Contact Us</a></li>
-              <li><a href="http://scanfcode.com/privacy-policy/">Affiliates</a></li>
-              <li><a href="http://scanfcode.com/sitemap/">Career</a></li>
-              <li><a href="http://scanfcode.com/sitemap/">Post/Add a course</a></li>
+              <li><a href="#">Affiliates</a></li>
+              <li><a href="#">Career</a></li>
+              <li><a href="#">Post/Add a course</a></li>
             </ul>
           </div>
         </div>
@@ -69,7 +69,7 @@
 <mat-expansion-panel-header>
 <mat-panel-description>
    
-  <div class="expansion-icon">Compare</div>
+  <div class="expansion-icon">Compare ({{courseList.length}})</div>
   <div class="expansion-icon circle" *ngIf="!panel.expanded">
  <mat-icon (click)="open()">expand_less</mat-icon>
  </div>
@@ -85,9 +85,9 @@
 </mat-expansion-panel-header>
 <mat-divider></mat-divider>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
-  <div  fxFlex="16" fxLayout="column" fxLayoutAlign="space-around center">
+  <div  fxFlex="16" fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="space-around center">
     <button mat-raised-button [disabled]="bookmarkAllowed()" (click)="compare()" class="bookmark">Compare Courses</button>
-    <a>Clear All</a>
+    <div (click)="clearAll()" class="clear"><a >Clear All</a></div>
 </div>
 
  <ng-container *ngFor="let course of courseList;index as i"> 
