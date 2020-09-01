@@ -10,6 +10,7 @@ import {BehaviorSubject} from 'rxjs';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import { CommonModule } from "@angular/common";
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -24,33 +25,77 @@ export class TodoItemFlatNode {
   item: string;
   level: number;
   expandable: boolean;
+  header:boolean;
+  duration:boolean;
+  rating:boolean;
+  fee:boolean;
+  divider:boolean;
+  firstChild:boolean;
 } 
 const personal='Personal Development';
-const TREE_DATA = {
+const TREE_DATA={};
+const ProgramData={
+  Domain:{
   'Personal Development':{
     'Random Value':null,
     'Random Value2':null
-  },
-  Engineering: {
+  }
+},
+divider:null,
+'Programe Type':{
+  'Engineering': {
     'Mechanical Engineering': null,
     'chemical Engineering': null,
     'Computer Science Engineering':null
-    },
-  Reminders: [
-    'Cook dinner',
-    'Read the Material Design spec',
-    'Upgrade Application to Angular'
-  ]
-};
-const ProgramData={
-  Course:{
-    'Random Value':null,
-    'Random Value2':null
-  },
-  Degree:{
-    'Random Value':null,
-    'Random Value2':null
   }
+},
+divider1:null,
+  Duration:{
+    'duration':null
+  },
+  divider2:null,
+  Rating:{
+    'rating':null,
+    },
+    divider3:null,
+  Fee:{
+    'fee':null,
+     },
+     divider4:null,
+  'Programe Mode':{
+    'Random Value':null,
+    'Random Value2':{
+      random:null
+    }
+    },divider5:null,
+    'Level of Difficulty':{
+      'Beginner':null,
+      'Intermediate':null,
+      'Expert':null
+    },divider6:null,
+    Provider:{
+      Coursera:null,
+      edx:null,
+      udemy:null
+    },divider7:null,
+    'Course Content':{
+      Audio:null,
+      Video:null,
+      'Text Material':null
+    },divider8:null,
+    'Other Specifics':{
+      Certification:null,
+      'Alumni Status':null,
+      'No Prerequisites':null,
+      'Tutorials/ Practice Material':null
+    },divider9:null,
+    Language:{
+      English:null,
+       French:null
+    },divider10:null,
+    Country:{
+      'Countries':null
+    }
 }
 @Injectable()
 export class ChecklistDatabase {
@@ -120,7 +165,9 @@ export class ListingPageComponent implements OnInit {
   faClock = faClock;
   faHeart = faHeart;
   public courseList;
+  panelOpenState = false;
   totalResults:any;
+  changeText: boolean;
   public regularDistribution=100/3;
   message: any;
   sortChecker:boolean=true;
@@ -128,10 +175,10 @@ export class ListingPageComponent implements OnInit {
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
   treeControl: FlatTreeControl<TodoItemFlatNode>;
   treeControl1: FlatTreeControl<TodoItemFlatNode>;
-
+  
   treeFlattener: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
   treeFlattener1: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
-
+   tagList=['tag1','very  big tag','tag2','tag3','tag5','tag4','tag1','tag2','tag3','tag5','tag4']
   nestedNodeMap = new Map<TodoItemNode, TodoItemFlatNode>();
   selectedParent: TodoItemFlatNode | null = null;
  checklistSelection = new SelectionModel<TodoItemFlatNode>(true /* multiple */);
@@ -148,7 +195,7 @@ export class ListingPageComponent implements OnInit {
   step=1;
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase) { 
-  
+    this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
  
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel,
@@ -168,6 +215,51 @@ export class ListingPageComponent implements OnInit {
       this.dataSource1.data = data;
       
     });
+    this.courseList=[{
+      'course_name':'random course',
+      'course_time':'4h',
+      'course_rating':'2.5',
+      'change':false,
+      'course_university':'oxford',
+      'course_certificate':'Yes',
+      'course_fee':'3266 INR',
+      'course_provider':'coursera',
+      'bookmarked':false
+    },
+  {
+    'course_name':'randomly generated course that can help you identify glex box propertiesijefj jnc jefj f  ejf jerf  fierf jerf jnerf hjer jer jer ne vjher jer her dkfvj v vj vekjv je vjr  ;jgntg jtgirtbgrtngotrng rtgtrigntkonhotyj ihng ;k  hio5g  i hjt iot mtr gjet5 gie5g ty gkt htyngh  ibngrt ng trgn  hgitnhrth tjgn soem thinh very importwnat was about to cmome here buyt ',
+    'course_time':'4h',
+    'course_rating':'4',
+    'change':false,
+    'course_university':'iitg',
+    'course_certificate':'Yes',
+    'course_fee':'FREE',
+    'course_provider':'edx',
+    'bookmarked':false
+  },{
+    'course_name':'course 3',
+    'course_time':'4h',
+    'course_rating':'2.5',
+    'change':false,
+    'course_university':'MIT',
+    'course_certificate':'Yes',
+    'course_fee':'3266 INR',
+    'course_provider':'coursera',
+    'bookmarked':false
+  },{
+    'course_name':'course 4',
+    'course_time':'4h',
+    'course_rating':'2.5',
+    'change':false,
+    'course_university':'oxford',
+    'course_certificate':'Yes',
+    'course_fee':'3266 INR',
+    'course_provider':'coursera',
+    'bookmarked':false
+  }
+
+]
+     this.totalResults=this.courseList.length;
   }
   transformer = (node: TodoItemNode, level: number) => {
     const existingNode = this.nestedNodeMap.get(node);
@@ -177,19 +269,75 @@ export class ListingPageComponent implements OnInit {
     flatNode.item = node.item;
     flatNode.level = level;
     flatNode.expandable = !!node.children?.length;
+    if(level===0){
+      flatNode.header = true;
+    }
+    else{
+      flatNode.header = false;
+    }
+    if(level===1){
+      flatNode.firstChild=true;
+    }
+    if(node.item==="duration"){
+      flatNode.duration=true;
+      flatNode.header=false;
+    }
+    else {
+      flatNode.duration= false;
+      
+    }
+    if(node.item==="rating"){
+      flatNode.rating=true;
+      flatNode.header=false;
+    }
+    else {
+      flatNode.rating= false;
+      
+    }
+    if(node.item==="fee"){
+      flatNode.fee=true;
+      flatNode.header=false;
+    }
+    else {
+      flatNode.fee= false;
+      }
+      if(node.item==="divider" || node.item==="divider1" || node.item==="divider2"|| node.item==="divider3"
+      || node.item==="divider4" || node.item==="divider5"  || node.item==="divider6" || node.item==="divider7"
+      || node.item==="divider8" || node.item==="divider9" || node.item==="divider10"){
+        flatNode.divider=true;
+        flatNode.header=false;
+      }
+      else {
+        flatNode.divider= false;
+        }
+
+
     this.flatNodeMap.set(flatNode, node);
     this.nestedNodeMap.set(node, flatNode);
     return flatNode;
   }
   hasChild = (_: number, _nodeData: TodoItemFlatNode) => _nodeData.expandable;
+  isHeader =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.header;
+  isDuration =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.duration;
+  isRating =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.rating;
+  isFee =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.fee;
+  isDivider= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.divider;
+
+
+  
   hasNoContent = (_: number, _nodeData: TodoItemFlatNode) => _nodeData.item === '';
 
   ngOnInit(): void {
-    this.searchService.getAllCourses().subscribe((response)=>{
-       this.courseList=response;
-       this.totalResults=this.courseList.length;
+    // this.searchService.getAllCourses().subscribe((response)=>{
+    //    //this.courseList=response;
+    //   this.courseList={
+    //     'course_name':'random course',
+    //     'course_time':'4h',
+    //     'course_rating':'4.5'
+    //   }
+    //    this.totalResults=this.courseList.length;
 
-    });
+    // });
   }
   searchMethod(parameter):void{
    
@@ -267,6 +415,19 @@ export class ListingPageComponent implements OnInit {
   public compareChecker= true;
   compareCheck(){
     this.compareChecker= (this.compareChecker== true?false:true);
+  }
+  changeTextMethod(item){
+      item.change=true;
+  }
+  changeTextOutMethod(item){
+      item.change=false;
+  }
+  comparator(course){
+    console.log();
+   this.messageService.addToCompare(course);
+  }
+  bookmarkCourse(course){
+    course.bookmarked=!course.bookmarked;
   }
 
 }

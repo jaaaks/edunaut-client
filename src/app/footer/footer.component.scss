@@ -248,3 +248,129 @@ hr{
     padding: 0 !important;
   }
 }
+
+mat-accordion {
+  position: fixed;
+bottom: 1px;
+width: 100%;
+z-index: 2;
+max-height: 600px;
+overflow:scroll;
+}
+.mat-expansion-panel{
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 40px !important;
+}
+mat-panel-description{
+  display: flex;
+  justify-content: center;
+}
+
+.example-card {
+ 
+  margin-top: 10px;
+  height: 160px;
+background: #F3F3F3;
+position: relative;
+  
+}
+.example-header-image {
+  position: relative;
+  background-image: url('../../assets/courseImage/course.png');
+  background-size: cover;
+  z-index: 1;
+  top:10px;
+}
+.header{
+  margin-bottom: 20px;
+}
+.strip{
+  position: absolute;
+width: 100%;
+height: 15px;
+left: 0px;
+top: 42px;
+background: #B5FAFD;
+
+}
+.expansion-icon{
+ margin-left: auto;
+ font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 30px;
+/* identical to box height, or 187% */
+
+text-align: center;
+letter-spacing: 0.0015em;
+
+color: #000000;
+}
+.circle{
+  width: 32px;
+  height: 32px;
+  background: #E0E2E8;
+  border-radius: 16px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cross{
+  margin-left: 10px;
+  color: #000000;
+}
+.thead{
+  font-weight: bold;
+}
+.bookmark{
+  
+width: 197px;
+height: 44px;
+background: #0376FE;
+border-radius: 5px;
+}
+ngb-rating {
+  font-size: 20px;
+  color:#0376FE;;
+}
+.action{
+  position: absolute;
+   left: 15%;
+  top: 100px;
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 170.91px;
+   }
+  .hover-button{
+   width: 170.91px;
+  height: 26.77px ;
+   
+  background: #FFFFFF;
+  border: 1px solid #757575;
+  box-sizing: border-box;
+  border-radius: 5px;
+  }
+  .remover{
+    position: absolute;
+    top:-15px;
+    left:95%;
+  }
+  .content{
+    overflow: hidden;
+    height: 80px;
+  }
+.clear{
+  font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+display: flex;
+align-items: flex-end;
+text-align: center;
+
+color: #0376FE;
+}

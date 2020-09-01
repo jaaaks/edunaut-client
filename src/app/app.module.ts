@@ -12,6 +12,7 @@ import { NguCarouselModule } from '@ngu/carousel';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { SeacrhServiceService } from './services/seacrh-service.service';
 import {MatSliderModule} from '@angular/material/slider';
+import { StarRatingModule } from 'angular-star-rating';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -40,6 +41,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 import {MatStepperModule} from '@angular/material/stepper';
 
 import { ContactusComponent } from './contactus/contactus.component';
@@ -107,6 +110,8 @@ AngularFireAuthModule,
  MatCheckboxModule,
  MatSliderModule,
  MatFormFieldModule,
+ MatExpansionModule,
+ StarRatingModule.forRoot(),
  MatStepperModule
 ],
   providers: [AuthenticationService,SeacrhServiceService],
