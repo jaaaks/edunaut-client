@@ -1,0 +1,88 @@
+.car{
+    height: 100% !important;
+    margin-left: 14%;
+    margin-right: 14%;
+    text-align: center;
+    background-color: #f5f5f5;
+  }
+  .im{
+   vertical-align: middle;
+   margin: auto;
+   border-radius: 50% !important;
+  }
+  .name{
+      font-family: Montserrat;
+      font-weight: 600;
+      font-size: 1em;
+      line-height: 20px;
+      letter-spacing: 0.005em;
+      color: #333333;
+      padding-top: 5%;
+  }
+  .designation{
+      font-family: Montserrat;
+      font-size: 0.9em;
+      font-style: normal;
+      padding-top: 4%;
+  }
+  a{
+    color: rgb(71, 71, 71);
+  }
+  a:hover{
+    text-decoration: none;
+  }
+.img-fluid{
+    width: 80%;
+    height: 50%;
+}
+.bord{
+    margin-top: 10%;
+    width: 40%;
+    border: 2px solid #31A8F7;
+}
+.leftRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 30px;
+  border-style: none !important;
+  background-color: #f5f5f5;
+  left: 0;
+}
+
+.rightRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 30px;
+  border-style: none !important;
+  background-color: #f5f5f5;
+  right: 0;
+}
+
+.myPoint {
+  list-style-type: none;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: auto;
+  box-sizing: border-box;
+  li {
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.55);
+    padding: 4px;
+    margin: 0 3px;
+    transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    transition: 0.4s;
+    &.active {
+      background: #6b6b6b;
+      transform: scale(1.2);
+    }
+  }
+}

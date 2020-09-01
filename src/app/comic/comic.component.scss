@@ -1,0 +1,33 @@
+.car{
+    height: 100% !important;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .im{
+   vertical-align: middle;
+   margin: auto;
+  }
+.leftRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 30px;
+  border-style: none !important;
+  background-color: #f8f8f8;
+  left: 0;
+}
+
+.rightRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 30px;
+  border-style: none !important;
+  background-color: #f8f8f8;
+  right: 0;
+}
+

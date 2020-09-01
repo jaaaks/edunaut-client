@@ -1,1 +1,22 @@
-<p>team works!</p>
+<ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+  <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
+    <mdb-card class="car z-depth-0">
+      <!--Card image-->
+     <a [href]="item.link" target="_blank">  <img class="img-fluid rounded-circle" [src]="item.images" alt="Card image cap">
+      <mdb-card-text>
+          <hr class="bord">
+          <div class="name">{{item.name}}</div>
+          <div class="designation">{{item.designation}}<br>Hobbies({{item.hobbies}})</div>
+      </mdb-card-text>
+      </a>
+    </mdb-card>
+  </div>
+
+  <button NguCarouselPrev class="leftRs" >
+    <img src="../../assets/homepage/left.png">
+  </button>
+  <button NguCarouselNext class="rightRs" >
+    <img src="../../assets/homepage/right.png">
+  </button>
+
+</ngu-carousel>

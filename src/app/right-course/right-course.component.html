@@ -2,79 +2,212 @@
   <div class="row bg">
     <div class="col-12">
       <div class="title">
-      Take The Right Course!
+        Take The Right Course!
       </div>
-    <mat-horizontal-stepper class="bg" linear #stepper>
-  <!-- #docregion editable -->
-    <mat-step [stepControl]="firstFormGroup" [editable]="true">
-      <div class="container-fluid">
-        <div class="row">
-      <div class="col-8">
-        <div class="row">
-          <div class="col-12 interest">
-            Choose Your Domain Of Interest
+      <mat-horizontal-stepper class="bg" linear #stepper>
+        <!-- #docregion editable -->
+        <mat-step [stepControl]="firstFormGroup" [editable]="true">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-8">
+                <div class="row">
+                  <div class="col-12 interest">
+                    Choose Your Domain Of Interest
+                  </div>
+                  <div class="col-12">
+                      <input id="checkbox-element" type="checkbox"/>  
+                      <img class="imo" src="../../assets/right-course/Art.png">
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <img class="img-fluid" src="../../assets/right-course/domain.png">
+              </div>
+            </div>
+            <div class="row next">
+              <div class="col-12">
+                <button class="btn" mat-button matStepperNext>Next</button>
+              </div>
+            </div>
           </div>
-          <div class="col-12">
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="true">
+          <form [formGroup]="secondFormGroup">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-8">
+                  <div class="motivation-ques">
+                    What is Your Motivation to Take Up Online Courses?
+                  </div>
+                  <div class="motivation-radio">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios"
+                      checked mdbInput>
+                    <label class="custom-control-label" for="defaultUnchecked">Exploration of a New domain</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked1" name="defaultExampleRadios"
+                      mdbInput>
+                    <label class="custom-control-label" for="defaultChecked1">Specialization in my field</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked2" name="defaultExampleRadios"
+                      mdbInput>
+                    <label class="custom-control-label" for="defaultChecked2">Career Assistance(Certification)</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked3" name="defaultExampleRadios"
+                      mdbInput>
+                    <label class="custom-control-label" for="defaultChecked3">Learn the latest information</label>
+                  </div>
+                </div>
+                </div>
+                <div class="col-4">
+                  <img class="img-fluid" src="../../assets/right-course/motivation.png">
+                </div>
+              </div>
+              <div class="row next">
+                <div class="col-12">
+                  <button class="btn1" mat-button matStepperPrevious>Back</button>
+                  <button class="btn2" mat-button matStepperNext>Next</button>
+                </div>
 
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup" [editable]="true">
+          <form [formGroup]="thirdFormGroup">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-8">
+                  <div class="motivation-ques">
+                    Chosse Your Time Commitment per Week
+                  </div>
+                  <div class="time">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample" mdbInput>
+                    <label class="custom-control-label" for="defaultInline1">1 Hours</label>
+                  </div>
+                  
+                  <!-- Default inline 2-->
+                  <div class="custom-control hours custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample" mdbInput>
+                    <label class="custom-control-label" for="defaultInline2">3 Hours</label>
+                  </div>
+                  
+                  <!-- Default inline 3-->
+                  <div class="custom-control hours custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample" mdbInput>
+                    <label class="custom-control-label" for="defaultInline3">5 Hours</label>
+                  </div>
+                  <br>
+                  <div class="bottom">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="defaultInline4" name="inlineDefaultRadiosExample" mdbInput>
+                  <label class="custom-control-label" for="defaultInline4">7 Hours</label>
+                </div>
+                
+                <!-- Default inline 2-->
+                <div class="custom-control hours custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="defaultInline5" name="inlineDefaultRadiosExample" mdbInput>
+                  <label class="custom-control-label" for="defaultInline5">9 Hours</label>
+                </div>
+                
+                <!-- Default inline 3-->
+                <div class="custom-control hours custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="defaultInline6" name="inlineDefaultRadiosExample" mdbInput>
+                  <label class="custom-control-label" for="defaultInline6">Not Sure</label>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-4">
+                  <img class="img-fluid" src="../../assets/right-course/time.png">
+                </div>
+              </div>
+              <div class="row next">
+                <div class="col-12">
+                  <button class="btn1" mat-button matStepperPrevious>Back</button>
+                  <button class="btn2" mat-button matStepperNext>Next</button>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="fourthFormGroup" [editable]="true">
+          <form [formGroup]="fourthFormGroup">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-8">
+                  <div class="motivation-ques">
+                    Are You Willing To Pay?
+                  </div>
+                  <div class="pay">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="defaultInline7" name="inlineDefaultRadiosExample1" mdbInput>
+                  <label class="custom-control-label" for="defaultInline7">Yes</label>
+                </div>
+                
+                <!-- Default inline 2-->
+                <div class="custom-control decision custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="defaultInline8" name="inlineDefaultRadiosExample1" mdbInput>
+                  <label class="custom-control-label" for="defaultInline8">No</label>
+                </div>
+                
+                <!-- Default inline 3-->
+                <div class="custom-control decision custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="defaultInline9" name="inlineDefaultRadiosExample1" mdbInput>
+                  <label class="custom-control-label" for="defaultInline9">Maybe</label>
+                </div>
+                </div>
+                </div>
+                <div class="col-4">
+                  <img class="img-fluid" src="../../assets/right-course/pay.png">
+                </div>
+              </div>
+              <div class="row next">
+                <div class="col-12">
+                  <button class="btn1" mat-button matStepperPrevious>Back</button>
+                  <button class="btn2" mat-button matStepperNext>Next</button>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-8">
+                <div class="motivation-ques">
+                  Time To Create Your Profile!
+                </div>
+                <div class="save">
+                  Create a profile to save your preferences for the future.
+                </div>
+                <div class="btn1s">
+                  <button type="button" class="prof"> Create Profile</button>
+                  <button type="button" class="later"> Later</button>
+                </div>
+                <div class="already">
+                  Already have an account? <span class="log"><a href="./coming-soon">Log in</a></span>
+                </div>
+              </div>
+              <div class="col-4">
+                <img class="img-fluid" src="../../assets/right-course/profile.png">
+              </div>
+            </div>
+            <div class="row next">
+              <div class="col-12">
+                <button class="btn3" mat-button matStepperPrevious>Back</button>
+              </div>
+
+            </div>
           </div>
-        </div>
+        </mat-step>
+      </mat-horizontal-stepper>
     </div>
-    <div class="col-4">
-      <img class="img-fluid" src="../../assets/right-course/domain.png">
-    </div>
-    </div>
-    <div class="row next">
-      <div class="col-12">
-      <button class="btn" mat-button matStepperNext>Next</button>
-      </div>
-    </div>
-    </div>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="true">
-      <div class="container-fluid">
-        <div class="row">
-      <div class="col-6">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel></ng-template>
-        <mat-form-field>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-      </div>
-      <div class="col-6">
-        Hey
-      </div>
-      </div>
-      </div>
-    </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" [editable]="true">
-      <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel></ng-template>
-        <mat-form-field>
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel></ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
-  </mat-horizontal-stepper>
+  </div>
 </div>
-  </div>
-  </div>
