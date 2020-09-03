@@ -1,39 +1,160 @@
-.form-elegant .font-small {
-    font-size: 0.8rem;
-  }
+
+.input-form{
+  display: flex;
+flex-direction: column;
+padding: 6px 8px;
+
+position: static;
+height: 32px;
+left: 0px;
+right: 0px;
+top: 30px;
+
+background: #FAFBFC;
+border: 2px solid #E0E2E8;
+box-sizing: border-box;
+border-radius: 5px;
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 1;
+margin: 0px 0px;
+height: 32px;
+width:302px;
+}
+.contactUs{
+  background: url(../../assets/contactus.png);
+  width: 257px;
+height: 257px;
+}
+.label{
+  width: 40px;
+height: 20px;
+left: 0px;
+top: 5px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+
+color: #494949;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+align-self: center;
+margin: 4px 0px;
+}
+.tnc{
+margin-bottom: 20px;
+margin-top:20px
+}
+.signUp{
+ 
+  background: #0376FE;
+  border-radius: 5px;
+}
+.create_account{
+ 
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+color: #FFFFFF;
+
+}
+.form-padding{
+  padding: 20px;
+}
+.oAuth-login{
+  background: #F5F5F5;
+  padding: 20px;
+}
+.form-wrap, .form-wrap2{
+  background: #F5F5F5;
+}
+.continue-with{
+  margin: 4px 0px;
+  font-family: Muli;
+font-style: normal;
+line-height: 20px;
+}
+.fb-button{
+  background: #FFFFFF;
+border-radius: 6px;
+width: 145px;
+height: 40px;
+background: url('../../assets/login-details/facebook-login.jpg');
+}
+.g-button{
+  background: #FFFFFF;
+border-radius: 6px;
+width: 145px;
+height: 40px;
+background: url('../../assets/login-details/google-login.png');
+}
+.why-sign{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: 0.02em;
+
+color: #8A8886;
+}
+.para-sign{
+  margin: 20px;
+  font-family: Muli;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  width: 237px;
+  color: #8A8886;
   
-  .form-elegant .z-depth-1a {
-    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
-    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
-  }
+}
+.right-sign{
+  padding: 25px;
+}
+.mat-divider{
+ margin: 15px -25px 15px -25px;
+}
+.circle{
+  width: 32px;
+  height: 32px;
+  background: #E2F1FF;
+  border-radius: 16px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cross-icon{
+  color: #0376FE;
+}
+.show-password{
+  position: absolute;
+  left: 260px;
   
-  .form-elegant .z-depth-1-half,
-  .form-elegant .btn:hover {
-    -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
-    box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
-  }
-.form-error {
-    color: red;
-  }
-  
-
-
-
-  .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background-color: grey;
-    opacity: 0.5;
-     width: 200%;
-     height: 200%;
-  }
-  .center app-spring-spinner {
-    position: absolute;
-    left: 45%;
-    top: 45%
-  }
-
+}
+.input-wrap{
+  position: relative;
+ }
+ .show-pass-icon{
+  padding-bottom: 80%;
+ }
+ .forgot-pass{
+   margin-bottom: 0.5rem;
+ }
+ 

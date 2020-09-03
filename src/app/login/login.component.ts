@@ -4,7 +4,10 @@ import { AuthenticationService } from '../services/authentication.service';
 import {Router} from '@angular/router';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { VirtualTimeScheduler, observable } from 'rxjs';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @Component({
@@ -17,7 +20,8 @@ export class LoginComponent implements OnInit {
     loading = false;
     showErrormessage=false;
     errorMessage="";
-
+    isSignUp=false;
+    hide = true;
   constructor(public fb: FormBuilder,public authenticationService: AuthenticationService,public router:Router,public afauth:AngularFireAuth) {
     this.elegantForm = fb.group({
       elegantFormEmailEx: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
@@ -29,8 +33,7 @@ export class LoginComponent implements OnInit {
       if (res && res.uid) {
         console.log('user is logged in');
       
-  
-      } else {
+ } else {
         console.log('user not logged in');
       }
     });
@@ -87,5 +90,8 @@ export class LoginComponent implements OnInit {
               this.loading=false;
               this.showErrormessage=true;
           })
+  }
+  showPass(){
+  this.hide =!this.hide;
   }
 }

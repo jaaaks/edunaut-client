@@ -42,7 +42,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
 
 import { ContactusComponent } from './contactus/contactus.component';
@@ -112,7 +112,7 @@ AngularFireAuthModule,
  MatFormFieldModule,
  MatExpansionModule,
  StarRatingModule.forRoot(),
- MatStepperModule
+ MatDialogModule
 ],
   providers: [AuthenticationService,SeacrhServiceService],
   bootstrap: [AppComponent],
