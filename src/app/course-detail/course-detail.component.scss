@@ -1,0 +1,161 @@
+.container-fluid{
+    overflow-x : hidden;
+}
+.provider{
+    margin-left: 15%;
+    margin-top: 4%;
+}
+.buttons{
+    margin-top:2.5%;
+}
+.com{
+    margin-left: 17%;
+}
+.book,.comp,.rep{
+    margin-left: 3.5%;
+}
+.compare, .bookmark, .completed, .report{
+    font-family: Muli;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0376fe;
+}
+.title{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    padding-left: 8%;
+    margin-top: 2%;
+}
+.title-footer{
+    margin-left: 7%;
+}
+.title-footer>button{
+    background: #e2f1ff !important;
+    border-radius: 5px !important;
+    color: #0376fe;
+    font-family: Muli;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 1.25%;
+    line-height: 20px;
+    padding: 0.4% 0.4%;
+}
+.go{
+    background-color: #0376fe !important;
+    margin-left: 10%;
+    margin-top: 2.5%;
+    font-family: Muli;
+    font-style: normal;
+    text-transform: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 0.5% 2%;
+    border-radius: 5px;
+}
+.about, .about-instructor{
+    font-family: Muli;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.0015em;
+    padding-left: 11%;
+    margin-top: 2%;
+    margin-bottom: 1.4%;
+}
+.course-description{
+    font-family: Muli;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 140%;
+    font-size: 16px;
+    letter-spacing: 0.005em;
+    color: #494949;
+}
+.bod{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.tog{
+    padding-left: 10%;
+    color: #0376fe !important;
+}
+.professor-name1{
+    padding-left: 12%;
+    font-family: Muli;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    color: #494949;
+}
+.professor-name2{
+    font-family: Muli;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    color: #494949;
+}
+.professor-body{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    letter-spacing: 0.0025em;
+    color: #8A8886;
+}
+.course-details{
+    border: 2px solid #E0E2E8;
+    margin-right: 25%;
+    border-radius: 5px;
+    background: #f8f8f8;
+    font-family: Muli;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.0015em;
+    color: #000000;
+}
+hr{
+    border-top: 2px solid rgba(224, 226, 232, 0.5);
+    width: 90%;
+
+}
+.details{
+    font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 0px;
+color: #8A8886;
+padding-top: 0 ;
+margin-top: 0;
+}
+.time{
+    padding-left: 5%;
+    padding-top: 0;
+    margin-top: 0;
+}
+.time-detail{
+    position: relative;
+    top: 1px;
+    left: 20px;
+}
+.head{
+    margin-bottom: 5%;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+.bottom{
+    padding-bottom: 5%;
+}

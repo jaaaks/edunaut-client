@@ -58,6 +58,7 @@ import { BookmarkedCoursesComponent } from './bookmarked-courses/bookmarked-cour
 import { RightCourseComponent } from './right-course/right-course.component';
 import { ComicComponent } from './comic/comic.component';
 import { TeamComponent } from './team/team.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { TeamComponent } from './team/team.component';
     BookmarkedCoursesComponent,
     RightCourseComponent,
     ComicComponent,
-    TeamComponent
+    TeamComponent,
+    CourseDetailComponent
   ],
   imports: [
     BrowserModule,
