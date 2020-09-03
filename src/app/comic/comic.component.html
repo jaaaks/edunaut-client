@@ -1,1 +1,16 @@
-<p>comic works!</p>
+<ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+    <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
+      <mdb-card class="car z-depth-0">
+        <!--Card image-->
+        <mdb-card-img class="im" [src]="item" alt="Card image cap"></mdb-card-img>
+      </mdb-card>
+    </div>
+  
+    <button NguCarouselPrev class="leftRs" >
+      <img src="../../assets/homepage/left1.png">
+    </button>
+    <button NguCarouselNext class="rightRs" >
+      <img src="../../assets/homepage/right1.png">
+    </button>
+  
+  </ngu-carousel>

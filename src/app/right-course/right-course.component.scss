@@ -13,7 +13,7 @@
 ::ng-deep .mat-horizontal-stepper-header-container {
   position: absolute;
   bottom: 18%;
-  left: 47.4%;
+  left: 46.8%;
   padding: 0 !important;
 }
 ::ng-deep .mat-step-icon-content,
@@ -50,16 +50,16 @@
 ::ng-deep .mat-step-header .mat-step-icon{
 background: #e0e2e8;
 }
-.btn{
+.btn,.btn2,.prof{
   background-color: #0376fe;
   color: white;
   font-family: Muli;
   font-style: normal;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 5px;
   font-weight: 600;
 }
-.interest{
+.interest,.motivation-ques{
   font-family: Muli;
   font-style: normal;
   font-weight: bold;
@@ -69,7 +69,89 @@ background: #e0e2e8;
   padding-top: 1.5%;
 }
 .next{
-    text-align: center;
-    margin-top: 8%;
-    margin-bottom: 1.5%;
+  text-align: center;
+  margin-top: 8%;
+  margin-bottom: 1.5%;
+}
+.motivation-ques{
+  padding-left: 20.5%;
+}
+.btn1{
+  margin-right: 2%;;
+}
+.motivation-radio,.time,.pay{
+  font-family: Muli;
+  font-size: 16px;
+  line-height: 20px;
+  color: #494949;
+  margin-left: 20.5%;
+  margin-top: 3%;
+}
+.custom-control{
+  padding-top: 2%;;
+}
+.hours{
+  margin-left: 4%;
+}
+.bottom{
+  padding-top: 1%;
+}
+.decision{
+  margin-left: 6%;
+}
+.save{
+  font-family: Muli;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  padding-left: 20.5%;
+  color: #494949;
+  padding-top: 1.5%;
+}
+.prof{
+  margin-left: 20.5%;
+  margin-top: 3%;  
+  border-radius: 5px;
+  border-color: #0376FE;
+}
+.later{
+  margin-left: 1%;
+  border-color: #0376fe;
+  color: #0376fe;
+  font-family: Muli;
+  font-size: 14px;
+  border-radius: 5px;
+  background: white;
+  padding: 0.15% 2%;
+  font-weight: 600;
+
+}
+.already{
+  margin-left: 20.5%;
+  margin-top: 1.5%;
+  font-family: Muli;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  font-style: normal;
+  color: #8A8886;
+}
+
+#checkbox-element{
+  padding: 20px;;
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  cursor: pointer;
+  
+}
+#checkbox-element::after{
+  border-style: none;
+}
+.imo{
+  position: relative;
+  left: -4%;
+  top: -30%;
+  z-index: 1;
 }
