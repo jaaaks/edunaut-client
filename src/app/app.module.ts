@@ -59,6 +59,7 @@ import { RightCourseComponent } from './right-course/right-course.component';
 import { ComicComponent } from './comic/comic.component';
 import { TeamComponent } from './team/team.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
     RightCourseComponent,
     ComicComponent,
     TeamComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    RelevantCoursesComponent
   ],
   imports: [
     BrowserModule,

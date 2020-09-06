@@ -10,8 +10,8 @@
                 class="bookmark">Bookmark</span> {{" "}}
             <img src="../../assets/course-detail/completed.png" class="img-fluid comp">{{" "}} <span
                 class="completed">Completed</span> {{" "}}
-            <img src="../../assets/course-detail/report.png" class="img-fluid rep">{{" "}} <span
-                class="report">Report</span> {{" "}}
+            <a (click)="basicModal.show()"><img src="../../assets/course-detail/report.png"
+                    class="img-fluid rep">{{" "}} <span class="report">Report</span></a> {{" "}}
         </div>
     </div>
     <div class="row">
@@ -32,123 +32,286 @@
     </div>
     <div class="row">
         <div class="col-8">
-            <div class="col-12"><button type="button" class="go" mdbBtn color="info" mdbWavesEffect>Go To Course</button></div>
+            <div class="col-12"><button type="button" class="go" mdbBtn color="info" mdbWavesEffect>Go To
+                    Course</button></div>
             <div class="col-12 about">About The Course</div>
             <div class="col-12 course-description">
                 <p class="text-justify bod">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap
+                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                    the
+                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.
 
-                Why do we use it?
-                It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
-                of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                <a  class="tog" (click)="test.toggle()" >
+                    Why do we use it?
+                    It is a long established fact that a reader will be distracted by the readable content of a page
+                    when
+                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                    distribution
+                    of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                </p>
+                <a class="tog" (click)="test.toggle()">
                     Read More
                 </a>
-                  
-                  <div class="tog1" mdbCollapse #test="bs-collapse">
+
+                <div class="tog1" mdbCollapse #test="bs-collapse">
                     <p class="text-justify bod">Many
-                        desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a
-                        search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have
-                        evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-        
+                        desktop publishing packages and web page editors now use Lorem Ipsum as their default model
+                        text, and a
+                        search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
+                        have
+                        evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the
+                        like).
+
                         Where does it come from?
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                        Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                        Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
-                        Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
-                        undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-                        Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the
-                        theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                        classical
+                        Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
+                        professor at
+                        Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                        from a
+                        Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered
+                        the
+                        undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum
+                        et
+                        Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on
+                        the
+                        theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem
+                        ipsum dolor
                         sit amet..", comes from a line in section 1.10.32.
-        
+
                         The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their
-                        exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-                  </div>                    
+                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
+                        in their
+                        exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                    </p>
+                </div>
             </div>
             <div class="col-12 about-instructor">
                 About The Instructor
             </div>
             <div class="row">
-            <div class="col-6 professor-name1">Professor Name
-                <div class="professor-body">
-                    Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                <div class="col-6 professor-name1">Professor Name
+                    <div class="professor-body">
+                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                    </div>
                 </div>
-            </div>
-            <div class="col-6 professor-name2">Professor Name
-                <div class="professor-body">
-                    Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                <div class="col-6 professor-name2">Professor Name
+                    <div class="professor-body">
+                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                    </div>
                 </div>
-            </div>
-            <div class="col-6 professor-name1">Professor Name
-                <div class="professor-body">
-                    Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                <div class="col-6 professor-name1">Professor Name
+                    <div class="professor-body">
+                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                    </div>
                 </div>
-            </div>
-            <div class="col-6 professor-name2">Professor Name
-                <div class="professor-body">
-                    Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
-                </div>
+                <div class="col-6 professor-name2">Professor Name
+                    <div class="professor-body">
+                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-4">
             <div class="course-details">
                 <div class="head">
-                Course Details
+                    Course Details
                 </div>
                 <div class="details">
-                <div>
-                <span class="time"><img src="../../assets/course-detail/clock.png"></span><span class="time-detail">31 Hrs</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span class="time-detail">3.4/5</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/price.png"></span><span class="time-detail">Free</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/charging.png"></span><span class="time-detail">3Hrs/week, for 6 weeks </span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/compass.png"></span><span class="time-detail">This course is self paced</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/calendar.png"></span><span class="time-detail">Start Any Time</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/batch-size.png"></span><span class="time-detail">80 in a batch</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/enrollments.png"></span><span class="time-detail">3423 total enrollments</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/bulb.png"></span><span class="time-detail">Intermediate</span>
-                </div>
-                <hr>
-                <div>
-                    <span class="time"><img src="../../assets/course-detail/language.png"></span><span class="time-detail">English</span>
-                </div>
-                <hr>
-                <div class="bottom">
-                    <span class="time"><img src="../../assets/course-detail/transcript.png"></span><span class="time-detail">English, French Tamil Transcripts</span>
-                </div>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/clock.png"></span><span
+                            class="time-detail">31 Hrs</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span
+                            class="time-detail">3.4/5</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/price.png"></span><span
+                            class="time-detail">Free</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/charging.png"></span><span
+                            class="time-detail">3Hrs/week, for 6 weeks </span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/compass.png"></span><span
+                            class="time-detail">This course is self paced</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/calendar.png"></span><span
+                            class="time-detail">Start Any Time</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/batch-size.png"></span><span
+                            class="time-detail">80 in a batch</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/enrollments.png"></span><span
+                            class="time-detail">3423 total enrollments</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/bulb.png"></span><span
+                            class="time-detail">Intermediate</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/language.png"></span><span
+                            class="time-detail">English</span>
+                    </div>
+                    <hr>
+                    <div class="bottom">
+                        <span class="time"><img src="../../assets/course-detail/transcript.png"></span><span
+                            class="time-detail">English, French Tamil Transcripts</span>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<!-- Report Modal Here-->
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mod-head">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <span class="modal-title w-100" id="myModalLabel">Report Course</span>
+            </div>
+            <div class="modal-body mod-body">
+                <p>Please let us know of any discrepancies in the course details. Your feedback helps make Edunaut a
+                    better learning platform for all.</p>
+                <div class="md-form">
+                    <textarea type="text" id="form7" class="md-textarea form-control"
+                        placeholder="Explain this report. Link appropriate resources if necessary." mdbInput></textarea>
+                </div>
+            </div>
+            <div class="modal-footer mod-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light cancel z-depth-0" aria-label="Close"
+                    (click)="basicModal.hide()" mdbWavesEffect>Cancel</button>
+                <button type="button" mdbBtn (click)="showAndHideModal()" (click)="basicModal.hide()" color="primary"
+                    class="relative waves-light submit" mdbWavesEffect>Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Of Modal-->
+<!-- Review Thanks Modal-->
+<div mdbModal #basicModal1="mdbModal" [config]="{backdrop: false, ignoreBackdropClick: true}" class="modal fade"
+    tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-frame modal-bottom" role="document">
+        <div class="modal-content mod1">
+            <div class="modal-header mod1-head">
+                <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
+                    </span><span>{{" "}}</span> Thanks! We'll review your report and take appropriate action. We'll get
+                    back to you soon!</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Modal-->
+<div class="container-fluid review-section">
+    <div class="row">
+        <div class="col-8">
+            <div class="row right-review">
+                <div class="col-12 review-title">
+                    Reviews
+                </div>
+                <div class="col-12 review-body">
+                    <span class="rating">4.4</span>{{" "}}<span class="reviews-number">(1079)</span>
+                </div>
+                <div class="col-8 course-rating">
+                    <ng-template #t let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                        </span>
+                    </ng-template>
+                    <ngb-rating [max]="5" [(rate)]="currentRate1" [starTemplate]="t" [readonly]="true"></ngb-rating>
+                </div>
+                <div class="col-4">
+                    <div class="sort-drop">
+                    <div class="btn-group " mdbDropdown>
+                        <button mdbDropdownToggle  type="button" class="dropdown-toggle sort z-depth-0" mdbBtn
+                            color="primary" mdbWavesEffect>Sort By</button>
+                        <div class="dropdown-menu dropdown-primary">
+                            <a class="dropdown-item">Most Popular</a>
+                            <a class="dropdown-item">Recent</a>
+                            <a class="dropdown-item">Option</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="review col-12">
+                    <div *ngFor="let i of reviews">
+                        <hr class="review-line">
+                        <div class="name">{{i.name}}</div>
+                        <div class="designation">{{i.designation}}</div>
+                        <div class="star-review">
+                            <ngb-rating class="rate1" [max]="5" [(rate)]="i.rating" [readonly]="true"></ngb-rating>
+                        </div>
+                        <div class="review-desc">{{i.desc}}</div>
+                        <div class="review-upvotes"><span><img
+                                    src="../../assets/course-detail/upvote.png">{{" "}}</span><span class="upvote-number">{{i.upvotes}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 review-post">
+            <div class="col-12 tap">
+                Tap To Rate
+            </div>
+            <div class="col-12 rate-write">
+                <ngb-rating class="rate" (hover)="hovered=$event" (hover)="current=true" (leave)="current=false"
+                    [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating>
+                <div class="rate-text"><span *ngIf="!current">
+                        <span *ngIf="currentRate==5">Excellent</span>
+                        <span *ngIf="currentRate>2 && currentRate<5">Fair</span>
+                        <span *ngIf="currentRate<3">Bad</span></span>
+                    <span *ngIf="current">
+                        <span *ngIf="hovered==5">Excellent</span>
+                        <span *ngIf="hovered>2 && hovered<5">Fair</span>
+                        <span *ngIf="hovered<3">Bad</span></span>
+                </div>
+            </div>
+            <div class="col-12 review-write">
+                Write A Review
+            </div>
+            <hr class="review-footer">
+            <div class="col-12">
+                <div class="md-form">
+                    <textarea type="text" id="form7" class="md-textarea form-control rev"
+                        placeholder="Write Your Review" mdbInput></textarea>
+                        <button class="tips z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Tips</button>
+                        <button class="post z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 relevant">
+            Relevant Courses
+        </div>
+        <div class="col-12 relevant-body">
+            <app-relevant-courses></app-relevant-courses>
         </div>
     </div>
 </div>
