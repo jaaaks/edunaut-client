@@ -1,0 +1,40 @@
+<ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+    <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
+      <mdb-card class="card ">
+        <div class="col-12 title">
+          <img class="icon" src="../../assets//profile/icon.png">
+        </div>
+        <mdb-card-body class="bod">
+          <mdb-card-title class="title-card">
+            Strategic Leadership and Management
+          </mdb-card-title>
+          <mdb-card-text>
+            <div class="row fade1">
+              <div class="col-6 bag"><img src="../../assets/profile/bag.png">
+                <span class="icon-body">{{" "}}Free</span></div>
+              <div class="col-6 clock"><img src="../../assets/profile/clock.png"><span class="icon-body">{{" "}}6
+                  Hrs</span></div>
+              <div class="col-6 bulb"><img src="../../assets/profile/bulb.png"><span
+                  class="icon-body">{{" "}}Intermediate</span></div>
+              <div class="col-6 star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}4.5/5
+                  (215)</span></div>
+            </div>
+            <hr class="footer">
+            <div class="row">
+              <div class="university">University of Minnesota</div>
+              <button mdbBtn type="button" class="button1" color="info" outline="true" mdbWavesEffect>Add a Review</button>
+            </div>
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  
+    <button NguCarouselPrev class="leftRs" [style.opacity]="0.5">
+      &lt;
+    </button>
+    <button NguCarouselNext class="rightRs" [style.opacity]="0.5">
+      &gt;
+    </button>
+  
+  
+  </ngu-carousel>

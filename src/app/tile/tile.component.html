@@ -1,18 +1,19 @@
 <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
-  <ngu-tile *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
-    <div class="tile" [style.background]="'url(' + item + ')'">
-    </div>
-  </ngu-tile>
+  <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
+    <mdb-card class="car z-depth-0">
+      <!--Card image-->
+      <mdb-card-img class="im" [src]="item.images" alt="Card image cap"></mdb-card-img>
+      <div class="col-12 name">
+        {{item.name}}
+      </div>
+    </mdb-card>
+  </div>
 
-  <button NguCarouselPrev class="leftRs" [style.opacity]="myCarousel.isFirst ? 0.5 : 1">
-    &lt;
+  <button NguCarouselPrev class="leftRs" >
+    <img src="../../assets/homepage/left1.png">
   </button>
-  <button NguCarouselNext class="rightRs" [style.opacity]="myCarousel.isLast ? 0.5 : 1">
-    &gt;
+  <button NguCarouselNext class="rightRs" >
+    <img src="../../assets/homepage/right1.png">
   </button>
 
-  <ul class="myPoint" NguCarouselPoint>
-    <li *ngFor="let i of myCarousel.pointNumbers" [class.active]="i == myCarousel.activePoint"
-      (click)="myCarousel.moveTo(i)"></li>
-  </ul>
 </ngu-carousel>

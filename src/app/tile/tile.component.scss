@@ -1,139 +1,49 @@
-.tile {
-    height: 170px;
-    background-color: #ccc;
-    background-size: cover !important;
-  }
-@media screen and (max-width: 767px){
-.tile {
-  height: 100px;
-  background-color: #ccc;
-  background-size: cover !important;
+.car{
+  height: 100% !important;
+  margin-left: 14%;
+  margin-right: 14%;
+  background-color: #eef9ff;
 }
+.im{
+ vertical-align: middle;
+ margin: auto;
 }
-@media screen and (max-width: 768px) and (min-width: 768px)
-{
-    .tile{
-    height: 200px;
-  background-color: #ccc;
-  background-size: cover !important;
-    }
-}
-.tile h1 {
-  text-align: center;
-  line-height: 200px;
-  background: rgba(0, 0, 0, 0.32);
-  color: white;
-  margin: 0;
-}
-
-h4 {
-  margin: 0;
-  padding: 10px 15px;
-  text-align: center;
-}
-
-p {
-  margin: 0;
-  padding: 0 15px 10px;
-  text-align: center;
-}
-
-.wBg {
-  background: white;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-nav {
-  border-bottom: 1px solid #ccc;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  background: white;
-  z-index: 12;
-}
-
-.carBtn {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-}
-
 .leftRs {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-  left: 0;
+position: absolute;
+margin: auto;
+top: -35px;
+bottom: 0;
+width: 20px;
+height: 30px;
+border-style: none !important;
+background-color: #eef9ff;
+left: 0;
 }
 
 .rightRs {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-  right: 0;
+position: absolute;
+margin: auto;
+top: -35px;
+bottom: 0;
+width: 20px;
+height: 30px;
+border-style: none !important;
+background-color: #eef9ff;
+right: 0;
+}
+.name{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 22px;
+/* or 183% */
+
+text-align: center;
+letter-spacing: -0.015em;
+
+color: #000000;
+padding-top: 15%;
+
 }
 
-.leftRs1 {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-  right: 0;
-}
-
-.rightRs1 {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-  left: 0;
-}
-
-.myPoint {
-  list-style-type: none;
-  text-align: center;
-  padding: 12px;
-  margin: 0;
-  white-space: nowrap;
-  overflow: auto;
-  box-sizing: border-box;
-  li {
-    display: inline-block;
-    border-radius: 50%;
-    border: 2px solid rgba(0, 0, 0, 0.55);
-    padding: 4px;
-    margin: 0 3px;
-    transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    transition: 0.4s;
-    &.active {
-      background: #6b6b6b;
-      transform: scale(1.2);
-    }
-  }
-}
