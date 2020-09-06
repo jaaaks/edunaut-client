@@ -11,9 +11,11 @@ import {FAQComponent} from './faq/faq.component';
 import {ComingSoonComponent} from './coming-soon/coming-soon.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RightCourseComponent} from './right-course/right-course.component';
+import {CourseDetailComponent} from './course-detail/course-detail.component';
   
 
 const routes: Routes = [
+  {path:'course-detail', component:CourseDetailComponent},
   {path:'right-course', component:RightCourseComponent},
   {path:'profile', component:ProfileComponent},
   {path:'coming-soon', component:ComingSoonComponent },

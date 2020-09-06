@@ -63,6 +63,8 @@ import { TeamComponent } from './team/team.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 
+import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
     BookmarkedCoursesComponent,
     RightCourseComponent,
     ComicComponent,
-    TeamComponent
+    TeamComponent,
+    CourseDetailComponent,
+    RelevantCoursesComponent
   ],
   imports: [
     BrowserModule,

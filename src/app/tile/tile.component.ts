@@ -17,11 +17,21 @@ import { slider } from './slide-animation';
 })
 export class TileComponent implements OnInit {
 
-  images = ['assets/bg.jpg', 'assets/car.png', 'assets/canberra.jpg', 'assets/holi.jpg', 'assets/udemy.png', 'assets/bg.jpg', 'assets/car.png', 'assets/canberra.jpg', 'assets/holi.jpg', 'assets/udemy.png'];
-
+  information: Array<{name: String, images: String}> = Array(
+    {name: 'Arts', images:'assets/homepage/Arts.png' },
+    {name: 'CS', images:'assets/homepage/CS.png' },
+    {name: 'Data Science', images:'assets/homepage/Data Science 3.png' },
+    {name: 'Health', images:'assets/homepage/Health.png' },
+    {name: 'IT', images:'assets/homepage/IT.png' },
+    {name: 'Language', images:'assets/homepage/Language.png' },
+    {name: 'Maths', images:'assets/homepage/Math.png' },
+    {name: 'PD', images:'assets/homepage/Personal develpment.png' },
+    {name: 'Science', images:'assets/homepage/Science.png' },
+    {name: 'Social Science', images:'assets/homepage/social science.png' },
+  )
   public carouselTileItems$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {
-    grid: { xs: 2, sm: 2, md: 4, lg: 5, all: 0 },
+    grid: { xs: 3, sm: 4, md: 6, lg: 9, all: 0 },
     speed: 250,
     point: {
       visible: true
@@ -44,7 +54,7 @@ export class TileComponent implements OnInit {
       map(val => {
         const data = (this.tempData = [
           ...this.tempData,
-          this.images[val + 1]
+          this.information[val + 1]
         ]);
         return data;
       })
