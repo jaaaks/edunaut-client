@@ -4,16 +4,12 @@
 flex-direction: column;
 padding: 6px 8px;
 
-position: static;
-height: 32px;
-left: 0px;
-right: 0px;
-top: 30px;
+
 
 background: #FAFBFC;
 border: 2px solid #E0E2E8;
 box-sizing: border-box;
-border-radius: 5px;
+border-radius: 3px;
 
 /* Inside Auto Layout */
 
@@ -29,15 +25,12 @@ width:302px;
 height: 257px;
 }
 .label{
-  width: 40px;
-height: 20px;
-left: 0px;
-top: 5px;
+  
 
 font-family: Muli;
 font-style: normal;
 font-weight: 600;
-font-size: 14px;
+font-size: 2vh;
 line-height: 20px;
 /* identical to box height, or 143% */
 
@@ -89,15 +82,13 @@ line-height: 20px;
 .fb-button{
   background: #FFFFFF;
 border-radius: 6px;
-width: 145px;
-height: 40px;
+min-width: 135px;
 background: url('../../assets/login-details/facebook-login.jpg');
 }
 .g-button{
   background: #FFFFFF;
 border-radius: 6px;
-width: 145px;
-height: 40px;
+min-width: 135px;
 background: url('../../assets/login-details/google-login.png');
 }
 .why-sign{
@@ -132,10 +123,10 @@ color: #8A8886;
  margin: 15px -25px 15px -25px;
 }
 .circle{
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   background: #E2F1FF;
-  border-radius: 16px;
+  border-radius: 13px;
   display: flex;
     justify-content: center;
     align-items: center;
@@ -155,6 +146,43 @@ color: #8A8886;
   padding-bottom: 80%;
  }
  .forgot-pass{
+   font-size: 2vh;
    margin-bottom: 0.5rem;
  }
+ .divider-padding{
  
+   border: 1px solid #E7E8ED;
+  
+    margin: 0px 20px 0px 20px !important;
+   }
+   .link{
+     color: #0376FE !important;
+   }
+  
+ .name , .password{
+margin-bottom: 10px;
+ }
+ .title{
+  font-family: Montserrat;
+  
+font-style: normal;
+font-weight: bold;
+
+line-height: 24px;
+display: flex;
+align-items: center;
+letter-spacing: 0.02em;
+
+color: #000000;
+ }
+ .auth-background{
+   margin-top: 10px;
+ }
+
+ .mat-checkbox-label{
+  font-size: 2vh !important;
+
+ }
+ .example-margin{
+   font-size: 2vh;
+ }

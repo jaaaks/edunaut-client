@@ -11,6 +11,8 @@ import { ReactiveFormsModule  } from '@angular/forms';
 import { NguCarouselModule } from '@ngu/carousel';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { SeacrhServiceService } from './services/seacrh-service.service';
+import { ProfileService } from './services/profile.service';
+
 import {MatSliderModule} from '@angular/material/slider';
 import { StarRatingModule } from 'angular-star-rating';
 
@@ -58,6 +60,9 @@ import { BookmarkedCoursesComponent } from './bookmarked-courses/bookmarked-cour
 import { RightCourseComponent } from './right-course/right-course.component';
 import { ComicComponent } from './comic/comic.component';
 import { TeamComponent } from './team/team.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -114,7 +119,9 @@ AngularFireAuthModule,
  StarRatingModule.forRoot(),
  MatDialogModule
 ],
-  providers: [AuthenticationService,SeacrhServiceService],
+  providers: [AuthenticationService,SeacrhServiceService, ProfileService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   schemas:[NO_ERRORS_SCHEMA]
 })

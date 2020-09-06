@@ -11,7 +11,9 @@ import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import { CommonModule } from "@angular/common";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatDialog} from '@angular/material/dialog';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { LoginComponent } from '../login/login.component';
 
 
 
@@ -170,6 +172,7 @@ export class ListingPageComponent implements OnInit {
   changeText: boolean;
   public regularDistribution=100/3;
   message: any;
+  isLoggedIn=false;
   sortChecker:boolean=true;
   subscription: Subscription;
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
@@ -194,7 +197,8 @@ export class ListingPageComponent implements OnInit {
   value=0;
   step=1;
 
-  constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase) { 
+  constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
+    private dialog:MatDialog,private afauth:AngularFireAuth) { 
     this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
  
@@ -338,6 +342,18 @@ export class ListingPageComponent implements OnInit {
     //    this.totalResults=this.courseList.length;
 
     // });
+    this.afauth.authState.subscribe(
+      res => {
+        if (res && res.uid) {
+          console.log('user is logged in');
+          this.isLoggedIn=true;
+        
+   } else {
+    this.isLoggedIn=true;
+
+          console.log('user not logged in');
+        }
+      });
   }
   searchMethod(parameter):void{
    
@@ -427,7 +443,18 @@ export class ListingPageComponent implements OnInit {
    this.messageService.addToCompare(course);
   }
   bookmarkCourse(course){
-    course.bookmarked=!course.bookmarked;
+    if(!this.isLoggedIn){
+      course.bookmarked=!course.bookmarked;
+       }
+       else{
+        const dialogRef = this.dialog.open(LoginComponent,{
+        
+          position:{
+            top:'10%'
+          }
+        }
+        );
+       }
   }
 
 }

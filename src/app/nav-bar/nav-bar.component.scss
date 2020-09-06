@@ -159,4 +159,11 @@ input {
       }
     }
 }
- 
+.cotainer ::-webkit-scrollbar {
+  display: none;
+}
+.edu-brand{
+  position: relative;
+  left: 8vw;
+  
+}
