@@ -12,4 +12,6 @@ export const environment = {
   },
   secretCode:"986a08eebe701d11a3e53049aac96bc0",
   appId:"2713638185580958"
+  resourceUrl : "https://edunaut-backend-api.herokuapp.com",
+  secretToken:"random"
 };
