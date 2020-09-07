@@ -6,6 +6,8 @@
 /* Actionable Item */
 .navbar{
   padding:0;
+  height: 56px !important;
+  margin-bottom: 10px;
 }
 .navbar-brand{
   position: relative;
@@ -157,4 +159,11 @@ input {
       }
     }
 }
- 
+.cotainer ::-webkit-scrollbar {
+  display: none;
+}
+.edu-brand{
+  position: relative;
+  left: 8vw;
+  
+}

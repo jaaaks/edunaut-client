@@ -4,6 +4,10 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import {Router} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import { MessageService } from '../services/message.service';
+import {MatDialog} from '@angular/material/dialog';
+
+import { LoginComponent } from '../login/login.component';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,7 +21,8 @@ export class NavBarComponent implements OnInit {
    public displayName="";
    public loggedIn=false;
    public searchParameter="";
-  constructor(private wowService: NgwWowService,private afauth:AngularFireAuth,private router:Router,private messageService:MessageService) {
+   public show=true;
+  constructor(private wowService: NgwWowService,private afauth:AngularFireAuth,private router:Router,private messageService:MessageService,public dialog: MatDialog) {
     this.afauth.authState.subscribe(
       res => {
         if (res && res.uid) {
@@ -29,7 +34,7 @@ export class NavBarComponent implements OnInit {
           console.log('user not logged in');
         }
       });
-  }
+      }
    
 
   ngOnInit(): void {
@@ -49,6 +54,21 @@ export class NavBarComponent implements OnInit {
     this.messageService.sendMessage(this.searchParameter);
     this.router.navigateByUrl("/find");
 
+}
+openDialog() {
+  const dialogRef = this.dialog.open(LoginComponent,{
+    height:'520px',
+    minWidth:'411px',
+    position:{
+      top: '15vh',
+       },
+       disableClose: true
+  }
+  );
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+  });
 }
 
 }

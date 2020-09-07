@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "heroku-postbuild": "ng build --prod",
+    "postinstall": "ngcc",
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -17,7 +18,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.0",
-    "@angular/cdk": "^10.0.1",
+    "@angular/cdk": "^10.0.0",
     "@angular/cli": "~10.0.0",
     "@angular/common": "~10.0.0",
     "@angular/compiler": "~10.0.0",
@@ -27,7 +28,7 @@
     "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "~10.0.0",
     "@angular/localize": "~10.0.0",
-    "@angular/material": "^10.0.1",
+    "@angular/material": "^10.0.0",
     "@angular/platform-browser": "~10.0.0",
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~10.0.0",
