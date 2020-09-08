@@ -15,7 +15,7 @@ export class CourseDetailComponent implements OnInit {
       this.demoBasic.hide();
     }, 3000);
   }
-  currentRate = 3;
+  currentRate = 0;
   hovered = 0;
   currentRate1 = 4.4;
   current = false;

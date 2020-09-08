@@ -543,7 +543,8 @@ padding-left: 12%;
 color: #8A8886;
 }
 .review-upvotes{
-  padding-left: 12%;
+  padding-right: 0px;
+  padding-left: 13%;
   padding-top: 2%;
   font-family: Muli;
 font-style: normal;
@@ -586,4 +587,14 @@ color: #000000;
   padding-top: 2.5%;
   padding-left: 9%;
   padding-right: 6%;
+}
+.report-review{
+  text-align: right;
+  padding-top: 2%;
+  padding-right: 2.5%;
+}
+.rep-drop{
+  position: relative;
+  top: -30px;
+  left: 170px;
 }
