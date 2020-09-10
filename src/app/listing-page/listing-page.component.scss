@@ -19,18 +19,25 @@
     list-style-type: none;
   }
   .example-card {
-    width: 200 !important;
-    margin-bottom: 20px;
-    height: 300 !important;
     
-  }
+    margin-bottom: 20px;
+    
+    width: 275px;
+    height: 270px;
+    background: #FFFFFF;
+box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+border-radius: 5px;
+     }
   
   .example-header-image {
-    position: relative;
+    position: absolute;
     background-image: url('../../assets/courseImage/course.png');
-    background-size: cover;
-    z-index: 1;
-    top:10px;
+    width: 44px;
+    height: 44px;
+    left: 15px;
+    top: 10px;
+    z-index: 5;
+    border-radius: 256px;
   }
   .header{
     margin-bottom: 20px;
@@ -42,13 +49,13 @@
   
   .strip{
     position: absolute;
-width: 100%;
-height: 15px;
-left: 0px;
-top: 42px;
-background:  #0059CB;;
-
-  }
+    width: 275px;
+    height: 30px;
+    left: 0px;
+    top: 0px;
+    
+    background: #1B5D9A;
+}
 .refine{
   
 
@@ -142,38 +149,31 @@ border-radius: 6px;
   justify-content: flex-end !important;
 }
 .hover-button{
-  margin: 2px;
-  width: 170.91px;
-height: 26.77px ;
- 
-background: #FFFFFF;
-border: 1px solid #757575;
-box-sizing: border-box;
-border-radius: 5px;
+  width: 118px;
+  height: 36px;
+  border: 2px solid #0376FE;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
-.mat-card-footer{
-  padding:10px;
+ .mat-card-footer{   
+    margin: 10px 0px 0px 0px;
   
-}
-.content{
-  position: relative;
-  height: 150px;
-  overflow-y: hidden;
-  overflow-x: hidden;
+ }
+.mat-card-content{
+  margin-bottom: 0px!important;
 }
 
 
 
-.action{
-  margin-bottom: auto;
-  }
+
+
   .icon{
     position: relative;
-    right: 18px;
+    // right: 18px;
   }
   .icon1{
     position: relative;
-    right: 14px;
+    // right: 14px;
   }
   .rate-button{
 
@@ -231,11 +231,41 @@ border-radius: 27px;
     padding-right: 0px;
   }
   .footer-univ{
-    font-family: Montserrat;
+   
+width: 212px;
+height: 36px;
+
+
+font-family: Muli;
 font-style: normal;
 font-weight: normal;
-font-size: 16px;
-line-height: 10px;
-letter-spacing: 0.015em;
-color: #000000;
+font-size: 14px;
+line-height: 18px;
+
+color: #8A8886;
   }
+
+  ::ng-deep {
+    .ng5-slider {
+        .ng5-slider-pointer {
+        height: 14px;
+        width: 14px;
+        top:-7px;
+        }
+      }
+    }
+
+    .text-button{
+      font-family: Muli;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      /* identical to box height, or 143% */
+      
+      display: flex;
+      align-items: flex-end;
+      text-align: center;
+      
+      color: #0376FE;
+    }

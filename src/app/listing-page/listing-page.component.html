@@ -1,6 +1,6 @@
 <div class="">
   <div fxLayout="row" class="main">
-    <div class="left-filters" fxFlex="23">
+    <div class="left-filters" fxHide fxShow.gt-sm fxFlex="23">
       <div class="refine">
         Refine results
       </div>
@@ -55,9 +55,8 @@
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isFee" matTreeNodeToggle>
           <div fxLayout="column">
-            <mat-slider class="" [max]="max" [min]="min" [(ngModel)]="value">
-            </mat-slider>
-
+           
+            <ng5-slider  [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
             <input class="example-margin" matInput [(ngModel)]="value">
 
           </div>
@@ -103,7 +102,7 @@
 
         <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between center">
           <ng-container *ngFor="let course of courseList">
-            <mat-card class="example-card" fxFlex="30" (mouseenter)="changeTextMethod(course)"
+            <mat-card class="example-card"  (mouseenter)="changeTextMethod(course)"
               (mouseleave)="changeTextOutMethod(course)">
               <mat-card-header class="header">
                 <div class="strip"></div>
@@ -111,9 +110,9 @@
 
               </mat-card-header>
 
-              <mat-card-content>
+              <mat-card-content fxLayout="column" fxLayoutAlign="end" [ngStyle]="{'height':course.change ? '129px' : '179px','font-size':course.change ?'8px':'12px' }">
                 <div class="content"
-                  [ngStyle]="{'height':course.change ? '100px' : '150px','font-size':course.change ?'10px':'13px' }">
+                  >
                   <a> <strong>
                       {{course.course_name}}
                     </strong></a>
@@ -136,29 +135,33 @@
 
               </mat-card-content>
               <mat-divider></mat-divider>
-              <mat-card-footer>
-                <div fxLayout="row" class="footer" fxLayoutAlign="space-between" *ngIf="!course.change">
+              <mat-card-footer [ngStyle]="{'height':course.change ? '111px' : '61px','font-size':course.change ?'10px':'13px' }">
+                <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="!course.change">
                   <div class="footer-univ">
-                   <span class="icon-body"> Indian insititute of technology</span>
+                   <span > Indian insititute of Information technology</span>
                   </div>
-                  <div>
-                    <mat-icon *ngIf="course.bookmarked" >bookmark</mat-icon>
-                    <mat-icon *ngIf="!course.bookmarked" >bookmark_border</mat-icon>
-                 </div>
+                  <!-- <div>
+                    <mat-icon *ngIf="bookMarkCourseMap.has(course.id)" >bookmark</mat-icon>
+                    <mat-icon *ngIf="!bookMarkCourseMap.has(course.id)" >bookmark_border</mat-icon>
+                 </div> -->
+                 <div *ngIf="bookMarkCourseMap.has(course.id)" ><img src="../../assets/Vector (1).png">
+                  </div>
+                  <div *ngIf="!bookMarkCourseMap.has(course.id)" ><mat-icon>bookmark_border</mat-icon>
+                  </div>
                 </div>
 
 
-                <div fxLayout="column wrap" class="footer" *ngIf="course.change">
+                <div fxLayout="row wrap"  *ngIf="course.change">
 
-                  <mat-card-action class="action"><button fxFill mat-raised-button mat-icon-button (click)="bookmarkCourse(course)" class="hover-button">
-                      <mat-icon class="icon1">bookmark_border</mat-icon> Bookmark Course
+                  <button mat-raised-button mat-icon-button (click)="bookmarkCourse(course)" fxLayout="row" class="hover-button">
+                      <mat-icon class="icon1">bookmark_border</mat-icon> <span class="text-button">Bookmark</span>
                     </button>
-                  </mat-card-action>
-                  <mat-card-action class="action">
-                    <button fxFill mat-raised-button mat-icon-button class="hover-button" (click)="comparator(course)">
-                      <mat-icon class="icon">queue</mat-icon>Add to Compare
+                
+                 
+                    <button  mat-raised-button mat-icon-button class="hover-button" fxLayout="row" (click)="comparator(course)">
+                      <mat-icon class="icon">queue</mat-icon>Compare
                     </button>
-                  </mat-card-action>
+                 
 
                 </div>
               </mat-card-footer>

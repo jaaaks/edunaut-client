@@ -21,3 +21,10 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 @import '~@angular/material/theming';
+.ng5-slider {
+	.ng5-slider-pointer {
+	height: 14px  !important;
+	width: 14px !important;
+	top:-7px !important;
+	}
+  }

@@ -13,6 +13,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { SeacrhServiceService } from './services/seacrh-service.service';
 import { ProfileService } from './services/profile.service';
 
+
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import {MatSliderModule} from '@angular/material/slider';
 import { StarRatingModule } from 'angular-star-rating';
 
@@ -62,7 +64,7 @@ import { ComicComponent } from './comic/comic.component';
 import { TeamComponent } from './team/team.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
-
+import { Ng5SliderModule } from 'ng5-slider';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.component';
 
@@ -121,7 +123,9 @@ AngularFireAuthModule,
  MatFormFieldModule,
  MatExpansionModule,
  StarRatingModule.forRoot(),
- MatDialogModule
+ MatDialogModule,
+ MatSnackBarModule,
+ Ng5SliderModule
 ],
   providers: [AuthenticationService,SeacrhServiceService, ProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },

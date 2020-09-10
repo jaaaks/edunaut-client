@@ -14,12 +14,19 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialog} from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from '../login/login.component';
-
-
+import {ProfileService} from '../services/profile.service'
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Options } from 'ng5-slider';
 
 export class TodoItemNode {
   children: TodoItemNode[];
   item: string;
+}
+export class BoomarkObject{
+  courseid: string;
+  status:string;
+  percentage:string;
+  userid:any;
 }
 
 /** Flat to-do item node with expandable and level information */
@@ -103,7 +110,6 @@ divider1:null,
 export class ChecklistDatabase {
   dataChange = new BehaviorSubject<TodoItemNode[]>([]);
   dataChange1 = new BehaviorSubject<TodoItemNode[]>([]);
-
   get data(): TodoItemNode[] { return this.dataChange.value; }
 
   constructor() {
@@ -178,7 +184,16 @@ export class ListingPageComponent implements OnInit {
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
   treeControl: FlatTreeControl<TodoItemFlatNode>;
   treeControl1: FlatTreeControl<TodoItemFlatNode>;
-  
+  user:any;
+  userData: firebase.User;
+  bookMarkobject= new BoomarkObject();
+  minValue: number = 50;
+  maxValue: number = 200;
+  options: Options = {
+    floor: 0,
+    ceil: 200
+  };
+  value=200;
   treeFlattener: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
   treeFlattener1: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
    tagList=['tag1','very  big tag','tag2','tag3','tag5','tag4','tag1','tag2','tag3','tag5','tag4']
@@ -192,16 +207,13 @@ export class ListingPageComponent implements OnInit {
  dataSource1: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
 
   getLevel = (node: TodoItemFlatNode) => node.level;
-  max=100000;
-  min=0;
-  value=0;
-  step=1;
+ 
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
-    private dialog:MatDialog,private afauth:AngularFireAuth) { 
+    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar) { 
     this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
- 
+      
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel,
       this.isExpandable, this.getChildren);
     this.treeControl = new FlatTreeControl<TodoItemFlatNode>(this.getLevel, this.isExpandable);
@@ -217,53 +229,8 @@ export class ListingPageComponent implements OnInit {
 
     _database.dataChange1.subscribe(data => {
       this.dataSource1.data = data;
-      
-    });
-    this.courseList=[{
-      'course_name':'random course',
-      'course_time':'4h',
-      'course_rating':'2.5',
-      'change':false,
-      'course_university':'oxford',
-      'course_certificate':'Yes',
-      'course_fee':'3266 INR',
-      'course_provider':'coursera',
-      'bookmarked':false
-    },
-  {
-    'course_name':'randomly generated course that can help you identify glex box propertiesijefj jnc jefj f  ejf jerf  fierf jerf jnerf hjer jer jer ne vjher jer her dkfvj v vj vekjv je vjr  ;jgntg jtgirtbgrtngotrng rtgtrigntkonhotyj ihng ;k  hio5g  i hjt iot mtr gjet5 gie5g ty gkt htyngh  ibngrt ng trgn  hgitnhrth tjgn soem thinh very importwnat was about to cmome here buyt ',
-    'course_time':'4h',
-    'course_rating':'4',
-    'change':false,
-    'course_university':'iitg',
-    'course_certificate':'Yes',
-    'course_fee':'FREE',
-    'course_provider':'edx',
-    'bookmarked':false
-  },{
-    'course_name':'course 3',
-    'course_time':'4h',
-    'course_rating':'2.5',
-    'change':false,
-    'course_university':'MIT',
-    'course_certificate':'Yes',
-    'course_fee':'3266 INR',
-    'course_provider':'coursera',
-    'bookmarked':false
-  },{
-    'course_name':'course 4',
-    'course_time':'4h',
-    'course_rating':'2.5',
-    'change':false,
-    'course_university':'oxford',
-    'course_certificate':'Yes',
-    'course_fee':'3266 INR',
-    'course_provider':'coursera',
-    'bookmarked':false
-  }
+      });
 
-]
-     this.totalResults=this.courseList.length;
   }
   transformer = (node: TodoItemNode, level: number) => {
     const existingNode = this.nestedNodeMap.get(node);
@@ -347,13 +314,25 @@ export class ListingPageComponent implements OnInit {
         if (res && res.uid) {
           console.log('user is logged in');
           this.isLoggedIn=true;
-        
+         this.userData=res;
+         this.pfs.getProfile(res.uid).subscribe(data=>{
+           this.user=data;
+           this.setBookMark(this.user);
+         })
    } else {
-    this.isLoggedIn=true;
-
-          console.log('user not logged in');
+    this.isLoggedIn=false;
+           console.log('user not logged in');
         }
+      },
+      err=>{
+        this.isLoggedIn=false;
       });
+
+     this.messageService.getUser().subscribe(data=>{
+       if(data){
+       this.user=data;
+       }
+     })
   }
   searchMethod(parameter):void{
    
@@ -443,18 +422,54 @@ export class ListingPageComponent implements OnInit {
    this.messageService.addToCompare(course);
   }
   bookmarkCourse(course){
-    if(!this.isLoggedIn){
-      course.bookmarked=!course.bookmarked;
+    if(this.isLoggedIn){
+      if(this.userData.emailVerified){
+        this.bookMarkobject.courseid= course.id;
+        this.bookMarkobject.userid={"uid":this.userData.uid};
+         this.searchService.bookMarkcourse(this.bookMarkobject).subscribe(data=>{
+           this.snackBar.open('Course BookMarked','close',{
+             duration:2000
+           })
+         },err=>{
+           if(err='success'){
+            this.snackBar.open('Course BookMarked','close',{
+              duration:2000,
+            })
+           }
+         })
+      }else{
+        console.log('please verify your email');
+        this.userData.sendEmailVerification().then(result=>{
+          course.bookmarked=!course.bookmarked;
+        },
+        err=>{
+               console.log('not verified')
+        })
+      }
        }
        else{
         const dialogRef = this.dialog.open(LoginComponent,{
-        
-          position:{
+         position:{
             top:'10%'
           }
         }
         );
        }
   }
+  public bookMarkCourseMap= new Map<string,boolean>();
+  setBookMark(user){
+     for(var index=0;index<user.bookmarks.length;index++){
+      //  this.bookMarkCourseMap[user.bookmarks[index].courseid]=true;
+      this.bookMarkCourseMap.set(user.bookmarks[index].courseid,true);
+     }
+  }
+  isBookMark(course){
+    if(this.bookMarkCourseMap[course.courseid]){
+      return true;}
+     else {
+       return false;
+     }
+     };
+  
 
 }

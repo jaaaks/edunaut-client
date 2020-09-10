@@ -118,7 +118,7 @@
                         </div>
                         </div>
                             <div  fxLayout="row" fxLayoutAlign="space-between center">
-                            <mat-checkbox class="example-margin">Remember me</mat-checkbox>
+                            <mat-checkbox (change)="showOptions($event)" class="example-margin">Remember me</mat-checkbox>
                             <div class="forgot-pass"> 
                                 <a class="link">Forgot Password?</a>
                                 </div>
@@ -127,8 +127,9 @@
                             <button mat-raised-button class="signUp"  (click)="onSubmit()">
                                <span class="create_account" > Sign In</span>
                             </button>
-
+                            <p *ngIf="showErrormessage" style="color:red; max-width:302px ;">{{errorMessage}}</p>
                 </form>
+               
                 </div>
             <div class="form-wrap2" fxLayout="column" fxLayoutGap="20px">
                 <div class="oAuth-login">

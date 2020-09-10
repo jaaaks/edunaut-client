@@ -9,33 +9,101 @@ import { Router } from '@angular/router'
 })
 
 export class AuthenticationService {
-  userData: Observable<firebase.User>;
+  
 
   constructor(private angularFireAuth: AngularFireAuth, private router:Router) {
-    this.userData = angularFireAuth.authState;
+  
   }
 
   /* Sign up */
   SignUp(email: string, password: string):any {
-
+  
     return this.angularFireAuth
       .createUserWithEmailAndPassword(email, password);
-       }
-  googleAuthLogin() {
+  
+ }
+  googleAuthLogin(persitance) :any{
+    var pers;
+    if(persitance==='local'){
+      pers=auth.Auth.Persistence.LOCAL;
+    }
+    else{  pers=auth.Auth.Persistence.NONE;}
     var provider = new auth.GoogleAuthProvider();
-    return this.angularFireAuth.signInWithPopup(provider);
+    var promise = new Promise((resolve,reject)=>{
+      this.angularFireAuth.setPersistence(pers).then(result=>{
+         this.angularFireAuth.signInWithPopup(provider).then(res=>{
+         resolve('successful')
+         },
+         error=>{
+           reject(error.message);
+           
+         });
+        },
+        err=>{
+          reject(err.message);
+        });
+        
+      });
+      return promise;
    }
-  facebookAuthLogin(){
+  facebookAuthLogin(persitance):any{
+    var pers;
+    if(persitance==='local'){
+      pers=auth.Auth.Persistence.LOCAL;
+    }
+    else  {
+      pers=auth.Auth.Persistence.NONE;
+    }
+
     var provider = new auth.FacebookAuthProvider();
-    return this.angularFireAuth.signInWithPopup(provider);
-  }
+    var promise = new Promise((resolve,reject)=>{
+    this.angularFireAuth.setPersistence(pers).then(result=>{
+     this.angularFireAuth.signInWithPopup(provider).then(
+       res=>{
+        localStorage.setItem('token', res.user.refreshToken);
+        localStorage.setItem('id', res.user.uid);
+         resolve('successful');
+       },
+       err=>{
+            reject(err.message);
+       }
+     );
+  },
+   error=>{
+    reject('not successfull');
+   });
+  });
+}
 
   
-  SignIn(email: string, password: string) :any{
+  SignIn(email: string, password: string,persistance:string) :any{
+    var pers;
+    if(persistance==='local'){
+      pers=auth.Auth.Persistence.LOCAL;
+    }
+    else { pers=auth.Auth.Persistence.NONE;
+    }
+    var promise = new Promise((resolve,reject)=>{
+      this.angularFireAuth.setPersistence(pers).then(result=>{
     
-   return  this.angularFireAuth
-      .signInWithEmailAndPassword(email, password)
-       }
+          this.angularFireAuth
+           .signInWithEmailAndPassword(email, password).then(
+             res=>{
+              localStorage.setItem('token', res.user.refreshToken);
+              localStorage.setItem('id', res.user.uid);
+               resolve(res.user);
+             },
+             err=>{
+               reject(err.message);
+             }
+           );
+            },
+            error=>{
+             reject(error.message);
+            });
+    });
+      return promise;
+      }
 
  
   SignOut() {

@@ -21,4 +21,7 @@ export class ProfileService {
       console.log(res);
     });
   }
+  getProfile(id){
+    return this.http.get(this.url+'/user/'+id);
+  }
 }
