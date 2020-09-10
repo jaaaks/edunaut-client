@@ -17,6 +17,7 @@ import { LoginComponent } from '../login/login.component';
 import {ProfileService} from '../services/profile.service'
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Options } from 'ng5-slider';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 export class TodoItemNode {
   children: TodoItemNode[];
@@ -210,10 +211,9 @@ export class ListingPageComponent implements OnInit {
  
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
-    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar) { 
+    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute) { 
     this.changeText= false;
-    this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
-      
+    
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel,
       this.isExpandable, this.getChildren);
     this.treeControl = new FlatTreeControl<TodoItemFlatNode>(this.getLevel, this.isExpandable);
@@ -333,12 +333,23 @@ export class ListingPageComponent implements OnInit {
        this.user=data;
        }
      })
+     var searchParam;
+     this.activateRouter.queryParams.subscribe(params => {
+      searchParam = params['search'];
+    });
+
+     this.searchMethod(searchParam);
+     //this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
   }
+  loading =false;
   searchMethod(parameter):void{
-   
-    this.searchService.getCourseByKeyWord(parameter.text).subscribe((response)=>{
+     this.loading=true;
+    this.searchService.getCourseByKeyWord(parameter).subscribe((response)=>{
       this.courseList=response;
       this.totalResults=this.courseList.length;
+      this.loading=false;
+
+      
    });
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
@@ -449,9 +460,12 @@ export class ListingPageComponent implements OnInit {
        }
        else{
         const dialogRef = this.dialog.open(LoginComponent,{
-         position:{
-            top:'10%'
-          }
+          height:'520px',
+          minWidth:'411px',
+          position:{
+            top: '15vh',
+             },
+             disableClose: true
         }
         );
        }

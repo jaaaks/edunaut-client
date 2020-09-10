@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 .example-tree-invisible {
     display: none;
   }
@@ -268,4 +270,51 @@ color: #8A8886;
       text-align: center;
       
       color: #0376FE;
+    }
+
+    .comp-button{
+      display: flex;
+flex-direction: row;
+padding: 6px 15px;
+
+position: absolute;
+width: 117px;
+height: 36px;
+left: 14px;
+top: 221px;
+
+
+box-sizing: border-box;
+border-radius: 5px;
+background: url('../../assets/contactus/compare.png');
+
+    }
+
+    .book-button{
+      position: absolute;
+width: 118px;
+height: 36px;
+left: 143px;
+top: 221px;
+background: url('../../assets/bookMarkButton.png');
+
+box-sizing: border-box;
+border-radius: 5px;
+    }
+
+   .example-card:empty {
+      animation: loading 1.7s infinite linear;
+      background: #dedfe1;
+      background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+      background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+      background-repeat: no-repeat;
+    }
+    @keyframes loading {
+      0% {
+        background-position: -100px;
+      }
+    
+      100% {
+    background-position: 200px;
+      }
     }

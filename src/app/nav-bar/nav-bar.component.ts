@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgwWowService } from 'ngx-wow';
 import { AngularFireAuth } from "@angular/fire/auth";
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import { MessageService } from '../services/message.service';
 import {MatDialog} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import  { environment} from "../../environments/environment"
 
 import { LoginComponent } from '../login/login.component';
 import * as firebase from 'firebase/app'
@@ -23,7 +24,7 @@ export class NavBarComponent implements OnInit {
    public searchParameter="";
    public show=true;
    private user: Observable<firebase.User>;
-
+  private localUrl= environment.localUrl;
   constructor(private wowService: NgwWowService,private afauth:AngularFireAuth,private router:Router,private messageService:MessageService,public dialog: MatDialog) {
   
       }
@@ -56,9 +57,8 @@ export class NavBarComponent implements OnInit {
   }
  
   sendMessage(): void {
-    this.messageService.sendMessage(this.searchParameter);
-    this.router.navigateByUrl("/find");
-}
+    window.location.href=this.localUrl+this.searchParameter;
+ }
 openDialog() {
   const dialogRef = this.dialog.open(LoginComponent,{
     height:'520px',

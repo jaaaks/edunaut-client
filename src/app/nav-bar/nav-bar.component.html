@@ -8,8 +8,8 @@
 </a>
   </mdb-navbar-brand>
  <div class="sample one">
-      <input type="text" id="search" name="search" placeholder="Search and Explore Courses" [(ngModel)]='searchParameter'>
-      <button type="submit"  (click)="sendMessage()" class="fab fa-sistrix btn btn-search"></button>
+      <input type="text" id="search" name="search" (keyup.enter)="sendMessage()" placeholder="Search and Explore Courses" [(ngModel)]='searchParameter'>
+     <a href="/find?search={{searchParameter}}"> <button type="submit"   class="fab fa-sistrix btn btn-search"></button></a>
     </div>
    
     
