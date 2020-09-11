@@ -336,9 +336,10 @@ export class ListingPageComponent implements OnInit {
      var searchParam;
      this.activateRouter.queryParams.subscribe(params => {
       searchParam = params['search'];
+      this.searchMethod(searchParam);
     });
 
-     this.searchMethod(searchParam);
+    
      //this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
   }
   loading =false;
