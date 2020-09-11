@@ -435,12 +435,14 @@ export class ListingPageComponent implements OnInit {
   bookmarkCourse(course){
     if(this.isLoggedIn){
       if(this.userData.emailVerified){
+        this.snackBar.open('Course BookMarked','close',{
+          duration:2000
+        })
         this.bookMarkobject.courseid= course.id;
         this.bookMarkobject.userid={"uid":this.userData.uid};
+        this.bookMarkCourseMap.set(course.id,true);
          this.searchService.bookMarkcourse(this.bookMarkobject).subscribe(data=>{
-           this.snackBar.open('Course BookMarked','close',{
-             duration:2000
-           })
+          
          },err=>{
            if(err='success'){
             this.snackBar.open('Course BookMarked','close',{

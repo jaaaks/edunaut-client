@@ -57,7 +57,7 @@ export class NavBarComponent implements OnInit {
   }
  
   sendMessage(): void {
-    window.location.href=this.localUrl+this.searchParameter;
+    window.location.href='find?search='+this.searchParameter;
  }
 openDialog() {
   const dialogRef = this.dialog.open(LoginComponent,{
