@@ -2,19 +2,17 @@
     <div class="row">
         <div class="col-lg-2 col-md-3 col-4 profile">
             <p><img src="../../assets/profile/profile.png"></p>
-            <p>Anshul Kumar</p>
-            <p class="bio text-justify">I will complete all of these courses. And you should too bcoz that's what is the
-                aim of
-                edunaut. My name is Anshul Kumar and i am not Anshul. We are all just a small creation of god.</p>
+            <p *ngIf="user">{{user.firstname}}{{" "}}{{user.lastname}}</p>
+            <p *ngIf="user"class="bio text-justify">{{user.bio}}</p>
             <p class="icons">
-                <img  src="../../assets/profile/write.png">
-                <img class="settings" src="../../assets/profile/settings.png">
-                <img class="attachment" src="../../assets/profile/attachment.png">
+               <a (click) = "basicModal.show()"> <img  src="../../assets/profile/write.png">
+                <img class="attachment" src="../../assets/profile/attachment.png"></a>
             </p>
             <p class="badges"> <span class="badges-header">Badges</span>
+                <span class="badges-all"><a href="badges">View Details</a></span>
                 <br>
                 <span >
-                    <span class="badge"><img src="../../assets/profile/rec.png"></span>
+                    <span class="badge1"><img src="../../assets/profile/rec.png"></span>
                     <span class="badge"><img src="../../assets/profile/rec.png"></span>
                     <span class="badge"><img src="../../assets/profile/rec.png"></span>
                 </span>
@@ -54,6 +52,31 @@
                         <app-completed-courses></app-completed-courses>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mod-head">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <span class="modal-title w-100" id="myModalLabel">Edit Profile</span>
+            </div>
+            <div class="modal-body mod-body">
+                <div class="md-form">
+                    <textarea type="text" id="form7" class="md-textarea form-control"
+                        placeholder="Explain this report. Link appropriate resources if necessary." mdbInput></textarea>
+                </div>
+            </div>
+            <div class="modal-footer mod-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light cancel z-depth-0" aria-label="Close"
+                    (click)="basicModal.hide()" mdbWavesEffect>Cancel</button>
+                <button type="button" mdbBtn (click)="basicModal.hide()" color="primary"
+                    class="relative waves-light submit" mdbWavesEffect>Save</button>
             </div>
         </div>
     </div>

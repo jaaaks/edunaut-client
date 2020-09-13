@@ -13,19 +13,19 @@ import { slider } from './slide-animation';
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.scss'],
   animations: [slider],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TileComponent implements OnInit {
 
   information: Array<{name: String, images: String}> = Array(
     {name: 'Arts', images:'assets/homepage/Arts.png' },
-    {name: 'CS', images:'assets/homepage/CS.png' },
+    {name: 'Business', images:'assets/homepage/Business.png'},
+    {name: 'Computer Science', images:'assets/homepage/CS.png' },
     {name: 'Data Science', images:'assets/homepage/Data Science 3.png' },
     {name: 'Health', images:'assets/homepage/Health.png' },
     {name: 'IT', images:'assets/homepage/IT.png' },
     {name: 'Language', images:'assets/homepage/Language.png' },
     {name: 'Maths', images:'assets/homepage/Math.png' },
-    {name: 'PD', images:'assets/homepage/Personal develpment.png' },
+    {name: 'Personality Dev.', images:'assets/homepage/Personal develpment.png' },
     {name: 'Science', images:'assets/homepage/Science.png' },
     {name: 'Social Science', images:'assets/homepage/social science.png' },
   )
@@ -50,7 +50,7 @@ export class TileComponent implements OnInit {
 
     this.carouselTileItems$ = interval(20).pipe(
       startWith(-1),
-      take(10),
+      take(11),
       map(val => {
         const data = (this.tempData = [
           ...this.tempData,

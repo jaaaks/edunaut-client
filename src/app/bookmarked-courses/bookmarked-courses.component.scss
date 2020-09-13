@@ -39,6 +39,8 @@
     padding-bottom: 5%;
 }
 .title-card{
+  position: absolute;
+  top: 26%;
   font-family: Muli !important;
   font-style: normal;
   font-weight: 600;
@@ -94,7 +96,7 @@
     opacity: 0;
     position: absolute;
     transition: opacity linear 0.3s;
-    top: 82%;
+    top: 80.5%;
     left: 24%;
     font-family: Muli !important;
     font-size: 12px !important;
@@ -108,6 +110,7 @@
 }
 
 .fade1{
+  margin-top: 13%;
   transition: opacity linear 0.3s;
 }
 .card:hover{
@@ -117,4 +120,8 @@
   .university{
     opacity: 0;
   }
+}
+.icon-bo{
+  position: relative;
+  top: 12px !important;
 }

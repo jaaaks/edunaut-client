@@ -120,6 +120,11 @@ $spacing: -0.015em;
 .instagram-media{
   padding-left: 100px;
 }
+.med-card{
+  width: 420px !important;
+  height: 600px;
+  padding-right: 10%;;
+}
 
 @media screen and (max-width: 767px){
   .courses{display: none !important;}
@@ -333,9 +338,4 @@ $spacing: -0.015em;
   .cors{
     padding-left: 3.5%;
   }
-}
-
-.colmd{
-  max-width: 340px !important;
- 
 }

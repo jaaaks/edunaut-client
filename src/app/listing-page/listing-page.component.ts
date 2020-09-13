@@ -200,7 +200,7 @@ export class ListingPageComponent implements OnInit {
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
     private dialog:MatDialog,private afauth:AngularFireAuth) { 
     this.changeText= false;
-    this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
+    this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message)});
  
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel,
       this.isExpandable, this.getChildren);
@@ -346,6 +346,7 @@ export class ListingPageComponent implements OnInit {
       res => {
         if (res && res.uid) {
           console.log('user is logged in');
+          console.log(res.uid);
           this.isLoggedIn=true;
         
    } else {

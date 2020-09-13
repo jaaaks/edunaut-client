@@ -461,6 +461,7 @@ hr {
   width: 95%;
   margin-left: 2%;
   height: 120px;
+  background-color: white !important;
 }
 .tips {
   margin-left: 60%;
@@ -594,7 +595,7 @@ color: #000000;
   padding-right: 2.5%;
 }
 .rep-drop{
-  position: relative;
+  position: absolute;
   top: -30px;
   left: 170px;
 }

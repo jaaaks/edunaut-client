@@ -65,7 +65,9 @@ import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.component';
-
+import {UserServiceService} from './services/user-service.service';
+import {HeroResolver} from './resolvers/apiResolver';
+import { BadgesComponent } from './badges/badges.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +93,8 @@ import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.co
     ComicComponent,
     TeamComponent,
     CourseDetailComponent,
-    RelevantCoursesComponent
+    RelevantCoursesComponent,
+    BadgesComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +126,7 @@ AngularFireAuthModule,
  StarRatingModule.forRoot(),
  MatDialogModule
 ],
-  providers: [AuthenticationService,SeacrhServiceService, ProfileService,
+  providers: [AuthenticationService,SeacrhServiceService, ProfileService,HeroResolver,UserServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
