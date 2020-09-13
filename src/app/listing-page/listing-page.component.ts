@@ -14,12 +14,24 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialog} from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from '../login/login.component';
+import {MatChipInputEvent} from '@angular/material/chips';
 
-
+import { EmailVerificationComponent } from '../email-verification/email-verification.component';
+import {ProfileService} from '../services/profile.service'
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Options } from 'ng5-slider';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {MatMenuTrigger} from '@angular/material/menu';
 
 export class TodoItemNode {
   children: TodoItemNode[];
   item: string;
+}
+export class BoomarkObject{
+  courseid: string;
+  status:string;
+  percentage:string;
+  userid:any;
 }
 
 /** Flat to-do item node with expandable and level information */
@@ -38,10 +50,67 @@ const personal='Personal Development';
 const TREE_DATA={};
 const ProgramData={
   Domain:{
-  'Personal Development':{
-    'Random Value':null,
-    'Random Value2':null
-  }
+  'Arts and Humanities':{
+    'History':null,
+    'Music and Art':null,
+    'Philosophy':null
+  },
+  Business:{
+    'Business Essentials':null,
+    'Business Strategy':null,
+    'Entrepreneurship':null,
+    'Finance':null,
+    'Leadership and Management':null,
+    'Marketing':null,
+    },
+    'Computer Science':{
+      'Algorithms':null,
+      'Computer Security and Networks':null,
+      'Design and Product':null,
+      'Mobile and Web Development':null,
+      'Software Development':null,
+     },
+     'Data Science':{
+       'Data Analysis':null,
+       'Machine Learning':null,
+       'Probability and Statistics':null
+     },
+     Health:{
+       'Animal Health':null,
+       'Basic Science':null,
+       'Health Informatics':null,
+       'Healthcare Management':null,
+       'Nutrition':null,
+       'Patient Care':null,
+       'Psychology':null,
+       'Research':null
+     },
+     'Information Technology':{
+       'Cloud Computing':null,
+       'Data Management':null,
+       'Security':null,
+       'Support and Operations':null,
+       },
+       'Language Learning':{
+         'Learning English':null,
+         'Other Languages':null
+       },
+  'Physical Science and Engineering':{
+        'Chemistry':null,
+        'Electrical Engineering':null,
+        'Environmental Science and Sustainability':null,
+        'Mechanical Engineering':null,
+        'Physics and Astronomy':null,
+        'Research Methods':null
+      },
+      'Social Sciences':{
+        'Economics':null,
+        'Education':null,
+        'Governance and Society':null,
+        'Law':null
+      },
+      'Math and Logic':null,
+      'Personal Development':null,
 },
 divider:null,
 'Programe Type':{
@@ -103,7 +172,6 @@ divider1:null,
 export class ChecklistDatabase {
   dataChange = new BehaviorSubject<TodoItemNode[]>([]);
   dataChange1 = new BehaviorSubject<TodoItemNode[]>([]);
-
   get data(): TodoItemNode[] { return this.dataChange.value; }
 
   constructor() {
@@ -178,7 +246,16 @@ export class ListingPageComponent implements OnInit {
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
   treeControl: FlatTreeControl<TodoItemFlatNode>;
   treeControl1: FlatTreeControl<TodoItemFlatNode>;
-  
+  user:any;
+  userData: firebase.User;
+  bookMarkobject= new BoomarkObject();
+  minValue: number = 50;
+  maxValue: number = 200;
+  options: Options = {
+    floor: 0,
+    ceil: 200
+  };
+  value=200;
   treeFlattener: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
   treeFlattener1: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
    tagList=['tag1','very  big tag','tag2','tag3','tag5','tag4','tag1','tag2','tag3','tag5','tag4']
@@ -187,18 +264,16 @@ export class ListingPageComponent implements OnInit {
  checklistSelection = new SelectionModel<TodoItemFlatNode>(true /* multiple */);
  isExpandable = (node: TodoItemFlatNode) => node.expandable;
  getChildren = (node: TodoItemNode): TodoItemNode[] => node.children;
-
+ public removable = true;
+ selectable = true;
  dataSource: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
  dataSource1: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
 
   getLevel = (node: TodoItemFlatNode) => node.level;
-  max=100000;
-  min=0;
-  value=0;
-  step=1;
+ 
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
-    private dialog:MatDialog,private afauth:AngularFireAuth) { 
+    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute) { 
     this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message)});
  
@@ -217,53 +292,8 @@ export class ListingPageComponent implements OnInit {
 
     _database.dataChange1.subscribe(data => {
       this.dataSource1.data = data;
-      
-    });
-    this.courseList=[{
-      'course_name':'random course',
-      'course_time':'4h',
-      'course_rating':'2.5',
-      'change':false,
-      'course_university':'oxford',
-      'course_certificate':'Yes',
-      'course_fee':'3266 INR',
-      'course_provider':'coursera',
-      'bookmarked':false
-    },
-  {
-    'course_name':'randomly generated course that can help you identify glex box propertiesijefj jnc jefj f  ejf jerf  fierf jerf jnerf hjer jer jer ne vjher jer her dkfvj v vj vekjv je vjr  ;jgntg jtgirtbgrtngotrng rtgtrigntkonhotyj ihng ;k  hio5g  i hjt iot mtr gjet5 gie5g ty gkt htyngh  ibngrt ng trgn  hgitnhrth tjgn soem thinh very importwnat was about to cmome here buyt ',
-    'course_time':'4h',
-    'course_rating':'4',
-    'change':false,
-    'course_university':'iitg',
-    'course_certificate':'Yes',
-    'course_fee':'FREE',
-    'course_provider':'edx',
-    'bookmarked':false
-  },{
-    'course_name':'course 3',
-    'course_time':'4h',
-    'course_rating':'2.5',
-    'change':false,
-    'course_university':'MIT',
-    'course_certificate':'Yes',
-    'course_fee':'3266 INR',
-    'course_provider':'coursera',
-    'bookmarked':false
-  },{
-    'course_name':'course 4',
-    'course_time':'4h',
-    'course_rating':'2.5',
-    'change':false,
-    'course_university':'oxford',
-    'course_certificate':'Yes',
-    'course_fee':'3266 INR',
-    'course_provider':'coursera',
-    'bookmarked':false
-  }
+      });
 
-]
-     this.totalResults=this.courseList.length;
   }
   transformer = (node: TodoItemNode, level: number) => {
     const existingNode = this.nestedNodeMap.get(node);
@@ -326,9 +356,9 @@ export class ListingPageComponent implements OnInit {
   isRating =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.rating;
   isFee =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.fee;
   isDivider= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.divider;
+  hasPadding=(_: number, _nodeData:TodoItemFlatNode)=>  _nodeData.level ==(1 || 2)? true:false;
 
-
-  
+   
   hasNoContent = (_: number, _nodeData: TodoItemFlatNode) => _nodeData.item === '';
 
   ngOnInit(): void {
@@ -348,19 +378,43 @@ export class ListingPageComponent implements OnInit {
           console.log('user is logged in');
           console.log(res.uid);
           this.isLoggedIn=true;
-        
+         this.userData=res;
+         this.pfs.getProfile(res.uid).subscribe(data=>{
+           this.user=data;
+           this.setBookMark(this.user);
+         })
    } else {
-    this.isLoggedIn=true;
-
-          console.log('user not logged in');
+    this.isLoggedIn=false;
+           console.log('user not logged in');
         }
+      },
+      err=>{
+        this.isLoggedIn=false;
       });
+
+     this.messageService.getUser().subscribe(data=>{
+       if(data){
+       this.user=data;
+       }
+     })
+     var searchParam;
+     this.activateRouter.queryParams.subscribe(params => {
+      searchParam = params['search'];
+      this.searchMethod(searchParam);
+    });
+
+    
+     //this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
   }
+  loading =false;
   searchMethod(parameter):void{
-   
-    this.searchService.getCourseByKeyWord(parameter.text).subscribe((response)=>{
+     this.loading=true;
+    this.searchService.getCourseByKeyWord(parameter).subscribe((response)=>{
       this.courseList=response;
       this.totalResults=this.courseList.length;
+      this.loading=false;
+
+      
    });
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
@@ -370,14 +424,19 @@ export class ListingPageComponent implements OnInit {
     });
     return descAllSelected;
   }
-
+  todoLeafItemSelectionToggle(node: TodoItemFlatNode,event): void {
+    this.checklistSelection.toggle(node);
+    this.checkAllParentsSelection(node);
+    console.log(node,event);
+    this.nodeValueMap.set(node,event.checked);
+  }
   descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
     const descendants = this.treeControl.getDescendants(node);
     const result = descendants.some(child => this.checklistSelection.isSelected(child));
     return result && !this.descendantsAllSelected(node);
   }
   
-  todoItemSelectionToggle(node: TodoItemFlatNode): void {
+  todoItemSelectionToggle(node: TodoItemFlatNode,event): void {
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
     this.checklistSelection.isSelected(node)
@@ -387,6 +446,8 @@ export class ListingPageComponent implements OnInit {
     // Force update for the parent
     descendants.forEach(child => this.checklistSelection.isSelected(child));
     this.checkAllParentsSelection(node);
+    console.log(node,event);
+    this.nodeValueMap.set(node,event.checked);
   }
 
   checkAllParentsSelection(node: TodoItemFlatNode): void {
@@ -404,8 +465,10 @@ export class ListingPageComponent implements OnInit {
     });
     if (nodeSelected && !descAllSelected) {
       this.checklistSelection.deselect(node);
+      console.log('node deselect');
     } else if (!nodeSelected && descAllSelected) {
       this.checklistSelection.select(node);
+      this.nodeValueMap.set(node,false);
     }
   }
      getParentNode(node: TodoItemFlatNode): TodoItemFlatNode | null {
@@ -426,9 +489,11 @@ export class ListingPageComponent implements OnInit {
     }
     return null;
   }
+  
   sortCheck(){
     this.sortChecker= (this.sortChecker== true?false:true);
-  }
+   
+}
   public compareChecker= true;
   compareCheck(){
     this.compareChecker= (this.compareChecker== true?false:true);
@@ -444,18 +509,70 @@ export class ListingPageComponent implements OnInit {
    this.messageService.addToCompare(course);
   }
   bookmarkCourse(course){
-    if(!this.isLoggedIn){
-      course.bookmarked=!course.bookmarked;
+    if(this.isLoggedIn){
+      if(this.userData.emailVerified){
+        this.snackBar.open('Course BookMarked','close',{
+          duration:2000
+        })
+        this.bookMarkobject.courseid= course.id;
+        this.bookMarkobject.userid={"uid":this.userData.uid};
+        this.bookMarkCourseMap.set(course.id,true);
+         this.searchService.bookMarkcourse(this.bookMarkobject).subscribe(data=>{
+          
+         },err=>{
+           if(err='success'){
+            this.snackBar.open('Course BookMarked','close',{
+              duration:2000,
+            })
+           }
+         })
+      }else{
+        const dialogRef1 = this.dialog.open(EmailVerificationComponent,{
+          height:'520px',
+          minWidth:'411px',
+          position:{
+            top: '15vh',
+             },
+             
+        }
+        );
+        this.userData.sendEmailVerification().then(result=>{
+          course.bookmarked=!course.bookmarked;
+          dialogRef1.close();
+        },
+        err=>{
+               console.log('not verified')
+        })
+      }
        }
        else{
         const dialogRef = this.dialog.open(LoginComponent,{
-        
+          height:'520px',
+          minWidth:'411px',
           position:{
-            top:'10%'
-          }
+            top: '15vh',
+             },
+             disableClose: true
         }
         );
        }
   }
+  public bookMarkCourseMap= new Map<string,boolean>();
+  public nodeValueMap = new Map<any,boolean>();
+  public filterList=[];
+  setBookMark(user){
+     for(var index=0;index<user.bookmarks.length;index++){
+      //  this.bookMarkCourseMap[user.bookmarks[index].courseid]=true;
+      this.bookMarkCourseMap.set(user.bookmarks[index].courseid,true);
+     }
+  }
+  isBookMark(course){
+    if(this.bookMarkCourseMap[course.courseid]){
+      return true;}
+     else {
+       return false;
+     }
+     };
+  
 
 }

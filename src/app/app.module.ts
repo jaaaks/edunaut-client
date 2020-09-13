@@ -13,6 +13,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { SeacrhServiceService } from './services/seacrh-service.service';
 import { ProfileService } from './services/profile.service';
 
+
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import {MatSliderModule} from '@angular/material/slider';
 import { StarRatingModule } from 'angular-star-rating';
 
@@ -62,9 +64,12 @@ import { ComicComponent } from './comic/comic.component';
 import { TeamComponent } from './team/team.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
-
+import { Ng5SliderModule } from 'ng5-slider';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import {MatChipsModule} from '@angular/material/chips';
 import {UserServiceService} from './services/user-service.service';
 import {HeroResolver} from './resolvers/apiResolver';
 import { BadgesComponent } from './badges/badges.component'
@@ -95,6 +100,7 @@ import { BadgesComponent } from './badges/badges.component'
     TeamComponent,
     CourseDetailComponent,
     RelevantCoursesComponent,
+    EmailVerificationComponent,
     BadgesComponent
   ],
   imports: [
@@ -125,7 +131,11 @@ AngularFireAuthModule,
  MatFormFieldModule,
  MatExpansionModule,
  StarRatingModule.forRoot(),
- MatDialogModule
+ MatDialogModule,
+ MatSnackBarModule,
+ Ng5SliderModule,
+ MatMenuModule,
+ MatChipsModule
 ],
   providers: [AuthenticationService,SeacrhServiceService, ProfileService,HeroResolver,UserServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },

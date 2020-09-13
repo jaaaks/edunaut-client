@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgwWowService } from 'ngx-wow';
 import { AngularFireAuth } from "@angular/fire/auth";
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import { MessageService } from '../services/message.service';
 import {MatDialog} from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import  { environment} from "../../environments/environment"
 
 import { LoginComponent } from '../login/login.component';
-
-
-@Component({
+import * as firebase from 'firebase/app'
+@Component({ 
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
@@ -22,7 +23,14 @@ export class NavBarComponent implements OnInit {
    public loggedIn=false;
    public searchParameter="";
    public show=true;
+   private user: Observable<firebase.User>;
+  private localUrl= environment.localUrl;
   constructor(private wowService: NgwWowService,private afauth:AngularFireAuth,private router:Router,private messageService:MessageService,public dialog: MatDialog) {
+  
+      }
+   
+
+  ngOnInit(): void {
     this.afauth.authState.subscribe(
       res => {
         if (res && res.uid) {
@@ -34,10 +42,10 @@ export class NavBarComponent implements OnInit {
           console.log('user not logged in');
         }
       });
-      }
-   
-
-  ngOnInit(): void {
+      this.messageService.getUser().subscribe(res=>{
+        
+      });
+    
   } 
   signOut(){
      this.afauth.signOut().then(res=>{
@@ -47,14 +55,10 @@ export class NavBarComponent implements OnInit {
             window.location.reload();
      })
   }
-  goToLogin(){
-  this.router.navigateByUrl("/register");
-  }
+ 
   sendMessage(): void {
-    this.messageService.sendMessage(this.searchParameter);
-    this.router.navigateByUrl("/find");
-
-}
+    window.location.href='find?search='+this.searchParameter;
+ }
 openDialog() {
   const dialogRef = this.dialog.open(LoginComponent,{
     height:'520px',

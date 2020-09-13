@@ -39,10 +39,24 @@
                             
                                 </div>
                             </div>
+                            <div>
+                                <div>
+                                <label class="label">Password</label>
+                                </div>
+                                
+                                <div fxLayout="row" class="input-wrap">
+                                    
+                              <input [type]="hide1 ? 'password': 'text'" class="input-form" placeholder="confirm password" formControlName="signUpFormConfirmPassword">
+                              <button mat-icon-button  class="show-password" (click)="showPass1()" >
+                                <mat-icon class="show-pass-icon">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                              </button>
+                            
+                                </div>
+                            </div>
                                 <div class="tnc">
                                 <mat-checkbox class="example-margin">I agree to the <a href="#"> Terms and Conditions</a></mat-checkbox>
                                 </div>
-                                <button mat-raised-button (click)="signUp()" class="signUp">
+                                <button mat-raised-button [disabled]="signUpForm.invalid" (click)="signUp()" class="signUp">
                                    <span class="create_account"> Create Account</span>
                                 </button>
 
@@ -93,7 +107,8 @@
           </button>
             </div>
         </div>
-        <div  fxLayout="column" fxLayoutGap="20px" class="auth-background">
+        <div class="auth-background" fxLayout="row" fxLayoutAlign="start center">
+        <div  fxLayout="column" fxLayoutGap="20px" >
           
             <div class="form-wrap" fxLayout="column" fxLayoutGap="10px">
   <form class="form-padding" [formGroup]="elegantForm">
@@ -118,7 +133,7 @@
                         </div>
                         </div>
                             <div  fxLayout="row" fxLayoutAlign="space-between center">
-                            <mat-checkbox class="example-margin">Remember me</mat-checkbox>
+                            <mat-checkbox (change)="showOptions($event)" class="example-margin">Remember me</mat-checkbox>
                             <div class="forgot-pass"> 
                                 <a class="link">Forgot Password?</a>
                                 </div>
@@ -127,8 +142,9 @@
                             <button mat-raised-button class="signUp"  (click)="onSubmit()">
                                <span class="create_account" > Sign In</span>
                             </button>
-
+                            <p *ngIf="showErrormessage" style="color:red; max-width:302px ;">{{errorMessage}}</p>
                 </form>
+               
                 </div>
             <div class="form-wrap2" fxLayout="column" fxLayoutGap="20px">
                 <div class="oAuth-login">
@@ -143,10 +159,24 @@
                 </div>
      
 </div>
-<div class="bottom-panel" fxLayout="column" fxLayoutAlign="center center">
-            <mat-divider class="divider-padding">
-                </mat-divider>
-               <p>Not a member yet? <a class="link" (click)="isSignUp=!isSignUp">Sign Up</a></p>
-</div>
+    </div>
+    <div class="icon-area" >
+        <div class="right-sign" fxLayout="column" fxLayoutAlign="space-between center">
+            <div class="why-sign">
+                Why sign up?
+            </div>
+            <div class="para-sign">
+                Bookmark courses, review courses, take part in community discussions, and much more.
+            </div>
+            <div class="whysignin">
+              
+                </div>
+            
+                    <div>  
+                        <mat-divider></mat-divider>
+                    <p>Not a member yet? <a class="link" (click)="isSignUp=!isSignUp">Sign Up</a></p>
+                    </div>
+            </div>
+    </div>
     </div>
 </div>

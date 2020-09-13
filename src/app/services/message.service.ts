@@ -10,6 +10,7 @@ export class MessageService {
   constructor() { }
   private subject = new Subject<any>();
   private compareCourses = new Subject<any>();
+  private sendFromLoginToListing= new Subject<any>();
   private courseDetail = new Subject<any>();
 
     sendMessage(message: string) {
@@ -18,6 +19,12 @@ export class MessageService {
 
     addToCompare(data){
       this.compareCourses.next(data);
+    }
+    loginToListing(data){
+      this.sendFromLoginToListing.next(data);
+    }
+    getUser():Observable<any>{
+      return this.sendFromLoginToListing.asObservable();
     }
     sendCourseDetail(item: String){
       this.courseDetail.next({text: item});

@@ -11,7 +11,8 @@ export const environment = {
     measurementId: "G-WFZ4WNC35E"
   },
   secretCode:"986a08eebe701d11a3e53049aac96bc0",
-  appId:"2713638185580958"
+  appId:"2713638185580958",
   resourceUrl : "https://edunaut-backend-api.herokuapp.com",
-  secretToken:"random"
+  secretToken:"random",
+  localUrl:"www.edunaut.in"
 };

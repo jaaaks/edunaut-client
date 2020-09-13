@@ -26,46 +26,46 @@ constructor(public fb: FormBuilder,public authenticationService: AuthenticationS
     });
    }
     onSubmit() {
-      console.log(this.elegantForm);
-      var email= this.elegantForm.value['elegantFormEmailEx'];
-      var password = this.elegantForm.value['elegantFormPasswordEx'];
-      var display= this.elegantForm.value['elegantFormFirstName'];
-      this.loading= true;
-      console.log("loading")
-      this.authenticationService.SignUp(email, password).then(
-        res=>{
-          console.log("sign up successful",res);
-          this.loading=false;
-          this.authenticationService.updateProfile(display).then( res=>{
-            this.router.navigateByUrl('/');}
-          );
+      // console.log(this.elegantForm);
+      // var email= this.elegantForm.value['elegantFormEmailEx'];
+      // var password = this.elegantForm.value['elegantFormPasswordEx'];
+      // var display= this.elegantForm.value['elegantFormFirstName'];
+      // this.loading= true;
+      // console.log("loading")
+      // this.authenticationService.SignUp(email, password).then(
+      //   res=>{
+      //     console.log("sign up successful",res);
+      //     this.loading=false;
+      //     this.authenticationService.updateProfile(display).then( res=>{
+      //       this.router.navigateByUrl('/');}
+      //     );
           
-        },
-        err=>{
-          console.log("sign up not successful",err);
-          this.showErrormessage=true;
-          this.errorMessage=err.message;
-          this.loading=false;
-        }
-      );
+      //   },
+      //   err=>{
+      //     console.log("sign up not successful",err);
+      //     this.showErrormessage=true;
+      //     this.errorMessage=err.message;
+      //     this.loading=false;
+      //   }
+      
        }
        googleLogin(){
-        this.authenticationService.googleAuthLogin().then(result=>{
-          console.log(result);
-          this.router.navigateByUrl('/');
-        },err=>{
-          console.log(err);
-          this.showErrormessage=true;
-          this.errorMessage=err.message;
-        });
+        // this.authenticationService.googleAuthLogin().then(result=>{
+        //   console.log(result);
+        //   this.router.navigateByUrl('/');
+        // },err=>{
+        //   console.log(err);
+        //   this.showErrormessage=true;
+        //   this.errorMessage=err.message;
+        // });
        }
        facebookLogin(){
-        this.authenticationService.facebookAuthLogin().then(result=>{
-          this.router.navigateByUrl('/');
-         },err=>{
-          this.showErrormessage=true;
-          this.errorMessage=err.message;
-         });
+        // this.authenticationService.facebookAuthLogin().then(result=>{
+        //   this.router.navigateByUrl('/');
+        //  },err=>{
+        //   this.showErrormessage=true;
+        //   this.errorMessage=err.message;
+        //  });
        }
        
   ngOnInit(): void {

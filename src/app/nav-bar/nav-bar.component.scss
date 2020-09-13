@@ -43,9 +43,7 @@ input {
       padding: 4px;
       position: absolute;
       width: 30px;
-      top: -4px !important;
-      right: -4px !important;
-    }
+     }
   }
 
   ::-webkit-input-placeholder {
@@ -66,7 +64,7 @@ input {
     color: #a7a4a4;
     font-size: 0.88em;
     font-family: Montserrat;
-    padding-left: 15px;
+   
   }
   
   @media only screen 
@@ -109,8 +107,6 @@ input {
             background: #ccc;
             border-radius: 50%;
             height: 26px;
-            right: 2px;
-            top: 2px;
             transition: all .3s ease-in-out;
             width: 26px;
           }
@@ -149,11 +145,10 @@ input {
         &.btn-search {
           background: #ccc;
           border-radius: 50%;
-          height: 26px;
-          right: 2px;
-          top: 2px;
+          height: 30px;
           transition: all .3s ease-in-out;
-          width: 26px;
+          width: 30px;
+        right: -4px;
         }
       
       }
@@ -167,3 +162,21 @@ input {
   left: 8vw;
   
 }
+.mat-menu{
+  position: sticky;
+  top:0;
+  z-index: 1000000 !important;
+  
+}
+.btn{
+  margin:0 !important
+}
+.rounded-circle{
+widows: 40px;
+height: 40px;
+}
+
+
+
+
+
