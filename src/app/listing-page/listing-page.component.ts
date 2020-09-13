@@ -28,7 +28,7 @@ export class TodoItemNode {
   item: string;
 }
 export class BoomarkObject{
-  courseid: string;
+  course_id: string;
   status:string;
   percentage:string;
   userid:any;
@@ -514,9 +514,9 @@ export class ListingPageComponent implements OnInit {
         this.snackBar.open('Course BookMarked','close',{
           duration:2000
         })
-        this.bookMarkobject.courseid= course.id;
+        this.bookMarkobject.course_id= course.course_id;
         this.bookMarkobject.userid={"uid":this.userData.uid};
-        this.bookMarkCourseMap.set(course.id,true);
+        this.bookMarkCourseMap.set(course.course_id,true);
          this.searchService.bookMarkcourse(this.bookMarkobject).subscribe(data=>{
           
          },err=>{
@@ -563,11 +563,11 @@ export class ListingPageComponent implements OnInit {
   setBookMark(user){
      for(var index=0;index<user.bookmarks.length;index++){
       //  this.bookMarkCourseMap[user.bookmarks[index].courseid]=true;
-      this.bookMarkCourseMap.set(user.bookmarks[index].courseid,true);
+      this.bookMarkCourseMap.set(user.bookmarks[index].course_id,true);
      }
   }
   isBookMark(course){
-    if(this.bookMarkCourseMap[course.courseid]){
+    if(this.bookMarkCourseMap[course.course_id]){
       return true;}
      else {
        return false;

@@ -29,20 +29,13 @@ export class FooterComponent implements OnInit {
    public courseList=[];
   ngOnInit(): void {
     this.messageService.getCourses().subscribe(data=>{
+      var filteredCourse=this.courseList.filter(course=>{
+        return course.course_id===data.course_id;
+      })
+      if(filteredCourse.length===0){
        this.courseList.push(data);
-       if(this.courseList.length==1){
-         this.elements[0].first = data.course_rating;
-         this.elements[1].first = data.course_university;
-         this.elements[2].first = data.course_fee;
-         this.elements[3].first = data.course_provider;
-       }
-       if(this.courseList.length==2){
-        this.elements[0].second = data.course_rating;
-        this.elements[1].second = data.course_university;
-        this.elements[2].second = data.course_fee;
-        this.elements[3].second = data.course_provider;
+        this.panelOpenState=true;
       }
-      this.panelOpenState=true;
     })
   }
   open(){

@@ -87,13 +87,13 @@
 </mat-expansion-panel-header>
 <mat-divider></mat-divider>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
-  <div  fxFlex="16" fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="space-around center">
+  <div  fxFlex="18" fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="space-around center">
     <button mat-raised-button [disabled]="bookmarkAllowed()" (click)="compare()" class="bookmark">Compare Courses</button>
     <div (click)="clearAll()" class="clear"><a >Clear All</a></div>
 </div>
 
  <ng-container *ngFor="let course of courseList;index as i"> 
-  <mat-card class="example-card" (mouseenter)="changeTextMethod(course)" (mouseleave)="changeTextOutMethod(course)" fxFlex="16" >
+  <mat-card class="example-card" (mouseenter)="changeTextMethod(course)" (mouseleave)="changeTextOutMethod(course)" fxFlex="18" >
 
     <div class="remover circle">
       <button mat-icon-button >
@@ -121,7 +121,7 @@
 </mat-card>
    </ng-container>
    <ng-container *ngFor="let item of [].constructor(4-courseList.length)"> 
-    <mat-card class="example-card" fxFlex="16" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+    <mat-card class="example-card" fxFlex="19" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
       <mat-card-content class="card-content">
         <div class="circle">
           <button mat-icon-button >

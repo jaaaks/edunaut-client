@@ -223,7 +223,8 @@ border-radius: 27px;
     line-height: 20px;
   }
   .star,.bulb{
-    padding-top: 3.5%;
+   
+    padding-bottom: 3.5%;
     font-weight: 600;
     font-size: 0.8em;
     font-style: normal;
@@ -321,4 +322,7 @@ border-radius: 5px;
 
     .example-chip-list {
       width: 100%;
+    }
+    .mat-tree-node{
+      min-height: auto !important;
     }

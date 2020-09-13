@@ -131,15 +131,15 @@
                 </div>
                
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
-                  <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
+                  <div class="bulb" fxFlex="60"><img src="../../assets/profile/bag.png">
                     <span class="icon-body">{{" "}}{{course.course_fee}}</span></div>
-                  <div class="star"><img src="../../assets/profile/clock.png"><span class="icon-body">{{" "}}{{course.course_time}}</span></div>
+                  <div class="star"><img src="../../assets/profile/clock.png"><span class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
                 </div>
                       <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
-                  <div class="bulb"fxFlex="70" ><img src="../../assets/profile/bulb.png"><span
+                  <div class="bulb"fxFlex="60" ><img src="../../assets/profile/bulb.png"><span
                       class="icon-body">{{" "}}Intermediate</span></div>
-                  <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_rating}}/5
-                      (215)</span></div>
+                  <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_review}}/5
+                      ({{course.course_rating}})</span></div>
                 </div>
                 
 
