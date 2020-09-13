@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     errorMessage="";
     isSignUp=false;
     hide = true;
+    hide1=true;
     checked = false;
     userData: firebase.User;
 
@@ -39,7 +40,10 @@ export class LoginComponent implements OnInit {
     this.signUpForm = fb.group({
       signUpFormEmail: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       signUpFormPassword: ['', Validators.required],
-      signUpFormName:  ['', Validators.required]
+      signUpFormName:  ['', Validators.required],
+      signUpFormConfirmPassword:['',Validators.required]
+    },{
+      validator: this.passwordConfirming
     });
     
  
@@ -66,13 +70,12 @@ export class LoginComponent implements OnInit {
         persistance="local";  
     }
     this.authenticationService.googleAuthLogin(persistance).then(res=>{
-      localStorage.setItem('token', res.user.refreshToken);
-      this.loadUser(res.user.id);
+     this.loadUser(res);
       this.dialogRef.close('success');
     },err=>{
       console.log(err);
       this.showErrormessage=true;
-      this.errorMessage=err.message;
+      this.errorMessage=err;
     });
    }
    facebookLogin(){
@@ -83,11 +86,11 @@ export class LoginComponent implements OnInit {
     }
      this.authenticationService.facebookAuthLogin(persistance).then(res=>{
       localStorage.setItem('token', res.user.refreshToken);
-     this.loadUser(res.user.id);
+     this.loadUser(res);
       this.dialogRef.close('success');
      },err=>{
       this.showErrormessage=true;
-      this.errorMessage=err.message;
+      this.errorMessage=err;
      });
    }
    onSubmit() {
@@ -144,6 +147,9 @@ export class LoginComponent implements OnInit {
   showPass(){
   this.hide =!this.hide;
   }
+  showPass1(){
+    this.hide1 =!this.hide1;
+    }
   showOptions(event){
     this.checked=event.checked;
   }
@@ -152,5 +158,10 @@ export class LoginComponent implements OnInit {
                  this.messageService.loginToListing(res);
     })
   }
- 
+  passwordConfirming(c: AbstractControl): { invalid: boolean } {
+    if (c.get('signUpFormPassword').value !== c.get('signUpFormConfirmPassword').value) {
+        return {invalid: true};
+    }
+}
+   
 }

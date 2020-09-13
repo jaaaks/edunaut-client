@@ -10,7 +10,7 @@ import  { environment} from "../../environments/environment"
 
 import { LoginComponent } from '../login/login.component';
 import * as firebase from 'firebase/app'
-@Component({
+@Component({ 
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']

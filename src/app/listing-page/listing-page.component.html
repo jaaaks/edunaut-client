@@ -10,7 +10,7 @@
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
 
           <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
-            (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+            (change)="todoLeafItemSelectionToggle(node,$event)">{{node.item}}</mat-checkbox>
         </mat-tree-node>
 
         <mat-tree-node *matTreeNodeDef="let node; when: isHeader" matTreeNodeToggle matTreeNodePadding
@@ -46,13 +46,7 @@
             <button mat-stroked-button class="rate-button">4+</button>
             <button mat-stroked-button class="rate-button">3.5+</button>
           </div>
-          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="5px">
-            <button mat-stroked-button class="rate-button">3+</button>
-            <button mat-stroked-button class="rate-button">2.5+</button>
-            <button mat-stroked-button class="rate-button">2.5+</button>
-          </div>
-
-        </mat-tree-node>
+</mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isFee" matTreeNodeToggle>
           <div fxLayout="column">
            
@@ -62,12 +56,12 @@
           </div>
         </mat-tree-node>
 
-        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" >
+        <mat-tree-node *matTreeNodeDef="let node; when: hasPadding" matTreeNodeToggle >
 
           <mat-checkbox [checked]="descendantsAllSelected(node)" [indeterminate]="descendantsPartiallySelected(node)"
-            (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+            (change)="todoItemSelectionToggle(node,$event)">{{node.item}}</mat-checkbox>
 
-          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+          <button mat-icon-button *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
             <mat-icon class="mat-icon-rtl-mirror">
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
@@ -81,9 +75,17 @@
     <div fxFlex="77">
       <div class="container">
         <div fxLayout="row wrap" fxLayoutGap="20px" class="tag-button">
- <button mat-stroked-button *ngFor="let tags of tagList" class="tags">{{tags}}</button>
- <button mat-stroked-button *ngFor="let tags of tagList" class="tags">{{tags}}</button>
+          <ng-container *ngFor="let nodeValue of nodeValueMap | keyvalue">
+          <mat-chip-list aria-label="Fish selection">
+           
+ <mat-chip  *ngIf="nodeValue.value"  color="primary" [selectable]="selectable"
+ [removable]="removable" (removed)="todoItemSelectionToggle(nodeValue.key,$event)">
+           {{nodeValue.value}}
+     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+</mat-chip>
 
+</mat-chip-list>
+</ng-container>
           </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="comp">
@@ -91,9 +93,18 @@
           <div class="sortButton">
             <div class="sort">
               Sort
-              <button mat-icon-button aria-label="expand_more" (click)='sortCheck()'>
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="expand_more" (click)='sortCheck()'>
                 <mat-icon>{{sortChecker?'expand_more':'chevron_right'}}</mat-icon>
               </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)='sortCheck()' >
+                  Value 1
+                </button>
+                <button mat-menu-item  (click)='sortCheck()'>
+                  Value 2
+                </button>
+               
+              </mat-menu>
             </div>
 
 
@@ -116,8 +127,7 @@
                   <a> <strong>
                       {{course.course_name}}
                     </strong></a>
-                  <span *ngIf="!changeText">Hide</span>
-                  <span *ngIf="changeText">Show</span>
+                  
                 </div>
                
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>

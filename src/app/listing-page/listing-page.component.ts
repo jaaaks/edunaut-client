@@ -14,10 +14,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialog} from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from '../login/login.component';
+import {MatChipInputEvent} from '@angular/material/chips';
+
+import { EmailVerificationComponent } from '../email-verification/email-verification.component';
 import {ProfileService} from '../services/profile.service'
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Options } from 'ng5-slider';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {MatMenuTrigger} from '@angular/material/menu';
 
 export class TodoItemNode {
   children: TodoItemNode[];
@@ -46,10 +50,67 @@ const personal='Personal Development';
 const TREE_DATA={};
 const ProgramData={
   Domain:{
-  'Personal Development':{
-    'Random Value':null,
-    'Random Value2':null
-  }
+  'Arts and Humanities':{
+    'History':null,
+    'Music and Art':null,
+    'Philosophy':null
+  },
+  Business:{
+    'Business Essentials':null,
+    'Business Strategy':null,
+    'Entrepreneurship':null,
+    'Finance':null,
+    'Leadership and Management':null,
+    'Marketing':null,
+    },
+    'Computer Science':{
+      'Algorithms':null,
+      'Computer Security and Networks':null,
+      'Design and Product':null,
+      'Mobile and Web Development':null,
+      'Software Development':null,
+     },
+     'Data Science':{
+       'Data Analysis':null,
+       'Machine Learning':null,
+       'Probability and Statistics':null
+     },
+     Health:{
+       'Animal Health':null,
+       'Basic Science':null,
+       'Health Informatics':null,
+       'Healthcare Management':null,
+       'Nutrition':null,
+       'Patient Care':null,
+       'Psychology':null,
+       'Research':null
+     },
+     'Information Technology':{
+       'Cloud Computing':null,
+       'Data Management':null,
+       'Security':null,
+       'Support and Operations':null,
+       },
+       'Language Learning':{
+         'Learning English':null,
+         'Other Languages':null
+       },
+  'Physical Science and Engineering':{
+        'Chemistry':null,
+        'Electrical Engineering':null,
+        'Environmental Science and Sustainability':null,
+        'Mechanical Engineering':null,
+        'Physics and Astronomy':null,
+        'Research Methods':null
+      },
+      'Social Sciences':{
+        'Economics':null,
+        'Education':null,
+        'Governance and Society':null,
+        'Law':null
+      },
+      'Math and Logic':null,
+      'Personal Development':null,
 },
 divider:null,
 'Programe Type':{
@@ -203,7 +264,8 @@ export class ListingPageComponent implements OnInit {
  checklistSelection = new SelectionModel<TodoItemFlatNode>(true /* multiple */);
  isExpandable = (node: TodoItemFlatNode) => node.expandable;
  getChildren = (node: TodoItemNode): TodoItemNode[] => node.children;
-
+ public removable = true;
+ selectable = true;
  dataSource: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
  dataSource1: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
 
@@ -293,9 +355,9 @@ export class ListingPageComponent implements OnInit {
   isRating =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.rating;
   isFee =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.fee;
   isDivider= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.divider;
+  hasPadding=(_: number, _nodeData:TodoItemFlatNode)=>  _nodeData.level ==(1 || 2)? true:false;
 
-
-  
+   
   hasNoContent = (_: number, _nodeData: TodoItemFlatNode) => _nodeData.item === '';
 
   ngOnInit(): void {
@@ -360,14 +422,19 @@ export class ListingPageComponent implements OnInit {
     });
     return descAllSelected;
   }
-
+  todoLeafItemSelectionToggle(node: TodoItemFlatNode,event): void {
+    this.checklistSelection.toggle(node);
+    this.checkAllParentsSelection(node);
+    console.log(node,event);
+    this.nodeValueMap.set(node,event.checked);
+  }
   descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
     const descendants = this.treeControl.getDescendants(node);
     const result = descendants.some(child => this.checklistSelection.isSelected(child));
     return result && !this.descendantsAllSelected(node);
   }
   
-  todoItemSelectionToggle(node: TodoItemFlatNode): void {
+  todoItemSelectionToggle(node: TodoItemFlatNode,event): void {
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
     this.checklistSelection.isSelected(node)
@@ -377,6 +444,8 @@ export class ListingPageComponent implements OnInit {
     // Force update for the parent
     descendants.forEach(child => this.checklistSelection.isSelected(child));
     this.checkAllParentsSelection(node);
+    console.log(node,event);
+    this.nodeValueMap.set(node,event.checked);
   }
 
   checkAllParentsSelection(node: TodoItemFlatNode): void {
@@ -394,8 +463,10 @@ export class ListingPageComponent implements OnInit {
     });
     if (nodeSelected && !descAllSelected) {
       this.checklistSelection.deselect(node);
+      console.log('node deselect');
     } else if (!nodeSelected && descAllSelected) {
       this.checklistSelection.select(node);
+      this.nodeValueMap.set(node,false);
     }
   }
      getParentNode(node: TodoItemFlatNode): TodoItemFlatNode | null {
@@ -416,9 +487,11 @@ export class ListingPageComponent implements OnInit {
     }
     return null;
   }
+  
   sortCheck(){
     this.sortChecker= (this.sortChecker== true?false:true);
-  }
+   
+}
   public compareChecker= true;
   compareCheck(){
     this.compareChecker= (this.compareChecker== true?false:true);
@@ -452,9 +525,18 @@ export class ListingPageComponent implements OnInit {
            }
          })
       }else{
-        console.log('please verify your email');
+        const dialogRef1 = this.dialog.open(EmailVerificationComponent,{
+          height:'520px',
+          minWidth:'411px',
+          position:{
+            top: '15vh',
+             },
+             
+        }
+        );
         this.userData.sendEmailVerification().then(result=>{
           course.bookmarked=!course.bookmarked;
+          dialogRef1.close();
         },
         err=>{
                console.log('not verified')
@@ -474,6 +556,8 @@ export class ListingPageComponent implements OnInit {
        }
   }
   public bookMarkCourseMap= new Map<string,boolean>();
+  public nodeValueMap = new Map<any,boolean>();
+  public filterList=[];
   setBookMark(user){
      for(var index=0;index<user.bookmarks.length;index++){
       //  this.bookMarkCourseMap[user.bookmarks[index].courseid]=true;

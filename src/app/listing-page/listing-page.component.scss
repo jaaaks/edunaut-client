@@ -38,7 +38,7 @@ border-radius: 5px;
     height: 44px;
     left: 15px;
     top: 10px;
-    z-index: 5;
+    z-index: 1;
     border-radius: 256px;
   }
   .header{
@@ -55,7 +55,7 @@ border-radius: 5px;
     height: 30px;
     left: 0px;
     top: 0px;
-    
+    z-index: 0;
     background: #1B5D9A;
 }
 .refine{
@@ -317,4 +317,8 @@ border-radius: 5px;
       100% {
     background-position: 200px;
       }
+    }
+
+    .example-chip-list {
+      width: 100%;
     }

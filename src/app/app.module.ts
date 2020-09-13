@@ -67,6 +67,9 @@ import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 import { Ng5SliderModule } from 'ng5-slider';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -93,7 +96,8 @@ import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.co
     ComicComponent,
     TeamComponent,
     CourseDetailComponent,
-    RelevantCoursesComponent
+    RelevantCoursesComponent,
+    EmailVerificationComponent
   ],
   imports: [
     BrowserModule,
@@ -125,7 +129,9 @@ AngularFireAuthModule,
  StarRatingModule.forRoot(),
  MatDialogModule,
  MatSnackBarModule,
- Ng5SliderModule
+ Ng5SliderModule,
+ MatMenuModule,
+ MatChipsModule
 ],
   providers: [AuthenticationService,SeacrhServiceService, ProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
