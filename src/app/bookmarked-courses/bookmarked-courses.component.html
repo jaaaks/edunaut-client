@@ -6,14 +6,14 @@
         <img *ngIf="item.course_provider== 'edX'" class="icon" src="../../assets/profile/edx.png">
       </div>
       <mdb-card-body class="bod">
-        <a (click)="sendCourse()">
+        <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
           <mdb-card-title class="title-card">
             {{item.course_name | slice:0:51}}...
           </mdb-card-title>
         </a>
         
           <mdb-card-text>
-            <a (click)="sendCourse()">
+            <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
             <div class="row fade1">
               <div class="col-6 bag"><img src="../../assets/profile/bag.png">
                 <span class="icon-body">{{" "}}{{item.course_fee}}</span></div>

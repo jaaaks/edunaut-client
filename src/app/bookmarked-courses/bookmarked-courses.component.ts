@@ -60,8 +60,8 @@ export class BookmarkedCoursesComponent {
     );
     }
 
-    sendCourse(){
-      this.messageService.sendCourseDetail("hi");
+    sendCourse(cid){
+      this.router.navigate(['/course-detail'], { queryParams: { courseid: cid } });
     } 
     clearMessage():void{
       this.messageService.clearCourseDetail();

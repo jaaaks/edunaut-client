@@ -2,16 +2,20 @@
     <div class="row">
         <div class="col-lg-2 col-md-3 col-4 profile">
             <p><img src="../../assets/profile/profile.png"></p>
-            <p *ngIf="user">{{user.firstname}}{{" "}}{{user.lastname}}</p>
-            <p *ngIf="user"class="bio text-justify">{{user.bio}}</p>
-            <p class="icons">
-               <a (click) = "basicModal.show()"> <img  src="../../assets/profile/write.png">
-                <img class="attachment" src="../../assets/profile/attachment.png"></a>
-            </p>
+            <p *ngIf="profileData">{{profileData.firstname}}{{" "}}{{profileData.lastname}}</p>
+            <div class="bio1">
+            <p *ngIf="profileData" class="bio text-justify">{{profileData.bio}}</p>
+            </div>
+            <div *ngIf="sameUser" class="col-12">
+                <p class="icons">
+                    <a (click)="basicModal.show()"> <img src="../../assets/profile/write.png"></a>
+                    <img class="attachment" src="../../assets/profile/attachment.png">
+                </p>
+            </div>
             <p class="badges"> <span class="badges-header">Badges</span>
                 <span class="badges-all"><a href="badges">View Details</a></span>
                 <br>
-                <span >
+                <span>
                     <span class="badge1"><img src="../../assets/profile/rec.png"></span>
                     <span class="badge"><img src="../../assets/profile/rec.png"></span>
                     <span class="badge"><img src="../../assets/profile/rec.png"></span>
@@ -19,24 +23,33 @@
             </p>
             <div>
                 <p class="right-header">Find The Right Course!</p>
-                <p class="right-body text-justify">A single online platform to find, compare, track and review the course right for
+                <p class="right-body text-justify">A single online platform to find, compare, track and review the
+                    course right for
                     you, efficiently.</p>
-                    <p class="but1"><button mdbBtn type="button" class="but" color="primary" mdbWavesEffect>Start Now</button></p>
+                <p class="but1"><button mdbBtn type="button" class="but" color="primary" mdbWavesEffect>Start
+                        Now</button></p>
             </div>
         </div>
         <div class="col-lg-10 col-md-9 col-8 ">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 title">
-                        My Courses
+                    <div *ngIf="sameUser; else condition1" class="col-12">
+                        <div class="col-12 title">
+                            My Courses
+                        </div>
+                        <div class="col-12 ongoing">
+                            Bookmarked
+                        </div>
+                        <hr>
+                        <div class="col-12 body">
+                            <app-ongoing-courses></app-ongoing-courses>
+                        </div>
                     </div>
-                    <div class="col-12 ongoing">
-                        Bookmarked
-                    </div>
-                    <hr>
-                    <div class="col-12 body">
-                        <app-ongoing-courses></app-ongoing-courses>
-                    </div>
+                    <ng-template #condition1>
+                        <div class="col-12 title">
+                            {{profileData.firstname}}'s Courses
+                        </div>
+                    </ng-template>
                     <div class="col-12 bookmark">
                         Completed
                     </div>
@@ -44,12 +57,14 @@
                     <div class="col-12 body">
                         <app-bookmarked-courses></app-bookmarked-courses>
                     </div>
-                    <div class="col-12 complete">
-                        Recommended
-                    </div>
-                    <hr>
-                    <div class="col-12 body last">
-                        <app-completed-courses></app-completed-courses>
+                    <div *ngIf="sameUser" class="col-12">
+                        <div class="col-12 complete">
+                            Recommended
+                        </div>
+                        <hr>
+                        <div class="col-12 body last">
+                            <app-completed-courses></app-completed-courses>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,7 +73,7 @@
 </div>
 <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header mod-head">
                 <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
@@ -67,17 +82,26 @@
                 <span class="modal-title w-100" id="myModalLabel">Edit Profile</span>
             </div>
             <div class="modal-body mod-body">
-                <div class="md-form">
-                    <textarea type="text" id="form7" class="md-textarea form-control"
-                        placeholder="Explain this report. Link appropriate resources if necessary." mdbInput></textarea>
-                </div>
-            </div>
-            <div class="modal-footer mod-footer">
-                <button type="button" mdbBtn color="secondary" class="waves-light cancel z-depth-0" aria-label="Close"
-                    (click)="basicModal.hide()" mdbWavesEffect>Cancel</button>
-                <button type="button" mdbBtn (click)="basicModal.hide()" color="primary"
-                    class="relative waves-light submit" mdbWavesEffect>Save</button>
+                <form #updateInfo = "ngForm" (ngSubmit) = "onClickSubmit(updateInfo.value)" >
+                    <label class="test"for="firstname"> First Name</label>
+                    <div>
+                    <input type = "text" name = "firstname" placeholder = "First Name" ngModel>
+                    </div>
+                    <br/>
+                    <label class="test" for="lastname"> Last Name</label>
+                    <div>
+                    <input type = "text" name = "lastname" placeholder = "Last Name" ngModel>
+                    </div>
+                    <br/>
+                    <label class="test" for="bio">Write Your Bio</label>
+                    <div>
+                    <textarea name="bio" placeholder="Bio" ngModel></textarea>
+                    </div>
+                    <button class="cancel" type="button"
+                        aria-label="Close" (click)="basicModal.hide()" >Cancel</button>
+                    <button class="save" type = "submit" value = "submit" (click)="basicModal.hide()">Save</button>
+                    </form>
+                
             </div>
         </div>
     </div>
-</div>

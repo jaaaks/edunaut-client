@@ -19,8 +19,7 @@
     margin-bottom: 1%;
 }
 .bio{
-    text-align: left;
-    padding: 1% 8%;
+    padding: 1%;
     font-weight: normal;
     font-family: muli;
     font-size: 0.88em;
@@ -139,4 +138,115 @@ padding-left: 35%;
 text-align: right;
 
 color: #0376FE;
+}
+.mod-head{
+    border-style: none !important;
+    font-family: Montserrat !important;
+font-style: normal !important;
+font-weight: bold !important;
+font-size: 20px !important;
+line-height: 24px !important;
+display: flex;
+align-items: center;
+letter-spacing: 0.02em;
+
+color: #000000;
+}
+.modal{
+    margin-top: 10%;
+}
+.test{
+    font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+
+color: #494949;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+align-self: flex-start;
+margin: 0px 3px;
+}
+input[type=text]{
+    display: flex;
+flex-direction: column;
+padding: 6px 8px;
+
+position: static;
+height: 32px;
+left: 0px;
+right: 0px;
+top: 23px;
+
+background: #FAFBFC;
+border: 2px solid #E0E2E8;
+box-sizing: border-box;
+border-radius: 5px;
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 1;
+margin: 0px 3px;
+width: 100%;
+}
+.cancel{
+    font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+text-align: center;
+border-style: none;
+background: white;
+color: #0376FE;
+padding-left: 70%;;
+}
+.save{
+    padding-left: 16px;
+    padding-right: 16px;;
+    background: #0376FE;
+border-radius: 5px;
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+margin-left: 4% !important;
+
+
+color: #FFFFFF;
+
+
+/* Inside Auto Layout */
+border-color: #0376Fe;
+flex: none;
+order: 0;
+align-self: center;
+margin: 10px 0px;
+}
+textarea{
+    width: 100%;
+    display: flex;
+flex-direction: column;
+padding: 6px 8px;
+height: 100px !important;
+
+background: #FAFBFC;
+border: 2px solid #E0E2E8;
+box-sizing: border-box;
+border-radius: 5px;
+}
+.bio1{
+    text-align: center;
 }

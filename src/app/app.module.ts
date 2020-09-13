@@ -68,6 +68,7 @@ import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.co
 import {UserServiceService} from './services/user-service.service';
 import {HeroResolver} from './resolvers/apiResolver';
 import { BadgesComponent } from './badges/badges.component'
+
 @NgModule({
   declarations: [
     AppComponent,
