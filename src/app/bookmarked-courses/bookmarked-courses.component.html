@@ -2,28 +2,38 @@
   <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
     <mdb-card class="card ">
       <div class="col-12 title">
-        <img class="icon" src="../../assets//profile/icon.png">
+        <img *ngIf="item.course_provider== 'Coursera'" class="icon" src="../../assets/profile/coursera.png">
+        <img *ngIf="item.course_provider== 'edX'" class="icon" src="../../assets/profile/edx.png">
       </div>
       <mdb-card-body class="bod">
-        <mdb-card-title class="title-card">
-          Strategic Leadership and Management
-        </mdb-card-title>
-        <mdb-card-text>
-          <div class="row fade1">
-            <div class="col-6 bag"><img src="../../assets/profile/bag.png">
-              <span class="icon-body">{{" "}}Free</span></div>
-            <div class="col-6 clock"><img src="../../assets/profile/clock.png"><span class="icon-body">{{" "}}6
-                Hrs</span></div>
-            <div class="col-6 bulb"><img src="../../assets/profile/bulb.png"><span
-                class="icon-body">{{" "}}Intermediate</span></div>
-            <div class="col-6 star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}4.5/5
-                (215)</span></div>
-          </div>
-          <hr class="footer">
-          <div class="row">
-            <div class="university">University of Minnesota</div>
-            <button mdbBtn type="button" class="button1" color="info" outline="true" mdbWavesEffect>Add a Review</button>
-          </div>
+        <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
+          <mdb-card-title class="title-card">
+            {{item.course_name | slice:0:51}}...
+          </mdb-card-title>
+        </a>
+        
+          <mdb-card-text>
+            <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
+            <div class="row fade1">
+              <div class="col-6 bag"><img src="../../assets/profile/bag.png">
+                <span class="icon-body">{{" "}}{{item.course_fee}}</span></div>
+              <div class="col-6 clock"><img src="../../assets/profile/clock.png"><span
+                  class="icon-body">{{" "}}{{item.course_dur}} Hrs
+                </span></div>
+              <div class="col-6 bulb"><img src="../../assets/profile/bulb.png"><span
+                  class="icon-body">{{" "}}{{item.course_diff}}</span></div>
+              <div class="col-6 star"><img src="../../assets/profile/star.png"><span
+                  *ngIf="item.course_review>0; else condition1" class="icon-body">{{" "}}{{item.course_review}}
+                  ({{item.course_rating}})</span>
+                <ng-template class="icon-bo" #condition1><span class="icon-body">{{" "}}No Reviews</span></ng-template>
+              </div>
+            </div>
+          </a>
+        <hr class="footer">
+        <div class="row">
+          <div class="university">{{item.course_col}}</div>
+          <button mdbBtn type="button" class="button1" color="info" outline="true" mdbWavesEffect>Add a Review</button>
+        </div>
         </mdb-card-text>
       </mdb-card-body>
     </mdb-card>

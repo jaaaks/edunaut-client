@@ -12,12 +12,14 @@ import {ComingSoonComponent} from './coming-soon/coming-soon.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RightCourseComponent} from './right-course/right-course.component';
 import {CourseDetailComponent} from './course-detail/course-detail.component';
-  
+import {HeroResolver} from './resolvers/apiResolver';
+import {BadgesComponent} from './badges/badges.component';
 
 const routes: Routes = [
+  {path: 'badges', component: BadgesComponent},
   {path:'course-detail', component:CourseDetailComponent},
   {path:'right-course', component:RightCourseComponent},
-  {path:'profile', component:ProfileComponent},
+  {path:'profile', component:ProfileComponent, resolve: {heroResolver: HeroResolver }},
   {path:'coming-soon', component:ComingSoonComponent },
   {path:'faq', component:FAQComponent},
   {path: 'policy', component: PolicyComponent},

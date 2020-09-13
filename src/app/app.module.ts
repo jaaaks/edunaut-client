@@ -70,6 +70,9 @@ import { RelevantCoursesComponent } from './relevant-courses/relevant-courses.co
 import {MatMenuModule} from '@angular/material/menu';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {MatChipsModule} from '@angular/material/chips';
+import {UserServiceService} from './services/user-service.service';
+import {HeroResolver} from './resolvers/apiResolver';
+import { BadgesComponent } from './badges/badges.component'
 
 @NgModule({
   declarations: [
@@ -97,7 +100,8 @@ import {MatChipsModule} from '@angular/material/chips';
     TeamComponent,
     CourseDetailComponent,
     RelevantCoursesComponent,
-    EmailVerificationComponent
+    EmailVerificationComponent,
+    BadgesComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +137,7 @@ AngularFireAuthModule,
  MatMenuModule,
  MatChipsModule
 ],
-  providers: [AuthenticationService,SeacrhServiceService, ProfileService,
+  providers: [AuthenticationService,SeacrhServiceService, ProfileService,HeroResolver,UserServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

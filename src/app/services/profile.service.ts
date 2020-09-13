@@ -3,7 +3,6 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import  { environment} from "../../environments/environment"
 import { HttpClient } from '@angular/common/http';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,5 +22,8 @@ export class ProfileService {
   }
   getProfile(id){
     return this.http.get(this.url+'/user/'+id);
+  }
+  sampleCourse(){
+    return this.http.get(this.url+'/edunaut/getbykeyword/web')
   }
 }

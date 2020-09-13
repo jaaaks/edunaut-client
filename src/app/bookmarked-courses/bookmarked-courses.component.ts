@@ -1,23 +1,25 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit
+  OnInit,
 } from '@angular/core';
+import { MessageService } from '../services/message.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { interval, Observable } from 'rxjs';
 import { map, startWith, take } from 'rxjs/operators';
 import { slider } from '../tile/slide-animation';
-
+import {ProfileService} from '../services/profile.service';
 @Component({
   selector: 'app-bookmarked-courses',
   templateUrl: './bookmarked-courses.component.html',
   styleUrls: ['./bookmarked-courses.component.scss'],
   animations: [slider],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookmarkedCoursesComponent implements OnInit {
-  images = ['assets/homepage/udemy.png', 'assets/homepage/coursera.png', 'assets/homepage/pluralsight.png','assets/homepage/the-great-courses.png','assets/homepage/edx.png', 'assets/homepage/future-learn.png', 'assets/homepage/open-learning1.png', 'assets/homepage/skillshare4.png', 'assets/homepage/udacity1.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png', 'assets/udemy.png'];
-
+export class BookmarkedCoursesComponent {
+  Coursera = 'assets/profile/coursera.png';
+  edX = 'assets/profile/edx.png'
+  public  coursedata ;
   public carouselTileItems$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {
     grid: { xs: 1, sm: 2, md: 3, lg: 4, all: 0 },
@@ -32,21 +34,36 @@ export class BookmarkedCoursesComponent implements OnInit {
   };
   tempData: any[];
 
-  constructor() { }
+  constructor(private profileService: ProfileService, private actRoute: ActivatedRoute, private messageService:MessageService, private router: Router ) {
+    
+   } 
+  ngOnInit() : void{
+    this.actRoute.data.subscribe(data => {
+     this.coursedata = data.heroResolver;
+     console.log(this.coursedata)
+    });
+ 
 
-  ngOnInit() {
     this.tempData = [];
 
     this.carouselTileItems$ = interval(20).pipe(
       startWith(-1),
-      take(15),
+      take(this.coursedata.length),
       map(val => {
         const data = (this.tempData = [
           ...this.tempData,
-          this.images[val + 1]
+          this.coursedata[val + 1]
         ]);
         return data;
+
       })
     );
-  }
+    }
+
+    sendCourse(cid){
+      this.router.navigate(['/course-detail'], { queryParams: { courseid: cid } });
+    } 
+    clearMessage():void{
+      this.messageService.clearCourseDetail();
+    }
 }

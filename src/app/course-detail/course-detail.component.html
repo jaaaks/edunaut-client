@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-12 title">
-            Aroma Therapy: Introduction To Essential Oils For Holistic Healthcare
+            {{course}}
         </div>
     </div>
     <div class="row">
@@ -266,8 +266,20 @@
                             <ngb-rating class="rate1" [max]="5" [(rate)]="i.rating" [readonly]="true"></ngb-rating>
                         </div>
                         <div class="review-desc">{{i.desc}}</div>
-                        <div class="review-upvotes"><span><img
+                       <div class="row">
+                        <div class="col-8 review-upvotes"><span><img
                                     src="../../assets/course-detail/upvote.png">{{" "}}</span><span class="upvote-number">{{i.upvotes}}</span>
+                        </div>
+                        <div class="col-4 report-review">
+                            <div class="" mdbDropdown>
+                            <img mdbDropdownToggle src="../../assets/course-detail/report-review.png">
+                            <div class="dropdown-menu rep-drop dropdown-primary">
+                                <a class="dropdown-item">Bookmark</a>
+                                <a class="dropdown-item">Share</a>
+                                <a class="dropdown-item">Report</a>
+                            </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -283,11 +295,11 @@
                 <div class="rate-text"><span *ngIf="!current">
                         <span *ngIf="currentRate==5">Excellent</span>
                         <span *ngIf="currentRate>2 && currentRate<5">Fair</span>
-                        <span *ngIf="currentRate<3">Bad</span></span>
+                        <span *ngIf="currentRate<3 && currentRate>0">Bad</span></span>
                     <span *ngIf="current">
                         <span *ngIf="hovered==5">Excellent</span>
                         <span *ngIf="hovered>2 && hovered<5">Fair</span>
-                        <span *ngIf="hovered<3">Bad</span></span>
+                        <span *ngIf="hovered<3 && hovered>0">Bad</span></span>
                 </div>
             </div>
             <div class="col-12 review-write">
