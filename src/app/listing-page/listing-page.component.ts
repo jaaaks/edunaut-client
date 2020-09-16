@@ -4,7 +4,7 @@ import {NestedTreeControl , FlatTreeControl} from '@angular/cdk/tree';
 import { SeacrhServiceService } from '../services/seacrh-service.service';
 import { faDollarSign, faClock, faHeart, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from '../services/message.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {SelectionModel} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
@@ -314,7 +314,7 @@ public courseSubFieldParam=[];
 private difficultyLevel=['Beginner','Intermediate','Expert','Mixed'];
 private courseprovider=['Coursera','udemy','edx'];
 private contentType=['Audio','Video','Text Material'];
-
+public loadingFirst=false;
 
 
   transformer = (node: TodoItemNode, level: number) => {
@@ -422,15 +422,10 @@ private contentType=['Audio','Video','Text Material'];
       err=>{
         this.isLoggedIn=false;
       });
-
-     this.messageService.getUser().subscribe(data=>{
-       if(data){
-       this.user=data;
-       }
-     })
-     var searchParam;
+    var searchParam;
      this.activateRouter.queryParams.subscribe(params => {
       searchParam = params['search'];
+      this.searchKey=searchParam;
       this.searchMethod(searchParam);
     });
 
@@ -438,13 +433,28 @@ private contentType=['Audio','Video','Text Material'];
      //this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
   }
   loading =false;
+  pageSize="30";
+  pageNo:number=1;
+  searchKey:string;
   searchMethod(parameter):void{
+    if(this.pageNo===1){
+     this.loadingFirst=true;
+     }
      this.loading=true;
-      this.searchService.getCourseByKeyWord(parameter).subscribe((response:any[])=>{
-      this.courseList=response
-      this.courseListCopy = response;
+      this.searchService.getCourseByKeyWord(parameter,this.pageNo,this.pageSize).subscribe((response:any)=>{
+       if(this.pageNo===1){
+        this.courseList=response.content;
+      this.courseListCopy= response.content;
+      this.loadingFirst= false;
+       }
+       else{
+         this.courseList= this.courseList.concat(response.content);
+         this.courseListCopy= this.courseListCopy.concat(response.content);
+         this.loadingFirst= false;
+       }
       this.totalResults=this.courseList.length;
       this.loading=false;
+      this.pageNo= this.pageNo+1;
   });
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
@@ -651,7 +661,14 @@ private contentType=['Audio','Video','Text Material'];
   } 
   onScroll(){
     this.spinner.show();
-    console.log('scrolled');
+    if(this.loading===true){
+      return;
+    }
+    else{
+      this.searchMethod(this.searchKey);
+      console.log('start searching');
+     
+    }
   }
   clicked45(){
      this.middleFlag=!this.middleFlag;

@@ -27,7 +27,7 @@
           <div fxLayout="column">
             <ng5-slider [(value)]="minDuration" [(highValue)]="maxDuration" [options]="options1"></ng5-slider>
            <div flexLayout="row" fxLayoutGap="20px" class="duration-input" fxLayoutAlign="space-around center">
-            <input fxFlex="40" class="example-margin" matInput [(ngModel)]="minDuration">
+            <input fxFlex="40" class="example-margin"  matInput [(ngModel)]="minDuration">
           <input  fxFlex="40" class="example-margin" matInput [(ngModel)]="maxDuration">
             </div>
           </div>
@@ -84,7 +84,7 @@
           </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="comp">
-          <div>{{totalResults}} Results</div>
+          <div> Results</div>
           <div class="sortButton">
             <div class="sort">
               Sort
@@ -122,7 +122,7 @@
 
               </mat-card-header>
 
-              <mat-card-content fxLayout="column" fxLayoutAlign="end" [ngStyle]="{'height':course.change ? '179px' : '179px','font-size':course.change ?'12px':'12px' }">
+              <mat-card-content fxLayout="column" fxLayoutAlign="space-between" [ngStyle]="{'height':course.change ? '179px' : '179px','font-size':course.change ?'12px':'12px' }">
                 <div class="content"
                   >
                   <a> <strong>
@@ -130,7 +130,7 @@
                     </strong></a>
                   
                 </div>
-               
+               <div>
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
                     <span class="icon-body">{{" "}}{{course.course_fee}}</span></div>
@@ -142,7 +142,7 @@
                   <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_review}}/5
                       ({{course.course_rating}})</span></div>
                 </div>
-                
+                </div>
 
               </mat-card-content>
               <mat-divider></mat-divider>
@@ -173,7 +173,7 @@
             </mat-card>
 
           </ng-container>
-          <ng-container *ngIf="loading"> 
+          <ng-container *ngIf="loadingFirst"> 
             <mat-card class="example-card" >
            </mat-card>
            <mat-card class="example-card" >

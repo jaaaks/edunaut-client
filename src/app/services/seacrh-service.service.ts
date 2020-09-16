@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import  { environment} from "../../environments/environment"
+import { Observable } from 'rxjs';
 
 
 
@@ -14,15 +15,16 @@ export class SeacrhServiceService {
   public getAllCourses(){
     return this.httpClient.get(`http://server-env.eba-zdwqv4a8.ap-south-1.elasticbeanstalk.com/edunaut/getallcourses`);
   }
-  public getCourseByKeyWord(tag){
+  public getCourseByKeyWord(tag:string,pageNo:any,pageSize:any):Observable<any>{
    
       var splitted = tag.split(" ");
-      var searchKeyWords=splitted[0];
+      var searchKeyWords="";
      
-      for(var index=1;index<splitted.length;index++){
-        searchKeyWords= searchKeyWords + " *"+tag[index]+"*";
+      for(var index=0;index<splitted.length;index++){
+        searchKeyWords= searchKeyWords + "*"+splitted[index]+"*; ";
       }
-    return this.httpClient.get(this.resourceUrl+"/edunaut/getbykeyword/"+searchKeyWords);
+   tag= tag.toLowerCase();
+    return this.httpClient.get(this.resourceUrl+"/edunaut/getbykeyword/"+searchKeyWords+"/"+pageNo+"/"+pageSize);
     }
 
     public bookMarkcourse(bookMarkObject){
