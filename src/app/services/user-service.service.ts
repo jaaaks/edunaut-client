@@ -23,6 +23,6 @@ export class UserServiceService {
   }
  
   public  sampleCourse(){
-    return this.http.get(this.url+'/edunaut/getbykeyword/web');
+    return this.http.get(this.url+'/edunaut/getbykeyword/web/1/10');
   }
 }

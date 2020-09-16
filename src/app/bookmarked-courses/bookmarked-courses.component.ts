@@ -39,7 +39,7 @@ export class BookmarkedCoursesComponent {
    } 
   ngOnInit() : void{
     this.actRoute.data.subscribe(data => {
-     this.coursedata = data.heroResolver;
+     this.coursedata = data.heroResolver.content;
      console.log(this.coursedata)
     });
  

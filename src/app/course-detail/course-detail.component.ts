@@ -67,7 +67,7 @@ export class CourseDetailComponent implements OnInit {
     });
   }
   ngDoCheck(): void{
-    if(this.count ==0){if(this.userId && this.reviews){
+    if(this.count ==0){if(this.userId && this.reviews.length){
     this.isReview = this.reviews.find(({id}) => id === this.userId);
     this.userReview = this.isReview.review;
     this.currentRate = this.isReview.rating;
@@ -101,13 +101,21 @@ export class CourseDetailComponent implements OnInit {
 
     var days = (millisec / (1000 * 60 * 60 * 24));
     if (seconds < 60) {
+      if(seconds<2)
+        return   Math.trunc(seconds) + " second";
         return Math.trunc(seconds) + " seconds";
     } else if (minutes < 60) {
+      if(minutes<2)
+        return   Math.trunc(minutes) + " min";
         return  Math.trunc(minutes) + " mins";
     } else if (hours < 24) {
+      if(hours<2)
+        return   Math.trunc(hours) + " hour";
         return Math.trunc(hours) + " hours";
     } else {
-        return Math.trunc(days) + " days";
+      if(days<2)
+        return   Math.trunc(days) + " day";
+      return Math.trunc(days) + " days";
     }
 }
 
@@ -130,6 +138,18 @@ export class CourseDetailComponent implements OnInit {
     else{
       alert("Please log in to give your review");
     }
+  }
+
+  onEdit(data){
+    this.courseService.updateReview(
+      {
+        rid: this.isReview.rid,
+        review: this.userReview,
+        rating: this.currentRate
+      }
+    ).subscribe((res)=>{
+      location.reload();
+    });
   }
  
 }

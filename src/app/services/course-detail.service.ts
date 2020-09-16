@@ -20,4 +20,8 @@ export class CourseDetailService {
   public getReviewById(courseId){
     return this.http.get(this.url+"/review/getreview/"+courseId);
   }
+  public updateReview(review){
+    return this.http.put(this.url+"/review/update",review);
+  }
 }
+

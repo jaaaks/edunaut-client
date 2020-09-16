@@ -263,7 +263,7 @@
                         <hr class="review-line">
                         <div class="container-fluid">
                             <div class="row">
-                        <div class="col-8 name">{{i.name}}</div>
+                        <div class="col-8 name"><span>{{i.name}}</span><span class="edited" *ngIf="i.edited">{{" "}}[edited]</span></div>
                         <div class="col-4 review-date">{{i.rdate}}{{" "}} ago</div></div></div>
                        <!-- <div class="designation">{{i.designation}}</div>-->
                         <div class="star-review">
@@ -319,7 +319,7 @@
                         <button class="tips z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Tips</button>
                         <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Post</button>
                 </form>
-                <form *ngIf="isReview" #writeReview1 = "ngForm" (ngSubmit) = "onPost(writeReview1.value)" >
+                <form *ngIf="isReview" #writeReview1 = "ngForm" (ngSubmit) = "onEdit(writeReview1.value)" >
                     <textarea type="text" name="review" class="md-textarea form-control rev"
                         placeholder="Write Your Review" [(ngModel)]="userReview"></textarea>
                         <button class="tips1 z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Delete</button>
