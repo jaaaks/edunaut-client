@@ -16,6 +16,11 @@ export class UserServiceService {
     return this.http.get('https://edunaut-backend-api.herokuapp.com/user/'+tog);
   }  
 
+  public updateProfile(update){
+    console.log(update);
+    return this.http.put('https://edunaut-backend-api.herokuapp.com/user/update',update)
+    
+  }
  
   public  sampleCourse(){
     return this.http.get(this.url+'/edunaut/getbykeyword/web');

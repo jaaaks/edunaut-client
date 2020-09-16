@@ -228,13 +228,13 @@
 <!-- End of Modal-->
 <div class="container-fluid review-section">
     <div class="row">
-        <div class="col-8">
+        <div  class="col-8">
             <div class="row right-review">
                 <div class="col-12 review-title">
-                    Reviews
+                   <span *ngIf="reviewNo"> Reviews</span><span *ngIf="!reviewNo">No Reviews</span>
                 </div>
                 <div class="col-12 review-body">
-                    <span class="rating">4.4</span>{{" "}}<span class="reviews-number">(1079)</span>
+                    <span *ngIf="reviewNo" class="rating">{{averageReview}}</span><span class="rating" *ngIf="!reviewNo"> 0</span>{{" "}}<span class="reviews-number">({{reviewNo}})</span>
                 </div>
                 <div class="col-8 course-rating">
                     <ng-template #t let-fill="fill">
@@ -242,50 +242,56 @@
                             <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
                         </span>
                     </ng-template>
-                    <ngb-rating [max]="5" [(rate)]="currentRate1" [starTemplate]="t" [readonly]="true"></ngb-rating>
+                    <ngb-rating [max]="5" [(rate)]="averageReview" [starTemplate]="t" [readonly]="true"></ngb-rating>
                 </div>
-                <div class="col-4">
+                <div *ngIf="reviewNo" class="col-4">
                     <div class="sort-drop">
                     <div class="btn-group " mdbDropdown>
                         <button mdbDropdownToggle  type="button" class="dropdown-toggle sort z-depth-0" mdbBtn
                             color="primary" mdbWavesEffect>Sort By</button>
                         <div class="dropdown-menu dropdown-primary">
-                            <a class="dropdown-item">Most Popular</a>
-                            <a class="dropdown-item">Recent</a>
-                            <a class="dropdown-item">Option</a>
+                            <a (click)="latestDate()" class="dropdown-item">Latest</a>
+                            <a (click)="highestRating()" class="dropdown-item">Highest Rating</a>
+                            <a (click)="lowestRating()" class="dropdown-item">Lowest Rating</a>
                         </div>
                     </div>
                     </div>
                 </div>
                 <div class="review col-12">
+                    <div class="no-reviews" *ngIf="!reviewNo"> This course has no reviews yet. Be the first to review.</div>
                     <div *ngFor="let i of reviews">
                         <hr class="review-line">
-                        <div class="name">{{i.name}}</div>
-                        <div class="designation">{{i.designation}}</div>
+                        <div class="container-fluid">
+                            <div class="row">
+                        <div class="col-8 name">{{i.name}}</div>
+                        <div class="col-4 review-date">{{i.rdate}}{{" "}} ago</div></div></div>
+                       <!-- <div class="designation">{{i.designation}}</div>-->
                         <div class="star-review">
                             <ngb-rating class="rate1" [max]="5" [(rate)]="i.rating" [readonly]="true"></ngb-rating>
                         </div>
-                        <div class="review-desc">{{i.desc}}</div>
+                        <div class="review-desc">{{i.review}}</div>
                        <div class="row">
-                        <div class="col-8 review-upvotes"><span><img
+                       <!-- <div class="col-8 review-upvotes"><span><img
                                     src="../../assets/course-detail/upvote.png">{{" "}}</span><span class="upvote-number">{{i.upvotes}}</span>
-                        </div>
-                        <div class="col-4 report-review">
+                        </div>-->
+                        <div  class="col-8"></div><!--
+                        <div *ngIf="i.id == userId" class="col-4 report-review">
                             <div class="" mdbDropdown>
                             <img mdbDropdownToggle src="../../assets/course-detail/report-review.png">
                             <div class="dropdown-menu rep-drop dropdown-primary">
-                                <a class="dropdown-item">Bookmark</a>
                                 <a class="dropdown-item">Share</a>
-                                <a class="dropdown-item">Report</a>
+                                <a class="dropdown-item">Edit</a>
+                                <a class="dropdown-item">Delete</a>
                             </div>
                             </div>
                         </div>
+                    -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-4 review-post">
+        <div  class="col-4 review-post">
             <div class="col-12 tap">
                 Tap To Rate
             </div>
@@ -303,16 +309,22 @@
                 </div>
             </div>
             <div class="col-12 review-write">
-                Write A Review
+               <span *ngIf="!isReview"> Write A Review</span><span *ngIf="isReview">Edit Your Review</span>
             </div>
             <hr class="review-footer">
-            <div class="col-12">
-                <div class="md-form">
-                    <textarea type="text" id="form7" class="md-textarea form-control rev"
-                        placeholder="Write Your Review" mdbInput></textarea>
+            <div  class="col-12">
+                <form *ngIf="!isReview" #writeReview = "ngForm" (ngSubmit) = "onPost(writeReview.value)" >
+                    <textarea type="text" name="review" class="md-textarea form-control rev"
+                        placeholder="Write Your Review" ngModel></textarea>
                         <button class="tips z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Tips</button>
-                        <button class="post z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Post</button>
-                </div>
+                        <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Post</button>
+                </form>
+                <form *ngIf="isReview" #writeReview1 = "ngForm" (ngSubmit) = "onPost(writeReview1.value)" >
+                    <textarea type="text" name="review" class="md-textarea form-control rev"
+                        placeholder="Write Your Review" [(ngModel)]="userReview"></textarea>
+                        <button class="tips1 z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Delete</button>
+                        <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Edit</button>
+                </form>
             </div>
         </div>
     </div>
