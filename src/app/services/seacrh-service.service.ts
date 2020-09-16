@@ -28,4 +28,7 @@ export class SeacrhServiceService {
     public bookMarkcourse(bookMarkObject){
       return this.httpClient.put(this.resourceUrl+"/bookmark/add",bookMarkObject);
     }
+    public getBookmarkedCourses(courselist){
+      return this.httpClient.get(this.resourceUrl+"/edunaut/course",{observe:courselist});
+    }
 }
