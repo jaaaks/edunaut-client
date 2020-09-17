@@ -21,6 +21,7 @@ export class NavBarComponent implements OnInit {
    public isMenuCollapsed = true;
    public displayName="";
    public loggedIn=false;
+   uid = "";
    public searchParameter="";
    public show=true;
    public userId:string;
@@ -40,6 +41,7 @@ export class NavBarComponent implements OnInit {
           this.displayName=res.displayName;
           this.loggedIn=true;
           this.userId=res.uid;
+          this.uid=res.uid;
         } else {
           console.log('user not logged in');
         }
