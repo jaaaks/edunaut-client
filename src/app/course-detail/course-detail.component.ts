@@ -25,6 +25,7 @@ export class CourseDetailComponent implements OnInit {
   show = false;
   courseId;
   course;
+  isCourse;
   userId = "";
   reviews ;
   reviewNo;
@@ -44,6 +45,12 @@ export class CourseDetailComponent implements OnInit {
       this.courseId={...params};
       this.courseId = this.courseId.params.cid;
     })
+    this.courseService.getCourseById([this.courseId]).subscribe((data)=>{
+      
+      this.course = data[0];
+      this.isCourse = this.course.course_id;
+      console.log(data);
+      })
     this.courseService.getReviewById(this.courseId).subscribe((data)=>{
       console.log(data);
       this.reviews = data;
@@ -58,13 +65,8 @@ export class CourseDetailComponent implements OnInit {
     this.averageReview = total/this.reviewNo; 
     this.reviewTime();
     })
-    // this.courseService.getCourseById([this.courseId]).subscribe((data)=>{
-    //  
-    //  console.log(data);
-    //})
-    $(".tog").click(function(){
-      $(".tog").hide();
-    });
+    
+    
   }
   ngDoCheck(): void{
     if(this.count ==0){if(this.userId && this.reviews.length){

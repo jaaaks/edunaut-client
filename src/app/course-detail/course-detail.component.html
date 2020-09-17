@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="isCourse" class="container-fluid">
     <div class="row">
         <div class="col-6">
             <img src="../../assets/course-detail/udemy.png" class="img-fluid provider">
@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-12 title">
-            {{course}}
+            {{course.course_name}}
         </div>
     </div>
     <div class="row">
@@ -32,65 +32,14 @@
     </div>
     <div class="row">
         <div class="col-8">
-            <div class="col-12"><button type="button" class="go" mdbBtn color="info" mdbWavesEffect>Go To
-                    Course</button></div>
+            <div class="col-12"><a [href]="course.course_link" target="_blank"><button type="button" class="go" mdbBtn
+                        color="info" mdbWavesEffect>Go To
+                        Course</button></a></div>
             <div class="col-12 about">About The Course</div>
             <div class="col-12 course-description">
                 <p class="text-justify bod">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and
-                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap
-                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                    the
-                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing
-                    software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                    Why do we use it?
-                    It is a long established fact that a reader will be distracted by the readable content of a page
-                    when
-                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution
-                    of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                    {{course.course_desc}}
                 </p>
-                <a class="tog" (click)="test.toggle()">
-                    Read More
-                </a>
-
-                <div class="tog1" mdbCollapse #test="bs-collapse">
-                    <p class="text-justify bod">Many
-                        desktop publishing packages and web page editors now use Lorem Ipsum as their default model
-                        text, and a
-                        search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions
-                        have
-                        evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the
-                        like).
-
-                        Where does it come from?
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                        classical
-                        Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
-                        professor at
-                        Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
-                        from a
-                        Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered
-                        the
-                        undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum
-                        et
-                        Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on
-                        the
-                        theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem
-                        ipsum dolor
-                        sit amet..", comes from a line in section 1.10.32.
-
-                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
-                        in their
-                        exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-                    </p>
-                </div>
             </div>
             <div class="col-12 about-instructor">
                 About The Instructor
@@ -126,17 +75,34 @@
                 <div class="details">
                     <div>
                         <span class="time"><img src="../../assets/course-detail/clock.png"></span><span
-                            class="time-detail">31 Hrs</span>
+                            class="time-detail">{{course.course_dur}} Hrs</span>
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span
-                            class="time-detail">3.4/5</span>
+                        <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span *ngIf="course.course_review == '-'"
+                            class="time-detail">No Reviews on {{course.course_provider}}</span>
+                            <span *ngIf="course.course_review != '-'"
+                            class="time-detail">{{course.review}} on {{course.course_provider}}</span>
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/price.png"></span><span
-                            class="time-detail">Free</span>
+                        <span class="time"><img src="../../assets/course-detail/price.png"></span><span *ngIf="course.course_fee == '-'"
+                            class="time-detail">Free</span><span *ngIf="course.course_fee != '-'">{{course.course_fee}}</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/university.png"></span><span
+                            class="time-detail">{{course.course_col}} </span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/certificate.png"></span><span
+                            class="time-detail">Certification{{" "}}{{course.course_certi}} </span>
+                    </div>
+                    <hr>
+                    <div>
+                        <span class="time"><img src="../../assets/course-detail/audit.png"></span><span
+                            class="time-detail">You can edit this course </span>
                     </div>
                     <hr>
                     <div>
@@ -166,17 +132,17 @@
                     <hr>
                     <div>
                         <span class="time"><img src="../../assets/course-detail/bulb.png"></span><span
-                            class="time-detail">Intermediate</span>
+                            class="time-detail">{{course.course_diff}}</span>
                     </div>
                     <hr>
                     <div>
                         <span class="time"><img src="../../assets/course-detail/language.png"></span><span
-                            class="time-detail">English</span>
+                            class="time-detail">{{course.course_lang}}</span>
                     </div>
                     <hr>
                     <div class="bottom">
                         <span class="time"><img src="../../assets/course-detail/transcript.png"></span><span
-                            class="time-detail">English, French Tamil Transcripts</span>
+                            class="time-detail">{{course.course_trnsc}} Transcripts</span>
                     </div>
                 </div>
             </div>
@@ -228,13 +194,14 @@
 <!-- End of Modal-->
 <div class="container-fluid review-section">
     <div class="row">
-        <div  class="col-8">
+        <div class="col-8">
             <div class="row right-review">
                 <div class="col-12 review-title">
-                   <span *ngIf="reviewNo"> Reviews</span><span *ngIf="!reviewNo">No Reviews</span>
+                    <span *ngIf="reviewNo"> Reviews</span><span *ngIf="!reviewNo">No Reviews</span>
                 </div>
                 <div class="col-12 review-body">
-                    <span *ngIf="reviewNo" class="rating">{{averageReview}}</span><span class="rating" *ngIf="!reviewNo"> 0</span>{{" "}}<span class="reviews-number">({{reviewNo}})</span>
+                    <span *ngIf="reviewNo" class="rating">{{averageReview}}</span><span class="rating"
+                        *ngIf="!reviewNo"> 0</span>{{" "}}<span class="reviews-number">({{reviewNo}})</span>
                 </div>
                 <div class="col-8 course-rating">
                     <ng-template #t let-fill="fill">
@@ -246,35 +213,40 @@
                 </div>
                 <div *ngIf="reviewNo" class="col-4">
                     <div class="sort-drop">
-                    <div class="btn-group " mdbDropdown>
-                        <button mdbDropdownToggle  type="button" class="dropdown-toggle sort z-depth-0" mdbBtn
-                            color="primary" mdbWavesEffect>Sort By</button>
-                        <div class="dropdown-menu dropdown-primary">
-                            <a (click)="latestDate()" class="dropdown-item">Latest</a>
-                            <a (click)="highestRating()" class="dropdown-item">Highest Rating</a>
-                            <a (click)="lowestRating()" class="dropdown-item">Lowest Rating</a>
+                        <div class="btn-group " mdbDropdown>
+                            <button mdbDropdownToggle type="button" class="dropdown-toggle sort z-depth-0" mdbBtn
+                                color="primary" mdbWavesEffect>Sort By</button>
+                            <div class="dropdown-menu dropdown-primary">
+                                <a (click)="latestDate()" class="dropdown-item">Latest</a>
+                                <a (click)="highestRating()" class="dropdown-item">Highest Rating</a>
+                                <a (click)="lowestRating()" class="dropdown-item">Lowest Rating</a>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div class="review col-12">
-                    <div class="no-reviews" *ngIf="!reviewNo"> This course has no reviews yet. Be the first to review.</div>
+                    <div class="no-reviews" *ngIf="!reviewNo"> This course has no reviews yet. Be the first to review.
+                    </div>
                     <div *ngFor="let i of reviews">
                         <hr class="review-line">
                         <div class="container-fluid">
                             <div class="row">
-                        <div class="col-8 name"><span>{{i.name}}</span><span class="edited" *ngIf="i.edited">{{" "}}[edited]</span></div>
-                        <div class="col-4 review-date">{{i.rdate}}{{" "}} ago</div></div></div>
-                       <!-- <div class="designation">{{i.designation}}</div>-->
+                                <div class="col-8 name"><span>{{i.name}}</span><span class="edited"
+                                        *ngIf="i.edited">{{" "}}[edited]</span></div>
+                                <div class="col-4 review-date">{{i.rdate}}{{" "}} ago</div>
+                            </div>
+                        </div>
+                        <!-- <div class="designation">{{i.designation}}</div>-->
                         <div class="star-review">
                             <ngb-rating class="rate1" [max]="5" [(rate)]="i.rating" [readonly]="true"></ngb-rating>
                         </div>
                         <div class="review-desc">{{i.review}}</div>
-                       <div class="row">
-                       <!-- <div class="col-8 review-upvotes"><span><img
+                        <div class="row">
+                            <!-- <div class="col-8 review-upvotes"><span><img
                                     src="../../assets/course-detail/upvote.png">{{" "}}</span><span class="upvote-number">{{i.upvotes}}</span>
                         </div>-->
-                        <div  class="col-8"></div><!--
+                            <div class="col-8"></div>
+                            <!--
                         <div *ngIf="i.id == userId" class="col-4 report-review">
                             <div class="" mdbDropdown>
                             <img mdbDropdownToggle src="../../assets/course-detail/report-review.png">
@@ -291,7 +263,7 @@
                 </div>
             </div>
         </div>
-        <div  class="col-4 review-post">
+        <div class="col-4 review-post">
             <div class="col-12 tap">
                 Tap To Rate
             </div>
@@ -309,21 +281,21 @@
                 </div>
             </div>
             <div class="col-12 review-write">
-               <span *ngIf="!isReview"> Write A Review</span><span *ngIf="isReview">Edit Your Review</span>
+                <span *ngIf="!isReview"> Write A Review</span><span *ngIf="isReview">Edit Your Review</span>
             </div>
             <hr class="review-footer">
-            <div  class="col-12">
-                <form *ngIf="!isReview" #writeReview = "ngForm" (ngSubmit) = "onPost(writeReview.value)" >
+            <div class="col-12">
+                <form *ngIf="!isReview" #writeReview="ngForm" (ngSubmit)="onPost(writeReview.value)">
                     <textarea type="text" name="review" class="md-textarea form-control rev"
                         placeholder="Write Your Review" ngModel></textarea>
-                        <button class="tips z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Tips</button>
-                        <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Post</button>
+                    <button class="tips z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Tips</button>
+                    <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Post</button>
                 </form>
-                <form *ngIf="isReview" #writeReview1 = "ngForm" (ngSubmit) = "onEdit(writeReview1.value)" >
+                <form *ngIf="isReview" #writeReview1="ngForm" (ngSubmit)="onEdit(writeReview1.value)">
                     <textarea type="text" name="review" class="md-textarea form-control rev"
                         placeholder="Write Your Review" [(ngModel)]="userReview"></textarea>
-                        <button class="tips1 z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Delete</button>
-                        <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Edit</button>
+                    <button class="tips1 z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Delete</button>
+                    <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Edit</button>
                 </form>
             </div>
         </div>
