@@ -1,15 +1,17 @@
 <div *ngIf="isCourse" class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <img src="../../assets/course-detail/udemy.png" class="img-fluid provider">
+            <img src="assets/profile/{{course.course_provider}}.png" class="img-fluid provider">
         </div>
         <div class="col-6 buttons">
-            <a (click)="comparator()"><img src="../../assets/course-detail/compare.png" class="img-fluid com">{{" "}} <span
-                class="compare">Compare</span></a> {{" "}}
-            <img src="../../assets/course-detail/bookmark.png" class="img-fluid book">{{" "}} <span
-                class="bookmark">Bookmark</span> {{" "}}
-            <img src="../../assets/course-detail/completed.png" class="img-fluid comp">{{" "}} <span
-                class="completed">Completed</span> {{" "}}
+            <a (click)="comparator()"><img src="../../assets/course-detail/compare.png" class="img-fluid com">{{" "}}
+                <span class="compare">Compare</span></a> {{" "}}
+            <a *ngIf="!isBookmark" (click)="bookmarkCourse()"> <img src="../../assets/course-detail/bookmark.png"
+                    class="img-fluid book">{{" "}} <span class="bookmark">Bookmark</span></a><img
+                src="../../assets/Vector (1).png" class="img-fluid book" *ngIf="isBookmark">{{" "}} <span class="bookmark"
+                *ngIf="isBookmark">Bookmarked</span>{{" "}}
+            <!--<img src="../../assets/course-detail/completed.png" class="img-fluid comp">{{" "}} <span
+                class="completed">Completed</span> {{" "}}-->
             <a (click)="basicModal.show()"><img src="../../assets/course-detail/report.png"
                     class="img-fluid rep">{{" "}} <span class="report">Report</span></a> {{" "}}
         </div>
@@ -21,7 +23,8 @@
     </div>
     <div class="row">
         <div class="col-12 title-footer">
-            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect><a  href="/find?search={{j}}">{{j}}{{" "}}</a></button>
+            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect><a
+                    href="/find?search={{j}}">{{j}}{{" "}}</a></button>
         </div>
     </div>
     <div class="row">
@@ -39,24 +42,9 @@
                 About The Instructor
             </div>
             <div class="row">
-                <div class="col-6 professor-name1">Professor Name
+                <div class="col-6 professor-name1">{{course.course_ins}}
                     <div class="professor-body">
-                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
-                    </div>
-                </div>
-                <div class="col-6 professor-name1">Professor Name
-                    <div class="professor-body">
-                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
-                    </div>
-                </div>
-                <div class="col-6 professor-name1">Professor Name
-                    <div class="professor-body">
-                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
-                    </div>
-                </div>
-                <div class="col-6 professor-name1">Professor Name
-                    <div class="professor-body">
-                        Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
+                        {{course.course_ins_col}}
                     </div>
                 </div>
             </div>
@@ -73,15 +61,17 @@
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span *ngIf="course.course_review == '-'"
-                            class="time-detail">No Reviews on {{course.course_provider}}</span>
-                            <span *ngIf="course.course_review != '-'"
-                            class="time-detail">{{course.review}} on {{course.course_provider}}</span>
+                        <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span
+                            *ngIf="course.course_review == '-'" class="time-detail">No Reviews on
+                            {{course.course_provider}}</span>
+                        <span *ngIf="course.course_review != '-'" class="time-detail">{{course.review}} on
+                            {{course.course_provider}}</span>
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/price.png"></span><span *ngIf="course.course_fee == '-'"
-                            class="time-detail">Free</span><span *ngIf="course.course_fee != '-'">{{course.course_fee}}</span>
+                        <span class="time"><img src="../../assets/course-detail/price.png"></span><span
+                            *ngIf="course.course_fee == '-'" class="time-detail">Free</span><span
+                            *ngIf="course.course_fee != '-'">{{course.course_fee}}</span>
                     </div>
                     <hr>
                     <div>
