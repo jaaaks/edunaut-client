@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-lg-2 col-md-3 col-4 profile">
             <p><img src="../../assets/profile/profile.png"></p>
-            <p *ngIf="profileData">{{profileData.firstname}}{{" "}}{{profileData.lastname}}</p>
+            <p *ngIf="profileData">{{firstname}}{{" "}}{{lastname}}</p>
             <div class="bio1">
-            <p *ngIf="profileData" class="bio text-justify">{{profileData.bio}}</p>
+            <p *ngIf="profileData" class="bio text-justify">{{bio}}</p>
             </div>
             <div *ngIf="sameUser" class="col-12">
                 <p class="icons">
@@ -32,7 +32,7 @@
         </div>
         <div class="col-lg-10 col-md-9 col-8 ">
             <div class="container-fluid">
-                <div class="row">
+                <div *ngIf="profileData" class="row">
                     <div *ngIf="sameUser; else condition1" class="col-12">
                         <div class="col-12 title">
                             My Courses
@@ -82,20 +82,20 @@
                 <span class="modal-title w-100" id="myModalLabel">Edit Profile</span>
             </div>
             <div class="modal-body mod-body">
-                <form #updateInfo = "ngForm" (ngSubmit) = "onClickSubmit(updateInfo.value)" >
-                    <label class="test"for="firstname"> First Name</label>
+                <form *ngIf="profileData" #updateInfo = "ngForm" (ngSubmit) = "onClickSubmit(updateInfo.value)" >
+                    <label class="test"for="firstname"> First Name<!--<span class="required">{{" "}}*</span>--></label>
                     <div>
-                    <input type = "text" name = "firstname" placeholder = "First Name" ngModel>
+                    <input type = "text" name = "firstname" placeholder = "First Name" [(ngModel)]="profileData.firstname">
                     </div>
                     <br/>
                     <label class="test" for="lastname"> Last Name</label>
                     <div>
-                    <input type = "text" name = "lastname" placeholder = "Last Name" ngModel>
+                    <input type = "text" name = "lastname" placeholder = "Last Name" [(ngModel)]="profileData.lastname">
                     </div>
                     <br/>
                     <label class="test" for="bio">Write Your Bio</label>
                     <div>
-                    <textarea name="bio" placeholder="Bio" ngModel></textarea>
+                    <textarea name="bio" placeholder="Bio" [(ngModel)]="profileData.bio"></textarea>
                     </div>
                     <button class="cancel" type="button"
                         aria-label="Close" (click)="basicModal.hide()" >Cancel</button>

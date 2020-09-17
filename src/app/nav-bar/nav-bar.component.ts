@@ -21,6 +21,7 @@ export class NavBarComponent implements OnInit {
    public isMenuCollapsed = true;
    public displayName="";
    public loggedIn=false;
+   uid = "";
    public searchParameter="";
    public show=true;
    private user: Observable<firebase.User>;
@@ -38,6 +39,7 @@ export class NavBarComponent implements OnInit {
           this.photoUrl=res.photoURL?res.photoURL:this.src;
           this.displayName=res.displayName;
           this.loggedIn=true;
+          this.uid=res.uid;
         } else {
           console.log('user not logged in');
         }

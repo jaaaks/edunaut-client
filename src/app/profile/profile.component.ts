@@ -13,9 +13,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   @ViewChild('basicModal1', { static: true }) demoBasic: ModalDirective;
-  public profileData; 
-  public profileId;
+  public profileData ;
+  public profileId ;
   public currentUserid;
+  firstname = "";
+  lastname = "";
+  bio = "";
   public sameUser = false;
   constructor(private afauth:AngularFireAuth, private userService : UserServiceService,private route: ActivatedRoute, private profileService: ProfileService) { 
     this.afauth.authState.subscribe(
@@ -33,23 +36,35 @@ export class ProfileComponent implements OnInit {
     this.route.queryParamMap.subscribe((params)=>{
       this.profileId={...params};
     })
-
     this.getprofileInformation(this.profileId.params.uid);
    
   }
   onClickSubmit(data) {
-    this.profileService.saveProfile({
+    this.userService.updateProfile({
       uid: this.currentUserid.uid,
       firstname: data.firstname,
       lastname: data.lastname,
+      email: this.currentUserid.email,
+      phoneno: "",
       bio: data.bio
-    });
-    location.reload();
+    }).subscribe((res)=>{
+      this.firstname =  data.firstname;
+      this.lastname = data.lastname;
+      this.bio = data.bio;
+    }),
+    err=>{
+      
+    }
+      ;
+    
     }
 
   getprofileInformation(uid){
   this.userService.profileInformation(uid).subscribe((data) => {
     this.profileData= data;
+    this.firstname = this.profileData.firstname;
+    this.lastname = this.profileData.lastname;
+    this.bio = this.profileData.bio;
     console.log(data);
     });
   }

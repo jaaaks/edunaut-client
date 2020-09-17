@@ -332,6 +332,7 @@ hr {
   left: -55px;
 }
 .sort {
+  
   background-color: #0376fe !important;
 }
 .review {
@@ -501,9 +502,6 @@ font-weight: bold;
 font-size: 16px;
 line-height: 20px;
 /* identical to box height */
-
-display: flex;
-align-items: center;
 letter-spacing: 0.005em;
 
 color: #000000;
@@ -526,7 +524,7 @@ color: #494949;
 
 }
 .star-review{
-  padding-left: 12%;
+  padding-left: 11.8%;
 }
 .rate1{
   color: #0376fe ;
@@ -598,4 +596,50 @@ color: #000000;
   position: absolute;
   top: -30px;
   left: 170px;
+}
+.no-reviews{
+  padding-left: 30%;
+  font-family: Muli;
+  padding-top: 10%;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 18px;
+letter-spacing: 0.004em;
+color: #8A8886;
+}
+.tips1{
+  margin-left: 56%;
+  font-family: Muli;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: none;
+  color: #0367dd;
+  background-color: #f8f8f8 !important;
+}
+.tips1:hover {
+  color: #0376fe;
+}
+.review-date{
+  padding-top: 1.75%;
+  padding-right: 2.5%;;
+  font-family: Muli;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+/* identical to box height */
+
+text-align: right;
+letter-spacing: 0.004em;
+
+color: #A19F9D;
+}
+.edited{
+  color: #A19F9D;
+  font-size: 14px;
+  font-weight: normal;
 }
