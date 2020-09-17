@@ -3,8 +3,10 @@ import { CourseDetailService } from '../services/course-detail.service';
 import {ModalDirective} from 'angular-bootstrap-md';
 import { AngularFireAuth } from "@angular/fire/auth";
 import {ActivatedRoute} from '@angular/router';
+import {MessageService} from '../services/message.service';
 import {HttpParams} from '@angular/common/http';
 import * as $ from 'jquery';
+import { textChangeRangeIsUnchanged } from 'typescript';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
@@ -32,8 +34,11 @@ export class CourseDetailComponent implements OnInit {
   averageReview;
   isReview;
   userReview;
+  courseDomain;
+  domain;
+  subdomain;
   count = 0;
-  constructor(private courseService: CourseDetailService, private route: ActivatedRoute, private afauth:AngularFireAuth) { 
+  constructor(private courseService: CourseDetailService, private route: ActivatedRoute, private afauth:AngularFireAuth, private messageService:MessageService) { 
     this.afauth.authState.subscribe(
       res => {
         this.userId= res.uid;   
@@ -49,6 +54,10 @@ export class CourseDetailComponent implements OnInit {
       
       this.course = data[0];
       this.isCourse = this.course.course_id;
+      this.domain = this.course.course_field.split(', ');
+      this.subdomain = this.course.course_subfield.split(', ');
+      this.courseDomain = this.domain.concat(this.subdomain);
+      console.log(this.courseDomain)
       console.log(data);
       })
     this.courseService.getReviewById(this.courseId).subscribe((data)=>{
@@ -152,6 +161,10 @@ export class CourseDetailComponent implements OnInit {
     ).subscribe((res)=>{
       location.reload();
     });
+  }
+  comparator(){
+    console.log();
+   this.messageService.addToCompare(this.course);
   }
  
 }

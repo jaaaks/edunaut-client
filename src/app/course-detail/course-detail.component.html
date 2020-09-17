@@ -4,8 +4,8 @@
             <img src="../../assets/course-detail/udemy.png" class="img-fluid provider">
         </div>
         <div class="col-6 buttons">
-            <img src="../../assets/course-detail/compare.png" class="img-fluid com">{{" "}} <span
-                class="compare">Compare</span> {{" "}}
+            <a (click)="comparator()"><img src="../../assets/course-detail/compare.png" class="img-fluid com">{{" "}} <span
+                class="compare">Compare</span></a> {{" "}}
             <img src="../../assets/course-detail/bookmark.png" class="img-fluid book">{{" "}} <span
                 class="bookmark">Bookmark</span> {{" "}}
             <img src="../../assets/course-detail/completed.png" class="img-fluid comp">{{" "}} <span
@@ -21,13 +21,7 @@
     </div>
     <div class="row">
         <div class="col-12 title-footer">
-            <button type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect>Ayurveda</button>
-            {{" "}}
-            <button type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect>Tag 1</button>
-            {{" "}}
-            <button type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect>Tag 2</button>
-            {{" "}}
-            <button type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect>Tag 3</button>
+            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect><a  href="/find?search={{j}}">{{j}}{{" "}}</a></button>
         </div>
     </div>
     <div class="row">
@@ -50,7 +44,7 @@
                         Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
                     </div>
                 </div>
-                <div class="col-6 professor-name2">Professor Name
+                <div class="col-6 professor-name1">Professor Name
                     <div class="professor-body">
                         Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
                     </div>
@@ -60,7 +54,7 @@
                         Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
                     </div>
                 </div>
-                <div class="col-6 professor-name2">Professor Name
+                <div class="col-6 professor-name1">Professor Name
                     <div class="professor-body">
                         Senior Preceptor in Computer Science <br> Harvard University, Senior Preceptor
                     </div>
@@ -301,7 +295,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
+<!--<div class="container-fluid">
     <div class="row">
         <div class="col-12 relevant">
             Relevant Courses
@@ -310,4 +304,4 @@
             <app-relevant-courses></app-relevant-courses>
         </div>
     </div>
-</div>
+</div>-->

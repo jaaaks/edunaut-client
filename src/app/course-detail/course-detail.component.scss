@@ -121,6 +121,7 @@
 }
 .course-details {
   border: 2px solid #e0e2e8;
+  margin-top: 4%;
   margin-right: 25%;
   border-radius: 5px;
   background: #f8f8f8;
@@ -651,4 +652,10 @@ color: #A19F9D;
   color: #A19F9D;
   font-size: 14px;
   font-weight: normal;
+}
+a:hover{
+  text-decoration: none;
+}
+button:active{
+  background-color: #e2f1ff !important;
 }
