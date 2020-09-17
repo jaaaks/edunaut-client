@@ -73,6 +73,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {UserServiceService} from './services/user-service.service';
 import {HeroResolver} from './resolvers/apiResolver';
 import { BadgesComponent } from './badges/badges.component'
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -135,7 +137,9 @@ AngularFireAuthModule,
  MatSnackBarModule,
  Ng5SliderModule,
  MatMenuModule,
- MatChipsModule
+ MatChipsModule,
+ InfiniteScrollModule,
+ NgxSpinnerModule 
 ],
   providers: [AuthenticationService,SeacrhServiceService, ProfileService,HeroResolver,UserServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },

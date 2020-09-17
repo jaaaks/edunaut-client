@@ -4,7 +4,7 @@ import {NestedTreeControl , FlatTreeControl} from '@angular/cdk/tree';
 import { SeacrhServiceService } from '../services/seacrh-service.service';
 import { faDollarSign, faClock, faHeart, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from '../services/message.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {SelectionModel} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
@@ -22,13 +22,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { Options } from 'ng5-slider';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatMenuTrigger} from '@angular/material/menu';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 export class TodoItemNode {
   children: TodoItemNode[];
   item: string;
 }
 export class BoomarkObject{
-  courseid: string;
+  course_id: string;
   status:string;
   percentage:string;
   userid:any;
@@ -45,6 +45,8 @@ export class TodoItemFlatNode {
   fee:boolean;
   divider:boolean;
   firstChild:boolean;
+  parameter:string;
+  parameterType:string;
 } 
 const personal='Personal Development';
 const TREE_DATA={};
@@ -114,12 +116,9 @@ const ProgramData={
 },
 divider:null,
 'Programe Type':{
-  'Engineering': {
-    'Mechanical Engineering': null,
-    'chemical Engineering': null,
-    'Computer Science Engineering':null
-  }
-},
+  Course:null,
+  Degree:null,
+ },
 divider1:null,
   Duration:{
     'duration':null
@@ -134,10 +133,9 @@ divider1:null,
      },
      divider4:null,
   'Programe Mode':{
-    'Random Value':null,
-    'Random Value2':{
-      random:null
-    }
+    'Recorded':null,
+    'Live':null,
+    Mixed:null
     },divider5:null,
     'Level of Difficulty':{
       'Beginner':null,
@@ -164,8 +162,9 @@ divider1:null,
       English:null,
        French:null
     },divider10:null,
-    Country:{
-      'Countries':null
+    Transcript:{
+      'English':null,
+      'French':null
     }
 }
 @Injectable()
@@ -234,7 +233,8 @@ export class ListingPageComponent implements OnInit {
   faDollarSign= faDollarSign;
   faClock = faClock;
   faHeart = faHeart;
-  public courseList;
+  public courseList:any[];
+  public courseListCopy:any[];
   panelOpenState = false;
   totalResults:any;
   changeText: boolean;
@@ -249,11 +249,17 @@ export class ListingPageComponent implements OnInit {
   user:any;
   userData: firebase.User;
   bookMarkobject= new BoomarkObject();
-  minValue: number = 50;
-  maxValue: number = 200;
+  minValue: number = 0;
+  maxValue: number = 50000;
+  minDuration:number= 0;
+  maxDuration:number=50;
   options: Options = {
     floor: 0,
-    ceil: 200
+    ceil: 50000
+  };
+  options1:Options={
+    floor: 0,
+    ceil:50
   };
   value=200;
   treeFlattener: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
@@ -270,10 +276,10 @@ export class ListingPageComponent implements OnInit {
  dataSource1: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
 
   getLevel = (node: TodoItemFlatNode) => node.level;
- 
+  middleFlag=false; 
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
-    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute) { 
+    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute,private spinner: NgxSpinnerService) { 
     this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message)});
  
@@ -281,7 +287,7 @@ export class ListingPageComponent implements OnInit {
       this.isExpandable, this.getChildren);
     this.treeControl = new FlatTreeControl<TodoItemFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
+    
     this.treeFlattener1 = new MatTreeFlattener(this.transformer, this.getLevel,
       this.isExpandable, this.getChildren);
     this.treeControl1 = new FlatTreeControl<TodoItemFlatNode>(this.getLevel, this.isExpandable);
@@ -295,6 +301,22 @@ export class ListingPageComponent implements OnInit {
       });
 
   }
+   private courseField=['Arts and Humanities','Business','Computer Science','Data Science','Health','Information Technology','Language Learning',
+   'Physical Science and Engineering','Social Sciences','Math and Logic','Personal Development' ];
+   public courseFieldParam=[];
+   private courseSubField=['History','Music and Art','Philosophy','Business Essentials','Business Strategy','Entrepreneurship','Finance','Leadership and Management',
+  'Marketing','Algorithms','Computer Science and Technology','Design and Product','Mobile and Web Development','Software Development','Data Analysis',
+'Machine Learning','Probability and Statistics','Animal Health','Basic Health','Health Informatics','Healthcare Management','Nutrition','Patient Care','Psychology','Research',
+'Cloud Computing','Data Management','Security','Support and Operations','Learning English','Other Languages','Chemistry','Electrical Engineering','Enviromental Science and sustainability',
+'Mechanical Engineering','Physics and Astronomy','Research Methods','Education','Economics','Governance and Society','Law',];
+private programType=['Recorded','Live','Mixed'];
+public courseSubFieldParam=[];
+private difficultyLevel=['Beginner','Intermediate','Expert','Mixed'];
+private courseprovider=['Coursera','udemy','edx'];
+private contentType=['Audio','Video','Text Material'];
+public loadingFirst=false;
+
+
   transformer = (node: TodoItemNode, level: number) => {
     const existingNode = this.nestedNodeMap.get(node);
     const flatNode = existingNode && existingNode.item === node.item
@@ -303,8 +325,17 @@ export class ListingPageComponent implements OnInit {
     flatNode.item = node.item;
     flatNode.level = level;
     flatNode.expandable = !!node.children?.length;
+    var courseIndex=this.courseField.indexOf(node.item);
+    var courseSubFieldIndex= this.courseSubField.indexOf(node.item);
+    if(courseIndex!=-1){
+         flatNode.parameter='course_field';
+        }
+    else if(courseSubFieldIndex!==-1){
+     flatNode.parameter='course_subfield';
+    }
     if(level===0){
       flatNode.header = true;
+      this.treeControl.expand(flatNode);
     }
     else{
       flatNode.header = false;
@@ -345,7 +376,7 @@ export class ListingPageComponent implements OnInit {
         flatNode.divider= false;
         }
 
-
+     
     this.flatNodeMap.set(flatNode, node);
     this.nestedNodeMap.set(node, flatNode);
     return flatNode;
@@ -391,15 +422,10 @@ export class ListingPageComponent implements OnInit {
       err=>{
         this.isLoggedIn=false;
       });
-
-     this.messageService.getUser().subscribe(data=>{
-       if(data){
-       this.user=data;
-       }
-     })
-     var searchParam;
+    var searchParam;
      this.activateRouter.queryParams.subscribe(params => {
       searchParam = params['search'];
+      this.searchKey=searchParam;
       this.searchMethod(searchParam);
     });
 
@@ -407,15 +433,29 @@ export class ListingPageComponent implements OnInit {
      //this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
   }
   loading =false;
+  pageSize="30";
+  pageNo:number=1;
+  searchKey:string;
   searchMethod(parameter):void{
+    if(this.pageNo===1){
+     this.loadingFirst=true;
+     }
      this.loading=true;
-    this.searchService.getCourseByKeyWord(parameter).subscribe((response)=>{
-      this.courseList=response;
+      this.searchService.getCourseByKeyWord(parameter,this.pageNo,this.pageSize).subscribe((response:any)=>{
+       if(this.pageNo===1){
+        this.courseList=response.content;
+      this.courseListCopy= response.content;
+      this.loadingFirst= false;
+       }
+       else{
+         this.courseList= this.courseList.concat(response.content);
+         this.courseListCopy= this.courseListCopy.concat(response.content);
+         this.loadingFirst= false;
+       }
       this.totalResults=this.courseList.length;
       this.loading=false;
-
-      
-   });
+      this.pageNo= this.pageNo+1;
+  });
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
     const descendants = this.treeControl.getDescendants(node);
@@ -429,6 +469,16 @@ export class ListingPageComponent implements OnInit {
     this.checkAllParentsSelection(node);
     console.log(node,event);
     this.nodeValueMap.set(node,event.checked);
+    if(event.checked===true){
+      this.courseSubFieldParam.push(node.item);
+    }
+    else{
+      const index= this.courseFieldParam.indexOf(node.item);
+      this.courseFieldParam.splice(index,1);
+      
+    }
+  
+    this.filterCourse('any');
   }
   descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
     const descendants = this.treeControl.getDescendants(node);
@@ -447,6 +497,14 @@ export class ListingPageComponent implements OnInit {
     descendants.forEach(child => this.checklistSelection.isSelected(child));
     this.checkAllParentsSelection(node);
     console.log(node,event);
+    if(node.parameter==='course_field' && event.checked){
+      this.courseFieldParam.push(node.item);
+    }
+    else if(node.parameter==='course_field' && !event.checked){
+        const index= this.courseFieldParam.indexOf(node.item);
+        this.courseFieldParam.splice(index,1);
+    }
+    this.filterCourse("any")
     this.nodeValueMap.set(node,event.checked);
   }
 
@@ -511,12 +569,12 @@ export class ListingPageComponent implements OnInit {
   bookmarkCourse(course){
     if(this.isLoggedIn){
       if(this.userData.emailVerified){
-        this.snackBar.open('Course BookMarked','close',{
+        this.snackBar.open('Course Bookmarked','close',{
           duration:2000
         })
-        this.bookMarkobject.courseid= course.id;
+        this.bookMarkobject.course_id= course.course_id;
         this.bookMarkobject.userid={"uid":this.userData.uid};
-        this.bookMarkCourseMap.set(course.id,true);
+        this.bookMarkCourseMap.set(course.course_id,true);
          this.searchService.bookMarkcourse(this.bookMarkobject).subscribe(data=>{
           
          },err=>{
@@ -563,16 +621,57 @@ export class ListingPageComponent implements OnInit {
   setBookMark(user){
      for(var index=0;index<user.bookmarks.length;index++){
       //  this.bookMarkCourseMap[user.bookmarks[index].courseid]=true;
-      this.bookMarkCourseMap.set(user.bookmarks[index].courseid,true);
+      this.bookMarkCourseMap.set(user.bookmarks[index].course_id,true);
      }
   }
   isBookMark(course){
-    if(this.bookMarkCourseMap[course.courseid]){
+    if(this.bookMarkCourseMap[course.course_id]){
       return true;}
      else {
        return false;
      }
      };
-  
+   filterCourse(params){
+     this.courseList=  this.courseListCopy;
+
+      this.courseList= this.courseList.filter(course=>{
+
+       return this.doCourseFieldFilter(course);
+      });
+   } 
+   doCourseFieldFilter(course){
+     if(this.courseFieldParam.length==0){
+       return true
+     }
+     var result=false;
+         for(var i=0;i<this.courseFieldParam.length;i++){
+       result= result || course.course_field.includes(this.courseFieldParam[i]);
+         }
+         return result;
+   } 
+   doCourseSubFieldFilter(course){
+    if(this.courseSubFieldParam.length==0){
+      return true
+    }
+    var result=false;
+        for(var i=0;i<this.courseSubFieldParam.length;i++){
+      result= result || course.course_subfield.includes(this.courseSubFieldParam[i]);
+        }
+        return result;
+  } 
+  onScroll(){
+    this.spinner.show();
+    if(this.loading===true){
+      return;
+    }
+    else{
+      this.searchMethod(this.searchKey);
+      console.log('start searching');
+     
+    }
+  }
+  clicked45(){
+     this.middleFlag=!this.middleFlag;
+  }
 
 }

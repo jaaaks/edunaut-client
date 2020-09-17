@@ -1,6 +1,4 @@
-.navbar{
-	background-color: #1c2331;
-}
+
 .carousel .carousel-control-next-icon, .carousel .carousel-control-prev-icon{
 	background: rgb(70, 69, 69) ;
   }
@@ -26,5 +24,10 @@
 	height: 14px  !important;
 	width: 14px !important;
 	top:-7px !important;
+	z-index: 1 !important;
 	}
   }
+
+  *,*:focus,*:hover{
+    outline:none;
+}

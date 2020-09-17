@@ -51,7 +51,7 @@ border-radius: 5px;
   
   .strip{
     position: absolute;
-    width: 275px;
+    width: 100%;
     height: 30px;
     left: 0px;
     top: 0px;
@@ -133,18 +133,17 @@ height: 31px;
 }
 
 .mat-divider{
-  position: absolute;;
+  position: relative;;
   width: 100%;
   }
 
 .example-margin{
-  width:100%;
-  width: 239px;
-height: 36px;
+ 
+height: 32px;
   background: #F3F3F3;
-border: 1px solid #C4C4C4;
+border: 2px solid #C4C4C4;
 box-sizing: border-box;
-border-radius: 6px;
+border-radius: 5px;
 }
 .header-display{
   display: flex !important;
@@ -164,6 +163,9 @@ border-radius: 6px;
 .mat-card-content{
   margin-bottom: 0px!important;
 }
+.content{
+  padding-top: 25px;
+}
 
 
 
@@ -179,10 +181,26 @@ border-radius: 6px;
   }
   .rate-button{
 
-background: #FFFFFF;
-border: 1px solid #C4C4C4;
-box-sizing: border-box;
-border-radius: 27px;
+    
+    padding: 3px 10px;
+    
+    
+    width: 64px;
+    height: 26px;
+   
+    
+    background: #E0E2E8;
+    border-radius: 5px;
+    
+    /* Inside Auto Layout */
+    
+   
+    margin: 10px 0px;
+
+    &::ng-deep .mat-button-wrapper{
+           position: relative;
+           bottom: 6px;
+    }
   }
 
   mat-expansion-panel{
@@ -193,8 +211,8 @@ border-radius: 27px;
     position: relative;
   }
   .tree-divider{
-  margin:-25px;
- 
+  margin:10px 0px  10px 0px;
+  border: 2px solid #E0E2E8;
   }
   .divider-node{
     min-height: 5px !important;
@@ -223,7 +241,8 @@ border-radius: 27px;
     line-height: 20px;
   }
   .star,.bulb{
-    padding-top: 3.5%;
+   
+    padding-bottom: 3.5%;
     font-weight: 600;
     font-size: 0.8em;
     font-style: normal;
@@ -322,3 +341,45 @@ border-radius: 5px;
     .example-chip-list {
       width: 100%;
     }
+    .mat-tree-node{
+      min-height: auto !important;
+    }
+    ::ng-deep .mat-checkbox-layout{
+margin-bottom: 0px;
+    }
+
+    ::ng-deep .mat-checkbox-label{
+    font-family: Mulish;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+display: flex;
+align-items: center;
+letter-spacing: 0.02em;
+
+color: #000000;
+
+    }
+    .icon-display{
+      transform: scale(0.80);
+      position: relative;
+      top:-12px;
+    }
+.tree-icon{
+  height: 15px;
+}
+::ng-deep{
+  .mat-checkbox-inner-container{
+    width: 12px !important;
+    height: 12px !important;
+  }
+}
+.duration-input{
+  max-width: 229px;
+}
+.fee-box{
+  width: 229px;
+}
+.colorBlue{
+  background: #0376FE;
+}

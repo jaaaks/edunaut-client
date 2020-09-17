@@ -3,8 +3,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { WavesModule, TableModule } from 'angular-bootstrap-md';
 import { MessageService } from '../services/message.service';
 import { CommonModule } from "@angular/common";
-
-
+import {ProfileService} from '../services/profile.service'
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -20,30 +20,45 @@ export class FooterComponent implements OnInit {
     {id: 'Certificate', first: 'Larry', second: 'the Bird', handle: '@twitter'},
     {id: 'Fee', first: 'Larry', second: 'the Bird', handle: '@twitter'},
     {id: 'Course Provider', first: 'Larry', second: 'the Bird', handle: '@twitter'},
-    {id: 'Level of Difficulty', first: 'Larry', second: 'the Bird', handle: '@twitter'},
-    {id: 'Pre- requisites', first: 'Larry', second: 'the Bird', handle: '@twitter'}
+    {id: 'Level of Difficulty', first: 'Larry', second: 'the Bird', handle: '@twitter'}
+    // {id: 'Pre- requisites', first: 'Larry', second: 'the Bird', handle: '@twitter'}
  ];
 
   headElements = ['ID', 'First', 'Last', 'Handle'];
-  constructor(private messageService:MessageService) { }
+  public userData:any;
+  public user:any;
+  isLoggedIn:boolean=false;
+  constructor(private messageService:MessageService,private pfs:ProfileService,private afauth:AngularFireAuth) { }
    public courseList=[];
   ngOnInit(): void {
     this.messageService.getCourses().subscribe(data=>{
+      var filteredCourse=this.courseList.filter(course=>{
+        return course.course_id===data.course_id;
+      })
+      if(filteredCourse.length===0){
        this.courseList.push(data);
-       if(this.courseList.length==1){
-         this.elements[0].first = data.course_rating;
-         this.elements[1].first = data.course_university;
-         this.elements[2].first = data.course_fee;
-         this.elements[3].first = data.course_provider;
-       }
-       if(this.courseList.length==2){
-        this.elements[0].second = data.course_rating;
-        this.elements[1].second = data.course_university;
-        this.elements[2].second = data.course_fee;
-        this.elements[3].second = data.course_provider;
+        this.panelOpenState=true;
       }
-      this.panelOpenState=true;
     })
+
+    this.afauth.authState.subscribe(
+      res => {
+        if (res && res.uid) {
+          console.log('user is logged in');
+           this.isLoggedIn=true;
+           this.userData=res;
+         this.pfs.getProfile(res.uid).subscribe(data=>{
+           this.user=data;
+        
+         })
+   } else {
+    this.isLoggedIn=false;
+          
+        }
+      },
+      err=>{
+        this.isLoggedIn=false;
+      });
   }
   open(){
     this.panelOpenState= !this.panelOpenState;

@@ -7,23 +7,16 @@
 
       <mat-divider></mat-divider>
       <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl" class="example-tree">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="20">
 
           <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
             (change)="todoLeafItemSelectionToggle(node,$event)">{{node.item}}</mat-checkbox>
         </mat-tree-node>
 
-        <mat-tree-node *matTreeNodeDef="let node; when: isHeader" matTreeNodeToggle matTreeNodePadding
+        <mat-tree-node *matTreeNodeDef="let node; when: isHeader" isExpanded=true
           fxLayout="row wrap" fxLayoutAlign="space-between center">
           <div>
             <strong>{{node.item}}</strong>
-          </div>
-          <div>
-            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
-              <mat-icon class="mat-icon-rtl-mirror">
-                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-              </mat-icon>
-            </button>
           </div>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isDivider" class="divider-node">
@@ -32,17 +25,17 @@
 
         <mat-tree-node *matTreeNodeDef="let node; when: isDuration" matTreeNodeToggle>
           <div fxLayout="column">
-            <mat-slider class="" [max]="max" [min]="min" [(ngModel)]="value">
-            </mat-slider>
-
-            <input class="example-margin" matInput [(ngModel)]="value">
-
+            <ng5-slider [(value)]="minDuration" [(highValue)]="maxDuration" [options]="options1"></ng5-slider>
+           <div flexLayout="row" fxLayoutGap="20px" class="duration-input" fxLayoutAlign="space-around center">
+            <input fxFlex="40" class="example-margin"  matInput [(ngModel)]="minDuration">
+          <input  fxFlex="40" class="example-margin" matInput [(ngModel)]="maxDuration">
+            </div>
           </div>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isRating" matTreeNodeToggle fxLayout="column"
           fxLayoutAlign="space-between start" fxLayoutGap="5px">
-          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="5px">
-            <button mat-stroked-button class="rate-button">4.5+</button>
+          <div fxLayout="row" class="fee-box"fxLayoutAlign="space-around" fxLayoutGap="10px">
+            <button  mat-stroked-button [ngClass]="{ 'colorBlue' :middleFlag }" (click)="clicked45()" class="rate-button" >4.5+</button>
             <button mat-stroked-button class="rate-button">4+</button>
             <button mat-stroked-button class="rate-button">3.5+</button>
           </div>
@@ -51,18 +44,20 @@
           <div fxLayout="column">
            
             <ng5-slider  [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
-            <input class="example-margin" matInput [(ngModel)]="value">
-
+            <div flexLayout="row" fxLayoutGap="20px" class="duration-input" fxLayoutAlign="space-around center">
+              <input fxFlex="40" class="example-margin" matInput [(ngModel)]="minValue">
+            <input  fxFlex="40" class="example-margin" matInput [(ngModel)]="maxValue">
+              </div>
           </div>
         </mat-tree-node>
 
         <mat-tree-node *matTreeNodeDef="let node; when: hasPadding" matTreeNodeToggle >
 
-          <mat-checkbox [checked]="descendantsAllSelected(node)" [indeterminate]="descendantsPartiallySelected(node)"
+          <mat-checkbox class="checkbox-size" [checked]="descendantsAllSelected(node)" [indeterminate]="descendantsPartiallySelected(node)"
             (change)="todoItemSelectionToggle(node,$event)">{{node.item}}</mat-checkbox>
 
-          <button mat-icon-button *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
-            <mat-icon class="mat-icon-rtl-mirror">
+          <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
+            <mat-icon class="icon-display">
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
@@ -89,12 +84,12 @@
           </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="comp">
-          <div>{{totalResults}} Results</div>
+          <div> Results</div>
           <div class="sortButton">
             <div class="sort">
               Sort
               <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="expand_more" (click)='sortCheck()'>
-                <mat-icon>{{sortChecker?'expand_more':'chevron_right'}}</mat-icon>
+                <mat-icon >{{sortChecker?'expand_more':'chevron_right'}}</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)='sortCheck()' >
@@ -110,10 +105,16 @@
 
           </div>
          </div>
-
-        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between center">
+         <div  
+         class="search-results"
+         infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50"
+         (scrolled)="onScroll()"
+         >
+        <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutGap="20px" fxLayoutAlign="start center">
           <ng-container *ngFor="let course of courseList" >
-            <mat-card class="example-card"  (mouseenter)="changeTextMethod(course)"
+            <mat-card class="example-card"  fxFlex="30" (mouseenter)="changeTextMethod(course)"
               (mouseleave)="changeTextOutMethod(course)">
               <mat-card-header class="header">
                 <div class="strip"></div>
@@ -121,7 +122,7 @@
 
               </mat-card-header>
 
-              <mat-card-content fxLayout="column" fxLayoutAlign="end" [ngStyle]="{'height':course.change ? '179px' : '179px','font-size':course.change ?'12px':'12px' }">
+              <mat-card-content fxLayout="column" fxLayoutAlign="space-between" [ngStyle]="{'height':course.change ? '179px' : '179px','font-size':course.change ?'12px':'12px' }">
                 <div class="content"
                   >
                   <a> <strong>
@@ -129,39 +130,39 @@
                     </strong></a>
                   
                 </div>
-               
+               <div>
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
                     <span class="icon-body">{{" "}}{{course.course_fee}}</span></div>
-                  <div class="star"><img src="../../assets/profile/clock.png"><span class="icon-body">{{" "}}{{course.course_time}}</span></div>
+                  <div class="star"><img src="../../assets/profile/clock.png"><span class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
                 </div>
                       <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb"fxFlex="70" ><img src="../../assets/profile/bulb.png"><span
                       class="icon-body">{{" "}}Intermediate</span></div>
-                  <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_rating}}/5
-                      (215)</span></div>
+                  <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_review}}/5
+                      ({{course.course_rating}})</span></div>
                 </div>
-                
+                </div>
 
               </mat-card-content>
               <mat-divider></mat-divider>
               <mat-card-footer [ngStyle]="{'height':course.change ? '61px' : '61px','font-size':course.change ?'13px':'13px' }">
                 <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="!course.change">
                   <div class="footer-univ">
-                   <span > Indian insititute of Information technology</span>
+                   <span >{{course.course_col}}</span>
                   </div>
                   <!-- <div>
                     <mat-icon *ngIf="bookMarkCourseMap.has(course.id)" >bookmark</mat-icon>
                     <mat-icon *ngIf="!bookMarkCourseMap.has(course.id)" >bookmark_border</mat-icon>
                  </div> -->
-                 <div *ngIf="bookMarkCourseMap.has(course.id)" ><img src="../../assets/Vector (1).png">
+                 <div *ngIf="bookMarkCourseMap.has(course.course_id)" ><img src="../../assets/Vector (1).png">
                   </div>
-                  <div *ngIf="!bookMarkCourseMap.has(course.id)" ><mat-icon>bookmark_border</mat-icon>
+                  <div *ngIf="!bookMarkCourseMap.has(course.course_id)" ><mat-icon>bookmark_border</mat-icon>
                   </div>
                 </div>
 
 
-                <div fxLayout="row wrap"  *ngIf="course.change">
+                <div fxLayout="row wrap"  fxLayoutAlign="space-between" fxLayoutGap="30px" *ngIf="course.change">
                    <button mat-raised-button (click)="comparator(course)" class="comp-button"></button>
                     <button mat-raised-button (click)="bookmarkCourse(course)"  class="book-button"></button>
                 </div>
@@ -172,7 +173,7 @@
             </mat-card>
 
           </ng-container>
-          <ng-container *ngIf="loading"> 
+          <ng-container *ngIf="loadingFirst"> 
             <mat-card class="example-card" >
            </mat-card>
            <mat-card class="example-card" >
@@ -180,6 +181,22 @@
           <mat-card class="example-card" >
           </mat-card>
             </ng-container>
+
+        
+ </div>
+ <div class="row pb-5">
+  <div class="col-md-12 p-5">
+  <ngx-spinner
+  bdOpacity = 0.9
+  bdColor = ""
+  size = "default"
+  color = "#581f87"
+  type = "ball-pulse-sync"
+  [fullScreen] = "false"
+  >
+  </ngx-spinner>
+</div>
+</div>
  </div>
       </div>
     </div>

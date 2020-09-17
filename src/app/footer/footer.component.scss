@@ -254,12 +254,13 @@ mat-accordion {
 bottom: 1px;
 width: 100%;
 z-index: 2;
-max-height: 600px;
+max-height: 500px;
 overflow:scroll;
 }
 .mat-expansion-panel{
   box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 40px !important;
+  border-top-right-radius: 40px !important;
+  border-top-left-radius: 40px !important;
 }
 mat-panel-description{
   display: flex;
@@ -275,23 +276,26 @@ position: relative;
   
 }
 .example-header-image {
-  position: relative;
+  position: absolute;
   background-image: url('../../assets/courseImage/course.png');
-  background-size: cover;
+  width: 44px;
+  height: 44px;
+  left: 15px;
+  top: 10px;
   z-index: 1;
-  top:10px;
+  border-radius: 256px;
 }
 .header{
   margin-bottom: 20px;
 }
 .strip{
   position: absolute;
-width: 100%;
-height: 15px;
-left: 0px;
-top: 42px;
-background: #B5FAFD;
-
+  width: 100%;
+  height: 30px;
+  left: 0px;
+  top: 0px;
+  z-index: 0;
+  background: #1B5D9A;
 }
 .expansion-icon{
  margin-left: auto;
@@ -315,13 +319,31 @@ color: #000000;
   display: flex;
     justify-content: center;
     align-items: center;
+    z-index:2;
+    background: #E2F1FF;
 }
 .cross{
   margin-left: 10px;
   color: #000000;
 }
 .thead{
+  position: static;
+ font-family: Mulish;
+  font-style: normal;
   font-weight: bold;
+  font-size: 14px;
+  
+  /* or 19px */
+  
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.0025em;
+  
+  color: #000000;
+  
+  
+  /* Inside Auto Layout */
+  
 }
 .bookmark{
   
@@ -359,6 +381,7 @@ ngb-rating {
   .content{
     overflow: hidden;
     height: 80px;
+    padding-top: 25px;
   }
 .clear{
   font-family: Muli;
@@ -374,3 +397,31 @@ text-align: center;
 
 color: #0376FE;
 }
+.compare-table{
+  margin-top: 20px;
+}
+.table-row{
+  display: flex;
+flex-direction: column;
+padding: 16px 20px;
+
+
+max-height: 51px;
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+align-self: center;
+margin: 0px 0px;
+}
+th {
+border-top: 0 !important;
+}
+td {
+  border-top: 0 !important
+}
+.mat-icon{
+  color: #0376FE;
+}
+

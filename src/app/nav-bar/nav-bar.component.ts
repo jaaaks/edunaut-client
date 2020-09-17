@@ -24,6 +24,7 @@ export class NavBarComponent implements OnInit {
    uid = "";
    public searchParameter="";
    public show=true;
+   public userId:string;
    private user: Observable<firebase.User>;
   private localUrl= environment.localUrl;
   constructor(private wowService: NgwWowService,private afauth:AngularFireAuth,private router:Router,private messageService:MessageService,public dialog: MatDialog) {
@@ -39,6 +40,7 @@ export class NavBarComponent implements OnInit {
           this.photoUrl=res.photoURL?res.photoURL:this.src;
           this.displayName=res.displayName;
           this.loggedIn=true;
+          this.userId=res.uid;
           this.uid=res.uid;
         } else {
           console.log('user not logged in');
