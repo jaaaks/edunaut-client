@@ -2,13 +2,13 @@
   <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
     <mdb-card class="card ">
       <div class="col-12 title">
-        <img *ngIf="item.course_provider== 'Coursera'" class="icon" src="../../assets/profile/coursera.png">
+        <img *ngIf="item.course_provider== 'Swayam'" class="icon" src="../../assets/profile/Treehouse.png">
         <img *ngIf="item.course_provider== 'edX'" class="icon" src="../../assets/profile/edx.png">
       </div>
       <mdb-card-body class="bod">
         <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
           <mdb-card-title class="title-card">
-            {{item.course_name | slice:0:51}}...
+            {{item.course_name | slice:0:68}}...
           </mdb-card-title>
         </a>
         
@@ -30,7 +30,7 @@
             </div>
           </a>
         <hr class="footer">
-        <div class="row">
+        <div class="row uni">
           <div class="university">{{item.course_col}}</div>
           <button mdbBtn type="button" class="button1" color="info" outline="true" mdbWavesEffect>Add a Review</button>
         </div>

@@ -48,6 +48,8 @@
   font-size: 1em ;
 }
 .university{
+  position:absolute;
+  top: 78%;
   transition: opacity linear 0.3s;
   font-family: Muli;
   font-style: normal;
@@ -56,8 +58,7 @@
   color: #8A8886;
   line-height: 1.25em;
   padding-left: 7%;
-  padding-top: 4%;
-  padding-bottom: 4%;
+  
 }
 .footer{
   margin-bottom: 0px;
@@ -130,4 +131,11 @@ a{
 }
 a:hover{
   text-decoration: none;
+}
+.icon{
+  width: 18%;
+  height: auto;
+}
+.uni{
+  padding-top: 20%;
 }

@@ -4,12 +4,13 @@
 .provider {
   margin-left: 15%;
   margin-top: 4%;
+  width: 6%;
 }
 .buttons {
   margin-top: 2.5%;
 }
 .com {
-  margin-left: 17%;
+  margin-left: 33.5%;
 }
 .book,
 .comp,
@@ -73,7 +74,7 @@
   line-height: 30px;
   letter-spacing: 0.0015em;
   padding-left: 11%;
-  margin-top: 2%;
+  margin-top: 4%;
   margin-bottom: 1.4%;
 }
 .course-description {
@@ -102,25 +103,20 @@
   line-height: 20px;
   letter-spacing: 0.005em;
   color: #494949;
+  padding-top: 2%;
 }
-.professor-name2 {
-  font-family: Muli;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 20px;
-  letter-spacing: 0.005em;
-  color: #494949;
-}
+
 .professor-body {
   font-style: normal;
   font-weight: normal;
+  padding-top:0.5%;
   font-size: 14px;
   letter-spacing: 0.0025em;
   color: #8a8886;
 }
 .course-details {
   border: 2px solid #e0e2e8;
+  margin-top: 4%;
   margin-right: 25%;
   border-radius: 5px;
   background: #f8f8f8;
@@ -155,6 +151,15 @@ hr {
   position: relative;
   top: 1px;
   left: 20px;
+  font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+
+
+color: #8A8886;
 }
 .head {
   margin-bottom: 5%;
@@ -642,4 +647,10 @@ color: #A19F9D;
   color: #A19F9D;
   font-size: 14px;
   font-weight: normal;
+}
+a:hover{
+  text-decoration: none;
+}
+button:active{
+  background-color: #e2f1ff !important;
 }

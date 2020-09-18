@@ -17,25 +17,25 @@
         <!-- Grid column -->
         <div class="col-12">
           <!-- Default input -->
-          <input mdbInput type="text" class="form-control" placeholder="Name">
+          <input mdbInput type="text" class="form-control" placeholder="Name" [(ngModel)]="name">
         </div>
         <!-- Grid column -->
 
         <!-- Grid column -->
         <div class="col-12">
           <!-- Default input -->
-          <input mdbInput type="email" class="form-control" placeholder="E-mail ID">
+          <input mdbInput type="email" class="form-control" placeholder="E-mail ID" [(ngModel)]="email">
         </div>
         <!-- Grid column -->
         <div class="col-12">
           <!-- Default input -->
-          <input mdbInput type="text" class="form-control" placeholder="Subject">
+          <input mdbInput type="text" class="form-control" placeholder="Subject" [(ngModel)]="subject">
         </div>
         <div class="col-12">
-          <textarea type="text" class="form-control area" placeholder="Type your message here" mdbInput></textarea>
+          <textarea type="text" class="form-control area" placeholder="Type your message here" mdbInput [(ngModel)]="message"></textarea>
         </div>
         <div class="col-12">
-          <button mdbBtn type="button" class="button" color="primary" mdbWavesEffect>Send</button>
+          <button (click)="sendMail()" mdbBtn type="button" class="button" color="primary" mdbWavesEffect>Send</button>
         </div>
       </div>
     </div>
