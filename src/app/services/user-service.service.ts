@@ -21,8 +21,8 @@ export class UserServiceService {
     return this.http.put('https://edunaut-backend-api.herokuapp.com/user/update',update)
     
   }
- 
-  public  sampleCourse(){
-    return this.http.get(this.url+'/edunaut/getbykeyword/web/1/10');
+  
+  public removeBookmark(cid,uid){
+    return this.http.delete('https://edunaut-backend-api.herokuapp.com/bookmark/deleteByCidAndUid/'+cid+'/'+uid);
   }
 }

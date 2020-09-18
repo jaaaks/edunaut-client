@@ -85,13 +85,9 @@
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/audit.png"></span><span
-                            class="time-detail">You can edit this course </span>
-                    </div>
-                    <hr>
-                    <div>
-                        <span class="time"><img src="../../assets/course-detail/charging.png"></span><span
-                            class="time-detail">3Hrs/week, for 6 weeks </span>
+                        <span class="time"><img src="../../assets/course-detail/audit.png"></span><span *ngIf="course.course_audit == '-'"
+                            class="time-detail">You cannot audit this course </span><span *ngIf="course.course_audit != '-'"
+                            class="time-detail">You cannot audit this course </span>
                     </div>
                     <hr>
                     <div>
@@ -102,16 +98,6 @@
                     <div>
                         <span class="time"><img src="../../assets/course-detail/calendar.png"></span><span
                             class="time-detail">Start Any Time</span>
-                    </div>
-                    <hr>
-                    <div>
-                        <span class="time"><img src="../../assets/course-detail/batch-size.png"></span><span
-                            class="time-detail">80 in a batch</span>
-                    </div>
-                    <hr>
-                    <div>
-                        <span class="time"><img src="../../assets/course-detail/enrollments.png"></span><span
-                            class="time-detail">3423 total enrollments</span>
                     </div>
                     <hr>
                     <div>

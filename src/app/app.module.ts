@@ -71,7 +71,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {UserServiceService} from './services/user-service.service';
-import {HeroResolver} from './resolvers/apiResolver';
 import { BadgesComponent } from './badges/badges.component'
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -141,7 +140,7 @@ AngularFireAuthModule,
  InfiniteScrollModule,
  NgxSpinnerModule 
 ],
-  providers: [AuthenticationService,SeacrhServiceService, ProfileService,HeroResolver,UserServiceService,
+  providers: [AuthenticationService,SeacrhServiceService, ProfileService,UserServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
