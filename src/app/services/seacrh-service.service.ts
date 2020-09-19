@@ -16,14 +16,14 @@ export class SeacrhServiceService {
     return this.httpClient.get(`http://server-env.eba-zdwqv4a8.ap-south-1.elasticbeanstalk.com/edunaut/getallcourses`);
   }
   public getCourseByKeyWord(tag:string,pageNo:any,pageSize:any):Observable<any>{
-   
+    tag= tag.toLowerCase();
       var splitted = tag.split(" ");
       var searchKeyWords="";
      
       for(var index=0;index<splitted.length;index++){
         searchKeyWords= searchKeyWords + "*"+splitted[index]+"*; ";
       }
-   tag= tag.toLowerCase();
+   
     return this.httpClient.get(this.resourceUrl+"/edunaut/getbykeyword/"+searchKeyWords+"/"+pageNo+"/"+pageSize);
     }
 
