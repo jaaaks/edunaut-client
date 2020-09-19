@@ -4,7 +4,7 @@
             <p><img src="../../assets/profile/profile.png"></p>
             <p *ngIf="profileData">{{firstname}}{{" "}}{{lastname}}</p>
             <div class="bio1">
-            <p *ngIf="profileData" class="bio text-justify">{{bio}}</p>
+                <p *ngIf="profileData" class="bio text-justify">{{bio}}</p>
             </div>
             <div *ngIf="sameUser" class="col-12">
                 <p class="icons">
@@ -13,7 +13,7 @@
                 </p>
             </div>
             <p class="badges"> <span class="badges-header">Badges</span>
-                <span class="badges-all"><a href="badges">View Details</a></span>
+                <!--<span class="badges-all"><a href="badges">View Details</a></span>-->
                 <br>
                 <span>
                     <span class="badge1"><img src="../../assets/profile/rec.png"></span>
@@ -42,7 +42,64 @@
                         </div>
                         <hr>
                         <div class="col-12 body">
-                            <app-ongoing-courses></app-ongoing-courses>
+                            <img *ngIf="!isBookmark" src="../../assets/profile/Frame 120.png" class="img-fluid no-book">
+                            <div *ngIf= "isBookmark">
+                            <ngu-carousel  #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems1$ | async">
+                                <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
+                                  <mdb-card class="card ">
+                                    <div class="col-12 title1">
+                                      <img class="icon" src="../../assets//profile/{{item.course_provider}}.png">
+                                    </div>
+                                    <mdb-card-body class="bod">
+                                     <a href="/course-detail?cid={{item.course_id}}"> <mdb-card-title class="title-card">
+                                        {{item.course_name | slice:0:68}}...
+                                      </mdb-card-title>
+                                     </a>
+                                      <mdb-card-text>
+                                        <a href="/course-detail">
+                                        <div class="row fade1">
+                                          <div class="col-6 bag"><img src="../../assets/profile/bag.png">
+                                            <span *ngIf="item.course_fee != '-'"
+                                                            class="icon-body">{{" "}}{{item.course_fee}}</span>
+                                                        <span *ngIf="item.course_fee == '-'"
+                                                            class="icon-body">{{" "}}Free</span>
+                                                        </div>
+                                          <div class="col-6 clock"><img src="../../assets/profile/clock.png"><span
+                                            class="icon-body">{{" "}}{{item.course_dur}} Hrs
+                                        </span>
+                                            </div>
+                                          <div class="col-6 bulb"><img src="../../assets/profile/bulb.png"><span
+                                            class="icon-body">{{" "}}{{item.course_diff}}</span>
+                                              </div>
+                                          <div class="col-6 star"><img src="../../assets/profile/star.png"><span
+                                            *ngIf="item.course_review>0; else condition1"
+                                            class="icon-body">{{" "}}{{item.course_review}}
+                                            ({{item.course_rating}})</span>
+                                        <ng-template class="icon-bo" #condition1><span
+                                                class="icon-body">{{" "}}No Reviews</span></ng-template></div>
+                                        </div>
+                                        </a>
+                                        <hr class="footer">
+                                        <div class="row uni">
+                                          <div class="university">{{item.course_col}}</div>
+                                          <button mdbBtn type="button" (click)="comparator(item)" class="button2" color="info" outline="true" mdbWavesEffect>Compare</button>
+                                          <button mdbBtn type="button" (click)="removeBookmark(item)" class="button3" color="info" outline="true" mdbWavesEffect>Remove</button>
+                                        </div>
+                                      </mdb-card-text>
+                                    </mdb-card-body>
+                                  </mdb-card>
+                                </div>
+                              
+                                <button NguCarouselPrev class="leftRs" [style.opacity]="0.5">
+                                  &lt;
+                                </button>
+                                <button NguCarouselNext class="rightRs" [style.opacity]="0.5">
+                                  &gt;
+                                </button>
+                              
+                              
+                              </ngu-carousel>
+                            </div>
                         </div>
                     </div>
                     <ng-template #condition1>
@@ -53,11 +110,71 @@
                     <div class="col-12 bookmark">
                         Completed
                     </div>
-                    <hr>
-                    <div class="col-12 body">
-                        <app-bookmarked-courses></app-bookmarked-courses>
+                    <hr class="completed-line">
+                    <div class="col-12 body1">
+                        <img src="../../assets/profile/Frame 94.png" class="img-fluid no-comp">
+                       <!-- <ngu-carousel #myCarousel [inputs]="carouselTileConfig"
+                            [dataSource]="carouselTileItems$ | async">
+                            <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
+                                <mdb-card class="card ">
+                                    <div class="col-12 title1">
+                                        <img class="icon" src="../../assets/profile/{{item.course_provider}}.png">
+                                    </div>
+                                    <mdb-card-body class="bod">
+                                        <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
+                                            <mdb-card-title class="title-card">
+                                                {{item.course_name | slice:0:68}}...
+                                            </mdb-card-title>
+                                        </a>
+
+                                        <mdb-card-text>
+                                            <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
+                                                <div class="row fade1">
+                                                    <div class="col-6 bag"><img src="../../assets/profile/bag.png">
+                                                        <span *ngIf="item.course_fee != '-'"
+                                                            class="icon-body">{{" "}}{{item.course_fee}}</span>
+                                                        <span *ngIf="item.course_fee == '-'"
+                                                            class="icon-body">{{" "}}Free</span>
+                                                    </div>
+                                                    <div class="col-6 clock"><img
+                                                            src="../../assets/profile/clock.png"><span
+                                                            class="icon-body">{{" "}}{{item.course_dur}} Hrs
+                                                        </span></div>
+                                                    <div class="col-6 bulb"><img
+                                                            src="../../assets/profile/bulb.png"><span
+                                                            class="icon-body">{{" "}}{{item.course_diff}}</span></div>
+                                                    <div class="col-6 star"><img
+                                                            src="../../assets/profile/star.png"><span
+                                                            *ngIf="item.course_review>0; else condition1"
+                                                            class="icon-body">{{" "}}{{item.course_review}}
+                                                            ({{item.course_rating}})</span>
+                                                        <ng-template class="icon-bo" #condition1><span
+                                                                class="icon-body">{{" "}}No Reviews</span></ng-template>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <hr class="footer">
+                                            <div class="row uni">
+                                                <div class="university">{{item.course_col}}</div>
+                                                <button mdbBtn type="button" class="button1" color="info" outline="true"
+                                                    mdbWavesEffect>Add a Review</button>
+                                            </div>
+                                        </mdb-card-text>
+                                    </mdb-card-body>
+                                </mdb-card>
+                            </div>
+
+                            <button NguCarouselPrev class="leftRs" [style.opacity]="0.5">
+                                &lt;
+                            </button>
+                            <button NguCarouselNext class="rightRs" [style.opacity]="0.5">
+                                &gt;
+                            </button>
+
+
+                        </ngu-carousel>-->
                     </div>
-                    <div *ngIf="sameUser" class="col-12">
+                    <!-- <div *ngIf="sameUser" class="col-12">
                         <div class="col-12 complete">
                             Recommended
                         </div>
@@ -65,7 +182,7 @@
                         <div class="col-12 body last">
                             <app-completed-courses></app-completed-courses>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -82,26 +199,27 @@
                 <span class="modal-title w-100" id="myModalLabel">Edit Profile</span>
             </div>
             <div class="modal-body mod-body">
-                <form *ngIf="profileData" #updateInfo = "ngForm" (ngSubmit) = "onClickSubmit(updateInfo.value)" >
-                    <label class="test"for="firstname"> First Name<!--<span class="required">{{" "}}*</span>--></label>
+                <form *ngIf="profileData" #updateInfo="ngForm" (ngSubmit)="onClickSubmit(updateInfo.value)">
+                    <label class="test" for="firstname"> First Name
+                        <!--<span class="required">{{" "}}*</span>--></label>
                     <div>
-                    <input type = "text" name = "firstname" placeholder = "First Name" [(ngModel)]="profileData.firstname">
+                        <input type="text" name="firstname" placeholder="First Name"
+                            [(ngModel)]="profileData.firstname">
                     </div>
-                    <br/>
+                    <br />
                     <label class="test" for="lastname"> Last Name</label>
                     <div>
-                    <input type = "text" name = "lastname" placeholder = "Last Name" [(ngModel)]="profileData.lastname">
+                        <input type="text" name="lastname" placeholder="Last Name" [(ngModel)]="profileData.lastname">
                     </div>
-                    <br/>
+                    <br />
                     <label class="test" for="bio">Write Your Bio</label>
                     <div>
-                    <textarea name="bio" placeholder="Bio" [(ngModel)]="profileData.bio"></textarea>
+                        <textarea name="bio" placeholder="Bio" [(ngModel)]="profileData.bio"></textarea>
                     </div>
-                    <button class="cancel" type="button"
-                        aria-label="Close" (click)="basicModal.hide()" >Cancel</button>
-                    <button class="save" type = "submit" value = "submit" (click)="basicModal.hide()">Save</button>
-                    </form>
-                
+                    <button class="cancel" type="button" aria-label="Close" (click)="basicModal.hide()">Cancel</button>
+                    <button class="save" type="submit" value="submit" (click)="basicModal.hide()">Save</button>
+                </form>
+
             </div>
         </div>
     </div>

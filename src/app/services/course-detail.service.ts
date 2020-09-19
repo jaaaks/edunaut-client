@@ -10,9 +10,7 @@ export class CourseDetailService {
   constructor(private http: HttpClient) { }
 
   public writeCourseReview(review){
-    return this.http.put(this.url+"/review/add",review).subscribe(res =>{
-      console.log(res);
-    });
+    return this.http.put(this.url+"/review/add",review);
   }
   public getCourseById(courseId){
     return this.http.post(this.url+"/edunaut/courses",courseId);

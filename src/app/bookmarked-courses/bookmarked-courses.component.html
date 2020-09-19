@@ -2,8 +2,7 @@
   <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
     <mdb-card class="card ">
       <div class="col-12 title">
-        <img *ngIf="item.course_provider== 'Swayam'" class="icon" src="../../assets/profile/Treehouse.png">
-        <img *ngIf="item.course_provider== 'edX'" class="icon" src="../../assets/profile/edx.png">
+        <img class="icon" src="../../assets/profile/{{item.course_provider}}.png">
       </div>
       <mdb-card-body class="bod">
         <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">

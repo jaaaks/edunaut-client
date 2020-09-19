@@ -106,7 +106,7 @@ hr{
     line-height: 114%;
     padding-top: 4%;
 }
-.ongoing,.bookmark,.complete{
+.ongoing,.complete{
     font-family: Muli;
     font-weight: bold;
     font-style: normal;
@@ -119,9 +119,28 @@ hr{
     padding-top: 4%;
     margin-bottom: 0%;
 }
+.bookmark{
+    font-family: Muli;
+    font-weight: bold;
+    font-style: normal;
+    padding-left: 7.5%;
+    color: #494949;
+    letter-spacing: 0.0025em;
+    font-size: 1.25em;
+    line-height: 0%;
+    padding-bottom: 3px;
+    padding-top: 4%;
+    margin-bottom: 0%;
+}
 .body{
     padding-left: 5%;
     padding-right: 5%;
+    
+}
+.body1{
+    padding-left: 5.3%;
+    padding-right: 5%;
+    margin-bottom: 4%;
 }
 .last{
     margin-bottom: 4%;
@@ -252,4 +271,210 @@ border-radius: 5px;
 }
 .required{
     color: red;
+}
+.leftRs {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
+    border-radius: 999px;
+  }
+  .rightRs {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
+    border-radius: 999px;
+    right: 0;
+  }
+  .card{
+      margin-left: 6%;
+      margin-right: 6%;
+      margin-bottom: 8%;
+      border-radius: 5px;
+  }
+  .title1{
+      background-color: #1B5D9A;
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+  }
+  .icon{
+    position: relative;
+    top: 17px;
+  }
+  .dots{
+      padding-top: 8%;
+      padding-bottom: 5%;
+  }
+  .title-card{
+    position: absolute;
+    top: 26%;
+    font-family: Muli !important;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.25em;
+    font-size: 1em ;
+  }
+  .university{
+    position:absolute;
+    top: 78%;
+    transition: opacity linear 0.3s;
+    font-family: Muli;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #8A8886;
+    line-height: 1.25em;
+    padding-left: 7%;
+    
+  }
+  .footer{
+    margin-bottom: 0px;
+    border-top: 2px solid #e0e2e8;
+    width: 100%;
+  }
+  .bag,.clock{
+    padding-top: 10%;
+    font-size: 0.8em;
+    font-weight: 600;
+    font-style: normal;
+    font-family: Muli;
+    color: #8A8886;
+    line-height: 20px;
+  }
+  .star,.bulb{
+    padding-top: 3.5%;
+    font-weight: 600;
+    font-size: 0.8em;
+    font-style: normal;
+    font-family: Muli;
+    color: #8A8886;
+    line-height: 20px;
+    padding-right: 0px;
+  }
+  .bod{
+    padding-bottom: 0px;
+  }
+  .icon-body{
+    position: relative;
+    top: 2px;
+    left: 0px;
+  }
+  
+  .button1{
+      opacity: 0;
+      text-transform: none;
+      position: absolute;
+      transition: opacity linear 0.3s;
+      top: 78%;
+      left: 24%;
+      font-family: Muli !important;
+      font-size: 14px !important;
+      padding: 3% 8%;
+      font-weight: 600;
+      border-color: #0376FE !important;
+      border-radius: 6px;
+      color: #0376FE !important;
+      padding-left: 6.5% !important;
+      padding-right: 6.5% !important;
+      padding-bottom: 2% !important;
+      padding-top: 2% !important;
+  }
+  
+  .fade1{
+    margin-top: 13%;
+    transition: opacity linear 0.3s;
+  }
+  .card:hover{
+    .button1{
+      opacity: 1;
+    }
+    .university{
+      opacity: 0;
+    }
+  }
+  .icon-bo{
+    position: relative;
+    top: 12px !important;
+  }
+  a{
+    color: black !important;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+  .icon{
+    width: 18%;
+    height: auto;
+  }
+  .uni{
+    padding-top: 20%;
+  }
+  .button2{
+    opacity: 0;
+    position: absolute;
+    transition: opacity linear 0.3s;
+    top: 78%;
+    left: 6%;
+    font-family: Muli !important;
+    font-size: 12px !important;
+    padding: 3% 8%;
+    font-weight: 600;
+    border-color: #0376FE !important;
+    border-radius: 6px;
+    color: #0376FE !important;
+    padding-bottom: 2.5% !important;
+    padding-top: 2.5% !important;
+}
+.button3{
+  opacity: 0;
+  position: absolute;
+  transition: opacity linear 0.3s;
+  top: 78%;
+  right: 6%;
+  font-family: Muli !important;
+  font-size: 12px !important;
+  padding: 2% 8%;
+  font-weight: 600;
+  border-color: #0376FE !important;
+  border-radius: 6px;
+  color: #0376FE !important;
+  padding-bottom: 2.5% !important;
+  padding-top: 2.5% !important;
+}
+.fade1{
+  transition: opacity linear 0.3s;
+}
+.card:hover{
+  .button3{
+    opacity: 1;
+  }
+  .button2{
+    opacity: 1;
+  }
+  .university{
+    opacity: 0;
+  }
+}
+a{
+  color: black !important;
+}
+a:hover{
+  text-decoration: none;
+}
+.no-comp{
+    margin-left: 2.5%;
+}
+.completed-line{
+    margin-left: 7.65%;
+    margin-right: 7%;
+}
+.no-book{
+    padding-left: 1.65%;
 }

@@ -31,7 +31,7 @@ export class CourseDetailComponent implements OnInit {
   course;
   isCourse;
   userId = "";
-  reviews;
+  reviews ;
   reviewNo;
   averageReview;
   isReview;
@@ -84,7 +84,7 @@ export class CourseDetailComponent implements OnInit {
   }
   ngDoCheck(): void {
     if (this.count == 0) {
-      if (this.userId && this.isReview) {
+      if (this.userId && this.reviewNo) {
         this.isReview = this.reviews.find(({ id }) => id === this.userId);
         this.userReview = this.isReview.review;
         this.currentRate = this.isReview.rating;
@@ -152,7 +152,9 @@ export class CourseDetailComponent implements OnInit {
               uid: this.userId
             }
           }
-        );
+        ).subscribe(res=>{
+          location.reload();
+        });
       }
     }
     else {
