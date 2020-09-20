@@ -337,6 +337,7 @@ export class ListingPageComponent implements OnInit {
    private courseField=['Arts and Humanities','Business','Computer Science','Data Science','Health','Information Technology','Language Learning',
    'Physical Science and Engineering','Social Sciences','Math and Logic','Personal Development' ];
    public courseFieldParam=[];
+   public searchCourseField:string="";
 
    private courseSubField=['History','Music and Art','Philosophy','Business Essentials','Business Strategy','Entrepreneurship','Finance','Leadership and Management',
   'Marketing','Algorithms','Computer Science and Technology','Design and Product','Mobile and Web Development','Software Development','Data Analysis',
@@ -570,6 +571,8 @@ public chipList=[];
         switch(node.parameter){
           case 'course_field':{
             this.courseFieldParam.push(node.item);
+            this.searchCourseField= this.searchCourseField +" "+ node.item;
+            console.log(this.searchCourseField);
             break;
           }
           case 'course_type':{
@@ -608,6 +611,9 @@ public chipList=[];
           case 'course_field':{
             const index= this.courseFieldParam.indexOf(node.item);
             this.courseFieldParam.splice(index,1);
+            const regex="/" + node.item +"/gi";
+            this.searchCourseField= this.searchCourseField.replace(regex,"");
+            console.log(this.searchCourseField);
             break;
           }
           case 'course_type':{
@@ -685,6 +691,8 @@ public chipList=[];
       switch(node.parameter){
         case 'course_field':{
           this.courseFieldParam.push(node.item);
+          this.searchCourseField= this.searchCourseField +" "+ node.item;
+          console.log(this.searchCourseField);
           break;
         }
       }
@@ -698,6 +706,9 @@ public chipList=[];
         case 'course_field':{
           const index= this.courseFieldParam.indexOf(node.item);
           this.courseFieldParam.splice(index,1);
+          const regex="/" + node.item +"/gi";
+          this.searchCourseField= this.searchCourseField.replace(regex,"");
+          console.log(this.searchCourseField);
           break;
         }
     }

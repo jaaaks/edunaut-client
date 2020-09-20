@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     });
     this.signUpForm = fb.group({
       signUpFormEmail: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
-      signUpFormPassword: ['', Validators.required],
+      signUpFormPassword: ['',[ Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       signUpFormName:  ['', Validators.required],
       signUpFormConfirmPassword:['',Validators.required]
     },{
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           console.log('user not logged in');
    }
       });
-  }
+    }
   googleLogin(){
     var persistance='none';
     if(this.checked){
@@ -103,7 +103,6 @@ export class LoginComponent implements OnInit {
      });
    }
    onSubmit() {
-    
       var email= this.elegantForm.value['elegantFormEmailEx'];
       var password = this.elegantForm.value['elegantFormPasswordEx'];
       
@@ -134,6 +133,7 @@ export class LoginComponent implements OnInit {
        var email  = this.signUpForm.value['signUpFormEmail'];
        var password = this.signUpForm.value['signUpFormPassword'];
        var name = this.signUpForm.value['signUpFormName'];
+     
        this.authenticationService.SignUp(email, password).then(
         res=>{
           console.log("sign up successful",res);
@@ -149,6 +149,9 @@ export class LoginComponent implements OnInit {
                 },
         err=>{
           console.log("sign up not successful",err);
+          this.bottomSheet.open(BottomSheetComponent,{
+            data:err.message
+          })
           this.showErrormessage=true;
           this.errorMessage=err.message;
           this.loading=false;
@@ -187,6 +190,8 @@ resetPassword(){
     }
   )
 }
-
+checkEmailValid(){
+  console.log('abcd')
+}
    
 }
