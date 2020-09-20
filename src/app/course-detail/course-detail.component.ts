@@ -9,18 +9,43 @@ import { LoginComponent } from '../login/login.component';
 import { EmailVerificationComponent } from '../email-verification/email-verification.component';
 import { SeacrhServiceService } from '../services/seacrh-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserServiceService} from '../services/user-service.service';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
   styleUrls: ['./course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit {
-  @ViewChild('basicModal1', { static: true }) demoBasic: ModalDirective;
+  @ViewChild('basicModal1', { static: true }) demoBasic1: ModalDirective;
+  @ViewChild('basicModal2', { static: true }) demoBasic2: ModalDirective;
+  @ViewChild('basicModal3', { static: true }) demoBasic3: ModalDirective;
+  @ViewChild('basicModal4', { static: true }) demoBasic4: ModalDirective;
   showAndHideModal() {
-    this.demoBasic.show();
+    this.demoBasic1.show();
 
     setTimeout(() => {
-      this.demoBasic.hide();
+      this.demoBasic1.hide();
+    }, 6000);
+  }
+  showAndHideModal1() {
+    this.demoBasic2.show();
+
+    setTimeout(() => {
+      this.demoBasic2.hide();
+    }, 6000);
+  }
+  showAndHideModal2() {
+    this.demoBasic3.show();
+
+    setTimeout(() => {
+      this.demoBasic3.hide();
+    }, 6000);
+  }
+  showAndHideModal3() {
+    this.demoBasic4.show();
+
+    setTimeout(() => {
+      this.demoBasic4.hide();
     }, 6000);
   }
   currentRate = 0;
@@ -38,12 +63,16 @@ export class CourseDetailComponent implements OnInit {
   userReview;
   courseDomain;
   domain;
+  maxrid = 0;
+  userName;
   subdomain;
+  total = 0;
   isBookmark = false;
   userData;
+  isPost = false;
   professor: Array<{ name: String, ins: String, desc: String }>;
   count = 0;
-  constructor(private snackBar: MatSnackBar, private searchService: SeacrhServiceService, private dialog: MatDialog, private courseService: CourseDetailService, private route: ActivatedRoute, private afauth: AngularFireAuth, private messageService: MessageService) {
+  constructor(private userService: UserServiceService,private snackBar: MatSnackBar, private searchService: SeacrhServiceService, private dialog: MatDialog, private courseService: CourseDetailService, private route: ActivatedRoute, private afauth: AngularFireAuth, private messageService: MessageService) {
     this.afauth.authState.subscribe(
       res => {
         this.userId = res.uid;
@@ -69,14 +98,18 @@ export class CourseDetailComponent implements OnInit {
       console.log(data);
       this.reviews = data;
       this.reviewNo = this.reviews.length;
-      var total = 0;
+      this.total = 0;
       console.log(this.userId);
       for (var i = 0; i < this.reviewNo; i++) {
-        total += this.reviews[i].rating;
+        this.total += this.reviews[i].rating;
         this.reviews[i].rdate = Date.parse(this.reviews[i].rdate);
         console.log(this.reviews[i].rdate);
+        if(this.maxrid < this.reviews[i].rid){
+          this.maxrid = this.reviews[i].rid;
+        }
       }
-      this.averageReview = total / this.reviewNo;
+      console.log(this.maxrid);
+      this.averageReview = this.total / this.reviewNo;
       this.reviewTime();
     })
 
@@ -120,20 +153,20 @@ export class CourseDetailComponent implements OnInit {
     var days = (millisec / (1000 * 60 * 60 * 24));
     if (seconds < 60) {
       if (seconds < 2)
-        return Math.trunc(seconds) + " second";
-      return Math.trunc(seconds) + " seconds";
+        return Math.trunc(seconds) + " second ago";
+      return Math.trunc(seconds) + " seconds ago";
     } else if (minutes < 60) {
       if (minutes < 2)
-        return Math.trunc(minutes) + " min";
-      return Math.trunc(minutes) + " mins";
+        return Math.trunc(minutes) + " min ago";
+      return Math.trunc(minutes) + " mins ago";
     } else if (hours < 24) {
       if (hours < 2)
-        return Math.trunc(hours) + " hour";
-      return Math.trunc(hours) + " hours";
+        return Math.trunc(hours) + " hour ago";
+      return Math.trunc(hours) + " hours ago";
     } else {
       if (days < 2)
-        return Math.trunc(days) + " day";
-      return Math.trunc(days) + " days";
+        return Math.trunc(days) + " day ago";
+      return Math.trunc(days) + " days ago";
     }
   }
 
@@ -153,7 +186,31 @@ export class CourseDetailComponent implements OnInit {
             }
           }
         ).subscribe(res=>{
-          location.reload();
+          this.userService.profileInformation(this.userId).subscribe(res=>
+            {
+              this.userName = res;
+              this.userName = this.userName.firstname + " " +this.userName.lastname;
+              this.maxrid++;
+              this.reviewNo++;
+              this.isReview = true;
+              this.total = this.total+this.currentRate;
+              this.averageReview = this.total/this.reviewNo;
+              this.isPost = true;
+              this.showAndHideModal1();
+          this.reviews.push(
+            {
+              rid : this.maxrid,
+              courseid : this.courseId,
+              review: data.review,
+              rating: this.currentRate,
+              id: this.userId,
+              name: this.userName,
+              rdate: "Just Now",
+              edited: false
+            }
+          )
+            })
+          
         });
       }
     }
@@ -171,6 +228,10 @@ export class CourseDetailComponent implements OnInit {
   }
 
   onEdit(data) {
+    if(this.isPost){
+      alert("Please refresh the page to edit the review");
+    }
+    else{
     this.courseService.updateReview(
       {
         rid: this.isReview.rid,
@@ -178,8 +239,18 @@ export class CourseDetailComponent implements OnInit {
         rating: this.currentRate
       }
     ).subscribe((res) => {
-      location.reload();
-    });
+      this.showAndHideModal2();
+      this.total =0;
+      for(var j=0; j< this.reviewNo; j++){
+        if(this.reviews[j].rid == this.isReview.rid){
+          this.reviews[j].rating = this.currentRate;
+          this.reviews[j].review = this.userReview;
+          this.reviews[j].edited = true;
+        }
+        this.total += this.reviews[j].rating;
+      }
+      this.averageReview = this.total / this.reviewNo;
+    });}
   }
   comparator() {
     console.log();
@@ -189,9 +260,7 @@ export class CourseDetailComponent implements OnInit {
   bookmarkCourse() {
     if (this.userId) {
       if (this.userData.emailVerified) {
-        this.snackBar.open('Course Bookmarked', 'close', {
-          duration: 6000
-        })
+        this.showAndHideModal3();
         this.searchService.bookMarkcourse(
           {
             courseid: this.courseId,
@@ -205,9 +274,7 @@ export class CourseDetailComponent implements OnInit {
           this.isBookmark= true;
         }, err => {
           if (err = 'success') {
-            this.snackBar.open('Course BookMarked', 'close', {
-              duration: 6000,
-            })
+            this.showAndHideModal3();
             this.isBookmark = true;
           }
         })

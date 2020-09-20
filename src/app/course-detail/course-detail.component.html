@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-12 title-footer">
-            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="info" mdbWavesEffect><a
+            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="primary" mdbWavesEffect><a
                     href="/find?search={{j}}">{{j}}{{" "}}</a></button>
         </div>
     </div>
@@ -148,7 +148,7 @@
     </div>
 </div>
 <!-- End Of Modal-->
-<!-- Review Thanks Modal-->
+<!-- Course Report Modal-->
 <div mdbModal #basicModal1="mdbModal" [config]="{backdrop: false, ignoreBackdropClick: true}" class="modal fade"
     tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-frame modal-bottom" role="document">
@@ -157,6 +157,48 @@
                 <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
                     </span><span>{{" "}}</span> Thanks! We'll review your report and take appropriate action. We'll get
                     back to you soon!</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Modal-->
+<!-- Review Post Modal-->
+<div mdbModal #basicModal2="mdbModal" [config]="{backdrop: false, ignoreBackdropClick: true}" class="modal fade"
+    tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-frame modal-bottom" role="document">
+        <div class="modal-content mod1">
+            <div class="modal-header mod1-head">
+                <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
+                    </span><span>{{" "}}</span> Thanks for adding your review!
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Modal-->
+<!-- Review Edit Modal-->
+<div mdbModal #basicModal3="mdbModal" [config]="{backdrop: false, ignoreBackdropClick: true}" class="modal fade"
+    tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-frame modal-bottom" role="document">
+        <div class="modal-content mod1">
+            <div class="modal-header mod1-head">
+                <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
+                    </span><span>{{" "}}</span> Your Review has been edited.
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Modal-->
+<!-- Course Bookmark Modal-->
+<div mdbModal #basicModal4="mdbModal" [config]="{backdrop: false, ignoreBackdropClick: true}" class="modal fade"
+    tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-frame modal-bottom" role="document">
+        <div class="modal-content mod1">
+            <div class="modal-header mod1-head">
+                <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
+                    </span><span>{{" "}}</span> This course has been bookmarked!
+                    </span>
             </div>
         </div>
     </div>
@@ -203,7 +245,7 @@
                             <div class="row">
                                 <div class="col-8 name"><span>{{i.name}}</span><span class="edited"
                                         *ngIf="i.edited">{{" "}}[edited]</span></div>
-                                <div class="col-4 review-date">{{i.rdate}}{{" "}} ago</div>
+                                <div class="col-4 review-date">{{i.rdate}}</div>
                             </div>
                         </div>
                         <!-- <div class="designation">{{i.designation}}</div>-->

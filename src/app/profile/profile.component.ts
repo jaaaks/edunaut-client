@@ -13,6 +13,7 @@ import { slider } from '../tile/slide-animation';
 import {ProfileService} from '../services/profile.service';
 import { CourseDetailService} from '../services/course-detail.service';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,7 +21,15 @@ import { CourseDetailService} from '../services/course-detail.service';
   animations: [slider],
 })
 export class ProfileComponent implements OnInit {
-  @ViewChild('basicModal1', { static: true }) demoBasic: ModalDirective;
+  @ViewChild('basicModal1', { static: true }) demoBasic1: ModalDirective;
+  showAndHideModal1() {
+    this.demoBasic1.show();
+
+    setTimeout(() => {
+      this.demoBasic1.hide();
+    }, 6000);
+  }
+
   public profileData ;
   public profileId ;
   public currentUserid;
@@ -99,7 +108,8 @@ export class ProfileComponent implements OnInit {
 
       })
     );
-    this.isBookmark = true;
+    if(this.bookmarks[0] != 0){
+    this.isBookmark = true;}
   }
   onClickSubmit(data) {
     this.userService.updateProfile({
@@ -110,6 +120,7 @@ export class ProfileComponent implements OnInit {
       phoneno: "",
       bio: data.bio
     }).subscribe((res)=>{
+      this.showAndHideModal1();
       this.firstname =  data.firstname;
       this.lastname = data.lastname;
       this.bio = data.bio;
