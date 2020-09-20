@@ -19,6 +19,29 @@
             <strong>{{node.item}}</strong>
           </div>
         </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node; when: isAdvanceHeader" isExpanded=true matTreeNodeToggle
+        fxLayout="row wrap" fxLayoutAlign="space-between center" >
+        <div>
+          <strong>{{node.item}}</strong>
+        </div>
+
+        <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
+          <mat-icon class="icon-display">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+      </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node; when: isAdvance"  isExpanded=true
+        fxLayout="row wrap" fxLayoutAlign="center center" matTreeNodeToggle >
+        <div>
+          <strong>{{node.item}}</strong>
+        </div>
+        <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
+          <mat-icon class="icon-display">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+      </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isDivider" class="divider-node">
           <mat-divider class="tree-divider"></mat-divider>
         </mat-tree-node>
@@ -43,7 +66,7 @@
         <mat-tree-node *matTreeNodeDef="let node; when: isFee" matTreeNodeToggle>
           <div fxLayout="column">
            
-            <ng5-slider  [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+            <ng5-slider  [(value)]="minValue" (valueChange)="onSliderScroll($event)" [(highValue)]="maxValue" [options]="options"></ng5-slider>
             <div flexLayout="row" fxLayoutGap="20px" class="duration-input" fxLayoutAlign="space-around center">
               <input fxFlex="40" class="example-margin" matInput [(ngModel)]="minValue">
             <input  fxFlex="40" class="example-margin" matInput [(ngModel)]="maxValue">
@@ -93,10 +116,13 @@
               </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)='sortCheck()' >
-                  Value 1
+                  Relevence
                 </button>
                 <button mat-menu-item  (click)='sortCheck()'>
-                  Value 2
+                  Price
+                </button>
+                <button mat-menu-item  (click)='sortCheck()'>
+                     Duration
                 </button>
                
               </mat-menu>
@@ -118,14 +144,15 @@
               (mouseleave)="changeTextOutMethod(course)">
               <mat-card-header class="header">
                 <div class="strip"></div>
-                <div mat-card-avatar class="example-header-image"></div>
+                <div mat-card-avatar class="example-header-image" style=" background-image: url('assets/profile/{{course.course_provider}}.png');  background-position: center; "></div>
 
               </mat-card-header>
 
               <mat-card-content fxLayout="column" fxLayoutAlign="space-between" [ngStyle]="{'height':course.change ? '179px' : '179px','font-size':course.change ?'12px':'12px' }">
                 <div class="content"
                   >
-                  <a  class="course-link" href="/course-detail?cid={{course.course_id}}"> <strong>
+                  <a  type="button"  matTooltip="Go to Course Page"
+                  class="course-link" href="/course-detail?cid={{course.course_id}}"> <strong>
                       {{course.course_name}}
                     </strong></a>
                   

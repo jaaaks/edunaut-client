@@ -140,6 +140,7 @@ color: #8A8886;
 }
 .cross-icon{
   color: #0376FE;
+  font-size: 14px;
 }
 .show-password{
   position: absolute;
@@ -192,4 +193,24 @@ color: #000000;
  }
  .example-margin{
    font-size: 2vh;
+ }
+ .forget-password{
+  background: url(../../assets/login-details/forgetPassword.svg);
+  height: 199px;
+  width: 184px;
+ }
+ .email-link-padding{
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.004em;
+  width: 304px;
+  color: #757575;
+  padding: 0px 20px 0px 20px;
+ }
+ .send-email{
+  width: 114px;
+  padding: 0px 20px 20px 20px;
  }

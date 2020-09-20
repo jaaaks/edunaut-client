@@ -1,0 +1,20 @@
+.bottom-sheet{
+   
+    width: 100%;
+}
+::ng-deep .mat-bottom-sheet-container{
+    min-width: 100vw!important;
+    background: #0376FE;
+    
+   font-family: Mulish;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 114%;
+/* identical to box height, or 16px */
+
+display: flex;
+letter-spacing: 0.0025em;
+justify-content:center;
+color: #FFFFFF;
+  }

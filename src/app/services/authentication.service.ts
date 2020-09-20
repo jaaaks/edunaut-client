@@ -27,7 +27,7 @@ export class AuthenticationService {
     if(persitance==='local'){
       pers=auth.Auth.Persistence.LOCAL;
     }
-    else{  pers=auth.Auth.Persistence.NONE;}
+    else{  pers=auth.Auth.Persistence.SESSION;}
     var provider = new auth.GoogleAuthProvider();
     var promise = new Promise((resolve,reject)=>{
       this.angularFireAuth.setPersistence(pers).then(result=>{
@@ -52,7 +52,7 @@ export class AuthenticationService {
       pers=auth.Auth.Persistence.LOCAL;
     }
     else  {
-      pers=auth.Auth.Persistence.NONE;
+      pers=auth.Auth.Persistence.SESSION;
     }
 
     var provider = new auth.FacebookAuthProvider();
@@ -81,7 +81,7 @@ export class AuthenticationService {
     if(persistance==='local'){
       pers=auth.Auth.Persistence.LOCAL;
     }
-    else { pers=auth.Auth.Persistence.NONE;
+    else { pers=auth.Auth.Persistence.SESSION;
     }
     var promise = new Promise((resolve,reject)=>{
       this.angularFireAuth.setPersistence(pers).then(result=>{

@@ -1,4 +1,4 @@
-<div *ngIf="isSignUp" class="conatiner">
+<div *ngIf="isSignUp && !isForgetPassword" class="conatiner">
     <div fxLayout="row" fxLayoutAlign="space-between">
     <div class="title">Sign Up</div>
     <div class="circle">
@@ -98,7 +98,7 @@
     </div>
 
 </div>
-<div *ngIf="!isSignUp">
+<div *ngIf="!isSignUp && !isForgetPassword">
     <div fxLayout="row" fxLayoutAlign="space-between">
         <div class="title">Sign In</div>
  <div class="circle">
@@ -135,7 +135,7 @@
                             <div  fxLayout="row" fxLayoutAlign="space-between center">
                             <mat-checkbox (change)="showOptions($event)" class="example-margin">Remember me</mat-checkbox>
                             <div class="forgot-pass"> 
-                                <a class="link">Forgot Password?</a>
+                                <a class="link" (click)="isForgetPassword=!isForgetPassword">Forgot Password?</a>
                                 </div>
                                 
                             </div>
@@ -179,4 +179,46 @@
             </div>
     </div>
     </div>
+</div>
+
+<div *ngIf="isForgetPassword" class="conatiner">
+    <div fxLayout="row" fxLayoutAlign="space-between">
+    <div class="title">Password Assistance</div>
+    <div class="circle">
+        <button mat-icon-button mat-dialog-close >
+        <mat-icon  class="cross-icon">close</mat-icon>
+      </button>
+        </div>
+    </div>
+   
+    <div class="auth-background" fxLayout="row" fxLayoutAlign="start center">
+        <div  fxLayout="column">
+          
+                <div class="form-wrap" fxLayout="column" fxLayoutAlign="start">
+                    <form class="form-padding" [formGroup]="forgetPasswordForm">
+                        <div>
+                        <div>
+                        <label class="label">Enter Email ID linked to your account </label>
+                        </div>
+                        <input class="input-form" placeholder="johndoe@example.com" formControlName="forgetPasswordEmail" >
+                        </div>
+                    </form>
+              <div class="email-link-padding">
+                  <p >An OTP to reset your password would be sent to your email ID on clicking the send email button.</p>
+                 </div>
+                   <div class="send-email" >
+                 <button mat-flat-button (click)="resetPassword()"color="primary">Send Email</button>
+                 </div>
+                 </div>
+
+            
+        </div>
+        <div class="icon-area" >
+            <div class="right-sign">
+              <div class="forget-password">
+                        </div>
+            </div>
+        </div>
+    </div>
+
 </div>

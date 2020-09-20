@@ -7,6 +7,7 @@ import { MessageService } from '../services/message.service';
 import {MatDialog} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import  { environment} from "../../environments/environment"
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 
 import { LoginComponent } from '../login/login.component';
 import * as firebase from 'firebase/app'
@@ -65,7 +66,7 @@ export class NavBarComponent implements OnInit {
  }
 openDialog() {
   const dialogRef = this.dialog.open(LoginComponent,{
-    height:'520px',
+    maxHeight:'520px',
     minWidth:'411px',
     position:{
       top: '15vh',

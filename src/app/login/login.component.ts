@@ -11,6 +11,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogRef} from '@angular/material/dialog';
 import  { environment} from "../../environments/environment"
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 
 
 @Component({
@@ -21,10 +23,12 @@ import  { environment} from "../../environments/environment"
 export class LoginComponent implements OnInit {
     elegantForm: FormGroup;
     signUpForm:FormGroup;
+    forgetPasswordForm:FormGroup;
     loading = false;
     showErrormessage=false;
     errorMessage="";
     isSignUp=false;
+    isForgetPassword=false;
     hide = true;
     hide1=true;
     checked = false;
@@ -32,10 +36,14 @@ export class LoginComponent implements OnInit {
 
     profile={uid:"",firstname:"",lastname:"",email:"",phoneno:"",bio:""};
   constructor(public fb: FormBuilder,public authenticationService: AuthenticationService,public router:Router,public afauth:AngularFireAuth,
-    private dialogRef:MatDialogRef<LoginComponent>, private pfs:ProfileService,private messageService:MessageService) {
+    private dialogRef:MatDialogRef<LoginComponent>, private pfs:ProfileService,private messageService:MessageService,private bottomSheet:MatBottomSheet ) {
     this.elegantForm = fb.group({
       elegantFormEmailEx: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       elegantFormPasswordEx: ['', Validators.required]
+    });
+    this.forgetPasswordForm = fb.group({
+      forgetPasswordEmail: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
+     
     });
     this.signUpForm = fb.group({
       signUpFormEmail: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
@@ -74,6 +82,7 @@ export class LoginComponent implements OnInit {
       this.dialogRef.close('success');
     },err=>{
       console.log(err);
+    
       this.showErrormessage=true;
       this.errorMessage=err;
     });
@@ -112,9 +121,12 @@ export class LoginComponent implements OnInit {
         },
             msg=>{
               console.log('unsuccessful signed in!',msg);
-              this.errorMessage=msg;
-              this.loading=false;
-              this.showErrormessage=true;
+              this.bottomSheet.open(BottomSheetComponent,{
+                data:msg
+              })
+              // this.errorMessage=msg;
+              // this.loading=false;
+              // this.showErrormessage=true;
           })
   }
 
@@ -163,5 +175,18 @@ export class LoginComponent implements OnInit {
         return {invalid: true};
     }
 }
+resetPassword(){
+  var email= this.forgetPasswordForm.value['forgetPasswordEmail'];
+  this.afauth.sendPasswordResetEmail(email).then(
+    res=>{
+        console.log(res);
+          this.dialogRef.close();
+    },
+    err=>{
+      this.dialogRef.close();
+    }
+  )
+}
+
    
 }

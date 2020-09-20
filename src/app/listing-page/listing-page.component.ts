@@ -15,7 +15,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from '../login/login.component';
 import {MatChipInputEvent} from '@angular/material/chips';
-
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import { EmailVerificationComponent } from '../email-verification/email-verification.component';
 import {ProfileService} from '../services/profile.service'
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -23,12 +23,14 @@ import { Options } from 'ng5-slider';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
+
 export class TodoItemNode {
   children: TodoItemNode[];
   item: string;
 }
 export class BoomarkObject{
-  course_id: string;
+  courseid: string;
   status:string;
   percentage:string;
   userid:any;
@@ -47,6 +49,8 @@ export class TodoItemFlatNode {
   firstChild:boolean;
   parameter:string;
   parameterType:string;
+  advance:boolean;
+  advadedHeader:boolean;
 } 
 const personal='Personal Development';
 const TREE_DATA={};
@@ -137,15 +141,38 @@ divider1:null,
     'Live':null,
     Mixed:null
     },divider5:null,
+    Advanced:{
+      divider12:null,
     'Level of Difficulty':{
       'Introductory':null,
       'Intermediate':null,
       'Expert':null
     },divider6:null,
     Provider:{
+      Alison:null,
+      'Canvas Network':null,
+      Coggno:null,
       Coursera:null,
+      Datacamp:null,
       edX:null,
-      udemy:null
+      'Future Learn':null,
+      'Google Unlocked':null,
+      'HarvardX':null,
+      'Kadenze':null,
+      'Linked Learning':null,
+      'MIT OCW':null,
+      'NPTEL':null,
+      'Open Learning':null,
+      'Plural Sight':null,
+      'Skillshare':null,
+      'Swayam':null,
+      'The Great Courses':null,
+      'Treehouse':null,
+      'tuts+':null,
+      'Udacity':null,
+      'Udemy':null,
+      'upGrad':null,
+      'Yale OCW':null
     },divider7:null,
     'Course Content':{
       Audio:null,
@@ -166,6 +193,9 @@ divider1:null,
       'English':null,
       'French':null
     }
+    
+  },
+  divider11:null
 }
 @Injectable()
 export class ChecklistDatabase {
@@ -281,7 +311,8 @@ export class ListingPageComponent implements OnInit {
 
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
-    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute,private spinner: NgxSpinnerService) { 
+    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute,private spinner: NgxSpinnerService,
+    private bottomsheet:MatBottomSheet) { 
     this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message)});
  
@@ -325,7 +356,30 @@ public programModeParam=[];
 private difficultyLevel=['Introductory','Intermediate','Expert','Mixed'];
 public difficultyLevelParam=[];
 
-private courseprovider=['Coursera','udemy','edX'];
+private courseprovider=[ 'Alison',
+  'Canvas Network',
+  'Coggno',
+  'Coursera',
+  'Datacamp',
+  'edX',
+  'Future Learn',
+  'Google Unlocked',
+  'HarvardX',
+  'Kadenze',
+  'Linked Learning',
+  'MIT OCW',
+  'NPTEL',
+  'Open Learning',
+  'Plural Sight',
+  'Skillshare',
+  'Swayam',
+  'The Great Courses',
+  'Treehouse',
+  'tuts+',
+  'Udacity',
+  'Udemy',
+  'upGrad',
+  'Yale OCW'];
 public courseProvideParam=[];
 
 private contentType=['Audio','Video','Text'];
@@ -350,12 +404,13 @@ public chipList=[];
     flatNode.level = level;
     flatNode.expandable = !!node.children?.length;
    
-    if(level===0){
+    if(level===0 && flatNode.item!='Advanced'){
       flatNode.header = true;
       this.treeControl.expand(flatNode);
     }
-    else{
+    else if(flatNode.item=='Advanced'){
       flatNode.header = false;
+      flatNode.advance=true;
     }
     if(level===1){
       flatNode.firstChild=true;
@@ -383,9 +438,14 @@ public chipList=[];
     else {
       flatNode.fee= false;
       }
+      if(node.item==="Level of Difficulty" || node.item==='Provider' || node.item==="Course Content" || node.item==="other Specifics"
+      || node.item==="Language" || node.item==="Transcript"){
+        flatNode.advadedHeader=true;
+      }
       if(node.item==="divider" || node.item==="divider1" || node.item==="divider2"|| node.item==="divider3"
       || node.item==="divider4" || node.item==="divider5"  || node.item==="divider6" || node.item==="divider7"
-      || node.item==="divider8" || node.item==="divider9" || node.item==="divider10"){
+      || node.item==="divider8" || node.item==="divider9" || node.item==="divider10" || node.item==="divider11"||
+      node.item==="divider12"){
         flatNode.divider=true;
         flatNode.header=false;
       }
@@ -404,6 +464,10 @@ public chipList=[];
   isRating =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.rating;
   isFee =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.fee;
   isDivider= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.divider;
+  isAdvance= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.advance;
+  isAdvanceHeader= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.advadedHeader;
+
+
   hasPadding=(_: number, _nodeData:TodoItemFlatNode)=>  _nodeData.level ==(1 || 2)? true:false;
   
    
@@ -713,11 +777,11 @@ public chipList=[];
         this.snackBar.open('Course Bookmarked','close',{
           duration:2000
         })
-        this.bookMarkobject.course_id= course.course_id;
+        this.bookMarkobject.courseid= course.course_id;
         this.bookMarkobject.userid={"uid":this.userData.uid};
         this.bookMarkCourseMap.set(course.course_id,true);
          this.searchService.bookMarkcourse(this.bookMarkobject).subscribe(data=>{
-          
+             
          },err=>{
            if(err='success'){
             this.snackBar.open('Course BookMarked','close',{
@@ -726,18 +790,12 @@ public chipList=[];
            }
          })
       }else{
-        const dialogRef1 = this.dialog.open(EmailVerificationComponent,{
-          height:'520px',
-          minWidth:'411px',
-          position:{
-            top: '15vh',
-             },
-             
-        }
-        );
+       this.bottomsheet.open(BottomSheetComponent,{
+         data:'Account verification email has been sent to your email ID'
+       });
         this.userData.sendEmailVerification().then(result=>{
           course.bookmarked=!course.bookmarked;
-          dialogRef1.close();
+         
         },
         err=>{
                console.log('not verified')
@@ -746,7 +804,7 @@ public chipList=[];
        }
        else{
         const dialogRef = this.dialog.open(LoginComponent,{
-          height:'520px',
+          maxHeight:'520px',
           minWidth:'411px',
           position:{
             top: '15vh',
@@ -1019,5 +1077,8 @@ clicked35(){
     // parent.item==='Language'?flatNode.parameter='course_lang':flatNode.parameter='course_trnsc';
    }
     }
+  }
+  onSliderScroll(event){
+     console.log(this.minDuration,this.minValue,this.maxDuration,this.maxValue);
   }
 }
