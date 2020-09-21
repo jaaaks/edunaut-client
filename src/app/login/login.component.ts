@@ -186,12 +186,19 @@ resetPassword(){
           this.dialogRef.close();
     },
     err=>{
-      this.dialogRef.close();
+    this.bottomSheet.open(BottomSheetComponent,{
+         data:err.message
+    })      
+      console.log(err);
     }
   )
 }
 checkEmailValid(){
-  console.log('abcd')
+  if(this.signUpForm.get('signUpFormPassword').invalid){
+    this.bottomSheet.open(BottomSheetComponent,{
+      data:'Your password must be at least 8 characters long, contain at least one number and have a mixture of uppercase and lowercase letters.'
+    })
+  }
 }
    
 }

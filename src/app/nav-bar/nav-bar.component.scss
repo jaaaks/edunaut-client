@@ -8,6 +8,7 @@
   padding:0;
   height: 56px !important;
   margin-bottom: 10px;
+  width: 100%;
 }
 .navbar-brand{
   position: relative;
@@ -71,49 +72,63 @@ input {
 
   and (max-device-width: 812px) 
    { 
+    ::ng-deep .navbar-toggler{
+      display: none !important
+    }
+     button{
+       display: none;
+     }
+     .sample{
+      display: none;
+    }
+    .edu-brand{
+      margin: auto;
+      left: 0vw !important;
+    }
+    
 
     /* Here are some changes*/
-    button {
-      &.btn-search {
-        right:-8px !important;
-      }
-    }
-    .sample {
-      float: left;
+  //   button {
+  //     &.btn-search {
+  //       right:-8px !important;
+  //     }
+  //   }
+  //   .sample {
+  //     float: left;
   
-      margin: 0 0% !important;
-      position: relative;
-      width: 34%;
-      &.one,
-      &.two {
-        input {
-          border-radius: 15px;
-          right: 0;
-         width: 100%;
-          &:focus {
-            width: 100%;
-            ~ button {
-              &.btn-search {
-                background:  #0376FE;;
-                color: #fff;
-              }
+  //     margin: 0 0% !important;
+  //     position: relative;
+  //     width: 34%;
+  //     &.one,
+  //     &.two {
+  //       input {
+  //         border-radius: 15px;
+  //         right: 0;
+  //        width: 100%;
+  //         &:focus {
+  //           width: 100%;
+  //           ~ button {
+  //             &.btn-search {
+  //               background:  #0376FE;;
+  //               color: #fff;
+  //             }
               
-            }
-          }
-        }
-        button {
-          transition: all .3s ease-in-out;
-          &.btn-search {
-            background: #ccc;
-            border-radius: 50%;
-            height: 26px;
-            transition: all .3s ease-in-out;
-            width: 26px;
-          }
+  //           }
+  //         }
+  //       }
+  //       button {
+  //         transition: all .3s ease-in-out;
+  //         &.btn-search {
+  //           background: #ccc;
+  //           border-radius: 50%;
+  //           height: 26px;
+  //           transition: all .3s ease-in-out;
+  //           width: 26px;
+  //         }
         
-        }
-      }
-  }
+  //       }
+  //     }
+  // }
 }
 
 

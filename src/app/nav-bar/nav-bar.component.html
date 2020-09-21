@@ -1,5 +1,5 @@
 
-<mdb-navbar SideClass="navbar sticky-top navbar-expand-lg navbar-light white"   [containerInside]="false" [iconBackground]="'blue'">
+<mdb-navbar SideClass="navbar sticky-top navbar-expand-lg navbar-light white"   [containerInside]="false" [iconBackground]="'blue'" fxLayout.md="row" fxLayoutAlign.md="center" >
 
 
   <mdb-navbar-brand class="edu-brand">
@@ -7,7 +7,7 @@
       <img src="../../assets/Capture.PNG" height="30" class="d-inline-block align-top" alt="Edunaut">
 </a>
   </mdb-navbar-brand>
- <div class="sample one">
+ <div class="sample one" >
    
       <input type="text" id="search" name="search" (keyup.enter)="sendMessage()" placeholder="Search and Explore Courses" [(ngModel)]='searchParameter'>
      <a href="/find?search={{searchParameter}}"> <button type="submit"   class="fab fa-sistrix btn btn-search"></button></a>
@@ -17,14 +17,8 @@
     <!-- Links -->
     <links>
     <ul class="navbar-nav ml-auto">
-    
+ <!-- Dropdown -->
      
-     
-
-      <!-- Dropdown -->
-      <li class="nav-item dropdown">
-        <a href="#" class="nav-link m-2 menu-item " mdbWavesEffect>Community</a>
-    </li>
       <li  *ngIf="!loggedIn"  class="nav-item m-2 menu-item">
         <button mat-raised-button color="primary" (click)="openDialog()" mdbWavesEffect>Log In</button>
       </li>
@@ -38,12 +32,8 @@
             <a class="dropdown-item waves-light" mdbWavesEffect (click)="signOut()">Log out</a>
           </div>
         </li>
-           
-    </ul>
+            </ul>
    
-  
-     
-   
-  </links>
+   </links>
 
 </mdb-navbar>

@@ -144,7 +144,7 @@
               (mouseleave)="changeTextOutMethod(course)">
               <mat-card-header class="header">
                 <div class="strip"></div>
-                <div mat-card-avatar class="example-header-image" style=" background-image: url('assets/profile/{{course.course_provider}}.png');  background-position: center; "></div>
+                <div mat-card-avatar class="example-header-image" style=" background-image: url('assets/profile/{{course.course_provider}}.png');  background-position: center; background-size: 40px; background-repeat: no-repeat;"></div>
 
               </mat-card-header>
 
@@ -152,12 +152,12 @@
                 <div class="content"
                   >
                   <a  type="button"  matTooltip="Go to Course Page"
-                  class="course-link" href="/course-detail?cid={{course.course_id}}"> <strong>
+                  class="course-link" href="/course-detail?cid={{course.course_id}}">
                       {{course.course_name}}
-                    </strong></a>
+                  </a>
                   
                 </div>
-               <div>
+               <div class="card-icons">
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
                     <span class="icon-body">{{" "}}{{course.course_fee}}</span></div>
@@ -173,7 +173,7 @@
 
               </mat-card-content>
               <mat-divider></mat-divider>
-              <mat-card-footer [ngStyle]="{'height':course.change ? '61px' : '61px','font-size':course.change ?'13px':'13px' }">
+              <mat-card-footer >
                 <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="!course.change">
                   <div class="footer-univ">
                    <span >{{course.course_col}}</span>
@@ -182,9 +182,9 @@
                     <mat-icon *ngIf="bookMarkCourseMap.has(course.id)" >bookmark</mat-icon>
                     <mat-icon *ngIf="!bookMarkCourseMap.has(course.id)" >bookmark_border</mat-icon>
                  </div> -->
-                 <div *ngIf="bookMarkCourseMap.has(course.course_id)" ><img src="../../assets/Vector (1).png">
+                 <div class="book-icon" *ngIf="bookMarkCourseMap.has(course.course_id)" ><img src="../../assets/Vector (1).png">
                   </div>
-                  <div *ngIf="!bookMarkCourseMap.has(course.course_id)" ><mat-icon>bookmark_border</mat-icon>
+                  <div class="book-icon" *ngIf="!bookMarkCourseMap.has(course.course_id)" ><mat-icon>bookmark_border</mat-icon>
                   </div>
                 </div>
 

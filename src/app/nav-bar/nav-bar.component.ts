@@ -7,7 +7,6 @@ import { MessageService } from '../services/message.service';
 import {MatDialog} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import  { environment} from "../../environments/environment"
-import {MatBottomSheet} from '@angular/material/bottom-sheet';
 
 import { LoginComponent } from '../login/login.component';
 import * as firebase from 'firebase/app'

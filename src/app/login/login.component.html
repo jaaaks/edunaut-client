@@ -32,13 +32,13 @@
                                 
                                 <div fxLayout="row" class="input-wrap">
                                     
-                              <input [type]="hide ? 'password': 'text'" class="input-form" placeholder="password" formControlName="signUpFormPassword">
+                              <input [type]="hide ? 'password': 'text'"   (change)="checkEmailValid()" class="input-form" placeholder="password" formControlName="signUpFormPassword">
                               <button mat-icon-button  class="show-password" (click)="showPass()" >
                                 <mat-icon class="show-pass-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                               </button>
                                
                                 </div>
-                                <div *ngIf="">Not a string password</div>
+                               
                             </div>
                             <div>
                                 <div>
@@ -201,7 +201,7 @@
                         <div>
                         <label class="label">Enter Email ID linked to your account </label>
                         </div>
-                        <input class="input-form" (change)="checkEmailValid()" placeholder="johndoe@example.com" formControlName="forgetPasswordEmail" >
+                        <input class="input-form" placeholder="johndoe@example.com" formControlName="forgetPasswordEmail" >
                         </div>
                     </form>
               <div class="email-link-padding">
