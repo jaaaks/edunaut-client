@@ -334,19 +334,40 @@ border-radius: 5px;
     }
 
    .example-card:empty {
-      animation: loading 1.7s infinite linear;
-      background: #dedfe1;
-      background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
-      background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+    display: inline-block;
+    background-size: 1200px auto !important;
+    
+      // animation: loading 1.7s infinite forwards;
+      background: #f6f7f8;
+      display: inline-block;
+      background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
       background-repeat: no-repeat;
-    }
+      position: relative; 
+
+      animation-duration: 1s;
+      animation-fill-mode: forwards; 
+      animation-iteration-count: infinite;
+      animation-name: placeholderShimmer;
+      animation-timing-function: linear;
+      
+ }
     @keyframes loading {
       0% {
-        background-position: -100px;
+        background-position: -468px 0;
       }
     
       100% {
-    background-position: 200px;
+        background-position: 468px 0; 
+      }
+    }
+
+    @keyframes placeholderShimmer {
+      0% {
+        background-position: -468px 0;
+      }
+      
+      100% {
+        background-position: 468px 0; 
       }
     }
 
