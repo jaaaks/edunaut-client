@@ -144,14 +144,10 @@ AngularFireAuthModule,
  MatMenuModule,
  MatChipsModule,
  InfiniteScrollModule,
-<<<<<<< HEAD
  NgxSpinnerModule,
  MatBottomSheetModule,
- MatTooltipModule
-=======
- NgxSpinnerModule ,
+ MatTooltipModule,
  MatStepperModule
->>>>>>> 7842499297cf22d3f91bb88f1966b523172f12ce
 ],
   providers: [AuthenticationService,SeacrhServiceService, ProfileService,UserServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },

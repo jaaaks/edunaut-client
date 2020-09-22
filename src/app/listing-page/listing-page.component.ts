@@ -516,7 +516,7 @@ public chipList=[];
       searchParam = params['search'];
       this.searchKey=searchParam;
       providerParam=params['provider'];
-      if(providerParam!==undefined &&  this.courseProvideParam.indexOf(providerParam)>-1){
+      if(providerParam!==undefined &&  this.courseProvideParam.indexOf(providerParam)===-1){
       this.courseProvideParam.push(providerParam);
       }
       this.pageNo=0;
