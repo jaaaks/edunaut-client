@@ -64,14 +64,14 @@
                         <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span
                             *ngIf="course.course_review == '-'" class="time-detail">No Reviews on
                             {{course.course_provider}}</span>
-                        <span *ngIf="course.course_review != '-'" class="time-detail">{{course.review}} on
+                        <span *ngIf="course.course_review != '-'" class="time-detail">{{course.course_review}} on
                             {{course.course_provider}}</span>
                     </div>
                     <hr>
                     <div>
                         <span class="time"><img src="../../assets/course-detail/price.png"></span><span
                             *ngIf="course.course_fee == '-'" class="time-detail">Free</span><span
-                            *ngIf="course.course_fee != '-'">{{course.course_fee}}</span>
+                            *ngIf="course.course_fee != '-'" class="time-detail">{{course.course_fee}}{{" "}}INR</span>
                     </div>
                     <hr>
                     <div>
