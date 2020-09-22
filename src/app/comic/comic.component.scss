@@ -30,4 +30,37 @@
   background-color: #f8f8f8;
   right: 0;
 }
+.myPoint {
+  list-style-type: none;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: auto;
+  box-sizing: border-box;
+  li {
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.55);
+    padding: 4px;
+    margin: 0 3px;
+    transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    transition: 0.4s;
+    &.active {
+      background: #6b6b6b;
+      transform: scale(1.2);
+    }
+  }
+}
+@media screen and (max-width: 580px){
+  li{
+    border: 2px solid white !important;
+    background: #E0E2E8;
+    &.active{
+      background-color: #0376fe !important;
+    }
+    color: #0376fe !important;
+  }
+  
+}
 

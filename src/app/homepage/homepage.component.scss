@@ -297,15 +297,80 @@ $spacing: -0.015em;
 }
 @media screen and (max-width: 580px){
   .title{
-    line-height: 1.4em;
-    padding-top: 50%;
+    padding-left: 0%;
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 26px;
+font-weight: 700;
+line-height: 31px;
+  }
+  .heading{
+    padding-top: 0%;
+    margin-top: -15% !important;
+    text-align: center;
   }
   .btn-primary{
-    margin-top: 15%;
+    margin-top: 3%;
+    padding: 2.8% 2.8%;
+    font-family: Muli;
+    border-radius: 5px;
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+text-transform: none;
   }
   .title-body{
-    line-height: 1.3em;
-    font-size: 0.65em;
+    padding-top: 1%;
+    font-family: Muli;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 20px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #8A8886;
+  }
+  .title-img{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .temp{
+    margin-top: 10%;
+    text-align: center;
+  }
+  .temp-text{
+    font-family: Muli;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 20px;
+display: flex;
+align-items: center;
+text-align: justify;
+
+color: #8A8886;
+  }
+  input{
+    display: flex;
+flex-direction: row;
+padding: 6px 8px;
+    background: #FAFBFC;
+border: 2px solid #E0E2E8;
+box-sizing: border-box;
+border-radius: 5px;
+width: 100%;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 23px;
+
+color: #8A8886;
+margin-top: 10%;
   }
   .cors{
     padding-left: 14%;
@@ -317,13 +382,70 @@ $spacing: -0.015em;
     font-size: 0.8em;
   }
   .brands-head{
-    font-size: 0.9em;
+    margin-top: 12%;;
+    font-weight: 700;
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 22px;
+text-align: center;
+
+color: #0376FE;
+  }
+  .courses{
+    display: flex;
   }
   .skills-header{
-    font-size: 0.9em;
+    padding-left: 0;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    font-weight: 700;
+    color: #0376FE;
   }
-  .domain-header{
-    font-size: 0.9em;
+  .skills{
+    margin-top: 0px;
+    padding-top: 0;;
+    background: white;
+    img{
+      width: 70%;
+      height: auto;
+      margin-left: 15%;
+      margin-top: 12%;
+    }
+  }
+  .domain-title{
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 22px;
+padding-left: 0;
+text-align: center;
+font-weight: 700;
+color: #0376FE;
+margin-top: 10%;
+  }
+  .comic-zone{
+    background: white;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 0;
+    text-align: center;
+    font-weight: 700;
+    color: #0376FE;
+    margin-top: 5%;
+  }
+  .hobbs{
+    padding-left: 0%;
+    padding-right: 0%;
   }
   .find{
     font-size: 0.8em;
