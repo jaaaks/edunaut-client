@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
   public carouselTileItems$: Observable<number[]>;
   public carouselTileItems1$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {
-    grid: { xs: 1, sm: 2, md: 3, lg: 4, all: 0 },
+    grid: { xs: 1, sm: 2, md: 3, lg: 3, all: 0 },
     speed: 250,
     point: {
       visible: true
@@ -178,7 +178,6 @@ export class ProfileComponent implements OnInit {
         }
       }
     );
-    this.carousel();
   }
 
   comparator(course){

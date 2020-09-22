@@ -53,3 +53,14 @@
     }
   }
 }
+@media screen and (max-width: 580px){
+  li{
+    border: 2px solid white !important;
+    background: #E0E2E8;
+    &.active{
+      background-color: #0376fe !important;
+    }
+    color: #0376fe !important;
+  }
+  
+}
