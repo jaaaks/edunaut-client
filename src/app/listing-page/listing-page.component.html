@@ -107,7 +107,7 @@
           </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="comp">
-          <div> Results</div>
+          <div>{{this.totalResults}} Results</div>
           <div class="sortButton">
             <div class="sort">
               Sort
@@ -165,7 +165,7 @@
                 </div>
                       <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb"fxFlex="70" ><img src="../../assets/profile/bulb.png"><span
-                      class="icon-body">{{" "}}Intermediate</span></div>
+                      class="icon-body">{{" "}}{{course.course_diff}}</span></div>
                   <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_review}}/5
                       ({{course.course_rating}})</span></div>
                 </div>
@@ -211,13 +211,14 @@
 
         
  </div>
- <div class="row pb-5">
+ <div *ngIf="bottomindictor" class="bottomIndi">You have reached at the bottom of search results !!</div>
+ <div class="row pb-5" *ngIf="loading && !loadingFirst">
   <div class="col-md-12 p-5">
   <ngx-spinner
   bdOpacity = 0.9
   bdColor = ""
   size = "default"
-  color = "#581f87"
+  color = "#0376FE"
   type = "ball-pulse-sync"
   [fullScreen] = "false"
   >

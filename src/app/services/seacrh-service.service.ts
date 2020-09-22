@@ -33,4 +33,7 @@ export class SeacrhServiceService {
     public getBookmarkedCourses(courselist){
       return this.httpClient.get(this.resourceUrl+"/edunaut/course",{observe:courselist});
     }
+    public getFilteredCourses(courseList,pageNo,pageSize){
+      return this.httpClient.post(this.resourceUrl+"/edunaut/filter/" + pageNo + "/" + pageSize,courseList);
+    }
 }

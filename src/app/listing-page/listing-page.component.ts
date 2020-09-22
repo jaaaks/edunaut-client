@@ -16,6 +16,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from '../login/login.component';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
+
 import { EmailVerificationComponent } from '../email-verification/email-verification.component';
 import {ProfileService} from '../services/profile.service'
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -23,7 +25,6 @@ import { Options } from 'ng5-slider';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 
 export class TodoItemNode {
   children: TodoItemNode[];
@@ -144,7 +145,7 @@ divider1:null,
     Advanced:{
       divider12:null,
     'Level of Difficulty':{
-      'Introductory':null,
+      'Beginner':null,
       'Intermediate':null,
       'Expert':null
     },divider6:null,
@@ -354,8 +355,10 @@ private programMode=['Recorded','Live','Mixed'];
 public programModeParam=[];
 
 
-private difficultyLevel=['Introductory','Intermediate','Expert','Mixed'];
+private difficultyLevel=['Beginner','Intermediate','Expert','Mixed'];
 public difficultyLevelParam=[];
+
+public isCertiRequired:boolean=false;
 
 private courseprovider=[ 'Alison',
   'Canvas Network',
@@ -439,7 +442,7 @@ public chipList=[];
     else {
       flatNode.fee= false;
       }
-      if(node.item==="Level of Difficulty" || node.item==='Provider' || node.item==="Course Content" || node.item==="other Specifics"
+      if(node.item==="Level of Difficulty" || node.item==='Provider' || node.item==="Course Content" || node.item==="Other Specifics"
       || node.item==="Language" || node.item==="Transcript"){
         flatNode.advadedHeader=true;
       }
@@ -485,6 +488,7 @@ public chipList=[];
     //    this.totalResults=this.courseList.length;
 
     // });
+    this.setCourseParameter();
     this.afauth.authState.subscribe(
       res => {
         if (res && res.uid) {
@@ -504,11 +508,20 @@ public chipList=[];
       err=>{
         this.isLoggedIn=false;
       });
+     
+
     var searchParam;
+    var providerParam;
      this.activateRouter.queryParams.subscribe(params => {
       searchParam = params['search'];
       this.searchKey=searchParam;
-      this.searchMethod(searchParam);
+      providerParam=params['provider'];
+      if(providerParam!==undefined &&  this.courseProvideParam.indexOf(providerParam)>-1){
+      this.courseProvideParam.push(providerParam);
+      }
+      this.pageNo=0;
+      this.bottomindictor=false;
+      this.searchFilterBased(searchParam);
     });
 
     
@@ -516,7 +529,7 @@ public chipList=[];
   }
   loading =false;
   pageSize="30";
-  pageNo:number=1;
+  pageNo:number=0;
   searchKey:string;
   searchMethod(parameter):void{
     if(this.pageNo===1){
@@ -539,7 +552,6 @@ public chipList=[];
       this.pageNo= this.pageNo+1;
       this.filterCourse('any');
   });
-  this.setCourseParameter();
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
     if(node.parameter!=='course_field'){
@@ -576,11 +588,11 @@ public chipList=[];
             break;
           }
           case 'course_type':{
-            this.contentTypeParam.push(node.item);
+            this.programTypeParam.push(node.item);
             break;
           }
           case 'course_program':{
-            this.programTypeParam.push(node.item);
+            this.programModeParam.push(node.item);
             break;
           }
           case 'course_diff':{
@@ -603,6 +615,10 @@ public chipList=[];
             this.transcriptParam.push(node.item);
             break;
           }
+          case 'course_certi' :{
+            this.isCertiRequired=true;
+            break;
+          }
        }
          
       }
@@ -617,8 +633,8 @@ public chipList=[];
             break;
           }
           case 'course_type':{
-            const index= this.contentTypeParam.indexOf(node.item);
-            this.contentTypeParam.splice(index,1);
+            const index= this.programTypeParam.indexOf(node.item);
+            this.programTypeParam.splice(index,1);
             break;
           }
           case 'course_program':{
@@ -651,13 +667,18 @@ public chipList=[];
             this.transcriptParam.splice(index,1);
             break;
           }
+          case 'course_certi' :{
+            this.isCertiRequired=false;
+            break;
+          }
       }
-    
+      this.pageNo=0;
+      this.searchFilterBased(this.searchKey);
   }
      
     //   }
-  
-    this.filterCourse('any');
+    this.pageNo=0;
+    this.searchFilterBased(this.searchKey);
   }
   descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
     if(node.parameter!=='course_field')
@@ -717,8 +738,9 @@ public chipList=[];
     this.chipList.splice(index1,1);
     }
   }
-  }
-    this.filterCourse("any")  
+  } 
+    this.pageNo=0;  
+    this.searchFilterBased(this.searchKey);
   }
 
   checkAllParentsSelection(node: TodoItemFlatNode): void {
@@ -887,92 +909,83 @@ clicked35(){
    filterCourse(params){
      this.courseList=  [...this.courseListCopy];
 
-      this.courseList= this.courseList.filter(course=>{
+      // this.courseList= this.courseList.filter(course=>{
 
-       return this.doCourseFieldFilter(course) && this.doProgramTypeFilter(course) && this.doCourseSubFieldFilter(course) &&
-        this.doContentTypeFilter(course) && this.doLanguageFilter(course) && this.doTranscriptFilter(course) &&
-        this.doDifficultyFilter(course) && this.doProviderFilter(course) && this.doTranscriptFilter(course) &&
-        this.doContentTypeFilter(course) && this.doRateFilter(course);
-      });
+      //  return this.doCourseFieldFilter(course) && this.doProgramTypeFilter(course) && this.doCourseSubFieldFilter(course) &&
+      //   this.doContentTypeFilter(course) && this.doLanguageFilter(course) && this.doTranscriptFilter(course) &&
+      //   this.doDifficultyFilter(course) && this.doProviderFilter(course) && this.doTranscriptFilter(course) &&
+      //   this.doContentTypeFilter(course) && this.doRateFilter(course);
+      // });
       console.log(this.courseList);
    } 
-   doCourseFieldFilter(course){
-     if(this.courseFieldParam.length==0){
-       return true
-     }
-     var result=false;
-         for(var i=0;i<this.courseFieldParam.length;i++){
-       result= result || course.course_field.includes(this.courseFieldParam[i]);
+   doCourseFieldFilter(){
+      var result=""
+      for(var i=0;i<this.courseFieldParam.length;i++){
+       result= result + " " + this.courseFieldParam[i];
          }
          return result;
    } 
-   doCourseSubFieldFilter(course){
-    if(this.courseSubFieldParam.length==0){
-      return true
-    }
-    var result=false;
+   doCourseSubFieldFilter(){
+    var result=""
         for(var i=0;i<this.courseSubFieldParam.length;i++){
-      result= result || course.course_subfield.includes(this.courseSubFieldParam[i]);
+      result= result +" " +this.courseSubFieldParam[i];
         }
         return result;
   } 
-  doProgramTypeFilter(course){
-    if(this.programTypeParam.length==0){
-      return true
-    }
-    var result=false;
+
+  doProgramTypeFilter(){
+ 
+    var result=""
         for(var i=0;i<this.programTypeParam.length;i++){
-      result= result || course.course_program.includes(this.programTypeParam[i]);
+      result= result + " "+ this.programTypeParam[i];
         }
+      
         return result;
   } 
-  doLanguageFilter(course){
-    if(this.languageParam.length==0){
-      return true
-    }
-    var result=false;
+  doProgramModeFilter(){
+ 
+    var result=""
+        for(var i=0;i<this.programModeParam.length;i++){
+      result= result + " "+ this.programModeParam[i];
+        }
+        return result;
+  }  
+  doLanguageFilter(){
+       var result="";
         for(var i=0;i<this.languageParam.length;i++){
-      result= result || course.course_lang.includes(this.languageParam[i]);
+      result= result + " " +this.languageParam[i];
         }
         return result;
   }
-  doTranscriptFilter(course){
-    if(this.transcriptParam.length==0){
-      return true
-    }
-    var result=false;
+  doTranscriptFilter(){
+  
+    var result=""
         for(var i=0;i<this.transcriptParam.length;i++){
-      result= result || course.course_trnsc.includes(this.transcriptParam[i]);
+      result= result + this.transcriptParam[i];
         }
         return result;
   }
-  doDifficultyFilter(course){
-    if(this.difficultyLevelParam.length==0){
-      return true
-    }
-    var result=false;
+  doDifficultyFilter(){
+   
+    var result="";
         for(var i=0;i<this.difficultyLevelParam.length;i++){
-      result= result || course.course_diff.includes(this.difficultyLevelParam[i]);
+      result= result + this.difficultyLevelParam[i];
         }
         return result;
   } 
-  doProviderFilter(course){
-    if(this.courseProvideParam.length==0){
-      return true
-    }
-    var result=false;
+  doProviderFilter(){
+   
+    var result="";
         for(var i=0;i<this.courseProvideParam.length;i++){
-      result= result || course.course_provider.includes(this.courseProvideParam[i]);
+      result= result +" " + this.courseProvideParam[i];
         }
         return result;
   } 
-  doContentTypeFilter(course){
-    if(this.contentTypeParam.length==0){
-      return true
-    }
-    var result=false;
+  doContentTypeFilter(){
+   
+    var result= "";
         for(var i=0;i<this.contentTypeParam.length;i++){
-      result= result || course.course_content.includes(this.contentTypeParam[i]);
+      result= result+ " "+ this.contentTypeParam[i];
         }
         return result;
   }
@@ -998,10 +1011,10 @@ clicked35(){
       return;
     }
     else{
-      this.searchMethod(this.searchKey);
+      
+      this.searchFilterBased(this.searchKey);
       console.log('start searching');
-     
-    }
+     }
   }
  
   changeCourseSubfieldParams(...value:TodoItemFlatNode[]){
@@ -1076,6 +1089,9 @@ clicked35(){
    else if(this.programType.indexOf(flatNode.item)!==-1){
        flatNode.parameter="course_type"
       }
+      else if(flatNode.item==='Certification'){
+        flatNode.parameter="course_certi"
+      }
       else if(flatNode.level===1){
       let parent=this.getParentNode(flatNode);
       if(parent && parent.item==='Language'){
@@ -1092,4 +1108,107 @@ clicked35(){
   onSliderScroll(event){
      console.log(this.minDuration,this.minValue,this.maxDuration,this.maxValue);
   }
+  bottomindictor:boolean=false;
+  searchFilterBased(parameter){
+      var courseBody= {
+        course_field:'*',
+        course_subfield:'*',
+        course_content:'*',
+        course_diff:'*',
+        course_type:'*',
+        course_lang:'*',
+        course_program:'*',
+        course_provider:'*',
+        course_trnsc:'*',
+        course_search:parameter,
+        course_certi:'*'
+      };
+      if(this.courseFieldParam.length!==0){
+        courseBody.course_field=this.doCourseFieldFilter()
+
+      }
+      else{
+        delete courseBody.course_field;
+      }
+      if(this.courseSubFieldParam.length!==0){
+        courseBody.course_subfield=this.doCourseSubFieldFilter();
+      }
+      else{
+        delete courseBody.course_subfield;
+      }
+      if(this.contentTypeParam.length!==0){
+        courseBody.course_content=this.doContentTypeFilter();
+      }
+      else{
+        delete courseBody.course_content;
+      }
+      if(this.difficultyLevelParam.length!==0){
+        courseBody.course_diff=this.doDifficultyFilter();
+      } else{
+        delete courseBody.course_diff;
+      }
+      if(this.languageParam.length!==0){
+        courseBody.course_lang=this.doLanguageFilter();
+      }else{
+        delete courseBody.course_lang;
+      }
+      if(this.programModeParam.length!==0){
+        courseBody.course_program=this.doProgramModeFilter();
+      }
+      else{
+        delete courseBody.course_program;
+      }
+      if(this.programTypeParam.length!==0){
+        courseBody.course_type=this.doProgramTypeFilter();
+      }
+      else{
+        delete courseBody.course_type;
+      }
+      if(this.courseProvideParam.length!==0){
+        courseBody.course_provider=this.doProviderFilter();
+      }else{
+        delete courseBody.course_provider;
+      }
+      if(this.transcriptParam.length!==0){
+        courseBody.course_trnsc=this.doTranscriptFilter();
+      }
+      else{
+        delete courseBody.course_trnsc;
+      }
+      if(parameter==='*'){
+        delete courseBody.course_search;
+      }
+      if(this.isCertiRequired){
+        courseBody.course_certi='Availabe';
+      }
+      else{
+        delete courseBody.course_certi;
+      }
+      if(this.pageNo===0){
+        this.loadingFirst=true;
+        this.courseList=[];
+        }
+     
+        this.loading=true;
+        this.bottomindictor=false;
+         this.searchService.getFilteredCourses(courseBody,this.pageNo,this.pageSize).subscribe((response:any)=>{
+          if(this.pageNo===0){
+           this.courseList=response.content;
+         this.courseListCopy= [...this.courseList];
+         this.loadingFirst= false;
+          }
+          else{
+            this.courseList= this.courseList.concat(response.content);
+            this.courseListCopy= this.courseListCopy.concat(response.content);
+            this.loadingFirst= false;
+          }
+        this.totalResults=response.totalElements;
+         this.loading=false;
+         this.pageNo= this.pageNo+1;
+         if(this.pageNo===response.totalPages){
+           this.bottomindictor=true;
+         }
+        });
+  }
+
 }

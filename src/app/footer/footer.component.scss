@@ -277,7 +277,6 @@ position: relative;
 }
 .example-header-image {
   position: absolute;
-  background-image: url('../../assets/courseImage/course.png');
   width: 44px;
   height: 44px;
   left: 15px;
@@ -425,3 +424,18 @@ td {
   color: #0376FE;
 }
 
+
+.max-course{
+  margin-left: auto;
+  font-family: Montserrat;
+font-style: normal;
+font-size: 16px;
+line-height: 30px;
+/* identical to box height, or 187% */
+
+text-align: center;
+letter-spacing: 0.0015em;
+
+color: #000000;
+
+}

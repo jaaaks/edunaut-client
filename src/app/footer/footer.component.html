@@ -71,7 +71,8 @@
 <mat-expansion-panel-header>
 <mat-panel-description>
    
-  <div class="expansion-icon">Compare ({{courseList.length}})</div>
+  <div *ngIf="courseList.length!==4" class="expansion-icon">Compare ({{courseList.length}})</div>
+  <div *ngIf="courseList.length ===4" class="max-course"> <strong>Four courses ready to compare! </strong>Would you like to remove a course to make room for another one?</div>
   <div class="expansion-icon circle" *ngIf="!panel.expanded">
  <mat-icon (click)="open()">expand_less</mat-icon>
  </div>
@@ -95,7 +96,7 @@
  <ng-container *ngFor="let course of courseList;index as i"> 
   <mat-card class="example-card" (mouseenter)="changeTextMethod(course)" (mouseleave)="changeTextOutMethod(course)" fxFlex="18" >
 
-    <div class="remover circle">
+    <div *ngIf="course.change" class="remover circle">
       <button mat-icon-button >
       <mat-icon (click)="removeCourse(i)" >close</mat-icon>
     </button>
@@ -103,7 +104,7 @@
      
       <mat-card-header class="header">
         <div class="strip"></div>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar class="example-header-image" style=" background-image: url('assets/profile/{{course.course_provider}}.png');  background-position: center; background-size: 40px; background-repeat: no-repeat;"></div>
 
       </mat-card-header>
 
