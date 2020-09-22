@@ -78,11 +78,23 @@ export class LoginComponent implements OnInit {
         persistance="local";  
     }
     this.authenticationService.googleAuthLogin(persistance).then(res=>{
-     this.loadUser(res);
+      localStorage.setItem('token', res.user.refreshToken);
+      if(!res.user.isNewUser){
+      this.loadUser(res.user.uid);}
+      else{
+        this.profile.uid=res.user.uid;
+        this.profile.email = res.user.email;
+        this.profile.firstname=name;
+        this.pfs.saveProfile(this.profile);
+        this.loadUser(res.user.uid);
+      }
       this.dialogRef.close('success');
+     
     },err=>{
       console.log(err);
-    
+      this.bottomSheet.open(BottomSheetComponent,{
+        data:err.msg
+      })
       this.showErrormessage=true;
       this.errorMessage=err;
     });
@@ -95,11 +107,22 @@ export class LoginComponent implements OnInit {
     }
      this.authenticationService.facebookAuthLogin(persistance).then(res=>{
       localStorage.setItem('token', res.user.refreshToken);
-     this.loadUser(res);
-      this.dialogRef.close('success');
+      if(!res.user.isNewUser){
+        this.loadUser(res.user.uid);}
+        else{
+          this.profile.uid=res.user.uid;
+          this.profile.email = res.user.email;
+          this.profile.firstname=name;
+          this.pfs.saveProfile(this.profile);
+          this.loadUser(res.user.uid);
+        }
+        this.dialogRef.close('success');
+       
      },err=>{
-      this.showErrormessage=true;
-      this.errorMessage=err;
+   
+      this.bottomSheet.open(BottomSheetComponent,{
+        data:err.msg
+      })
      });
    }
    onSubmit() {
@@ -117,6 +140,8 @@ export class LoginComponent implements OnInit {
             this.loading=false;
             this.showErrormessage=false;
             this.loadUser(res.uid);
+            this.loading=false;
+            this.userData= res.user;
         },
             msg=>{
               console.log('unsuccessful signed in!',msg);

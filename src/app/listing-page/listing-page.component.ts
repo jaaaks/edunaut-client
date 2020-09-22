@@ -831,6 +831,7 @@ public chipList=[];
          
         },
         err=>{
+          console.log(err);
                console.log('not verified')
         })
       }

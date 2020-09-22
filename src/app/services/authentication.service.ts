@@ -33,14 +33,14 @@ export class AuthenticationService {
       this.angularFireAuth.setPersistence(pers).then(result=>{
          this.angularFireAuth.signInWithPopup(provider).then(res=>{
           localStorage.setItem('token', res.user.refreshToken);
-         resolve(res.user.uid);
+         resolve(res);
          },
          error=>{
-           reject(error.message);
+           reject(error);
             });
         },
         err=>{
-          reject(err.message);
+          reject(err);
         });
         
       });
@@ -62,10 +62,10 @@ export class AuthenticationService {
        res=>{
         localStorage.setItem('token', res.user.refreshToken);
         localStorage.setItem('id', res.user.uid);
-         resolve(res.user.uid);
+         resolve(res);
        },
        err=>{
-            reject(err.message);
+            reject(err);
        }
      );
   },
