@@ -1187,27 +1187,33 @@ clicked35(){
       if(this.pageNo===0){
         this.loadingFirst=true;
         this.courseList=[];
+        this.totalResults="Fetching..."
         }
      
         this.loading=true;
         this.bottomindictor=false;
+       
          this.searchService.getFilteredCourses(courseBody,this.pageNo,this.pageSize).subscribe((response:any)=>{
           if(this.pageNo===0){
            this.courseList=response.content;
          this.courseListCopy= [...this.courseList];
          this.loadingFirst= false;
+         this.totalResults=response.totalElements;
           }
           else{
             this.courseList= this.courseList.concat(response.content);
             this.courseListCopy= this.courseListCopy.concat(response.content);
             this.loadingFirst= false;
           }
-        this.totalResults=response.totalElements;
+       
          this.loading=false;
          this.pageNo= this.pageNo+1;
          if(this.pageNo===response.totalPages){
            this.bottomindictor=true;
          }
+        },
+        err=>{
+          this.bottomsheet.open(BottomSheetComponent,{data:'Sorry!! There is an error fetching results. Please Try Again'})
         });
   }
 

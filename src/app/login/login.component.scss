@@ -214,3 +214,7 @@ color: #000000;
   width: 114px;
   padding: 0px 20px 20px 20px;
  }
+ ::ng-deep .mat-standard-chip {
+  background: #E2F1FF !important;
+  border-radius: 5px;
+}

@@ -99,7 +99,7 @@
  <mat-chip   color="primary" [selectable]="selectable"
  [removable]="removable" (removed)="todoItemSelectionToggle(node,$event)">
            {{node.item}}
-     <mat-icon matChipRemove>cancel</mat-icon>
+     <mat-icon  style="color:#0376FE"matChipRemove>close</mat-icon>
 </mat-chip>
 
 </mat-chip-list>
@@ -140,7 +140,7 @@
          >
         <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutGap="20px" fxLayoutAlign="start center">
           <ng-container *ngFor="let course of courseList" >
-            <mat-card class="example-card"  fxFlex="30" (mouseenter)="changeTextMethod(course)"
+            <mat-card class="example-card"  fxFlex="27" (mouseenter)="changeTextMethod(course)"
               (mouseleave)="changeTextOutMethod(course)">
               <mat-card-header class="header">
                 <div class="strip"></div>
@@ -189,7 +189,7 @@
                 </div>
 
 
-                <div fxLayout="row wrap"  fxLayoutAlign="space-between" fxLayoutGap="30px" *ngIf="course.change">
+                <div fxLayout="row wrap"  fxLayoutAlign="space-between"  *ngIf="course.change">
                    <button mat-raised-button (click)="comparator(course)" class="comp-button"></button>
                     <button mat-raised-button (click)="bookmarkCourse(course)"  class="book-button"></button>
                 </div>

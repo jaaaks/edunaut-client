@@ -324,7 +324,7 @@ background: url('../../assets/contactus/compare.png');
       position: absolute;
 width: 118px;
 height: 36px;
-left: 143px;
+right:16px;
 top: 205px;
 background: url('../../assets/bookMarkButton.png');
 background-repeat: none;
@@ -421,4 +421,11 @@ text-align: center;
 letter-spacing: 0.0015em;
 
 color: #000000;
+}
+
+::ng-deep .mat-standard-chip {
+  background: #E2F1FF !important;
+  border-radius: 5px !important;
+  color: #0376FE !important;
+
 }

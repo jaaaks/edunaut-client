@@ -89,7 +89,7 @@
 <mat-divider></mat-divider>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="25px" fxLayoutAlign="space-around center">
   <div  fxFlex="18" fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="space-around center">
-    <button mat-raised-button [disabled]="bookmarkAllowed()" (click)="compare()" class="bookmark">Compare Courses</button>
+    <button mat-raised-button [disabled]="bookmarkAllowed()" (click)="compare()" class="bookmark">Compare</button>
     <div (click)="clearAll()" class="clear"><a >Clear All</a></div>
 </div>
 
@@ -137,12 +137,12 @@
       <tr mdbTableCol *ngFor="let el of elements; index as indexOfelement;"  class="table-row" fxLayout="row" fxLayoutAlign="space-around center"  >
         <th scope="row" fxFlex="16"  class="thead">{{el.id}}</th>
         <ng-container  *ngIf="indexOfelement===0">
-        <td fxFlex="16" *ngFor="let col of courseList;" class="thead" ><ngb-rating [rate]="col.course_rating" [max]="5" [readonly]="true"></ngb-rating>{{" "}}{{col.course_rating}}/5</td>
+        <td fxFlex="16" *ngFor="let col of courseList;" class="thead" ><ngb-rating [rate]="col.course_review" [max]="5" [readonly]="true"></ngb-rating>{{" "}}{{col.course_review}}/5</td>
         <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
         </ng-container >
         <ng-container  *ngIf="indexOfelement===1">
           <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_col}}</td>
-          <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NAv</td>
+          <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
           </ng-container >
           <ng-container  *ngIf="indexOfelement===2">
             <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_certi}} </td>
