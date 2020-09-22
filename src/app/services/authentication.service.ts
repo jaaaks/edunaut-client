@@ -70,9 +70,10 @@ export class AuthenticationService {
      );
   },
    error=>{
-    reject('not successfull');
+    reject(error);
    });
   });
+  return promise;
 }
 
   

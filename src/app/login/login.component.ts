@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
     },err=>{
       console.log(err);
       this.bottomSheet.open(BottomSheetComponent,{
-        data:err.msg
+        data:err.message
       })
       this.showErrormessage=true;
       this.errorMessage=err;
@@ -119,9 +119,8 @@ export class LoginComponent implements OnInit {
         this.dialogRef.close('success');
        
      },err=>{
-   
-      this.bottomSheet.open(BottomSheetComponent,{
-        data:err.msg
+   this.bottomSheet.open(BottomSheetComponent,{
+    data:err.message
       })
      });
    }
