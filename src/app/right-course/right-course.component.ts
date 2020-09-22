@@ -12,12 +12,32 @@ export class RightCourseComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  checked= true;
-  indeterminate: false;
+  arts= false;
+  business= false;
+  cs= false;
+  dataScience = false;
+  health = false;
+  it = false;
+  language = false;
+  math = false;
+  pd = false;
+  science = false;
+  socialScience = false; 
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-   
+    this.firstFormGroup = this._formBuilder.group({
+      
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      
+    });
   }
 }

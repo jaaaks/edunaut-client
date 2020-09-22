@@ -43,7 +43,6 @@ export class TeamComponent implements OnInit {
     touch: true,
     loop: true,
     interval: { timing: 15000 },
-    animation: 'lazy'
   };
   tempData: any[];
 

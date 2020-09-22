@@ -138,20 +138,279 @@ background: #e0e2e8;
   color: #8A8886;
 }
 
-#checkbox-element{
-  padding: 20px;;
-  width: 50px;
-  height: 50px;
-  z-index: 100;
-  cursor: pointer;
-  
-}
-#checkbox-element::after{
-  border-style: none;
-}
 .imo{
   position: relative;
-  left: -4%;
-  top: -30%;
+  left: -16px;
+  top: 11px;
   z-index: 1;
+}
+label{
+  cursor: pointer;
+  flex-direction: row; 
+}
+.first{
+  margin-left: 140%;
+}
+.second{
+  margin-left: 105%;
+}.third{
+  margin-left: 70%;
+}
+.fourth{
+  margin-left: 32%;
+}
+.fifth{
+  margin-left: -5%;
+}
+.sixth{
+  margin-left: -40%;
+}
+.container1 {
+  margin-top: 30%;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 68px;
+  width: 80px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* On mouse-over, add a grey background color */
+.container1:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container1 input:checked ~ .checkmark {
+  background-color: #0376fe;
+ 
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container1 input:checked ~ .checkmark:after {
+  display: block;
+}
+input:checked ~ svg{
+  fill: white;
+}
+
+/* Style the checkmark/indicator */
+.container1 .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 0px 0px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.art{
+  position: relative;
+  top: 30px;
+  left: 0px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: center;
+letter-spacing: -0.015em;
+
+}
+.business{
+  position: relative;
+  top: 30px;
+  left: -23px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: center;
+letter-spacing: -0.015em;
+
+}
+.cs{
+  position: relative;
+  top: 30px;
+  left: -26px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
+}
+.dataScience{
+  position: relative;
+  top: 30px;
+  left: -15px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
+}
+.health{
+  position: relative;
+  top: 30px;
+  left: -13px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
+}
+.it{
+  position: relative;
+  top: 30px;
+  left: -30px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
+}
+.seventh{
+  margin-left: 140%;
+}
+.eighth{
+  margin-left: 105%;
+}
+.ninth{
+  margin-left: 70%;
+}
+.tenth{
+  margin-left: 32%;
+}
+.eleventh{
+  margin-left: -5%;
+}
+.math{
+  position: relative;
+  top: 30px;
+  left: -13px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
+}
+.pd{
+  position: relative;
+  top: 30px;
+  left: -33px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
+}
+.science{
+  position: relative;
+  top: 30px;
+  left: -17px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
+
+}
+.ss{
+  position: relative;
+  top: 30px;
+  left: -12px;
+
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 15px;
+/* identical to box height */
+
+text-align: justify;
+letter-spacing: -0.015em;
+
 }
