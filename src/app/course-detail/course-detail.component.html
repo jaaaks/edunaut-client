@@ -4,14 +4,15 @@
             <img src="assets/profile/{{course.course_provider}}.png" class="img-fluid provider">
         </div>
         <div class="col-6 buttons">
-            <a (click)="comparator()"><img src="../../assets/course-detail/compare.png" class="img-fluid com">{{" "}}
-                <span class="compare">Compare</span></a> {{" "}}
+            <!-- <a (click)="comparator()"><img src="../../assets/course-detail/compare.png" class="img-fluid com">{{" "}}
+                <span class="compare">Compare</span></a> {{" "}}-->
             <a *ngIf="!isBookmark" (click)="bookmarkCourse()"> <img src="../../assets/course-detail/bookmark.png"
                     class="img-fluid book">{{" "}} <span class="bookmark">Bookmark</span></a><img
-                src="../../assets/Vector (1).png" class="img-fluid book" *ngIf="isBookmark">{{" "}} <span class="bookmark"
-                *ngIf="isBookmark">Bookmarked</span>{{" "}}
-            <!--<img src="../../assets/course-detail/completed.png" class="img-fluid comp">{{" "}} <span
-                class="completed">Completed</span> {{" "}}-->
+                src="../../assets/Vector (1).png" class="img-fluid book" *ngIf="isBookmark">{{" "}} <span
+                class="bookmark" *ngIf="isBookmark">Bookmarked</span>{{" "}}
+           <a (click)= "completeCourse()"> <img *ngIf="!isComplete" src="../../assets/course-detail/completed.png" class="img-fluid comp"></a>
+            <img *ngIf="isComplete" src="../../assets/course-detail/complete.png" class="img-fluid comp">{{" "}} <span
+                *ngIf="!isComplete" class="completed">Complete</span><span class="completed" *ngIf="isComplete">Completed</span> {{" "}}
             <a (click)="basicModal.show()"><img src="../../assets/course-detail/report.png"
                     class="img-fluid rep">{{" "}} <span class="report">Report</span></a> {{" "}}
         </div>
@@ -23,8 +24,8 @@
     </div>
     <div class="row">
         <div class="col-12 title-footer">
-            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="primary" mdbWavesEffect><a
-                    href="/find?search={{j}}">{{j}}{{" "}}</a></button>
+            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="primary"
+                mdbWavesEffect><a href="/find?search={{j}}">{{j}}{{" "}}</a></button>
         </div>
     </div>
     <div class="row">
@@ -85,9 +86,10 @@
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/audit.png"></span><span *ngIf="course.course_audit == '-'"
-                            class="time-detail">You cannot audit this course </span><span *ngIf="course.course_audit != '-'"
-                            class="time-detail">You cannot audit this course </span>
+                        <span class="time"><img src="../../assets/course-detail/audit.png"></span><span
+                            *ngIf="course.course_audit == '-'" class="time-detail">You cannot audit this course
+                        </span><span *ngIf="course.course_audit != '-'" class="time-detail">You cannot audit this course
+                        </span>
                     </div>
                     <hr>
                     <div>
@@ -170,7 +172,7 @@
             <div class="modal-header mod1-head">
                 <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
                     </span><span>{{" "}}</span> Thanks for adding your review!
-                    </span>
+                </span>
             </div>
         </div>
     </div>
@@ -184,7 +186,7 @@
             <div class="modal-header mod1-head">
                 <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
                     </span><span>{{" "}}</span> Your Review has been edited.
-                    </span>
+                </span>
             </div>
         </div>
     </div>
@@ -198,12 +200,95 @@
             <div class="modal-header mod1-head">
                 <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
                     </span><span>{{" "}}</span> This course has been bookmarked!
-                    </span>
+                </span>
             </div>
         </div>
     </div>
 </div>
 <!-- End of Modal-->
+<!-- Review Report Modal-->
+<div mdbModal #basicModal6="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header hed">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal6.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <span class="modal-title modal-tit w-100" id="myModalLabel">Report Review</span>
+            </div>
+            <div class="modal-body mod-body">
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios"
+                        checked mdbInput>
+                    <label class="custom-control-label" for="defaultUnchecked">Poorly Written - <span class="desc">
+                            Bad formatting/grammar/spelling
+                        </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked1" name="defaultExampleRadios"
+                        mdbInput>
+                    <label class="custom-control-label" for="defaultChecked1">Irrelevant - <span class="desc">
+                            Joke post/not a review
+                        </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked2" name="defaultExampleRadios"
+                        mdbInput>
+                    <label class="custom-control-label" for="defaultChecked2">Spam/Solicitment - <span class="desc">
+                            Undisclosed promotion for an external link or product
+                        </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked3" name="defaultExampleRadios"
+                        mdbInput>
+                    <label class="custom-control-label" for="defaultChecked3">Inaccuracy - <span class="desc">
+                            Factual content errors
+                        </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultUnchecked1" name="defaultExampleRadios"
+                        mdbInput>
+                    <label class="custom-control-label" for="defaultUnchecked1">Adult Content - <span class="desc">
+                            Sexually explicit/violent/otherwise inappropriate
+                        </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked4" name="defaultExampleRadios"
+                        mdbInput>
+                    <label class="custom-control-label" for="defaultChecked4">Plagiarism/Copyright Infringement - <span
+                            class="desc">
+                            Reusing content without attribution (link and blockquotes)
+                        </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked5" name="defaultExampleRadios"
+                        mdbInput>
+                    <label class="custom-control-label" for="defaultChecked5">Privacy Violation - <span class="desc">
+                            Revealing personal/confidential information without consent.
+                        </span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="defaultChecked6" name="defaultExampleRadios"
+                        mdbInput>
+                    <label class="custom-control-label" for="defaultChecked6">Harassment - <span class="desc">
+                            Attacks based on personal or group identities.
+                        </span></label>
+                </div>
+
+                <textarea type="text" id="form7" class="md-textarea form-control"
+                    placeholder="Explain this report. Link appropriate resources if necessary." mdbInput></textarea>
+
+                <button type="button" mdbBtn color="secondary" class="waves-light review-cancel z-depth-0"
+                    aria-label="Close" (click)="basicModal6.hide()" mdbWavesEffect>Cancel</button>
+                <button type="button" mdbBtn (click)="showAndHideModal()" (click)="basicModal6.hide()" color="primary"
+                    class="relative waves-light review-submit" mdbWavesEffect>Submit</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Of Modal-->
 <div class="container-fluid review-section">
     <div class="row">
         <div class="col-8">
@@ -258,18 +343,17 @@
                                     src="../../assets/course-detail/upvote.png">{{" "}}</span><span class="upvote-number">{{i.upvotes}}</span>
                         </div>-->
                             <div class="col-8"></div>
-                            <!--
-                        <div *ngIf="i.id == userId" class="col-4 report-review">
-                            <div class="" mdbDropdown>
-                            <img mdbDropdownToggle src="../../assets/course-detail/report-review.png">
-                            <div class="dropdown-menu rep-drop dropdown-primary">
-                                <a class="dropdown-item">Share</a>
-                                <a class="dropdown-item">Edit</a>
-                                <a class="dropdown-item">Delete</a>
+
+                            <div *ngIf="i.id != userId" class="col-4 report-review">
+                                <div class="" mdbDropdown>
+                                    <img class="re" mdbDropdownToggle
+                                        src="../../assets/course-detail/report-review.png">
+                                    <div class="dropdown-menu rep-drop dropdown-primary">
+                                        <a (click)="basicModal6.show()" class="dropdown-item">Report</a>
+                                    </div>
+                                </div>
                             </div>
-                            </div>
-                        </div>
-                    -->
+
                         </div>
                     </div>
                 </div>
