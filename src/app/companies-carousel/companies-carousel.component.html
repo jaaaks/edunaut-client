@@ -2,8 +2,8 @@
   <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
     <mdb-card class="car z-depth-0">
       <!--Card image-->
-      <a [routerLink]="['/find']" [queryParams]="{search: '*',provider:courseprovider[i]}"  class="stretched-link"></a>
-      <mdb-card-img  class="im" [src]="item" alt="Card image cap"></mdb-card-img>
+      <a  class="disable-link"></a>
+      <mdb-card-img  [routerLink]="['/find']" [queryParams]="{search: '*',provider:courseprovider[i]}" class="im" [src]="item" alt="Card image cap"></mdb-card-img>
     </mdb-card>
   
   </div>

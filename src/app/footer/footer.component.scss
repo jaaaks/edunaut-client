@@ -228,6 +228,21 @@ hr{
 .left-footer-ex {
   position: relative;
   left: 13%;
+
+}
+.text{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 114%;
+/* or 16px */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.0025em;
+
+color: #A19F9D;
 }
 .category {
   position: relative;

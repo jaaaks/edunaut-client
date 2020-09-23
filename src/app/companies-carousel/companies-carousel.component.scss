@@ -65,5 +65,9 @@
     }
     color: #0376fe !important;
   }
+  .disable-link, .im , .car{
+    pointer-events: none;
+  }
+
   
 }
