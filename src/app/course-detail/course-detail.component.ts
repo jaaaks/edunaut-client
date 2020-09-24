@@ -22,6 +22,7 @@ export class CourseDetailComponent implements OnInit {
   @ViewChild('basicModal3', { static: true }) demoBasic3: ModalDirective;
   @ViewChild('basicModal4', { static: true }) demoBasic4: ModalDirective;
   @ViewChild('basicModal5', { static: true }) demoBasic5: ModalDirective;
+  @ViewChild('basicModal6', { static: true }) demoBasic6: ModalDirective;
   showAndHideModal() {
     this.demoBasic1.show();
 
@@ -57,6 +58,13 @@ export class CourseDetailComponent implements OnInit {
       this.demoBasic5.hide();
     }, 6000);
   }
+  showAndHideModal5() {
+    this.demoBasic6.show();
+
+    setTimeout(() => {
+      this.demoBasic6.hide();
+    }, 6000);
+  }
   currentRate = 0;
   hovered = 0;
   current = false;
@@ -81,6 +89,7 @@ export class CourseDetailComponent implements OnInit {
   isBookmark = false;
   isComplete = false;
   userData;
+  res;
   isPost = false;
   professor: Array<{ name: String, ins: String, desc: String }>;
   count = 0;
@@ -99,7 +108,7 @@ export class CourseDetailComponent implements OnInit {
             }
           }
           console.log(res);
-          console.log(this.isBookmark);
+          console.log(this.bookmark);
         })
       });
   }
@@ -109,7 +118,7 @@ export class CourseDetailComponent implements OnInit {
       this.courseId = this.courseId.params.cid;
     })
     this.courseService.getCourseById([this.courseId]).subscribe((data) => {
-
+      console.log(data);
       this.course = data[0];
       this.isCourse = this.course.course_id;
       this.domain = this.course.course_field.split(', ');
@@ -296,10 +305,12 @@ export class CourseDetailComponent implements OnInit {
           }
         ).subscribe(data => {
           this.isBookmark= true;
+          location.reload();
         }, err => {
           if (err = 'success') {
             this.showAndHideModal3();
             this.isBookmark = true;
+            location.reload();
           }
         })
       } else {
@@ -313,7 +324,6 @@ export class CourseDetailComponent implements OnInit {
         }
         );
         this.userData.sendEmailVerification().then(result => {
-          this.isBookmark = true;
           dialogRef1.close();
         },
           err => {
@@ -337,24 +347,47 @@ export class CourseDetailComponent implements OnInit {
   completeCourse(){
     if (this.userId) {
       if (this.userData.emailVerified) {
-        this.showAndHideModal3();
+        this.showAndHideModal4();
+        if(!this.isBookmark){
         this.searchService.bookMarkcourse(
           {
             courseid: this.courseId,
-            status: 0,
-            percentage: 100,
+            status: 1,
+            percentage: 0,
             userid: {
               uid: this.userId
             }
           }
         ).subscribe(data => {
           this.isComplete= true;
+          this.isBookmark= true;
+          location.reload();
         }, err => {
           if (err = 'success') {
-            this.showAndHideModal3();
+            this.showAndHideModal4();
             this.isComplete = true;
+            this.isBookmark= true;
+            location.reload();
           }
-        })
+        })}
+        else{
+          this.courseService.courseComplete(
+            {
+              bid: this.bookmark.bid,
+              status: 1
+            }
+          ).subscribe(
+            res =>{
+              console.log(res);
+              this.isComplete = true;
+            },
+            err =>{
+              if(err = 'Updated'){
+                this.isComplete = true;
+              }
+            }
+          )
+        }
       } else {
         const dialogRef1 = this.dialog.open(EmailVerificationComponent, {
           height: '520px',
@@ -366,7 +399,6 @@ export class CourseDetailComponent implements OnInit {
         }
         );
         this.userData.sendEmailVerification().then(result => {
-          this.isComplete = true;
           dialogRef1.close();
         },
           err => {
@@ -385,6 +417,40 @@ export class CourseDetailComponent implements OnInit {
       }
       );
     }
+  }
+
+  removeBookmark(){
+    this.userService.removeBookmark(this.courseId,this.userId).subscribe(
+      res =>{
+        this.res = res;
+        console.log(this.res);
+        if(this.res.status=='DELETED'){
+          alert('Bookmark Removed');
+          this.isBookmark = false;
+          this.isComplete = false;
+        }
+        if(this.res.status=='ERROR'){
+          alert('Bookmark not removed');
+        }
+      }
+    );
+  }
+
+  removeComplete(){
+    this.courseService.courseComplete(
+      {
+        bid: this.bookmark.bid,
+        status: 0
+      }
+    ).subscribe(res =>{
+
+    }
+    ,err =>{
+      if(err='Updated'){
+        alert("Your course has been removed from completed.");
+        this.isComplete = false;
+      }
+    })
   }
 }
 

@@ -24,5 +24,8 @@ export class CourseDetailService {
   public contactUS(bod){
     return this.http.post(this.url+"/contactus/sendmail",bod).subscribe(res => console.log(res));
   }
+  public courseComplete(bid){
+    return this.http.put(this.url+"/bookmark/update",bid);
+  }
 }
 

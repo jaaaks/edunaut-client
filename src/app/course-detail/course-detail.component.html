@@ -7,12 +7,12 @@
             <!-- <a (click)="comparator()"><img src="../../assets/course-detail/compare.png" class="img-fluid com">{{" "}}
                 <span class="compare">Compare</span></a> {{" "}}-->
             <a *ngIf="!isBookmark" (click)="bookmarkCourse()"> <img src="../../assets/course-detail/bookmark.png"
-                    class="img-fluid book">{{" "}} <span class="bookmark">Bookmark</span></a><img
+                    class="img-fluid book">{{" "}} <span class="bookmark">Bookmark</span></a><a (click)="removeBookmark()"><img
                 src="../../assets/Vector (1).png" class="img-fluid book" *ngIf="isBookmark">{{" "}} <span
-                class="bookmark" *ngIf="isBookmark">Bookmarked</span>{{" "}}
+                class="bookmark" *ngIf="isBookmark">Bookmarked</span></a>{{" "}}
            <a (click)= "completeCourse()"> <img *ngIf="!isComplete" src="../../assets/course-detail/completed.png" class="img-fluid comp"></a>
-            <img *ngIf="isComplete" src="../../assets/course-detail/complete.png" class="img-fluid comp">{{" "}} <span
-                *ngIf="!isComplete" class="completed">Complete</span><span class="completed" *ngIf="isComplete">Completed</span> {{" "}}
+           <a (click)="removeComplete()"> <img *ngIf="isComplete" src="../../assets/course-detail/complete.png" class="img-fluid comp"></a>{{" "}} <a (click)="completeCourse()"><span
+                *ngIf="!isComplete" class="completed">Complete</span></a><a (click)="removeComplete()"><span class="completed" *ngIf="isComplete">Completed</span></a> {{" "}}
             <a (click)="basicModal.show()"><img src="../../assets/course-detail/report.png"
                     class="img-fluid rep">{{" "}} <span class="report">Report</span></a> {{" "}}
         </div>
@@ -63,16 +63,16 @@
                     <hr>
                     <div>
                         <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span
-                            *ngIf="course.course_review == '-'" class="time-detail">No Reviews on
+                            *ngIf="course.course_review == -1" class="time-detail">No Reviews on
                             {{course.course_provider}}</span>
-                        <span *ngIf="course.course_review != '-'" class="time-detail">{{course.course_review}} on
+                        <span *ngIf="course.course_review != -1" class="time-detail">{{course.course_review}} on
                             {{course.course_provider}}</span>
                     </div>
                     <hr>
                     <div>
                         <span class="time"><img src="../../assets/course-detail/price.png"></span><span
-                            *ngIf="course.course_fee == '-'" class="time-detail">Free</span><span
-                            *ngIf="course.course_fee != '-'" class="time-detail">{{course.course_fee}}{{" "}}INR</span>
+                            *ngIf="course.course_fee == -1" class="time-detail">Free</span><span
+                            *ngIf="course.course_fee != -1" class="time-detail">{{course.course_fee}}{{" "}}INR</span>
                     </div>
                     <hr>
                     <div>
@@ -207,7 +207,7 @@
 </div>
 <!-- End of Modal-->
 <!-- Review Report Modal-->
-<div mdbModal #basicModal6="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+<div mdbModal #basicModal6="mdbModal" class="modal rep-review fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -276,7 +276,7 @@
                         </span></label>
                 </div>
 
-                <textarea type="text" id="form7" class="md-textarea form-control"
+                <textarea type="text" id="form7" class="md-textarea tet form-control"
                     placeholder="Explain this report. Link appropriate resources if necessary." mdbInput></textarea>
 
                 <button type="button" mdbBtn color="secondary" class="waves-light review-cancel z-depth-0"
@@ -289,6 +289,20 @@
     </div>
 </div>
 <!-- End Of Modal-->
+<!-- Course Bookmark Modal-->
+<div mdbModal #basicModal5="mdbModal" [config]="{backdrop: false, ignoreBackdropClick: true}" class="modal fade"
+    tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-frame modal-bottom" role="document">
+        <div class="modal-content mod1">
+            <div class="modal-header mod1-head">
+                <span class="modal-title w-100" id="myModalLabel"><span><img src="../../assets/course-detail/tick.png">
+                    </span><span>{{" "}}</span> Thank You! For completeing this course.
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Modal-->
 <div class="container-fluid review-section">
     <div class="row">
         <div class="col-8">

@@ -416,7 +416,7 @@
             </div>
           </form>
         </mat-step>
-        <mat-step>
+        <mat-step *ngIf="!loggedin">
           <div class="container-fluid">
             <div class="row">
               <div class="col-8">

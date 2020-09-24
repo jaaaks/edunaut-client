@@ -662,26 +662,27 @@ button:active{
 }
 .hed{
   font-family: Montserrat;
-font-style: normal;
-font-weight: normal;
-font-size: 24px;
-line-height: 40px;
-/* or 167% */
-
-
-color: #000000;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  
+  color: #000000;
+  
 }
 .custom-control-label{
   cursor: pointer;
   font-family: Muli;
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 20px;
-letter-spacing: 0.005em;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.005em;
+  
+  color: #000000;
 margin-top: 4%;
 margin-left: 3%;
-color: #000000;
 }
 .desc{
   font-family: Muli;
@@ -697,7 +698,7 @@ color: #000000;
   margin-left: 3%;
 }
 .review-cancel{
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 3%;
   margin-left: 72%;
   background-color: white !important;
@@ -713,7 +714,7 @@ color: #000000;
   color: #03e;
 }
 .review-submit{
-  margin-top: 10%;
+  margin-top: 5%;
   background: #0376fe !important;
   border-radius: 5px;
   font-family: Muli;
@@ -725,4 +726,13 @@ color: #000000;
   color: #ffffff;
   padding: 1% 2%;
   margin-bottom: 3%;
+}
+.tet{
+  margin-top: 5%;
+  height: 100px;
+  margin-left: 2%;
+  width: 98%;;
+}
+.rep-review{
+  margin-top: 5%;
 }

@@ -26,8 +26,8 @@
                 <p class="right-body text-justify">A single online platform to find, compare, track and review the
                     course right for
                     you, efficiently.</p>
-                <p class="but1"><button mdbBtn type="button" class="but" color="primary" mdbWavesEffect>Start
-                        Now</button></p>
+                <p class="but1"><a hre="/right-course"><button mdbBtn type="button" class="but z-depth-0" color="primary" mdbWavesEffect>Start
+                        Now</button></a></p>
             </div>
         </div>
         <div class="col-lg-10 col-md-9 col-8 ">
@@ -56,12 +56,12 @@
                                       </mdb-card-title>
                                      </a>
                                       <mdb-card-text>
-                                        <a href="/course-detail">
+                                        <a href="/course-detail?cid={{item.course_id}}">
                                         <div class="row fade1">
                                           <div class="col-6 bag"><img src="../../assets/profile/bag.png">
-                                            <span *ngIf="item.course_fee != '-'"
+                                            <span *ngIf="item.course_fee != -1"
                                                             class="icon-body">{{" "}}{{item.course_fee}}</span>
-                                                        <span *ngIf="item.course_fee == '-'"
+                                                        <span *ngIf="item.course_fee == -1"
                                                             class="icon-body">{{" "}}Free</span>
                                                         </div>
                                           <div class="col-6 clock"><img src="../../assets/profile/clock.png"><span

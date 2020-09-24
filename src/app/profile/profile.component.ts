@@ -158,6 +158,7 @@ export class ProfileComponent implements OnInit {
   getBookmarks(bookmarks){
     this.courseService.getCourseById(bookmarks).subscribe((data)=>{
       this.coursedata = data;
+      console.log(this.coursedata);
       this.carousel();
     })
   }
