@@ -114,6 +114,7 @@
   li {
     display: inline-block;
     margin-bottom: 4px;
+    margin-left: 4px;
   }
   li.title {
     margin-right: 15px;
@@ -123,7 +124,6 @@
     font-size: 13px;
   }
   a {
-    background-color: rgb(131, 129, 129) !important;
     color: rgb(241, 239, 239);
     font-size: 16px;
     display: inline-block;
@@ -136,38 +136,29 @@
     -webkit-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear;
-    &:active {
-      color: #fff;
-      background-color: #29aafe !important;
-    }
-    &:focus {
-      color: #fff;
-      background-color: #29aafe !important;
-    }
-    &:hover {
-      color: #fff;
-      background-color: #29aafe !important;
-    }
+    background-color: white !important;
+   
   }
   a.facebook {
-    &:hover {
-      background-color: #3b5998 !important;
-    }
+    background-image: url('../../assets/logos/fbLogo.PNG');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    
   }
-  a.twitter {
-    &:hover {
-      background-color: #00aced !important;
-    }
-  }
+ 
   a.linkedin {
-    &:hover {
-      background-color: #007bb6 !important;
-    }
+    background-image: url('../../assets/logos/linkedinLogo.PNG');
+    background-repeat: no-repeat;
+    background-size: 47px;
+    background-position: center;
+    
   }
-  a.dribbble {
-    &:hover {
-      background-color: #ea4c89 !important;
-    }
+  a.dribble {
+    background-image: url('../../assets/logos/instaLogo.PNG');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
   }
 }
 .social-icons.size-sm {
