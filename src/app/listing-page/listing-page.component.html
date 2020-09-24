@@ -115,15 +115,24 @@
                 <mat-icon >{{sortChecker?'expand_more':'chevron_right'}}</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)='sortCheck()' >
+                <button mat-menu-item (click)='sortCourses("relevance","ASC")' >
                   Relevence
                 </button>
-                <button mat-menu-item  (click)='sortCheck()'>
-                  Price
+                <button mat-menu-item  (click)='sortCourses("price","ASC")'>
+                  Price Low to High
                 </button>
-                <button mat-menu-item  (click)='sortCheck()'>
-                     Duration
+                 <button mat-menu-item  (click)='sortCourses("price","DSC")'>
+                  Price High to Low
                 </button>
+                <button mat-menu-item  (click)='sortCourses("duration","ASC")'>
+                     Duration Low to High
+                </button>
+                <button mat-menu-item  (click)='sortCourses("duration","DSC")'>
+                  Duration High to Low
+             </button>
+                <button mat-menu-item  (click)='sortCourses("rating","DSC")'>
+                  Rating
+             </button>
                
               </mat-menu>
             </div>
@@ -152,7 +161,7 @@
                 <div class="content"
                   >
                   <a  type="button"  matTooltip="Go to Course Page"
-                  class="course-link" href="/course-detail?cid={{course.course_id}}">
+                  class="course-link stretched-link" href="/course-detail?cid={{course.course_id}}">
                       {{course.course_name}}
                   </a>
                   
@@ -160,14 +169,15 @@
                <div class="card-icons">
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
-                    <span class="icon-body">{{" "}}{{course.course_fee}}</span></div>
-                  <div class="star"><img src="../../assets/profile/clock.png"><span class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
+                    <span *ngIf="course.course_dur===-1" class="icon-body">{{" "}}{{course.course_fee}}</span>
+                    <span *ngIf="course.course_dur!==-1" class="icon-body">{{" "}}Free</span></div>
+                  <div class="star"><img src="../../assets/profile/clock.png"><span *ngIf="course.course_dur===-1" class="icon-body">{{"   "}}Flexible</span><span  *ngIf="course.course_dur!==-1" class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
                 </div>
                       <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb"fxFlex="70" ><img src="../../assets/profile/bulb.png"><span
                       class="icon-body">{{" "}}{{course.course_diff}}</span></div>
-                  <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_review}}/5
-                      ({{course.course_rating}})</span></div>
+                  <div class="star"><img src="../../assets/profile/star.png"><span *ngIf="course.course_review!==-1"class="icon-body">{{" "}}{{course.course_review}}/5
+                      ({{course.course_rating}})</span><span *ngIf="course.course_review===-1"class="icon-body">{{" "}}NA</span></div>
                 </div>
                 </div>
 

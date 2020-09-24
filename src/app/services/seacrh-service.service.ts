@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import  { environment} from "../../environments/environment"
 import { Observable } from 'rxjs';
+import { Options } from 'ng5-slider';
 
 
 
@@ -33,7 +34,14 @@ export class SeacrhServiceService {
     public getBookmarkedCourses(courselist){
       return this.httpClient.get(this.resourceUrl+"/edunaut/course",{observe:courselist});
     }
-    public getFilteredCourses(courseList,pageNo,pageSize){
-      return this.httpClient.post(this.resourceUrl+"/edunaut/filter/" + pageNo + "/" + pageSize,courseList);
+    public getFilteredCourses(courseList,pageNo,pageSize,params){
+      if(params!=undefined){
+      return this.httpClient.post(this.resourceUrl+"/edunaut/filterWithSort/" + pageNo + "/" + pageSize,courseList,{
+        params:params
+      });
+    }
+    else{
+       return this.httpClient.post(this.resourceUrl+"/edunaut/filterWithSort/" + pageNo + "/" + pageSize,courseList);
+    }
     }
 }

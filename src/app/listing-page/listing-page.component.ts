@@ -120,7 +120,7 @@ const ProgramData={
       'Personal Development':null,
 },
 divider:null,
-'Programe Type':{
+'Program Type':{
   Course:null,
   Degree:null,
  },
@@ -137,12 +137,12 @@ divider1:null,
     'fee':null,
      },
      divider4:null,
-  'Programe Mode':{
+  'Program Mode':{
     'Recorded':null,
     'Live':null,
     Mixed:null
     },divider5:null,
-    Advanced:{
+    Advance:{
       divider12:null,
     'Level of Difficulty':{
       'Beginner':null,
@@ -408,11 +408,11 @@ public chipList=[];
     flatNode.level = level;
     flatNode.expandable = !!node.children?.length;
    
-    if(level===0 && flatNode.item!='Advanced'){
+    if(level===0 && flatNode.item!='Advance'){
       flatNode.header = true;
       this.treeControl.expand(flatNode);
     }
-    else if(flatNode.item=='Advanced'){
+    else if(flatNode.item=='Advance'){
       flatNode.header = false;
       flatNode.advance=true;
     }
@@ -787,8 +787,48 @@ public chipList=[];
   }
   
   sortCheck(){
+   
     this.sortChecker= (this.sortChecker== true?false:true);
    
+}
+public sortParams:any
+sortCourses(param, ord){
+ switch (param){
+   case 'price':{
+     this.sortParams={
+      sortOn:'course_fee',
+      order:ord
+     }
+     break;
+   }
+   case 'duration':{
+    this.sortParams={
+     sortOn:'course_fee',
+     order:ord
+    }
+    break;
+  }
+  case 'rating':{
+    this.sortParams={
+     sortOn:'course_review',
+     order:ord
+    }
+    break;
+  }
+  case 'rating':{
+    this.sortParams={
+     sortOn:'course_review',
+     order:ord
+    }
+    break;
+  }
+  case 'relevance':{
+    this.sortParams=undefined;
+    break;
+  }
+ }
+ this.pageNo=0;
+ this.searchFilterBased(this.searchKey);
 }
   public compareChecker= true;
   compareCheck(){
@@ -1083,6 +1123,7 @@ clicked35(){
    }
     else if(this.courseprovider.indexOf(flatNode.item)!==-1){
     flatNode.parameter='course_provider';
+    this.treeControl.expand(flatNode);
   }
   else if(this.contentType.indexOf(flatNode.item)!==-1){
     flatNode.parameter='course_content';
@@ -1193,8 +1234,9 @@ clicked35(){
      
         this.loading=true;
         this.bottomindictor=false;
+         var params=this.sortParams;
        
-         this.searchService.getFilteredCourses(courseBody,this.pageNo,this.pageSize).subscribe((response:any)=>{
+         this.searchService.getFilteredCourses(courseBody,this.pageNo,this.pageSize,params).subscribe((response:any)=>{
           if(this.pageNo===0){
            this.courseList=response.content;
          this.courseListCopy= [...this.courseList];
