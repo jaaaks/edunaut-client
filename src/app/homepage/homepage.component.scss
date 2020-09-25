@@ -70,6 +70,7 @@ text-transform: none;
   padding-top: 0.7%;
   padding-bottom: 0.7%;
   margin-top: 2%;
+  height: 76px;
 }
 .cors{
   padding-left: 34%;
@@ -476,4 +477,18 @@ margin-top: 10%;
   .cors{
     padding-left: 3.5%;
   }
+}
+
+.data-strip{
+  font-family: Mulish;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 30px;
+/* identical to box height, or 167% */
+
+text-align: center;
+letter-spacing: -0.015em;
+
+color: #000000;
 }

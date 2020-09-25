@@ -46,20 +46,25 @@
 .footer-links {
   padding-left: 0;
   list-style: none;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
   /* or 157% */
+  
 
-  letter-spacing: -0.015em;
+
 
   li {
     display: block;
   }
   a {
-    color: #000000;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    
+    letter-spacing: 0.004em;
+    
+    color: #0376FE;
 
     &:active {
       color: #4ba4ec;
@@ -84,11 +89,18 @@
   text-align: center;
 }
 .copyright {
-  display: flex;
-  padding-top: 3%;
-  padding-left: 45%;
-  color: rgba(0,0,0,0.8);
-  font-family: Montserrat;
+  font-family: Mulish;
+font-style: normal;
+font-weight: 300;
+font-size: 12px;
+line-height: 15px;
+margin-top:100px;
+/* identical to box height */
+
+text-align: center;
+letter-spacing: 0.004em;
+
+color: #8A8886;
 }
 .copyright-text {
   margin: 0;
@@ -252,6 +264,9 @@ color: #A19F9D;
     position: relative;
     left: 10%;
     padding: 0 !important;
+  }
+  .copyright{
+    margin-top: 10px;
   }
 }
 
@@ -446,4 +461,18 @@ letter-spacing: 0.0015em;
 
 color: #000000;
 
+}
+
+.title{
+  font-family: Mulish;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 18px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #494949;
 }
