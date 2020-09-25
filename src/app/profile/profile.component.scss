@@ -84,6 +84,7 @@
     margin-bottom: 5%;
 }
 .but{
+  text-transform: none;
     background-color: #0376Fe !important;
     padding: 6px 20px;
     font-family: Muli;
@@ -493,4 +494,7 @@ a:hover{
   letter-spacing: 0.0025em;
 
   color: #ffffff;
+}
+button:hover{
+  background-color: #0376dd !important;
 }

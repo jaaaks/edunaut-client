@@ -2,6 +2,9 @@ $color1: #0376fe;
 $color2: #f8f8f8;
 $font1: Montserrat;
 $spacing: -0.015em;
+button:hover{
+  background-color: #0376DD !important;
+}
 .jumbotron {
   background-color: #f5fcff;
   box-shadow: none;
@@ -17,14 +20,17 @@ $spacing: -0.015em;
   font-size: 2.1em;
   line-height: 50px;
   color: #0376fe;
-  font-weight: 900;
+  font-weight: 700;
 }
 .title-body{
+  font-family: Muli;
   font-size: 1em;
   line-height: 27px;
   padding-top: 3%;
   padding-left: 1%;
   padding-right: 4%;
+  line-height: 20px;
+  color: #8A8886;
 }
 .title-img {
   padding-top: 0%;
@@ -32,10 +38,15 @@ $spacing: -0.015em;
 .btn-primary {
   background: $color1 !important;
   color: $color2 !important;
-  font-size: 0.65em;
-  padding: 1.5% 10%;
+  font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+text-transform: none;
+  padding: 1.5% 5%;
   margin-top: 6%;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .brands-head {
   text-align: center;
@@ -98,7 +109,7 @@ $spacing: -0.015em;
   font-family: $font1;
   letter-spacing: $spacing;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   color: #0376fe;
   background-color: #eef9ff;
 }
@@ -160,29 +171,34 @@ $spacing: -0.015em;
 
 .find{
   padding-top: 2.5%;
-  font-family: $font1;
   text-align: center;
-  font-size: 1em;
   padding-bottom: 0px;
   margin-bottom: 0px;
   letter-spacing: -0.015em;
   font-style: normal;
   font-weight: normal;
-  color: #000000;
+  color: #8A8886;
+  font-family: Muli;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 23px;
 }
 .btn1{
   text-align: center;
   padding-bottom: 2.5%;
 }
 .find-btn{
-  padding: 0.65% 4%;
-  font-family: $font1;
+  padding: 0.65% 1.5%;
+  font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+text-transform: none;
   text-align: center;
-  font-size: 0.7em;
   margin-top: 2%;
   letter-spacing: -0.015em;
-  font-style: normal;
-  font-weight: normal;
 }
 
 @media screen and (max-width: 1510px)

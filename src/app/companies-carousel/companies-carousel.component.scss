@@ -42,15 +42,17 @@
   li {
     display: inline-block;
     border-radius: 50%;
-    border: 2px solid rgba(0, 0, 0, 0.55);
+    border: 2px solid white !important;
+    background: #E0E2E8;
     padding: 4px;
     margin: 0 3px;
     transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
     transition: 0.4s;
     &.active {
-      background: #6b6b6b;
+      background: #0376fe;
       transform: scale(1.2);
     }
+    color: #0376fe !important;
   }
 }
 .item{
@@ -69,5 +71,9 @@
     pointer-events: none;
   }
 
-  
 }
+
+
+  
+
+

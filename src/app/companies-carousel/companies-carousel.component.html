@@ -1,3 +1,4 @@
+ 
 <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
   <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
     <mdb-card class="car z-depth-0">

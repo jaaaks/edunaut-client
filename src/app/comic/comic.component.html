@@ -13,7 +13,7 @@
       <img src="../../assets/homepage/right1.png">
     </button>
 
-  <ul class="myPoint" NguCarouselPoint>
+  <ul class="myPoint d-md-none" NguCarouselPoint>
     <li *ngFor="let i of myCarousel.pointNumbers" [class.active]="i == myCarousel.activePoint"
       (click)="myCarousel.moveTo(i)"></li>
   </ul>

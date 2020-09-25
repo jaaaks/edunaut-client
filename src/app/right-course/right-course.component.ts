@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Component({
   selector: 'app-right-course',
@@ -23,8 +24,15 @@ export class RightCourseComponent implements OnInit {
   pd = false;
   science = false;
   socialScience = false; 
+  loggedin = false;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, private afauth:AngularFireAuth) {
+    this.afauth.authState.subscribe(
+      res => {
+        if(res && res.uid){
+        this.loggedin = true;}
+      });
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
