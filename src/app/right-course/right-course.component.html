@@ -45,7 +45,7 @@
                               d="M9.66323 5.61279C10.1486 5.61279 10.5421 5.21931 10.5421 4.73389C10.5421 4.24847 10.1486 3.85498 9.66323 3.85498H9.66261C9.17719 3.85498 8.78406 4.24847 8.78406 4.73389C8.78406 5.21931 9.17781 5.61279 9.66323 5.61279Z"
                               [style.fill]="arts?'white':'#494949'" />
                           </svg>
-                          <input type="checkbox" [(ngModel)]="arts">
+                          <input type="checkbox" (click)="courseSelected('Arts and Humanities')" [(ngModel)]="arts">
                           <span class="checkmark"></span>
                           <p class="art" [style.color]="arts?'#0376fe':'#494949'">Art</p>
                         </label>
@@ -74,7 +74,7 @@
                               </clipPath>
                             </defs>
                           </svg>
-                          <input type="checkbox" [(ngModel)]="business">
+                          <input type="checkbox" (click)="courseSelected('Business')" [(ngModel)]="business">
                           <span class="checkmark"></span>
                           <p class="business" [style.color]="business?'#0376fe':'#494949'">Business</p>
                         </label>
@@ -94,7 +94,7 @@
                               </clipPath>
                             </defs>
                           </svg>
-                          <input type="checkbox" [(ngModel)]="cs">
+                          <input type="checkbox" (click)="courseSelected('Computer Science')" [(ngModel)]="cs">
                           <span class="checkmark"></span>
                           <p class="cs" [style.color]="cs?'#0376fe':'#494949'">Computer<br>Science</p>
                         </label>
@@ -117,7 +117,7 @@
                               </clipPath>
                             </defs>
                           </svg>
-                          <input type="checkbox" [(ngModel)]="dataScience">
+                          <input type="checkbox" (click)="courseSelected('Data Science')" [(ngModel)]="dataScience">
                           <span class="checkmark"></span>
                           <p class="dataScience" [style.color]="dataScience?'#0376fe':'#494949'">Data<br>Science</p>
                         </label>
@@ -140,7 +140,7 @@
                               </clipPath>
                             </defs>
                           </svg>
-                          <input type="checkbox" [(ngModel)]="health">
+                          <input type="checkbox" (click)="courseSelected('Health')" [(ngModel)]="health">
                           <span class="checkmark"></span>
                           <p class="health" [style.color]="health?'#0376fe':'#494949'">Health</p>
                         </label>
@@ -160,7 +160,7 @@
                               [style.fill]="it?'white':'#494949'" />
                           </svg>
 
-                          <input type="checkbox" [(ngModel)]="it">
+                          <input type="checkbox" (click)="courseSelected('Information Technology')" [(ngModel)]="it">
                           <span class="checkmark"></span>
                           <p class="it" [style.color]="it?'#0376fe':'#494949'">Information<br>Technology</p>
                         </label>
@@ -177,7 +177,7 @@
                             </svg>
                             
 
-                          <input type="checkbox" [(ngModel)]="language">
+                          <input type="checkbox" (click)="courseSelected('Language Learning')" [(ngModel)]="language">
                           <span class="checkmark"></span>
                           <p class="it" [style.color]="language?'#0376fe':'#494949'">Language<br>Learning</p>
                         </label>
@@ -189,7 +189,7 @@
                             <path d="M44.1211 0C43.6358 0 43.2422 0.393574 43.2422 0.878906V5.53711H39.1992V5.09766C39.1992 3.15914 37.6221 1.58203 35.6836 1.58203C33.7451 1.58203 32.168 3.15914 32.168 5.09766V5.53711H28.6523V5.09766C28.6523 3.15914 27.0752 1.58203 25.1367 1.58203C23.1982 1.58203 21.6211 3.15914 21.6211 5.09766V5.53711H1.75781V0.878906C1.75781 0.393574 1.36424 0 0.878906 0C0.393574 0 0 0.393574 0 0.878906V44.1211C0 44.6064 0.393574 45 0.878906 45H18.5449C19.0303 45 19.4238 44.6064 19.4238 44.1211C19.4238 43.6358 19.0303 43.2422 18.5449 43.2422H1.75781V39.7266H43.2422V43.2422H26.4551C25.9697 43.2422 25.5762 43.6358 25.5762 44.1211C25.5762 44.6064 25.9697 45 26.4551 45H44.1211C44.6064 45 45 44.6064 45 44.1211V0.878906C45 0.393574 44.6064 0 44.1211 0ZM23.3789 26.7188C23.3789 25.7495 24.1675 24.9609 25.1367 24.9609C26.106 24.9609 26.8945 25.7495 26.8945 26.7188V29.3555C26.8945 30.3247 26.106 31.1133 25.1367 31.1133C24.1675 31.1133 23.3789 30.3247 23.3789 29.3555V26.7188ZM28.6523 26.7188C28.6523 25.7495 29.4409 24.9609 30.4102 24.9609C31.3794 24.9609 32.168 25.7495 32.168 26.7188V29.3555C32.168 30.3247 31.3794 31.1133 30.4102 31.1133C29.4409 31.1133 28.6523 30.3247 28.6523 29.3555V26.7188ZM33.9258 26.7188C33.9258 25.7495 34.7143 24.9609 35.6836 24.9609C36.6529 24.9609 37.4414 25.7495 37.4414 26.7188V29.3555C37.4414 30.3247 36.6529 31.1133 35.6836 31.1133C34.7143 31.1133 33.9258 30.3247 33.9258 29.3555V26.7188ZM35.6836 23.2031C34.6344 23.2031 33.6916 23.6658 33.0469 24.3971C32.4022 23.6658 31.4594 23.2031 30.4102 23.2031C29.3609 23.2031 28.4181 23.6658 27.7734 24.3971C27.1288 23.6658 26.186 23.2031 25.1367 23.2031C23.1982 23.2031 21.6211 24.7802 21.6211 26.7188V27.1582H1.75781V18.1055H5.80078V18.5449C5.80078 20.4834 7.37789 22.0605 9.31641 22.0605C10.3656 22.0605 11.3084 21.5979 11.9531 20.8666C12.5978 21.5979 13.5406 22.0605 14.5898 22.0605C16.5284 22.0605 18.1055 20.4834 18.1055 18.5449V18.1055H43.2422V27.1582H39.1992V26.7188C39.1992 24.7802 37.6221 23.2031 35.6836 23.2031ZM16.3477 18.5449C16.3477 19.5142 15.5591 20.3027 14.5898 20.3027C13.6206 20.3027 12.832 19.5142 12.832 18.5449V15.9082C12.832 14.9389 13.6206 14.1504 14.5898 14.1504C15.5591 14.1504 16.3477 14.9389 16.3477 15.9082V18.5449ZM11.0742 18.5449C11.0742 19.5142 10.2857 20.3027 9.31641 20.3027C8.34715 20.3027 7.55859 19.5142 7.55859 18.5449V15.9082C7.55859 14.9389 8.34715 14.1504 9.31641 14.1504C10.2857 14.1504 11.0742 14.9389 11.0742 15.9082V18.5449ZM33.9258 5.09766C33.9258 4.1284 34.7143 3.33984 35.6836 3.33984C36.6529 3.33984 37.4414 4.1284 37.4414 5.09766V7.73438C37.4414 8.70363 36.6529 9.49219 35.6836 9.49219C34.7143 9.49219 33.9258 8.70363 33.9258 7.73438V5.09766ZM23.3789 5.09766C23.3789 4.1284 24.1675 3.33984 25.1367 3.33984C26.106 3.33984 26.8945 4.1284 26.8945 5.09766V7.73438C26.8945 8.70363 26.106 9.49219 25.1367 9.49219C24.1675 9.49219 23.3789 8.70363 23.3789 7.73438V5.09766ZM21.6211 7.29492V7.73438C21.6211 9.67289 23.1982 11.25 25.1367 11.25C27.0752 11.25 28.6523 9.67289 28.6523 7.73438V7.29492H32.168V7.73438C32.168 9.67289 33.7451 11.25 35.6836 11.25C37.6221 11.25 39.1992 9.67289 39.1992 7.73438V7.29492H43.2422V16.3477H18.1055V15.9082C18.1055 13.9697 16.5284 12.3926 14.5898 12.3926C13.5406 12.3926 12.5978 12.8552 11.9531 13.5866C11.3084 12.8552 10.3656 12.3926 9.31641 12.3926C7.37789 12.3926 5.80078 13.9697 5.80078 15.9082V16.3477H1.75781V7.29492H21.6211ZM1.75781 37.9688V28.916H21.6211V29.3555C21.6211 31.294 23.1982 32.8711 25.1367 32.8711C26.186 32.8711 27.1288 32.4084 27.7734 31.6771C28.4181 32.4084 29.3609 32.8711 30.4102 32.8711C31.4594 32.8711 32.4022 32.4084 33.0469 31.6771C33.6916 32.4084 34.6344 32.8711 35.6836 32.8711C37.6221 32.8711 39.1992 31.294 39.1992 29.3555V28.916H43.2422V37.9688H1.75781Z" [style.fill]="math?'white':'#494949'"/>
                             </svg>
 
-                          <input type="checkbox" [(ngModel)]="math">
+                          <input type="checkbox" (click)="courseSelected('Math and Logic')" [(ngModel)]="math">
                           <span class="checkmark"></span>
                           <p class="math" [style.color]="math?'#0376fe':'#494949'">Maths</p>
                         </label>
@@ -208,7 +208,7 @@
                             </defs>
                             </svg>
 
-                          <input type="checkbox" [(ngModel)]="pd">
+                          <input type="checkbox" (click)="courseSelected('Personal Development')" [(ngModel)]="pd">
                           <span class="checkmark"></span>
                           <p class="pd" [style.color]="pd?'#0376fe':'#494949'">Personality<br>Development</p>
                         </label>
@@ -241,7 +241,7 @@
                             </defs>
                             </svg>
 
-                          <input type="checkbox" [(ngModel)]="socialScience">
+                          <input type="checkbox" (click)="courseSelected('Social Sciences')" [(ngModel)]="socialScience">
                           <span class="checkmark"></span>
                           <p class="ss" [style.color]="socialScience?'#0376fe':'#494949'">Social<br>Science</p>
                         </label>
@@ -317,27 +317,27 @@
                   <div class="time">
                     <div class="custom-control custom-radio custom-control-inline">
                       <input type="radio" class="custom-control-input" id="defaultInline1"
-                        name="inlineDefaultRadiosExample" mdbInput>
+                        name="inlineDefaultRadiosExample" (click)="duration('1')" mdbInput>
                       <label class="custom-control-label" for="defaultInline1">1 Hours</label>
                     </div>
 
                     <!-- Default inline 2-->
                     <div class="custom-control hours custom-radio custom-control-inline">
                       <input type="radio" class="custom-control-input" id="defaultInline2"
-                        name="inlineDefaultRadiosExample" mdbInput>
+                        name="inlineDefaultRadiosExample" (click)="duration('3')" mdbInput>
                       <label class="custom-control-label" for="defaultInline2">3 Hours</label>
                     </div>
 
                     <!-- Default inline 3-->
                     <div class="custom-control hours custom-radio custom-control-inline">
                       <input type="radio" class="custom-control-input" id="defaultInline3"
-                        name="inlineDefaultRadiosExample" mdbInput>
+                        name="inlineDefaultRadiosExample" (click)="duration('5')" mdbInput>
                       <label class="custom-control-label" for="defaultInline3">5 Hours</label>
                     </div>
                     <br>
                     <div class="bottom">
                       <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="defaultInline4"
+                        <input type="radio" class="custom-control-input" (click)="duration('7')" id="defaultInline4"
                           name="inlineDefaultRadiosExample" mdbInput>
                         <label class="custom-control-label" for="defaultInline4">7 Hours</label>
                       </div>
@@ -345,7 +345,7 @@
                       <!-- Default inline 2-->
                       <div class="custom-control hours custom-radio custom-control-inline">
                         <input type="radio" class="custom-control-input" id="defaultInline5"
-                          name="inlineDefaultRadiosExample" mdbInput>
+                          name="inlineDefaultRadiosExample" (click)="duration('9')" mdbInput>
                         <label class="custom-control-label" for="defaultInline5">9 Hours</label>
                       </div>
 
@@ -390,13 +390,13 @@
                     <!-- Default inline 2-->
                     <div class="custom-control decision custom-radio custom-control-inline">
                       <input type="radio" class="custom-control-input" id="defaultInline8"
-                        name="inlineDefaultRadiosExample1" mdbInput>
+                        name="inlineDefaultRadiosExample1" (Click)="courseFee('yes')" mdbInput>
                       <label class="custom-control-label" for="defaultInline8">No</label>
                     </div>
 
                     <!-- Default inline 3-->
                     <div class="custom-control decision custom-radio custom-control-inline">
-                      <input type="radio" class="custom-control-input" id="defaultInline9"
+                      <input type="radio" class="custom-control-input" (Click)="courseFee('no')" id="defaultInline9"
                         name="inlineDefaultRadiosExample1" mdbInput>
                       <label class="custom-control-label" for="defaultInline9">Maybe</label>
                     </div>
@@ -409,7 +409,7 @@
               <div class="row next">
                 <div class="col-12">
                   <button class="btn1" mat-button matStepperPrevious>Back</button>
-                  <button class="btn2" mat-button matStepperNext>Next</button>
+                  <button class="btn2" mat-button matStepperNext (click)="setNext()">Next</button>
                 </div>
 
               </div>
@@ -431,7 +431,7 @@
                   <button type="button" class="later"> Later</button>
                 </div>
                 <div class="already">
-                  Already have an account? <span class="log"><a href="./coming-soon">Log in</a></span>
+                  Already have an account? <span class="log" type="button" (click)="calledLogin()">Log in</span>
                 </div>
               </div>
               <div class="col-4">

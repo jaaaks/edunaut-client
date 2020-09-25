@@ -169,7 +169,7 @@ export class LoginComponent implements OnInit {
                 this.loading=false;
                 this.userData= res.user;
                 this.userData.sendEmailVerification();
-                this.dialogRef.close();
+                this.dialogRef.close('success');
                 },
         err=>{
           console.log("sign up not successful",err);

@@ -309,11 +309,11 @@ export class ListingPageComponent implements OnInit {
   Selected45=false;
   Selected40=false;
   Selected35=false;
-
+  searchByparam:any;
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
     private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute,private spinner: NgxSpinnerService,
-    private bottomsheet:MatBottomSheet) { 
+    private bottomsheet:MatBottomSheet,private router:Router) { 
     this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message)});
  
@@ -333,7 +333,16 @@ export class ListingPageComponent implements OnInit {
     _database.dataChange1.subscribe(data => {
       this.dataSource1.data = data;
       });
-
+      this.messageService.getMessage().subscribe(msg=>{
+        console.log(msg,'message came');
+      })
+      if(this.router.getCurrentNavigation()){
+      var routerNavigation=this.router.getCurrentNavigation().extras.state;
+      if(routerNavigation){
+      console.log(this.router.getCurrentNavigation().extras.state);
+      this.searchByparam=routerNavigation;
+      }
+      }
   }
    private courseField=['Arts and Humanities','Business','Computer Science','Data Science','Health','Information Technology','Language Learning',
    'Physical Science and Engineering','Social Sciences','Math and Logic','Personal Development' ];
@@ -521,12 +530,12 @@ public chipList=[];
       }
       this.pageNo=0;
       this.bottomindictor=false;
+      if(searchParam===undefined && this.searchByparam!==undefined){
+           this.courseFieldParam.push(this.searchByparam.course_field);
+      }
       this.searchFilterBased(searchParam);
     });
-
-    
-     //this.messageService.getMessage().subscribe(message => { this.searchMethod(message) });
-  }
+   }
   loading =false;
   pageSize="30";
   pageNo:number=0;
