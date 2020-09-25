@@ -90,6 +90,8 @@ export class CourseDetailComponent implements OnInit {
   isComplete = false;
   userData;
   res;
+  courseReport;
+  userEmail;
   isPost = false;
   professor: Array<{ name: String, ins: String, desc: String }>;
   count = 0;
@@ -100,6 +102,7 @@ export class CourseDetailComponent implements OnInit {
         this.userData = res;
         this.userService.profileInformation(this.userId).subscribe(res => {
           this.userProfile = res;
+          this.userEmail = this.userProfile.email;
           this.bookmark = this.userProfile.bookmarks.find(({ courseid }) => courseid === this.courseId);
           this.isBookmark= this.bookmark;
           if(this.isBookmark){
@@ -452,5 +455,25 @@ export class CourseDetailComponent implements OnInit {
       }
     })
   }
+
+  reportCourse(){
+    console.log({
+      courseid: this.courseId,
+        userid: this.userId,
+        reportmessage: this.courseReport,
+        useremail: this.userEmail
+  });
+    this.courseService.reportCourse({
+      courseid: this.courseId,
+      userid: this.userId,
+      reportmessage: this.courseReport,
+      useremail: this.userEmail
+    }).subscribe(
+      res =>{
+        console.log(res);
+      }
+    )
+  }
+  
 }
 

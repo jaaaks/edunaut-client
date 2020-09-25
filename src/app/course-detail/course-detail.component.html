@@ -57,8 +57,8 @@
                 </div>
                 <div class="details">
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/clock.png"></span><span
-                            class="time-detail">{{course.course_dur}} Hrs</span>
+                        <span class="time"><img src="../../assets/course-detail/clock.png"></span><span *ngIf="course.course_dur > 0"
+                            class="time-detail">{{course.course_dur}} Hrs</span><span *ngIf="course.course_dur<=0" class="time-detail">Information Unavailable</span>
                     </div>
                     <hr>
                     <div>
@@ -137,13 +137,13 @@
                     better learning platform for all.</p>
                 <div class="md-form">
                     <textarea type="text" id="form7" class="md-textarea form-control"
-                        placeholder="Explain this report. Link appropriate resources if necessary." mdbInput></textarea>
+                        placeholder="Explain this report. Link appropriate resources if necessary." [(ngModel)]="courseReport"></textarea>
                 </div>
             </div>
             <div class="modal-footer mod-footer">
                 <button type="button" mdbBtn color="secondary" class="waves-light cancel z-depth-0" aria-label="Close"
                     (click)="basicModal.hide()" mdbWavesEffect>Cancel</button>
-                <button type="button" mdbBtn (click)="showAndHideModal()" (click)="basicModal.hide()" color="primary"
+                <button type="button" mdbBtn (click)="reportCourse()" (click)="showAndHideModal()" (click)="basicModal.hide()" color="primary"
                     class="relative waves-light submit" mdbWavesEffect>Submit</button>
             </div>
         </div>
