@@ -23,6 +23,35 @@ export class CompaniesCarouselComponent implements OnInit {
     'assets/homepage/unlocked.jpg','assets/homepage/tuts+.png', 'assets/homepage/alison.png', 'assets/homepage/simplilearn.png', 'assets/homepage/openuniversity.png',
     'assets/homepage/kadenze.png', 'assets/homepage/mit.jpeg', 'assets/homepage/harvard.png', 'assets/homepage/treehouse.png', 'assets/homepage/open yale.png', 'assets/homepage/nptel.png',
     'assets/homepage/swayam.jpeg', 'assets/homepage/upgrad.png'];
+    public courseprovider=[  
+      'Coursera',
+    'edX',
+    'Future Learn',
+    'The Great Courses',
+    'Plural Sight',
+    'Udemy',
+    'Open Learning',
+    'Udacity',
+    'Skillshare',
+    'Coggno',
+    'Linked Learning',
+    'Google Unlocked',
+    'tuts+',
+      'Alison',
+  'Simplilearn',
+  'Open university',
+  'Kadenze',
+   'MIT OCW',
+   'HarvardX',
+   'Treehouse',
+   'Yale OCW',
+ 
+  'NPTEL',
+  'Swayam',
+  'upGrad',
+  'Canvas Network',
+  'Datacamp',
+ ];
 
   public carouselTileItems$: Observable<number[]>;
   public carouselTileConfig: NguCarouselConfig = {

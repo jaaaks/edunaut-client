@@ -15,6 +15,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from '../login/login.component';
 import {MatChipInputEvent} from '@angular/material/chips';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 
 import { EmailVerificationComponent } from '../email-verification/email-verification.component';
 import {ProfileService} from '../services/profile.service'
@@ -23,12 +25,13 @@ import { Options } from 'ng5-slider';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { NgxSpinnerService } from 'ngx-spinner';
+
 export class TodoItemNode {
   children: TodoItemNode[];
   item: string;
 }
 export class BoomarkObject{
-  course_id: string;
+  courseid: string;
   status:string;
   percentage:string;
   userid:any;
@@ -47,6 +50,8 @@ export class TodoItemFlatNode {
   firstChild:boolean;
   parameter:string;
   parameterType:string;
+  advance:boolean;
+  advadedHeader:boolean;
 } 
 const personal='Personal Development';
 const TREE_DATA={};
@@ -115,7 +120,7 @@ const ProgramData={
       'Personal Development':null,
 },
 divider:null,
-'Programe Type':{
+'Program Type':{
   Course:null,
   Degree:null,
  },
@@ -132,25 +137,48 @@ divider1:null,
     'fee':null,
      },
      divider4:null,
-  'Programe Mode':{
+  'Program Mode':{
     'Recorded':null,
     'Live':null,
     Mixed:null
     },divider5:null,
+    Advance:{
+      divider12:null,
     'Level of Difficulty':{
       'Beginner':null,
       'Intermediate':null,
       'Expert':null
     },divider6:null,
     Provider:{
+      Alison:null,
+      'Canvas Network':null,
+      Coggno:null,
       Coursera:null,
-      edx:null,
-      udemy:null
+      Datacamp:null,
+      edX:null,
+      'Future Learn':null,
+      'Google Unlocked':null,
+      'HarvardX':null,
+      'Kadenze':null,
+      'Linked Learning':null,
+      'MIT OCW':null,
+      'NPTEL':null,
+      'Open Learning':null,
+      'Plural Sight':null,
+      'Skillshare':null,
+      'Swayam':null,
+      'The Great Courses':null,
+      'Treehouse':null,
+      'tuts+':null,
+      'Udacity':null,
+      'Udemy':null,
+      'upGrad':null,
+      'Yale OCW':null
     },divider7:null,
     'Course Content':{
       Audio:null,
       Video:null,
-      'Text Material':null
+      'Text':null
     },divider8:null,
     'Other Specifics':{
       Certification:null,
@@ -166,6 +194,9 @@ divider1:null,
       'English':null,
       'French':null
     }
+    
+  },
+  divider11:null
 }
 @Injectable()
 export class ChecklistDatabase {
@@ -264,7 +295,6 @@ export class ListingPageComponent implements OnInit {
   value=200;
   treeFlattener: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
   treeFlattener1: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
-   tagList=['tag1','very  big tag','tag2','tag3','tag5','tag4','tag1','tag2','tag3','tag5','tag4']
   nestedNodeMap = new Map<TodoItemNode, TodoItemFlatNode>();
   selectedParent: TodoItemFlatNode | null = null;
  checklistSelection = new SelectionModel<TodoItemFlatNode>(true /* multiple */);
@@ -276,10 +306,14 @@ export class ListingPageComponent implements OnInit {
  dataSource1: MatTreeFlatDataSource<TodoItemNode, TodoItemFlatNode>;
 
   getLevel = (node: TodoItemFlatNode) => node.level;
-  middleFlag=false; 
+  Selected45=false;
+  Selected40=false;
+  Selected35=false;
+
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
-    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute,private spinner: NgxSpinnerService) { 
+    private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute,private spinner: NgxSpinnerService,
+    private bottomsheet:MatBottomSheet) { 
     this.changeText= false;
     this.subscription = this.messageService.getMessage().subscribe(message => { this.searchMethod(message)});
  
@@ -304,18 +338,66 @@ export class ListingPageComponent implements OnInit {
    private courseField=['Arts and Humanities','Business','Computer Science','Data Science','Health','Information Technology','Language Learning',
    'Physical Science and Engineering','Social Sciences','Math and Logic','Personal Development' ];
    public courseFieldParam=[];
+   public searchCourseField:string="";
+
    private courseSubField=['History','Music and Art','Philosophy','Business Essentials','Business Strategy','Entrepreneurship','Finance','Leadership and Management',
   'Marketing','Algorithms','Computer Science and Technology','Design and Product','Mobile and Web Development','Software Development','Data Analysis',
 'Machine Learning','Probability and Statistics','Animal Health','Basic Health','Health Informatics','Healthcare Management','Nutrition','Patient Care','Psychology','Research',
 'Cloud Computing','Data Management','Security','Support and Operations','Learning English','Other Languages','Chemistry','Electrical Engineering','Enviromental Science and sustainability',
 'Mechanical Engineering','Physics and Astronomy','Research Methods','Education','Economics','Governance and Society','Law',];
-private programType=['Recorded','Live','Mixed'];
 public courseSubFieldParam=[];
-private difficultyLevel=['Beginner','Intermediate','Expert','Mixed'];
-private courseprovider=['Coursera','udemy','edx'];
-private contentType=['Audio','Video','Text Material'];
-public loadingFirst=false;
 
+
+private programType=['Course','Degree'];
+public programTypeParam=[];
+
+private programMode=['Recorded','Live','Mixed'];
+public programModeParam=[];
+
+
+private difficultyLevel=['Beginner','Intermediate','Expert','Mixed'];
+public difficultyLevelParam=[];
+
+public isCertiRequired:boolean=false;
+
+private courseprovider=[ 'Alison',
+  'Canvas Network',
+  'Coggno',
+  'Coursera',
+  'Datacamp',
+  'edX',
+  'Future Learn',
+  'Google Unlocked',
+  'HarvardX',
+  'Kadenze',
+  'Linked Learning',
+  'MIT OCW',
+  'NPTEL',
+  'Open Learning',
+  'Plural Sight',
+  'Skillshare',
+  'Swayam',
+  'The Great Courses',
+  'Treehouse',
+  'tuts+',
+  'Udacity',
+  'Udemy',
+  'upGrad',
+  'Yale OCW'];
+public courseProvideParam=[];
+
+private contentType=['Audio','Video','Text'];
+public  contentTypeParam=[];
+
+private languages=['English','French'];
+public languageParam=[];
+
+private transcript=['English','French'];
+private transcriptParam=[];
+
+
+public loadingFirst=false;
+public chipList=[];
 
   transformer = (node: TodoItemNode, level: number) => {
     const existingNode = this.nestedNodeMap.get(node);
@@ -325,20 +407,14 @@ public loadingFirst=false;
     flatNode.item = node.item;
     flatNode.level = level;
     flatNode.expandable = !!node.children?.length;
-    var courseIndex=this.courseField.indexOf(node.item);
-    var courseSubFieldIndex= this.courseSubField.indexOf(node.item);
-    if(courseIndex!=-1){
-         flatNode.parameter='course_field';
-        }
-    else if(courseSubFieldIndex!==-1){
-     flatNode.parameter='course_subfield';
-    }
-    if(level===0){
+   
+    if(level===0 && flatNode.item!='Advance'){
       flatNode.header = true;
       this.treeControl.expand(flatNode);
     }
-    else{
+    else if(flatNode.item=='Advance'){
       flatNode.header = false;
+      flatNode.advance=true;
     }
     if(level===1){
       flatNode.firstChild=true;
@@ -366,9 +442,14 @@ public loadingFirst=false;
     else {
       flatNode.fee= false;
       }
+      if(node.item==="Level of Difficulty" || node.item==='Provider' || node.item==="Course Content" || node.item==="Other Specifics"
+      || node.item==="Language" || node.item==="Transcript"){
+        flatNode.advadedHeader=true;
+      }
       if(node.item==="divider" || node.item==="divider1" || node.item==="divider2"|| node.item==="divider3"
       || node.item==="divider4" || node.item==="divider5"  || node.item==="divider6" || node.item==="divider7"
-      || node.item==="divider8" || node.item==="divider9" || node.item==="divider10"){
+      || node.item==="divider8" || node.item==="divider9" || node.item==="divider10" || node.item==="divider11"||
+      node.item==="divider12"){
         flatNode.divider=true;
         flatNode.header=false;
       }
@@ -387,8 +468,12 @@ public loadingFirst=false;
   isRating =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.rating;
   isFee =(_: number, _nodeData:TodoItemFlatNode)=> _nodeData.fee;
   isDivider= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.divider;
-  hasPadding=(_: number, _nodeData:TodoItemFlatNode)=>  _nodeData.level ==(1 || 2)? true:false;
+  isAdvance= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.advance;
+  isAdvanceHeader= (_: number, _nodeData:TodoItemFlatNode)=> _nodeData.advadedHeader;
 
+
+  hasPadding=(_: number, _nodeData:TodoItemFlatNode)=>  _nodeData.level ==(1 || 2)? true:false;
+  
    
   hasNoContent = (_: number, _nodeData: TodoItemFlatNode) => _nodeData.item === '';
 
@@ -403,6 +488,7 @@ public loadingFirst=false;
     //    this.totalResults=this.courseList.length;
 
     // });
+    this.setCourseParameter();
     this.afauth.authState.subscribe(
       res => {
         if (res && res.uid) {
@@ -422,11 +508,20 @@ public loadingFirst=false;
       err=>{
         this.isLoggedIn=false;
       });
+     
+
     var searchParam;
+    var providerParam;
      this.activateRouter.queryParams.subscribe(params => {
       searchParam = params['search'];
       this.searchKey=searchParam;
-      this.searchMethod(searchParam);
+      providerParam=params['provider'];
+      if(providerParam!==undefined &&  this.courseProvideParam.indexOf(providerParam)===-1){
+      this.courseProvideParam.push(providerParam);
+      }
+      this.pageNo=0;
+      this.bottomindictor=false;
+      this.searchFilterBased(searchParam);
     });
 
     
@@ -434,7 +529,7 @@ public loadingFirst=false;
   }
   loading =false;
   pageSize="30";
-  pageNo:number=1;
+  pageNo:number=0;
   searchKey:string;
   searchMethod(parameter):void{
     if(this.pageNo===1){
@@ -444,7 +539,7 @@ public loadingFirst=false;
       this.searchService.getCourseByKeyWord(parameter,this.pageNo,this.pageSize).subscribe((response:any)=>{
        if(this.pageNo===1){
         this.courseList=response.content;
-      this.courseListCopy= response.content;
+      this.courseListCopy= [...this.courseList];
       this.loadingFirst= false;
        }
        else{
@@ -455,9 +550,14 @@ public loadingFirst=false;
       this.totalResults=this.courseList.length;
       this.loading=false;
       this.pageNo= this.pageNo+1;
+      this.filterCourse('any');
   });
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
+    if(node.parameter!=='course_field'){
+ return this.checklistSelection.isSelected(node);
+    }
+   
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected = descendants.length > 0 && descendants.every(child => {
       return this.checklistSelection.isSelected(child);
@@ -469,48 +569,183 @@ public loadingFirst=false;
     this.checkAllParentsSelection(node);
     console.log(node,event);
     this.nodeValueMap.set(node,event.checked);
-    if(event.checked===true){
-      this.courseSubFieldParam.push(node.item);
+    if(node.parameter==='course_subfield'){
+    this.changeCourseSubfieldParams(...[node]);
     }
-    else{
-      const index= this.courseFieldParam.indexOf(node.item);
-      this.courseFieldParam.splice(index,1);
-      
+    event.checked=this.checklistSelection.isSelected(node)?true:false
+    if(node.parameter!=='course_subfield' && event.checked===true){
+   this.addToChipList(node);
     }
-  
-    this.filterCourse('any');
+    else if(node.parameter!=='course_subfield' && event.checked===false){
+      this.removeFromChipList(node);
+      }
+      if( event.checked){
+        switch(node.parameter){
+          case 'course_field':{
+            this.courseFieldParam.push(node.item);
+            this.searchCourseField= this.searchCourseField +" "+ node.item;
+            console.log(this.searchCourseField);
+            break;
+          }
+          case 'course_type':{
+            this.programTypeParam.push(node.item);
+            break;
+          }
+          case 'course_program':{
+            this.programModeParam.push(node.item);
+            break;
+          }
+          case 'course_diff':{
+             this.difficultyLevelParam.push(node.item);
+             break;
+          } 
+          case  'course_provider':{
+            this.courseProvideParam.push(node.item);
+            break;
+          }
+          case 'course_content' : {
+              this.contentTypeParam.push(node.item);
+              break;
+          }
+          case 'course_lang' : {
+            this.languageParam.push(node.item);
+            break;
+          }
+          case 'course_trnsc' :{
+            this.transcriptParam.push(node.item);
+            break;
+          }
+          case 'course_certi' :{
+            this.isCertiRequired=true;
+            break;
+          }
+       }
+         
+      }
+      else if(!event.checked){
+        switch(node.parameter){
+          case 'course_field':{
+            const index= this.courseFieldParam.indexOf(node.item);
+            this.courseFieldParam.splice(index,1);
+            const regex="/" + node.item +"/gi";
+            this.searchCourseField= this.searchCourseField.replace(regex,"");
+            console.log(this.searchCourseField);
+            break;
+          }
+          case 'course_type':{
+            const index= this.programTypeParam.indexOf(node.item);
+            this.programTypeParam.splice(index,1);
+            break;
+          }
+          case 'course_program':{
+            const index= this.programModeParam.indexOf(node.item);
+            this.programModeParam.splice(index,1);
+            break;
+          }
+          case 'course_diff':{
+            const index= this.difficultyLevelParam.indexOf(node.item);
+            this.difficultyLevelParam.splice(index,1);
+            break;
+          }
+          case 'course_provider' :{
+            const index= this.courseProvideParam.indexOf(node.item);
+            this.courseProvideParam.splice(index,1);
+            break;
+          }
+          case 'course_content' :{
+            const index= this.contentTypeParam.indexOf(node.item);
+            this.contentTypeParam.splice(index,1);
+            break;
+          }
+          case 'course_lang' :{
+            const index= this.languageParam.indexOf(node.item);
+            this.languageParam.splice(index,1);
+            break;
+          }
+          case 'course_trnsc' :{
+            const index= this.transcriptParam.indexOf(node.item);
+            this.transcriptParam.splice(index,1);
+            break;
+          }
+          case 'course_certi' :{
+            this.isCertiRequired=false;
+            break;
+          }
+      }
+      this.pageNo=0;
+      this.searchFilterBased(this.searchKey);
+  }
+     
+    //   }
+    this.pageNo=0;
+    this.searchFilterBased(this.searchKey);
   }
   descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
+    if(node.parameter!=='course_field')
+     return false;
     const descendants = this.treeControl.getDescendants(node);
     const result = descendants.some(child => this.checklistSelection.isSelected(child));
     return result && !this.descendantsAllSelected(node);
   }
   
   todoItemSelectionToggle(node: TodoItemFlatNode,event): void {
+    if(node.level===2 || node.parameter!=='course_field'){
+      this.todoLeafItemSelectionToggle(node,event);
+      return ;
+    }else{
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
     this.checklistSelection.isSelected(node)
       ? this.checklistSelection.select(...descendants)
       : this.checklistSelection.deselect(...descendants);
-
+      this.checklistSelection.isSelected(node)
+      ? event.checked=true
+      : event.checked=false;
     // Force update for the parent
-    descendants.forEach(child => this.checklistSelection.isSelected(child));
+    this.changeCourseSubfieldParams(...descendants);
+    descendants.forEach((child) => {
+      this.checklistSelection.isSelected(child)
+    });
     this.checkAllParentsSelection(node);
     console.log(node,event);
-    if(node.parameter==='course_field' && event.checked){
-      this.courseFieldParam.push(node.item);
+    if( event.checked){
+      switch(node.parameter){
+        case 'course_field':{
+          this.courseFieldParam.push(node.item);
+          this.searchCourseField= this.searchCourseField +" "+ node.item;
+          console.log(this.searchCourseField);
+          break;
+        }
+      }
+        
+    if(this.chipList.length===0 || this.chipList.indexOf(node)<0){
+    this.chipList.push(node);
     }
-    else if(node.parameter==='course_field' && !event.checked){
-        const index= this.courseFieldParam.indexOf(node.item);
-        this.courseFieldParam.splice(index,1);
     }
-    this.filterCourse("any")
-    this.nodeValueMap.set(node,event.checked);
+    else if(!event.checked){
+      switch(node.parameter){
+        case 'course_field':{
+          const index= this.courseFieldParam.indexOf(node.item);
+          this.courseFieldParam.splice(index,1);
+          const regex="/" + node.item +"/gi";
+          this.searchCourseField= this.searchCourseField.replace(regex,"");
+          console.log(this.searchCourseField);
+          break;
+        }
+    }
+    const index1= this.chipList.indexOf(node);
+    if(index1 !== -1){
+    this.chipList.splice(index1,1);
+    }
+  }
+  } 
+    this.pageNo=0;  
+    this.searchFilterBased(this.searchKey);
   }
 
   checkAllParentsSelection(node: TodoItemFlatNode): void {
     let parent: TodoItemFlatNode | null = this.getParentNode(node);
-    while (parent) {
+    while (parent && parent.level!==0) {
       this.checkRootNodeSelection(parent);
       parent = this.getParentNode(parent);
     }
@@ -523,11 +758,14 @@ public loadingFirst=false;
     });
     if (nodeSelected && !descAllSelected) {
       this.checklistSelection.deselect(node);
+      this.removeFromChipList(node);
       console.log('node deselect');
     } else if (!nodeSelected && descAllSelected) {
       this.checklistSelection.select(node);
+      this.addToChipList(node);
       this.nodeValueMap.set(node,false);
     }
+    this.setChildChipList(node,...descendants);
   }
      getParentNode(node: TodoItemFlatNode): TodoItemFlatNode | null {
     const currentLevel = this.getLevel(node);
@@ -549,8 +787,48 @@ public loadingFirst=false;
   }
   
   sortCheck(){
+   
     this.sortChecker= (this.sortChecker== true?false:true);
    
+}
+public sortParams:any
+sortCourses(param, ord){
+ switch (param){
+   case 'price':{
+     this.sortParams={
+      sortOn:'course_fee',
+      order:ord
+     }
+     break;
+   }
+   case 'duration':{
+    this.sortParams={
+     sortOn:'course_fee',
+     order:ord
+    }
+    break;
+  }
+  case 'rating':{
+    this.sortParams={
+     sortOn:'course_review',
+     order:ord
+    }
+    break;
+  }
+  case 'rating':{
+    this.sortParams={
+     sortOn:'course_review',
+     order:ord
+    }
+    break;
+  }
+  case 'relevance':{
+    this.sortParams=undefined;
+    break;
+  }
+ }
+ this.pageNo=0;
+ this.searchFilterBased(this.searchKey);
 }
   public compareChecker= true;
   compareCheck(){
@@ -572,11 +850,11 @@ public loadingFirst=false;
         this.snackBar.open('Course Bookmarked','close',{
           duration:2000
         })
-        this.bookMarkobject.course_id= course.course_id;
+        this.bookMarkobject.courseid= course.course_id;
         this.bookMarkobject.userid={"uid":this.userData.uid};
         this.bookMarkCourseMap.set(course.course_id,true);
          this.searchService.bookMarkcourse(this.bookMarkobject).subscribe(data=>{
-          
+             
          },err=>{
            if(err='success'){
             this.snackBar.open('Course BookMarked','close',{
@@ -585,27 +863,22 @@ public loadingFirst=false;
            }
          })
       }else{
-        const dialogRef1 = this.dialog.open(EmailVerificationComponent,{
-          height:'520px',
-          minWidth:'411px',
-          position:{
-            top: '15vh',
-             },
-             
-        }
-        );
+       this.bottomsheet.open(BottomSheetComponent,{
+         data:'Account verification email has been sent to your email ID'
+       });
         this.userData.sendEmailVerification().then(result=>{
           course.bookmarked=!course.bookmarked;
-          dialogRef1.close();
+         
         },
         err=>{
+          console.log(err);
                console.log('not verified')
         })
       }
        }
        else{
         const dialogRef = this.dialog.open(LoginComponent,{
-          height:'520px',
+          maxHeight:'520px',
           minWidth:'411px',
           position:{
             top: '15vh',
@@ -631,47 +904,360 @@ public loadingFirst=false;
        return false;
      }
      };
+
+     Selected45=false;
+  Selected40=false;
+  Selected35=false;
+     clicked45(){
+       if(this.Selected40)
+       {
+         this.Selected40=!this.Selected40;
+       }
+       if(this.Selected35)
+       {
+         this.Selected35=!this.Selected35;
+       }
+      this.Selected45=!this.Selected45;
+     this.filterCourse('any');
+     
+   }
+   clicked40(){
+    if(this.Selected45)
+    {
+      this.Selected45=!this.Selected45;
+    }
+    if(this.Selected35)
+    {
+      this.Selected35=!this.Selected35;
+    }
+   this.Selected40=!this.Selected40;
+   this.filterCourse('any');
+
+}
+clicked35(){
+  if(this.Selected45)
+  {
+    this.Selected45=!this.Selected45;
+  }
+  if(this.Selected40)
+  {
+    this.Selected40=!this.Selected40;
+  }
+ this.Selected35=!this.Selected35;
+ this.filterCourse('any');
+
+}
    filterCourse(params){
-     this.courseList=  this.courseListCopy;
+     this.courseList=  [...this.courseListCopy];
 
-      this.courseList= this.courseList.filter(course=>{
+      // this.courseList= this.courseList.filter(course=>{
 
-       return this.doCourseFieldFilter(course);
-      });
+      //  return this.doCourseFieldFilter(course) && this.doProgramTypeFilter(course) && this.doCourseSubFieldFilter(course) &&
+      //   this.doContentTypeFilter(course) && this.doLanguageFilter(course) && this.doTranscriptFilter(course) &&
+      //   this.doDifficultyFilter(course) && this.doProviderFilter(course) && this.doTranscriptFilter(course) &&
+      //   this.doContentTypeFilter(course) && this.doRateFilter(course);
+      // });
+      console.log(this.courseList);
    } 
-   doCourseFieldFilter(course){
-     if(this.courseFieldParam.length==0){
-       return true
-     }
-     var result=false;
-         for(var i=0;i<this.courseFieldParam.length;i++){
-       result= result || course.course_field.includes(this.courseFieldParam[i]);
+   doCourseFieldFilter(){
+      var result=""
+      for(var i=0;i<this.courseFieldParam.length;i++){
+       result= result + " " + this.courseFieldParam[i];
          }
          return result;
    } 
-   doCourseSubFieldFilter(course){
-    if(this.courseSubFieldParam.length==0){
-      return true
-    }
-    var result=false;
+   doCourseSubFieldFilter(){
+    var result=""
         for(var i=0;i<this.courseSubFieldParam.length;i++){
-      result= result || course.course_subfield.includes(this.courseSubFieldParam[i]);
+      result= result +" " +this.courseSubFieldParam[i];
         }
         return result;
   } 
+
+  doProgramTypeFilter(){
+ 
+    var result=""
+        for(var i=0;i<this.programTypeParam.length;i++){
+      result= result + " "+ this.programTypeParam[i];
+        }
+      
+        return result;
+  } 
+  doProgramModeFilter(){
+ 
+    var result=""
+        for(var i=0;i<this.programModeParam.length;i++){
+      result= result + " "+ this.programModeParam[i];
+        }
+        return result;
+  }  
+  doLanguageFilter(){
+       var result="";
+        for(var i=0;i<this.languageParam.length;i++){
+      result= result + " " +this.languageParam[i];
+        }
+        return result;
+  }
+  doTranscriptFilter(){
+  
+    var result=""
+        for(var i=0;i<this.transcriptParam.length;i++){
+      result= result + this.transcriptParam[i];
+        }
+        return result;
+  }
+  doDifficultyFilter(){
+   
+    var result="";
+        for(var i=0;i<this.difficultyLevelParam.length;i++){
+      result= result + this.difficultyLevelParam[i];
+        }
+        return result;
+  } 
+  doProviderFilter(){
+   
+    var result="";
+        for(var i=0;i<this.courseProvideParam.length;i++){
+      result= result +" " + this.courseProvideParam[i];
+        }
+        return result;
+  } 
+  doContentTypeFilter(){
+   
+    var result= "";
+        for(var i=0;i<this.contentTypeParam.length;i++){
+      result= result+ " "+ this.contentTypeParam[i];
+        }
+        return result;
+  }
+  doRateFilter(course){
+    if(this.Selected45 && parseFloat(course.course_rating)>4.5){
+       return true;
+    } 
+    else if(this.Selected40 && parseFloat(course.course_rating)>4.0){
+      return true;
+   }
+   else if(this.Selected35 && parseFloat(course.course_rating)>3.5){
+    return true;
+ }
+ else if(!this.Selected35 && !this.Selected40 && !this.Selected45){
+   return true;}
+   else return false;
+  }
+  
+
   onScroll(){
     this.spinner.show();
     if(this.loading===true){
       return;
     }
     else{
-      this.searchMethod(this.searchKey);
+      
+      this.searchFilterBased(this.searchKey);
       console.log('start searching');
-     
+     }
+  }
+ 
+  changeCourseSubfieldParams(...value:TodoItemFlatNode[]){
+    for(var index=0;index<value.length;index++ ){
+      if(this.checklistSelection.isSelected(value[index]) && this.courseSubFieldParam.indexOf(value[index].item)<0){
+           this.courseSubFieldParam.push(value[index].item);
+      }
+      else if(!this.checklistSelection.isSelected(value[index]) && this.courseSubFieldParam.indexOf(value[index].item)>-1){
+              this.courseSubFieldParam.splice(this.courseSubFieldParam.indexOf(value[index].item),1);
+      }
     }
   }
-  clicked45(){
-     this.middleFlag=!this.middleFlag;
+  
+  removeFromChipList(param:TodoItemFlatNode){
+    if(param.level===0)
+     return ;
+    var index= this.chipList.indexOf(param);
+    if(index>-1){
+      this.chipList.splice(index,1);
+    }
+  }
+  addToChipList(param:TodoItemFlatNode){
+    if(param.level===0)
+     return ;
+    var index= this.chipList.indexOf(param);
+    if(index<0){
+      this.chipList.push(param);
+    }
+  }
+
+  setChildChipList(parent:TodoItemFlatNode,...values:TodoItemFlatNode[]){
+    if(parent.level===0)
+     return;
+    if(this.checklistSelection.isSelected(parent)){
+      for(var index=0;index<values.length;index++){
+        this.removeFromChipList(values[index]);
+      }
+    }
+    else{
+      for(var index=0;index<values.length;index++){
+        if(this.checklistSelection.isSelected(values[index])){
+        this.addToChipList(values[index]);}
+        else{
+          this.removeFromChipList(values[index]);
+        }
+      }
+    }
+  }
+  setCourseParameter(){
+    for(var i=0;i<this.treeControl.dataNodes.length;i++){
+      var flatNode = this.treeControl.dataNodes[i];
+      var courseIndex=this.courseField.indexOf(flatNode.item);
+      var courseSubFieldIndex= this.courseSubField.indexOf(flatNode.item);
+      if(courseIndex!=-1){
+           flatNode.parameter='course_field';
+          }
+      else if(courseSubFieldIndex!==-1){
+       flatNode.parameter='course_subfield';
+      }
+      else if(this.programMode.indexOf(flatNode.item)!==-1){
+           flatNode.parameter='course_program';
+      }
+      else if(this.difficultyLevel.indexOf(flatNode.item)!==-1){
+        flatNode.parameter='course_diff';
+   }
+    else if(this.courseprovider.indexOf(flatNode.item)!==-1){
+    flatNode.parameter='course_provider';
+    this.treeControl.expand(flatNode);
+  }
+  else if(this.contentType.indexOf(flatNode.item)!==-1){
+    flatNode.parameter='course_content';
+  }
+   else if(this.programType.indexOf(flatNode.item)!==-1){
+       flatNode.parameter="course_type"
+      }
+      else if(flatNode.item==='Certification'){
+        flatNode.parameter="course_certi"
+      }
+      else if(flatNode.level===1){
+      let parent=this.getParentNode(flatNode);
+      if(parent && parent.item==='Language'){
+        flatNode.parameter='course_lang'
+      }
+      else if(parent && parent.item==='Transcript'){
+        flatNode.parameter='course_trnsc'
+      }
+     
+    // parent.item==='Language'?flatNode.parameter='course_lang':flatNode.parameter='course_trnsc';
+   }
+    }
+  }
+  onSliderScroll(event){
+     console.log(this.minDuration,this.minValue,this.maxDuration,this.maxValue);
+  }
+  bottomindictor:boolean=false;
+  searchFilterBased(parameter){
+      var courseBody= {
+        course_field:'*',
+        course_subfield:'*',
+        course_content:'*',
+        course_diff:'*',
+        course_type:'*',
+        course_lang:'*',
+        course_program:'*',
+        course_provider:'*',
+        course_trnsc:'*',
+        course_search:parameter,
+        course_certi:'*'
+      };
+      if(this.courseFieldParam.length!==0){
+        courseBody.course_field=this.doCourseFieldFilter()
+
+      }
+      else{
+        delete courseBody.course_field;
+      }
+      if(this.courseSubFieldParam.length!==0){
+        courseBody.course_subfield=this.doCourseSubFieldFilter();
+      }
+      else{
+        delete courseBody.course_subfield;
+      }
+      if(this.contentTypeParam.length!==0){
+        courseBody.course_content=this.doContentTypeFilter();
+      }
+      else{
+        delete courseBody.course_content;
+      }
+      if(this.difficultyLevelParam.length!==0){
+        courseBody.course_diff=this.doDifficultyFilter();
+      } else{
+        delete courseBody.course_diff;
+      }
+      if(this.languageParam.length!==0){
+        courseBody.course_lang=this.doLanguageFilter();
+      }else{
+        delete courseBody.course_lang;
+      }
+      if(this.programModeParam.length!==0){
+        courseBody.course_program=this.doProgramModeFilter();
+      }
+      else{
+        delete courseBody.course_program;
+      }
+      if(this.programTypeParam.length!==0){
+        courseBody.course_type=this.doProgramTypeFilter();
+      }
+      else{
+        delete courseBody.course_type;
+      }
+      if(this.courseProvideParam.length!==0){
+        courseBody.course_provider=this.doProviderFilter();
+      }else{
+        delete courseBody.course_provider;
+      }
+      if(this.transcriptParam.length!==0){
+        courseBody.course_trnsc=this.doTranscriptFilter();
+      }
+      else{
+        delete courseBody.course_trnsc;
+      }
+      if(parameter==='*'){
+        delete courseBody.course_search;
+      }
+      if(this.isCertiRequired){
+        courseBody.course_certi='Availabe';
+      }
+      else{
+        delete courseBody.course_certi;
+      }
+      if(this.pageNo===0){
+        this.loadingFirst=true;
+        this.courseList=[];
+        this.totalResults="Fetching..."
+        }
+     
+        this.loading=true;
+        this.bottomindictor=false;
+         var params=this.sortParams;
+       
+         this.searchService.getFilteredCourses(courseBody,this.pageNo,this.pageSize,params).subscribe((response:any)=>{
+          if(this.pageNo===0){
+           this.courseList=response.content;
+         this.courseListCopy= [...this.courseList];
+         this.loadingFirst= false;
+         this.totalResults=response.totalElements;
+          }
+          else{
+            this.courseList= this.courseList.concat(response.content);
+            this.courseListCopy= this.courseListCopy.concat(response.content);
+            this.loadingFirst= false;
+          }
+       
+         this.loading=false;
+         this.pageNo= this.pageNo+1;
+         if(this.pageNo===response.totalPages){
+           this.bottomindictor=true;
+         }
+        },
+        err=>{
+          this.bottomsheet.open(BottomSheetComponent,{data:'Sorry!! There is an error fetching results. Please Try Again'})
+        });
   }
 
 }

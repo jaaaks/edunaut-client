@@ -11,6 +11,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogRef} from '@angular/material/dialog';
 import  { environment} from "../../environments/environment"
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 
 
 @Component({
@@ -21,10 +23,12 @@ import  { environment} from "../../environments/environment"
 export class LoginComponent implements OnInit {
     elegantForm: FormGroup;
     signUpForm:FormGroup;
+    forgetPasswordForm:FormGroup;
     loading = false;
     showErrormessage=false;
     errorMessage="";
     isSignUp=false;
+    isForgetPassword=false;
     hide = true;
     hide1=true;
     checked = false;
@@ -32,14 +36,18 @@ export class LoginComponent implements OnInit {
 
     profile={uid:"",firstname:"",lastname:"",email:"",phoneno:"",bio:""};
   constructor(public fb: FormBuilder,public authenticationService: AuthenticationService,public router:Router,public afauth:AngularFireAuth,
-    private dialogRef:MatDialogRef<LoginComponent>, private pfs:ProfileService,private messageService:MessageService) {
+    private dialogRef:MatDialogRef<LoginComponent>, private pfs:ProfileService,private messageService:MessageService,private bottomSheet:MatBottomSheet ) {
     this.elegantForm = fb.group({
       elegantFormEmailEx: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       elegantFormPasswordEx: ['', Validators.required]
     });
+    this.forgetPasswordForm = fb.group({
+      forgetPasswordEmail: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
+     
+    });
     this.signUpForm = fb.group({
       signUpFormEmail: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
-      signUpFormPassword: ['', Validators.required],
+      signUpFormPassword: ['',[ Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       signUpFormName:  ['', Validators.required],
       signUpFormConfirmPassword:['',Validators.required]
     },{
@@ -63,17 +71,30 @@ export class LoginComponent implements OnInit {
           console.log('user not logged in');
    }
       });
-  }
+    }
   googleLogin(){
     var persistance='none';
     if(this.checked){
         persistance="local";  
     }
     this.authenticationService.googleAuthLogin(persistance).then(res=>{
-     this.loadUser(res);
+      localStorage.setItem('token', res.user.refreshToken);
+      if(!res.user.isNewUser){
+      this.loadUser(res.user.uid);}
+      else{
+        this.profile.uid=res.user.uid;
+        this.profile.email = res.user.email;
+        this.profile.firstname=name;
+        this.pfs.saveProfile(this.profile);
+        this.loadUser(res.user.uid);
+      }
       this.dialogRef.close('success');
+     
     },err=>{
       console.log(err);
+      this.bottomSheet.open(BottomSheetComponent,{
+        data:err.message
+      })
       this.showErrormessage=true;
       this.errorMessage=err;
     });
@@ -86,15 +107,24 @@ export class LoginComponent implements OnInit {
     }
      this.authenticationService.facebookAuthLogin(persistance).then(res=>{
       localStorage.setItem('token', res.user.refreshToken);
-     this.loadUser(res);
-      this.dialogRef.close('success');
+      if(!res.user.isNewUser){
+        this.loadUser(res.user.uid);}
+        else{
+          this.profile.uid=res.user.uid;
+          this.profile.email = res.user.email;
+          this.profile.firstname=name;
+          this.pfs.saveProfile(this.profile);
+          this.loadUser(res.user.uid);
+        }
+        this.dialogRef.close('success');
+       
      },err=>{
-      this.showErrormessage=true;
-      this.errorMessage=err;
+   this.bottomSheet.open(BottomSheetComponent,{
+    data:err.message
+      })
      });
    }
    onSubmit() {
-    
       var email= this.elegantForm.value['elegantFormEmailEx'];
       var password = this.elegantForm.value['elegantFormPasswordEx'];
       
@@ -109,12 +139,17 @@ export class LoginComponent implements OnInit {
             this.loading=false;
             this.showErrormessage=false;
             this.loadUser(res.uid);
+            this.loading=false;
+            this.userData= res.user;
         },
             msg=>{
               console.log('unsuccessful signed in!',msg);
-              this.errorMessage=msg;
-              this.loading=false;
-              this.showErrormessage=true;
+              this.bottomSheet.open(BottomSheetComponent,{
+                data:msg
+              })
+              // this.errorMessage=msg;
+              // this.loading=false;
+              // this.showErrormessage=true;
           })
   }
 
@@ -122,6 +157,7 @@ export class LoginComponent implements OnInit {
        var email  = this.signUpForm.value['signUpFormEmail'];
        var password = this.signUpForm.value['signUpFormPassword'];
        var name = this.signUpForm.value['signUpFormName'];
+     
        this.authenticationService.SignUp(email, password).then(
         res=>{
           console.log("sign up successful",res);
@@ -137,6 +173,9 @@ export class LoginComponent implements OnInit {
                 },
         err=>{
           console.log("sign up not successful",err);
+          this.bottomSheet.open(BottomSheetComponent,{
+            data:err.message
+          })
           this.showErrormessage=true;
           this.errorMessage=err.message;
           this.loading=false;
@@ -162,6 +201,28 @@ export class LoginComponent implements OnInit {
     if (c.get('signUpFormPassword').value !== c.get('signUpFormConfirmPassword').value) {
         return {invalid: true};
     }
+}
+resetPassword(){
+  var email= this.forgetPasswordForm.value['forgetPasswordEmail'];
+  this.afauth.sendPasswordResetEmail(email).then(
+    res=>{
+        console.log(res);
+          this.dialogRef.close();
+    },
+    err=>{
+    this.bottomSheet.open(BottomSheetComponent,{
+         data:err.message
+    })      
+      console.log(err);
+    }
+  )
+}
+checkEmailValid(){
+  if(this.signUpForm.get('signUpFormPassword').invalid){
+    this.bottomSheet.open(BottomSheetComponent,{
+      data:'Your password must be at least 8 characters long, contain at least one number and have a mixture of uppercase and lowercase letters.'
+    })
+  }
 }
    
 }

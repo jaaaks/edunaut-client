@@ -27,20 +27,20 @@ export class AuthenticationService {
     if(persitance==='local'){
       pers=auth.Auth.Persistence.LOCAL;
     }
-    else{  pers=auth.Auth.Persistence.NONE;}
+    else{  pers=auth.Auth.Persistence.SESSION;}
     var provider = new auth.GoogleAuthProvider();
     var promise = new Promise((resolve,reject)=>{
       this.angularFireAuth.setPersistence(pers).then(result=>{
          this.angularFireAuth.signInWithPopup(provider).then(res=>{
           localStorage.setItem('token', res.user.refreshToken);
-         resolve(res.user.uid);
+         resolve(res);
          },
          error=>{
-           reject(error.message);
+           reject(error);
             });
         },
         err=>{
-          reject(err.message);
+          reject(err);
         });
         
       });
@@ -52,7 +52,7 @@ export class AuthenticationService {
       pers=auth.Auth.Persistence.LOCAL;
     }
     else  {
-      pers=auth.Auth.Persistence.NONE;
+      pers=auth.Auth.Persistence.SESSION;
     }
 
     var provider = new auth.FacebookAuthProvider();
@@ -62,17 +62,18 @@ export class AuthenticationService {
        res=>{
         localStorage.setItem('token', res.user.refreshToken);
         localStorage.setItem('id', res.user.uid);
-         resolve(res.user.uid);
+         resolve(res);
        },
        err=>{
-            reject(err.message);
+            reject(err);
        }
      );
   },
    error=>{
-    reject('not successfull');
+    reject(error);
    });
   });
+  return promise;
 }
 
   
@@ -81,7 +82,7 @@ export class AuthenticationService {
     if(persistance==='local'){
       pers=auth.Auth.Persistence.LOCAL;
     }
-    else { pers=auth.Auth.Persistence.NONE;
+    else { pers=auth.Auth.Persistence.SESSION;
     }
     var promise = new Promise((resolve,reject)=>{
       this.angularFireAuth.setPersistence(pers).then(result=>{

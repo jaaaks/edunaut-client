@@ -24,18 +24,17 @@
     
     margin-bottom: 20px;
     
-    width: 275px;
-    height: 270px;
+    min-width: 275px !important;
+    height: 250px !important;
     background: #FFFFFF;
-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+
 border-radius: 5px;
      }
   
   .example-header-image {
     position: absolute;
-    background-image: url('../../assets/courseImage/course.png');
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
     left: 15px;
     top: 10px;
     z-index: 1;
@@ -57,6 +56,8 @@ border-radius: 5px;
     top: 0px;
     z-index: 0;
     background: #1B5D9A;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .refine{
   
@@ -162,10 +163,20 @@ border-radius: 5px;
  }
 .mat-card-content{
   margin-bottom: 0px!important;
+  margin: -16px;
+  &:hover{
+    background-color: #D3D3D3;
+    transition: 1s ease;
+  }
+}
+
+.card-icons{
+padding: 0px 16px 0px 19px;
 }
 .content{
-  padding-top: 25px;
-}
+  padding:34px 16px 16px 19px;
+ 
+  }
 
 
 
@@ -264,6 +275,7 @@ font-size: 14px;
 line-height: 18px;
 
 color: #8A8886;
+overflow: hidden;
   }
 
   ::ng-deep {
@@ -300,11 +312,12 @@ position: absolute;
 width: 117px;
 height: 36px;
 left: 14px;
-top: 221px;
+top: 205px;
 
 
 box-sizing: border-box;
 border-radius: 5px;
+background-repeat: none;
 background: url('../../assets/contactus/compare.png');
 
     }
@@ -313,28 +326,50 @@ background: url('../../assets/contactus/compare.png');
       position: absolute;
 width: 118px;
 height: 36px;
-left: 143px;
-top: 221px;
+right:16px;
+top: 205px;
 background: url('../../assets/bookMarkButton.png');
+background-repeat: none;
 
 box-sizing: border-box;
 border-radius: 5px;
     }
 
    .example-card:empty {
-      animation: loading 1.7s infinite linear;
-      background: #dedfe1;
-      background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
-      background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+    display: inline-block;
+    background-size: 1200px auto !important;
+    
+      // animation: loading 1.7s infinite forwards;
+      background: #E8E8E8;
+      display: inline-block;
+      background-image: linear-gradient(to right, #E8E8E8 0%, #DDDDDD 20%, #E8E8E8 40%, #E8E8E8 100%);
       background-repeat: no-repeat;
-    }
+      position: relative; 
+
+      animation-duration: 1s;
+      animation-fill-mode: forwards; 
+      animation-iteration-count: infinite;
+      animation-name: placeholderShimmer;
+      animation-timing-function: linear;
+      
+ }
     @keyframes loading {
       0% {
-        background-position: -100px;
+        background-position: -468px 0;
       }
     
       100% {
-    background-position: 200px;
+        background-position: 468px 0; 
+      }
+    }
+
+    @keyframes placeholderShimmer {
+      0% {
+        background-position: -468px 0;
+      }
+      
+      100% {
+        background-position: 468px 0; 
       }
     }
 
@@ -382,4 +417,38 @@ color: #000000;
 }
 .colorBlue{
   background: #0376FE;
+}
+.course-link{
+  font-family:Mulish;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 20px;
+letter-spacing: 0.005em;
+
+color: #000000;
+
+}
+.book-icon{
+  padding-right: 16px;
+}
+.bottomIndi{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 30px;
+/* identical to box height, or 187% */
+margin:auto;
+text-align: center;
+letter-spacing: 0.0015em;
+
+color: #000000;
+}
+
+::ng-deep .mat-standard-chip {
+  background: #E2F1FF !important;
+  border-radius: 5px !important;
+  color: #0376FE !important;
+
 }

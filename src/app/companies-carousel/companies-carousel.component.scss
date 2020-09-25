@@ -53,6 +53,9 @@
     }
   }
 }
+.item{
+  cursor: pointer;
+}
 @media screen and (max-width: 580px){
   li{
     border: 2px solid white !important;
@@ -62,5 +65,9 @@
     }
     color: #0376fe !important;
   }
+  .disable-link, .im , .car{
+    pointer-events: none;
+  }
+
   
 }

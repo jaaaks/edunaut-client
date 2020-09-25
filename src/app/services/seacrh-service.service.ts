@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import  { environment} from "../../environments/environment"
 import { Observable } from 'rxjs';
+import { Options } from 'ng5-slider';
 
 
 
@@ -16,14 +17,14 @@ export class SeacrhServiceService {
     return this.httpClient.get(`http://server-env.eba-zdwqv4a8.ap-south-1.elasticbeanstalk.com/edunaut/getallcourses`);
   }
   public getCourseByKeyWord(tag:string,pageNo:any,pageSize:any):Observable<any>{
-   
+    tag= tag.toLowerCase();
       var splitted = tag.split(" ");
       var searchKeyWords="";
      
       for(var index=0;index<splitted.length;index++){
         searchKeyWords= searchKeyWords + "*"+splitted[index]+"*; ";
       }
-   tag= tag.toLowerCase();
+   
     return this.httpClient.get(this.resourceUrl+"/edunaut/getbykeyword/"+searchKeyWords+"/"+pageNo+"/"+pageSize);
     }
 
@@ -32,5 +33,15 @@ export class SeacrhServiceService {
     }
     public getBookmarkedCourses(courselist){
       return this.httpClient.get(this.resourceUrl+"/edunaut/course",{observe:courselist});
+    }
+    public getFilteredCourses(courseList,pageNo,pageSize,params){
+      if(params!=undefined){
+      return this.httpClient.post(this.resourceUrl+"/edunaut/filterWithSort/" + pageNo + "/" + pageSize,courseList,{
+        params:params
+      });
+    }
+    else{
+       return this.httpClient.post(this.resourceUrl+"/edunaut/filterWithSort/" + pageNo + "/" + pageSize,courseList);
+    }
     }
 }
