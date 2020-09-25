@@ -13,6 +13,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { SeacrhServiceService } from './services/seacrh-service.service';
 import { ProfileService } from './services/profile.service';
 
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import {MatSliderModule} from '@angular/material/slider';
@@ -74,6 +75,10 @@ import {UserServiceService} from './services/user-service.service';
 import { BadgesComponent } from './badges/badges.component'
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+
+
 
 @NgModule({
   declarations: [
@@ -102,7 +107,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CourseDetailComponent,
     RelevantCoursesComponent,
     EmailVerificationComponent,
-    BadgesComponent
+    BadgesComponent,
+    BottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +144,9 @@ AngularFireAuthModule,
  MatMenuModule,
  MatChipsModule,
  InfiniteScrollModule,
- NgxSpinnerModule ,
+ NgxSpinnerModule,
+ MatBottomSheetModule,
+ MatTooltipModule,
  MatStepperModule
 ],
   providers: [AuthenticationService,SeacrhServiceService, ProfileService,UserServiceService,

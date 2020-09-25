@@ -114,6 +114,7 @@
   li {
     display: inline-block;
     margin-bottom: 4px;
+    margin-left: 4px;
   }
   li.title {
     margin-right: 15px;
@@ -123,7 +124,6 @@
     font-size: 13px;
   }
   a {
-    background-color: rgb(131, 129, 129) !important;
     color: rgb(241, 239, 239);
     font-size: 16px;
     display: inline-block;
@@ -136,38 +136,29 @@
     -webkit-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear;
-    &:active {
-      color: #fff;
-      background-color: #29aafe !important;
-    }
-    &:focus {
-      color: #fff;
-      background-color: #29aafe !important;
-    }
-    &:hover {
-      color: #fff;
-      background-color: #29aafe !important;
-    }
+    background-color: white !important;
+   
   }
   a.facebook {
-    &:hover {
-      background-color: #3b5998 !important;
-    }
+    background-image: url('../../assets/logos/fbLogo.PNG');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    
   }
-  a.twitter {
-    &:hover {
-      background-color: #00aced !important;
-    }
-  }
+ 
   a.linkedin {
-    &:hover {
-      background-color: #007bb6 !important;
-    }
+    background-image: url('../../assets/logos/linkedinLogo.PNG');
+    background-repeat: no-repeat;
+    background-size: 47px;
+    background-position: center;
+    
   }
-  a.dribbble {
-    &:hover {
-      background-color: #ea4c89 !important;
-    }
+  a.dribble {
+    background-image: url('../../assets/logos/instaLogo.PNG');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
   }
 }
 .social-icons.size-sm {
@@ -228,6 +219,21 @@ hr{
 .left-footer-ex {
   position: relative;
   left: 13%;
+
+}
+.text{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 114%;
+/* or 16px */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.0025em;
+
+color: #A19F9D;
 }
 .category {
   position: relative;
@@ -277,7 +283,6 @@ position: relative;
 }
 .example-header-image {
   position: absolute;
-  background-image: url('../../assets/courseImage/course.png');
   width: 44px;
   height: 44px;
   left: 15px;
@@ -347,9 +352,11 @@ color: #000000;
 }
 .bookmark{
   
-width: 197px;
+
+width: 109px;
 height: 44px;
 background: #0376FE;
+color: white;
 border-radius: 5px;
 }
 ngb-rating {
@@ -425,3 +432,18 @@ td {
   color: #0376FE;
 }
 
+
+.max-course{
+  margin-left: auto;
+  font-family: Montserrat;
+font-style: normal;
+font-size: 16px;
+line-height: 30px;
+/* identical to box height, or 187% */
+
+text-align: center;
+letter-spacing: 0.0015em;
+
+color: #000000;
+
+}

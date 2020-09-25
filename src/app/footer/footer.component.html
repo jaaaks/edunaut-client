@@ -4,18 +4,23 @@
     <div class="row">
       <div class="col-sm-12 col-md-6">
         <div class="row left-footer-ex">
-          <p class="text-justify "><img src="../../assets/Capture.PNG" height="35"><br><br>Find The Right Courses <br>Become an Expert! </p>
-        </div>
-        <div class="row left-footer">
+          <div class="text-justify" fxLayout="column" fxLayoutGap="20px">
+            <div><img src="../../assets/Capture.PNG" height="35">
+              </div>
+              <div class="text">Find The Right Courses <br>Become an Expert! 
+              </div>
+              <div class="row">
 
-          <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="https://www.instagram.com/edunaut/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-          </ul>
-
+                <ul class="social-icons">
+                  <li><a class="dribble" href="https://www.instagram.com/edunaut/" target="_blank"></a></li>
+                   <li><a class="facebook" href="#"></a></li>
+                  <li><a class="linkedin" href="#"></a></li>
+                </ul>
+      
+              </div>
+            </div>
         </div>
+  
       </div>
 
       <div class="col-sm-12 col-md-6">
@@ -71,7 +76,8 @@
 <mat-expansion-panel-header>
 <mat-panel-description>
    
-  <div class="expansion-icon">Compare ({{courseList.length}})</div>
+  <div *ngIf="courseList.length!==4" class="expansion-icon">Compare ({{courseList.length}})</div>
+  <div *ngIf="courseList.length ===4" class="max-course"> <strong>Four courses ready to compare! </strong>Would you like to remove a course to make room for another one?</div>
   <div class="expansion-icon circle" *ngIf="!panel.expanded">
  <mat-icon (click)="open()">expand_less</mat-icon>
  </div>
@@ -88,14 +94,14 @@
 <mat-divider></mat-divider>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="25px" fxLayoutAlign="space-around center">
   <div  fxFlex="18" fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="space-around center">
-    <button mat-raised-button [disabled]="bookmarkAllowed()" (click)="compare()" class="bookmark">Compare Courses</button>
+    <button mat-raised-button [disabled]="bookmarkAllowed()" (click)="compare()" class="bookmark">Compare</button>
     <div (click)="clearAll()" class="clear"><a >Clear All</a></div>
 </div>
 
  <ng-container *ngFor="let course of courseList;index as i"> 
   <mat-card class="example-card" (mouseenter)="changeTextMethod(course)" (mouseleave)="changeTextOutMethod(course)" fxFlex="18" >
 
-    <div class="remover circle">
+    <div *ngIf="course.change" class="remover circle">
       <button mat-icon-button >
       <mat-icon (click)="removeCourse(i)" >close</mat-icon>
     </button>
@@ -103,7 +109,7 @@
      
       <mat-card-header class="header">
         <div class="strip"></div>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar class="example-header-image" style=" background-image: url('assets/profile/{{course.course_provider}}.png');  background-position: center; background-size: 40px; background-repeat: no-repeat;"></div>
 
       </mat-card-header>
 
@@ -136,19 +142,19 @@
       <tr mdbTableCol *ngFor="let el of elements; index as indexOfelement;"  class="table-row" fxLayout="row" fxLayoutAlign="space-around center"  >
         <th scope="row" fxFlex="16"  class="thead">{{el.id}}</th>
         <ng-container  *ngIf="indexOfelement===0">
-        <td fxFlex="16" *ngFor="let col of courseList;" class="thead" ><ngb-rating [rate]="col.course_rating" [max]="5" [readonly]="true"></ngb-rating>{{" "}}{{col.course_rating}}/5</td>
+        <td fxFlex="16" *ngFor="let col of courseList;" class="thead" ><ngb-rating [rate]="col.course_review" [max]="5" [readonly]="true"></ngb-rating>{{" "}}{{col.course_review}}/5</td>
         <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
         </ng-container >
         <ng-container  *ngIf="indexOfelement===1">
           <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_col}}</td>
-          <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NAv</td>
+          <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
           </ng-container >
           <ng-container  *ngIf="indexOfelement===2">
-            <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_certi}} INR</td>
+            <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_certi}} </td>
             <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
             </ng-container >
             <ng-container  *ngIf="indexOfelement===3">
-              <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_fee}}</td>
+              <td fxFlex="16" *ngFor="let col of courseList;" >{{col.course_fee}} INR</td>
               <td fxFlex="16" *ngFor="let item of [].constructor(4-courseList.length)" >NA</td>
               </ng-container >
               <ng-container  *ngIf="indexOfelement===4">

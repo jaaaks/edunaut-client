@@ -19,6 +19,29 @@
             <strong>{{node.item}}</strong>
           </div>
         </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node; when: isAdvanceHeader" isExpanded=true matTreeNodeToggle
+        fxLayout="row wrap" fxLayoutAlign="space-between center" >
+        <div>
+          <strong>{{node.item}}</strong>
+        </div>
+
+        <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
+          <mat-icon class="icon-display">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+      </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node; when: isAdvance"  isExpanded=true
+        fxLayout="row wrap" fxLayoutAlign="center center" matTreeNodeToggle >
+        <div>
+          <strong>{{node.item}}</strong>
+        </div>
+        <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
+          <mat-icon class="icon-display">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+      </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isDivider" class="divider-node">
           <mat-divider class="tree-divider"></mat-divider>
         </mat-tree-node>
@@ -35,15 +58,15 @@
         <mat-tree-node *matTreeNodeDef="let node; when: isRating" matTreeNodeToggle fxLayout="column"
           fxLayoutAlign="space-between start" fxLayoutGap="5px">
           <div fxLayout="row" class="fee-box"fxLayoutAlign="space-around" fxLayoutGap="10px">
-            <button  mat-stroked-button [ngClass]="{ 'colorBlue' :middleFlag }" (click)="clicked45()" class="rate-button" >4.5+</button>
-            <button mat-stroked-button class="rate-button">4+</button>
-            <button mat-stroked-button class="rate-button">3.5+</button>
+            <button  mat-stroked-button [ngClass]="{ 'colorBlue' :Selected45 }" (click)="clicked45()" class="rate-button" >4.5+</button>
+            <button mat-stroked-button  [ngClass]="{ 'colorBlue' :Selected40 }" (click)="clicked40()" class="rate-button">4+</button>
+            <button mat-stroked-button [ngClass]="{ 'colorBlue' :Selected35 }"  (click)="clicked35()" class="rate-button">3.5+</button>
           </div>
 </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isFee" matTreeNodeToggle>
           <div fxLayout="column">
            
-            <ng5-slider  [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+            <ng5-slider  [(value)]="minValue" (valueChange)="onSliderScroll($event)" [(highValue)]="maxValue" [options]="options"></ng5-slider>
             <div flexLayout="row" fxLayoutGap="20px" class="duration-input" fxLayoutAlign="space-around center">
               <input fxFlex="40" class="example-margin" matInput [(ngModel)]="minValue">
             <input  fxFlex="40" class="example-margin" matInput [(ngModel)]="maxValue">
@@ -70,13 +93,13 @@
     <div fxFlex="77">
       <div class="container">
         <div fxLayout="row wrap" fxLayoutGap="20px" class="tag-button">
-          <ng-container *ngFor="let nodeValue of nodeValueMap | keyvalue">
+          <ng-container *ngFor="let node of chipList">
           <mat-chip-list aria-label="Fish selection">
-           
- <mat-chip  *ngIf="nodeValue.value"  color="primary" [selectable]="selectable"
- [removable]="removable" (removed)="todoItemSelectionToggle(nodeValue.key,$event)">
-           {{nodeValue.value}}
-     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            
+ <mat-chip   color="primary" [selectable]="selectable"
+ [removable]="removable" (removed)="todoItemSelectionToggle(node,$event)">
+           {{node.item}}
+     <mat-icon  style="color:#0376FE"matChipRemove>close</mat-icon>
 </mat-chip>
 
 </mat-chip-list>
@@ -84,7 +107,7 @@
           </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="comp">
-          <div> Results</div>
+          <div>{{this.totalResults}} Results</div>
           <div class="sortButton">
             <div class="sort">
               Sort
@@ -92,12 +115,24 @@
                 <mat-icon >{{sortChecker?'expand_more':'chevron_right'}}</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)='sortCheck()' >
-                  Value 1
+                <button mat-menu-item (click)='sortCourses("relevance","ASC")' >
+                  Relevence
                 </button>
-                <button mat-menu-item  (click)='sortCheck()'>
-                  Value 2
+                <button mat-menu-item  (click)='sortCourses("price","ASC")'>
+                  Price Low to High
                 </button>
+                 <button mat-menu-item  (click)='sortCourses("price","DSC")'>
+                  Price High to Low
+                </button>
+                <button mat-menu-item  (click)='sortCourses("duration","ASC")'>
+                     Duration Low to High
+                </button>
+                <button mat-menu-item  (click)='sortCourses("duration","DSC")'>
+                  Duration High to Low
+             </button>
+                <button mat-menu-item  (click)='sortCourses("rating","DSC")'>
+                  Rating
+             </button>
                
               </mat-menu>
             </div>
@@ -114,39 +149,41 @@
          >
         <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutGap="20px" fxLayoutAlign="start center">
           <ng-container *ngFor="let course of courseList" >
-            <mat-card class="example-card"  fxFlex="30" (mouseenter)="changeTextMethod(course)"
+            <mat-card class="example-card  mat-elevation-z0" fxFlex="27" (mouseenter)="changeTextMethod(course)"
               (mouseleave)="changeTextOutMethod(course)">
               <mat-card-header class="header">
                 <div class="strip"></div>
-                <div mat-card-avatar class="example-header-image"></div>
+                <div mat-card-avatar class="example-header-image" style=" background-image: url('assets/profile/{{course.course_provider}}.png');  background-position: center; background-size: 40px; background-repeat: no-repeat;"></div>
 
               </mat-card-header>
 
               <mat-card-content fxLayout="column" fxLayoutAlign="space-between" [ngStyle]="{'height':course.change ? '179px' : '179px','font-size':course.change ?'12px':'12px' }">
                 <div class="content"
                   >
-                  <a> <strong>
+                  <a  type="button"  matTooltip="Go to Course Page"
+                  class="course-link stretched-link" href="/course-detail?cid={{course.course_id}}">
                       {{course.course_name}}
-                    </strong></a>
+                  </a>
                   
                 </div>
-               <div>
+               <div class="card-icons">
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
-                    <span class="icon-body">{{" "}}{{course.course_fee}}</span></div>
-                  <div class="star"><img src="../../assets/profile/clock.png"><span class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
+                    <span *ngIf="course.course_dur===-1" class="icon-body">{{" "}}{{course.course_fee}}</span>
+                    <span *ngIf="course.course_dur!==-1" class="icon-body">{{" "}}Free</span></div>
+                  <div class="star"><img src="../../assets/profile/clock.png"><span *ngIf="course.course_dur===-1" class="icon-body">{{"   "}}Flexible</span><span  *ngIf="course.course_dur!==-1" class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
                 </div>
                       <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb"fxFlex="70" ><img src="../../assets/profile/bulb.png"><span
-                      class="icon-body">{{" "}}Intermediate</span></div>
-                  <div class="star"><img src="../../assets/profile/star.png"><span class="icon-body">{{" "}}{{course.course_review}}/5
-                      ({{course.course_rating}})</span></div>
+                      class="icon-body">{{" "}}{{course.course_diff}}</span></div>
+                  <div class="star"><img src="../../assets/profile/star.png"><span *ngIf="course.course_review!==-1"class="icon-body">{{" "}}{{course.course_review}}/5
+                      ({{course.course_rating}})</span><span *ngIf="course.course_review===-1"class="icon-body">{{" "}}NA</span></div>
                 </div>
                 </div>
 
               </mat-card-content>
               <mat-divider></mat-divider>
-              <mat-card-footer [ngStyle]="{'height':course.change ? '61px' : '61px','font-size':course.change ?'13px':'13px' }">
+              <mat-card-footer >
                 <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="!course.change">
                   <div class="footer-univ">
                    <span >{{course.course_col}}</span>
@@ -155,16 +192,16 @@
                     <mat-icon *ngIf="bookMarkCourseMap.has(course.id)" >bookmark</mat-icon>
                     <mat-icon *ngIf="!bookMarkCourseMap.has(course.id)" >bookmark_border</mat-icon>
                  </div> -->
-                 <div *ngIf="bookMarkCourseMap.has(course.course_id)" ><img src="../../assets/Vector (1).png">
+                 <div class="book-icon" *ngIf="bookMarkCourseMap.has(course.course_id)" ><img src="../../assets/Vector (1).png">
                   </div>
-                  <div *ngIf="!bookMarkCourseMap.has(course.course_id)" ><mat-icon>bookmark_border</mat-icon>
+                  <div class="book-icon" *ngIf="!bookMarkCourseMap.has(course.course_id)" ><mat-icon>bookmark_border</mat-icon>
                   </div>
                 </div>
 
 
-                <div fxLayout="row wrap"  fxLayoutAlign="space-between" fxLayoutGap="30px" *ngIf="course.change">
-                   <button mat-raised-button (click)="comparator(course)" class="comp-button"></button>
-                    <button mat-raised-button (click)="bookmarkCourse(course)"  class="book-button"></button>
+                <div fxLayout="row wrap"  fxLayoutAlign="space-between"  *ngIf="course.change">
+                   <button mat-button (click)="comparator(course)" class="comp-button"></button>
+                    <button mat-button (click)="bookmarkCourse(course)"  class="book-button"></button>
                 </div>
               </mat-card-footer>
 
@@ -174,23 +211,36 @@
 
           </ng-container>
           <ng-container *ngIf="loadingFirst"> 
-            <mat-card class="example-card" >
+            <mat-card class="example-card mat-elevation-z0" >
            </mat-card>
-           <mat-card class="example-card" >
+           <mat-card class="example-card mat-elevation-z0" >
           </mat-card>
-          <mat-card class="example-card" >
+          <mat-card class="example-card mat-elevation-z0" >
           </mat-card>
+          <mat-card class="example-card mat-elevation-z0" >
+          </mat-card>
+          <mat-card class="example-card mat-elevation-z0" >
+         </mat-card>
+         <mat-card class="example-card mat-elevation-z0" >
+         </mat-card>
+         <mat-card class="example-card mat-elevation-z0" >
+        </mat-card>
+        <mat-card class="example-card mat-elevation-z0" >
+       </mat-card>
+       <mat-card class="example-card mat-elevation-z0" >
+       </mat-card>
             </ng-container>
 
         
  </div>
- <div class="row pb-5">
+ <div *ngIf="bottomindictor" class="bottomIndi">You have reached at the bottom of search results !!</div>
+ <div class="row pb-5" *ngIf="loading && !loadingFirst">
   <div class="col-md-12 p-5">
   <ngx-spinner
   bdOpacity = 0.9
   bdColor = ""
   size = "default"
-  color = "#581f87"
+  color = "#0376FE"
   type = "ball-pulse-sync"
   [fullScreen] = "false"
   >

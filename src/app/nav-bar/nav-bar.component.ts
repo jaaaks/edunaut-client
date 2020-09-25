@@ -61,11 +61,16 @@ export class NavBarComponent implements OnInit {
   }
  
   sendMessage(): void {
-    window.location.href='find?search='+this.searchParameter;
+    const search='find?search='+this.searchParameter;
+    this.router.navigate(['find'],{
+      queryParams:{
+        search:this.searchParameter
+      }
+    })
  }
 openDialog() {
   const dialogRef = this.dialog.open(LoginComponent,{
-    height:'520px',
+    maxHeight:'520px',
     minWidth:'411px',
     position:{
       top: '15vh',
