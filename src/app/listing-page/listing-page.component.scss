@@ -400,6 +400,12 @@ color: #000000;
       position: relative;
       top:-12px;
     }
+    .icon-display-advance{
+      transform: scale(0.80);
+      position: relative;
+      top:-12px;
+      color:#A19F9D
+    }
 .tree-icon{
   height: 15px;
 }
@@ -466,3 +472,18 @@ letter-spacing: 0.02em;
 
 color: #000000;
 }
+
+.tree-header-advance{
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height */
+  
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  
+  color: #A19F9D;
+  }

@@ -20,7 +20,7 @@
           </div>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isAdvanceHeader" isExpanded=true matTreeNodeToggle
-        fxLayout="row wrap" fxLayoutAlign="space-between center" >
+         >
         <div class="tree-header">
           {{node.item}}
         </div>
@@ -32,12 +32,12 @@
         </button>
       </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isAdvance"  isExpanded=true
-        fxLayout="row wrap" fxLayoutAlign="center center" matTreeNodeToggle >
-        <div class="tree-header">
+        matTreeNodeToggle >
+        <div class="tree-header-advance">
           {{node.item}}
         </div>
         <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
-          <mat-icon class="icon-display">
+          <mat-icon class="icon-display-advance">
             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </button>
