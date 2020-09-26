@@ -309,6 +309,7 @@ export class ListingPageComponent implements OnInit {
   Selected45=false;
   Selected40=false;
   Selected35=false;
+  minRate='-1';
   searchByparam:any;
 
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
@@ -532,8 +533,8 @@ public chipList=[];
       this.bottomindictor=false;
       if(searchParam===undefined && this.searchByparam!==undefined){
            this.courseFieldParam.push(this.searchByparam.course_field);
-      }
-      this.searchFilterBased(searchParam);
+      }    
+       this.searchFilterBased(searchParam);
     });
    }
   loading =false;
@@ -682,8 +683,11 @@ public chipList=[];
           }
       }
       this.pageNo=0;
-      this.searchFilterBased(this.searchKey);
+      setTimeout(() => {
+        this.searchFilterBased(this.searchKey);
+      }, 1000);
   }
+  
      
     //   }
     this.pageNo=0;
@@ -800,39 +804,34 @@ public chipList=[];
     this.sortChecker= (this.sortChecker== true?false:true);
    
 }
-public sortParams:any
+public sortParams={
+  sortOn:"",
+  order:"",
+  limits:""
+
+};
 sortCourses(param, ord){
  switch (param){
    case 'price':{
-     this.sortParams={
-      sortOn:'course_fee',
-      order:ord
-     }
+     this.sortParams.sortOn='course_fee';
+     this.sortParams.order=ord;
      break;
    }
    case 'duration':{
-    this.sortParams={
-     sortOn:'course_fee',
-     order:ord
-    }
+    this.sortParams.sortOn='course_dur';
+     this.sortParams.order=ord;
     break;
   }
   case 'rating':{
-    this.sortParams={
-     sortOn:'course_review',
-     order:ord
-    }
-    break;
-  }
-  case 'rating':{
-    this.sortParams={
-     sortOn:'course_review',
-     order:ord
-    }
+    this.sortParams.sortOn='course_review';
+     this.sortParams.order=ord;
     break;
   }
   case 'relevance':{
-    this.sortParams=undefined;
+    if(this.sortParams.sortOn!==undefined){
+      delete this.sortParams.sortOn;
+      delete this.sortParams.order;
+    }
     break;
   }
  }
@@ -927,9 +926,12 @@ sortCourses(param, ord){
          this.Selected35=!this.Selected35;
        }
       this.Selected45=!this.Selected45;
-     this.filterCourse('any');
-     
-   }
+      this.minRate=this.Selected45?"4.5":'-1';
+      this.pageNo=0;
+      setTimeout(() => {
+        this.searchFilterBased(this.searchKey);
+      }, 1000);   
+       }
    clicked40(){
     if(this.Selected45)
     {
@@ -940,8 +942,11 @@ sortCourses(param, ord){
       this.Selected35=!this.Selected35;
     }
    this.Selected40=!this.Selected40;
-   this.filterCourse('any');
-
+   this.minRate=this.Selected40?"4":'-1'
+   this.pageNo=0;
+   setTimeout(() => {
+    this.searchFilterBased(this.searchKey);
+  }, 1000);
 }
 clicked35(){
   if(this.Selected45)
@@ -953,7 +958,11 @@ clicked35(){
     this.Selected40=!this.Selected40;
   }
  this.Selected35=!this.Selected35;
- this.filterCourse('any');
+ this.minRate=this.Selected35?"3.5":'-1'
+ this.pageNo=0;
+ setTimeout(() => {
+  this.searchFilterBased(this.searchKey);
+}, 1000);
 
 }
    filterCourse(params){
@@ -1157,7 +1166,11 @@ clicked35(){
     }
   }
   onSliderScroll(event){
-     console.log(this.minDuration,this.minValue,this.maxDuration,this.maxValue);
+    this.pageNo=0;
+    setTimeout(() => {
+      this.searchFilterBased(this.searchKey);
+    }, 1000);
+    
   }
   bottomindictor:boolean=false;
   searchFilterBased(parameter){
@@ -1240,11 +1253,23 @@ clicked35(){
         this.courseList=[];
         this.totalResults="Fetching..."
         }
-     
+        var minFee=-1;
+        if(this.minValue!=0){
+         minFee=this.minValue
+        }
+        var minDur=this.minDuration!=0?this.minDuration:-1;
+        
+        this.sortParams.limits=minFee + ","+ this.maxValue+","+minDur+","+this.maxDuration+","+this.minRate;
         this.loading=true;
         this.bottomindictor=false;
+        if(this.sortParams.sortOn!==undefined){
+        if(this.sortParams.sortOn===""){
+          delete this.sortParams.sortOn;
+          delete this.sortParams.order;
+        }
+      }
          var params=this.sortParams;
-       
+            
          this.searchService.getFilteredCourses(courseBody,this.pageNo,this.pageSize,params).subscribe((response:any)=>{
           if(this.pageNo===0){
            this.courseList=response.content;

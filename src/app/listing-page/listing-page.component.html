@@ -48,7 +48,7 @@
 
         <mat-tree-node *matTreeNodeDef="let node; when: isDuration" matTreeNodeToggle>
           <div fxLayout="column">
-            <ng5-slider [(value)]="minDuration" [(highValue)]="maxDuration" [options]="options1"></ng5-slider>
+            <ng5-slider [(value)]="minDuration" [(highValue)]="maxDuration"(valueChange)="onSliderScroll($event)" [options]="options1"></ng5-slider>
            <div flexLayout="row" fxLayoutGap="20px" class="duration-input" fxLayoutAlign="space-around center">
             <input fxFlex="40" class="example-margin"  matInput [(ngModel)]="minDuration">
           <input  fxFlex="40" class="example-margin" matInput [(ngModel)]="maxDuration">
@@ -169,8 +169,8 @@
                <div class="card-icons">
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
-                    <span *ngIf="course.course_dur===-1" class="icon-body">{{" "}}{{course.course_fee}}</span>
-                    <span *ngIf="course.course_dur!==-1" class="icon-body">{{" "}}Free</span></div>
+                    <span *ngIf="course.course_fee!==-1" class="icon-body">{{" "}}{{course.course_fee}}</span>
+                    <span *ngIf="course.course_fee===-1" class="icon-body">{{" "}}Free</span></div>
                   <div class="star"><img src="../../assets/profile/clock.png"><span *ngIf="course.course_dur===-1" class="icon-body">{{"   "}}Flexible</span><span  *ngIf="course.course_dur!==-1" class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
                 </div>
                       <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
