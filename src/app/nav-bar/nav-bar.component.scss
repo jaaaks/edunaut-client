@@ -191,6 +191,31 @@ widows: 40px;
 height: 40px;
 }
 
+li{
+  button{
+    right:70px
+  }
+
+  .mat-stroked-button{
+   
+    width: 85px;
+font-size: 24px;
+line-height: 20px;
+color: #FFFFFF;
+background: #0376FE;
+border-radius: 5px;
+::ng-deep .mat-button-wrapper{
+  font-size: 12px;
+  font-family: Mulish;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 20px;
+}
+
+  }
+}
+
 
 
 

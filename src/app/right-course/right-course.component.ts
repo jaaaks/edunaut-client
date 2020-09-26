@@ -73,8 +73,8 @@ export class RightCourseComponent implements OnInit {
       minWidth:'411px',
       position:{
         top: '12vh',
-         },
-         disableClose: true
+         }
+        
     });
 
      dialogRef.afterClosed().subscribe(res=>{

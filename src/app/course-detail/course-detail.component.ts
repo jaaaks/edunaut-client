@@ -254,7 +254,7 @@ export class CourseDetailComponent implements OnInit {
         position: {
           top: '15vh',
         },
-        disableClose: true
+       
       }
       );
     }
@@ -412,8 +412,8 @@ export class CourseDetailComponent implements OnInit {
         minWidth: '411px',
         position: {
           top: '15vh',
-        },
-        disableClose: true
+        }
+       
       }
       );
     }

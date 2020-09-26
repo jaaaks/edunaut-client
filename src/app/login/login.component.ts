@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     });
     
  
-    dialogRef.disableClose = true;
+   
   }
 
 

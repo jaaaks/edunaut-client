@@ -67,15 +67,15 @@
     color: #0376FE;
 
     &:active {
-      color: #4ba4ec;
+      color:  #0367DD;
       text-decoration: none;
     }
     &:focus {
-      color: #4ba4ec;
+      color:  #0367DD;
       text-decoration: none;
     }
     &:hover {
-      color: #4ba4ec;
+      color: #0367DD;
       text-decoration: none;
     }
   }
@@ -152,25 +152,33 @@ color: #8A8886;
    
   }
   a.facebook {
-    background-image: url('../../assets/logos/fbLogo.PNG');
+    background-image: url('../../assets/logos/fbLogo.svg');
     background-repeat: no-repeat;
     background-size: 50px;
     background-position: center;
-    
+    &:hover{
+      background-image: url('../../assets/logos/fbLogoHover.svg');
+    }
   }
  
   a.linkedin {
-    background-image: url('../../assets/logos/linkedinLogo.PNG');
-    background-repeat: no-repeat;
-    background-size: 47px;
-    background-position: center;
-    
-  }
-  a.dribble {
-    background-image: url('../../assets/logos/instaLogo.PNG');
+    background-image: url('../../assets/logos/linkedinLogo.svg');
     background-repeat: no-repeat;
     background-size: 50px;
     background-position: center;
+    &:hover{
+      background-image: url('../../assets/logos/linkedinLogoHover.svg');
+    }
+    
+  }
+  a.dribble {
+    background-image: url('../../assets/logos/instaLogo.svg');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    &:hover{
+      background-image: url('../../assets/logos/instaLogoHover.svg');
+    }
   }
 }
 .social-icons.size-sm {
