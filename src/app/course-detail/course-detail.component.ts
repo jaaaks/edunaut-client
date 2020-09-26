@@ -108,6 +108,7 @@ export class CourseDetailComponent implements OnInit {
           if(this.isBookmark){
             if(this.bookmark.status == 1){
                 this.isComplete = true;
+                this.isBookmark = false;
             }
           }
           console.log(res);
@@ -155,8 +156,10 @@ export class CourseDetailComponent implements OnInit {
     if (this.count == 0) {
       if (this.userId && this.reviewNo) {
         this.isReview = this.reviews.find(({ id }) => id === this.userId);
+        if(this.isReview){
         this.userReview = this.isReview.review;
         this.currentRate = this.isReview.rating;
+        }
         this.count++;
       }
     }
@@ -294,6 +297,7 @@ export class CourseDetailComponent implements OnInit {
   }
 
   bookmarkCourse() {
+    if(!this.isComplete){
     if (this.userId) {
       if (this.userData.emailVerified) {
         this.showAndHideModal3();
@@ -310,7 +314,7 @@ export class CourseDetailComponent implements OnInit {
           this.isBookmark= true;
           location.reload();
         }, err => {
-          if (err = 'success') {
+          if (err.error.text = 'success') {
             this.showAndHideModal3();
             this.isBookmark = true;
             location.reload();
@@ -344,6 +348,9 @@ export class CourseDetailComponent implements OnInit {
         disableClose: true
       }
       );
+    }}
+    else{
+      alert("You have already completed this course.")
     }
   }
 
@@ -363,13 +370,13 @@ export class CourseDetailComponent implements OnInit {
           }
         ).subscribe(data => {
           this.isComplete= true;
-          this.isBookmark= true;
+          this.isBookmark= false;
           location.reload();
         }, err => {
-          if (err = 'success') {
+          console.log(err.text);
+          if (err.error.text == 'success') {
             this.showAndHideModal4();
             this.isComplete = true;
-            this.isBookmark= true;
             location.reload();
           }
         })}
@@ -385,7 +392,8 @@ export class CourseDetailComponent implements OnInit {
               this.isComplete = true;
             },
             err =>{
-              if(err = 'Updated'){
+              console.log(err.error.text);
+              if(err.error.text == 'Updated'){
                 this.isComplete = true;
               }
             }
@@ -449,8 +457,9 @@ export class CourseDetailComponent implements OnInit {
 
     }
     ,err =>{
-      if(err='Updated'){
+      if(err.error.text='Updated'){
         alert("Your course has been removed from completed.");
+        location.reload();
         this.isComplete = false;
       }
     })
