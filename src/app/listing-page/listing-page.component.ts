@@ -25,6 +25,7 @@ import { Options } from 'ng5-slider';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { event } from 'jquery';
 
 export class TodoItemNode {
   children: TodoItemNode[];
@@ -312,6 +313,9 @@ export class ListingPageComponent implements OnInit {
   minRate='-1';
   searchByparam:any;
 
+
+  public itemNodeMap= new Map<String,TodoItemFlatNode>();
+
   constructor(private searchService:SeacrhServiceService,private messageService:MessageService,private _database: ChecklistDatabase,
     private dialog:MatDialog,private afauth:AngularFireAuth,private pfs:ProfileService,private snackBar:MatSnackBar, private activateRouter:ActivatedRoute,private spinner: NgxSpinnerService,
     private bottomsheet:MatBottomSheet,private router:Router) { 
@@ -342,6 +346,9 @@ export class ListingPageComponent implements OnInit {
       if(routerNavigation){
       console.log(this.router.getCurrentNavigation().extras.state);
       this.searchByparam=routerNavigation;
+      }
+      else{
+        this.searchByparam=undefined;
       }
       }
   }
@@ -467,7 +474,7 @@ public chipList=[];
         flatNode.divider= false;
         }
 
-     
+     this.itemNodeMap.set(flatNode.item,flatNode);
     this.flatNodeMap.set(flatNode, node);
     this.nestedNodeMap.set(node, flatNode);
     return flatNode;
@@ -488,16 +495,7 @@ public chipList=[];
   hasNoContent = (_: number, _nodeData: TodoItemFlatNode) => _nodeData.item === '';
 
   ngOnInit(): void {
-    // this.searchService.getAllCourses().subscribe((response)=>{
-    //    //this.courseList=response;
-    //   this.courseList={
-    //     'course_name':'random course',
-    //     'course_time':'4h',
-    //     'course_rating':'4.5'
-    //   }
-    //    this.totalResults=this.courseList.length;
-
-    // });
+    
     this.setCourseParameter();
     this.afauth.authState.subscribe(
       res => {
@@ -527,14 +525,22 @@ public chipList=[];
       this.searchKey=searchParam;
       providerParam=params['provider'];
       if(providerParam!==undefined &&  this.courseProvideParam.indexOf(providerParam)===-1){
-      this.courseProvideParam.push(providerParam);
+      var node=this.itemNodeMap.get(providerParam);
+      this.todoLeafItemSelectionToggle(node,event);
+      }else if(this.searchByparam!==undefined){
+        var node=this.itemNodeMap.get(this.searchByparam.course_field);
+        this.minDuration=this.searchByparam.course_dur;
+        this.todoItemSelectionToggle(node,event);
+      }
+      else{
+        setTimeout(() => {
+          this.searchFilterBased(this.searchKey);
+        }, 500);
+  
       }
       this.pageNo=0;
       this.bottomindictor=false;
-      if(searchParam===undefined && this.searchByparam!==undefined){
-           this.courseFieldParam.push(this.searchByparam.course_field);
-      }    
-       this.searchFilterBased(searchParam);
+     
     });
    }
   loading =false;
@@ -560,7 +566,6 @@ public chipList=[];
       this.totalResults=this.courseList.length;
       this.loading=false;
       this.pageNo= this.pageNo+1;
-      this.filterCourse('any');
   });
   }
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
@@ -578,7 +583,7 @@ public chipList=[];
     this.checklistSelection.toggle(node);
     this.checkAllParentsSelection(node);
     console.log(node,event);
-    this.nodeValueMap.set(node,event.checked);
+    // this.nodeValueMap.set(node,event.checked);
     if(node.parameter==='course_subfield'){
     this.changeCourseSubfieldParams(...[node]);
     }
@@ -704,7 +709,7 @@ public chipList=[];
   todoItemSelectionToggle(node: TodoItemFlatNode,event): void {
     if(node.level===2 || node.parameter!=='course_field'){
       this.todoLeafItemSelectionToggle(node,event);
-      return ;
+return ;
     }else{
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
@@ -720,7 +725,13 @@ public chipList=[];
       this.checklistSelection.isSelected(child)
     });
     this.checkAllParentsSelection(node);
-    console.log(node,event);
+    event.checked=this.checklistSelection.isSelected(node)?true:false
+    if( event.checked===true){
+   this.addToChipList(node);
+    }
+    else if( event.checked===false){
+      this.removeFromChipList(node);
+      }
     if( event.checked){
       switch(node.parameter){
         case 'course_field':{
@@ -963,20 +974,7 @@ clicked35(){
  setTimeout(() => {
   this.searchFilterBased(this.searchKey);
 }, 1000);
-
 }
-   filterCourse(params){
-     this.courseList=  [...this.courseListCopy];
-
-      // this.courseList= this.courseList.filter(course=>{
-
-      //  return this.doCourseFieldFilter(course) && this.doProgramTypeFilter(course) && this.doCourseSubFieldFilter(course) &&
-      //   this.doContentTypeFilter(course) && this.doLanguageFilter(course) && this.doTranscriptFilter(course) &&
-      //   this.doDifficultyFilter(course) && this.doProviderFilter(course) && this.doTranscriptFilter(course) &&
-      //   this.doContentTypeFilter(course) && this.doRateFilter(course);
-      // });
-      console.log(this.courseList);
-   } 
    doCourseFieldFilter(){
       var result=""
       for(var i=0;i<this.courseFieldParam.length;i++){
@@ -1048,22 +1046,6 @@ clicked35(){
         }
         return result;
   }
-  doRateFilter(course){
-    if(this.Selected45 && parseFloat(course.course_rating)>4.5){
-       return true;
-    } 
-    else if(this.Selected40 && parseFloat(course.course_rating)>4.0){
-      return true;
-   }
-   else if(this.Selected35 && parseFloat(course.course_rating)>3.5){
-    return true;
- }
- else if(!this.Selected35 && !this.Selected40 && !this.Selected45){
-   return true;}
-   else return false;
-  }
-  
-
   onScroll(){
     this.spinner.show();
     if(this.loading===true){
@@ -1072,7 +1054,7 @@ clicked35(){
     else{
       
       this.searchFilterBased(this.searchKey);
-      console.log('start searching');
+     
      }
   }
  
@@ -1290,8 +1272,9 @@ clicked35(){
          }
         },
         err=>{
+          this.loading=false;
           this.bottomsheet.open(BottomSheetComponent,{data:'Sorry!! There is an error fetching results. Please Try Again'})
         });
   }
-
+  
 }

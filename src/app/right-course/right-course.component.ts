@@ -80,7 +80,9 @@ export class RightCourseComponent implements OnInit {
      dialogRef.afterClosed().subscribe(res=>{
        if(res==='success'){
         this.messageService.sendMessage(this.courseSearch);
-        this.router.navigate['/find']
+      this.router.navigate(['/find'],{
+        state:this.courseSearch
+      })
        }
       
      })
@@ -92,10 +94,16 @@ export class RightCourseComponent implements OnInit {
       return ;
     }
     else{
-      this.messageService.sendMessage(this.courseSearch);
+     
       this.router.navigate(['/find'],{
         state:this.courseSearch
       })
     }
+  }
+
+  calledLater(){
+    this.router.navigate(['/find'],{
+      state:this.courseSearch
+    })
   }
 }
