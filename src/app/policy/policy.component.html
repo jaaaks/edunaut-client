@@ -1,52 +1,220 @@
-<div class="container-fluid">
+<div class="container-fluid ">
     <div class="row">
-        <div class="col-12 title">
-            Policy Page
+        <div class="col-3 title">
+            Policy & Guidelines
+        </div>
+        <div class="col-9 help">
+            Still Need Help? <a href="/contactus">Contact Us</a>
         </div>
     </div>
-</div>
-<div class="container-fluid body">
+    <hr>
     <div class="row">
-        <div class="col-12 text-justify">
-            Edunaut is an online platform dedicated to helping learners discover courses, collaborate on projects, and
-            create learning pathways. Our community is diverse and passionate, with different learners having different
-            points of view. While participating, it’s important to be respectful of other learners.
+        <div class="col-4 col-md-3  tabs">
+            <div (click)="scrollTo('section1')" class="click"
+                [ngClass]="{ 'current-section': currentSection === 'section1' }">Content Guidelines
+            </div>
+            <div (click)="scrollTo('section2')" class="click rgc"
+                [ngClass]="{ 'current-section': currentSection === 'section2' }">Review Guidelines
+            </div>
         </div>
-        <div class="col-12 text-justify help">
-            To help us maintain our platform’s integrity, please ensure that your content is -
+        <div class="col-8 col-md-9  ">
+            <div id="parentDiv" scrollSpy [spiedTags]="['DIV']" (sectionChange)="onSectionChange($event)">
+                <div id="section1">Content Guidelines
+                    <div class="cg-body">
+                        At Edunaut, we’re dedicated to helping learners navigate through the world of online courses.
+                        We're
+                        building a space that facilitates the discovery of learning opportunities which can be charted
+                        into
+                        pathways. Our Content Policies intend to provide clarity on interactions with all of Edunaut’s
+                        features and services.
+                        <p class="cg-title">
+                            To help us maintain Edunaut’s integrity, please ensure that your content is -
+                        </p>
+                    </div>
+                    <div class="point">
+                        <ul>
+                            <li>Friendly</li>
+                            <p class="text"> Our community is diverse and passionate. While participating, it’s
+                                important to be
+                                respectful of opposing or differing opinions, beliefs, and conclusions. We value
+                                critical
+                                dialogue, as long as it is civil and considerate. Edunaut does not tolerate content that
+                                attacks or disparages an individual or group based on their race, gender, religion,
+                                nationality, ethnicity, political group, sexual orientation or another similar
+                                characteristic, or content that is illegal, obscene, threatening, defamatory, or
+                                otherwise
+                                injurious to third parties.</p>
+
+                            <li>Suitable for all audiences</li>
+                            <p class="text">
+                                We are focused on creating a comfortable learning space and do not tolerate sexual or
+                                suggestive content involving minors or endorsing gratuitous violence to oneself and
+                                others.</p>
+
+                            <li>Original</li>
+                            <p class="text">
+                                Any content plagiarized from other websites, reviewers, emails, or printed materials
+                                will be
+                                removed. Content that is copied or paraphrased from other sources should be clearly
+                                indicated (eg: by formatting using quotes) and the source should be explicitly
+                                attributed
+                                using a link or citation.</p>
+
+                            <li>Discreet</li>
+                            <p class="text">
+                                We expect learners to be respectful of privacy. Edunaut is not the forum for sharing
+                                private
+                                information, financial or otherwise. You commit this kind of invasion of privacy by
+                                publishing private facts about an individual or entity, the publication of which would
+                                be
+                                offensive to a reasonable person or said entity. You may not use a false e-mail address,
+                                impersonate any person or entity, or otherwise mislead as to the origin of content.
+                                Scammers
+                                are not welcome.</p>
+
+                            <li>Non-commercial</li>
+                            <p class="text">
+                                We prohibit spam and self-promotional content whose purpose appears to be to direct
+                                traffic
+                                to external commercial sites while providing little value to the Edunaut Community. This
+                                includes, but is not restricted to, software viruses, political campaigning, commercial
+                                solicitation, chain letters, mass mailings, or any form of "spam" or unsolicited
+                                commercial
+                                electronic messages.</p>
+
+                            <li>Relevant</li>
+                            <p class="text">
+                                Content needs to provide value to the Edunaut Community. Although humor is welcome if it
+                                is
+                                helpful to sincerely interested learners, off-topic contributions are not tolerated.</p>
+
+                            <li>Accurate</li>
+                            <p class="text">
+                                We will remove factual claims and/or primary conclusions that are substantially
+                                incorrect,
+                                as validated by neutral, high quality sources.</p>
+                            <li>Clearly Written</li>
+                            <p class="text">
+                                Correct formatting, spelling, punctuation, grammar and capitalization is appreciated.
+                            </p>
+                        </ul>
+                    </div>
+                    <div class="bottom1">
+                        Please keep in mind the spirit in which these guidelines were written, and know that looking for
+                        loopholes is a waste of time. We appreciate all that you contribute to the Edunaut community.
+                        Thanks for being a part of it!
+                    </div>
+                    <div class="bottom2">
+                        Edunaut reserves the right to, in its sole discretion, monitor, reject and/or remove any User
+                        Content at any time.
+                    </div>
+                    <div class="bottom3">
+                        Thanks,<br>
+                        Team Edunaut
+                    </div>
+                    <div class="footer">
+                        * "Content" means any information, text, graphics, or other materials uploaded, downloaded or
+                        appearing on Edunaut. You retain ownership of all Content you submit, post, display, or
+                        otherwise make available on Edunaut. However, by submitting, posting or displaying Content on
+                        Edunaut, you grant us a worldwide, non-exclusive, royalty-free license (with the right to
+                        sublicense) to use, copy, reproduce, process, adapt, modify, create derivative works from,
+                        publish, transmit, display and distribute such Content in any and all media or distribution
+                        methods (now known or later developed).
+                    </div>
+                </div>
+                <div id="section2">
+                    Review Guidelines
+                    <div class="rg-body">
+                        <div class="philosophy">Our Philosophy</div>
+                        <div class="rg-body">
+                            Edunaut is for expressing your honest opinions about online courses. Don't be afraid to say
+                            what you think! We welcome your spirited contribution, as it helps other learners on Edunaut
+                            understand what a course is really about, and decide whether or not they want to pursue it.
+                            <p class="rg-title">Here’s what we <span class="app">appreciate</span> in reviews-</p>
+                        </div>
+                    </div>
+                    <div class="point1">
+                        <ul>
+                            <li>Creativity</li>
+                            <p class="text">
+                                Feel free to use the online course as inspiration for writing a personal expression. As
+                                long as they don't go against our guidelines in other ways, these reviews are welcome
+                                and encouraged!
+                            </p>
+                            <li>Descriptions</li>
+                            <p class="text">
+                                Pure summaries of course content are welcome.
+                            </p>
+                            <li>Harshly critical statements</li>
+                            <p class="text">
+                                That apply to the online course itself. We will always welcome and encourage honest
+                                opinions such as “This guy can’t teach for nuts” or “This course is absolutely
+                                worthless”.
+                            </p>
+                        </ul>
+                    </div>
+                    <div class="middle">
+                        We believe that Edunaut members should see the best, most relevant and thought provoking reviews
+                        (positive and negative) when they visit any course page. Our aim is to show members these
+                        reviews, while simultaneously not showing reviews that we think are inappropriate or of
+                        insufficient quality.
+                        <p class="middle1">
+                            We value that our learners trust us with their perspectives, and take our stewardship of
+                            storing your reviews seriously. We promise to always store your reviews on your profile and
+                            will never delete or modify them – except for certain extreme situations, which are
+                            described below. Your thoughts and words are yours, and we promise you we will always
+                            respect that.
+                        </p>
+                        <p class="middle-title">
+                            In addition to our Content Policy, here are some specific things we<span class="tol"> do not
+                                tolerate</span> in the context of Reviews-
+                        </p>
+                    </div>
+                    <div class="point2">
+                        <ul>
+                            <li>Reviews of the course instructor</li>
+                            <p class="text">
+                                Mentioning the instructor in the context of a review is acceptable, but reviews that are
+                                predominantly about an instructor’s behavior outside the context of the online course
+                                are considered off-topic and irrelevant and will be deleted. We believe in separating
+                                the art from the artist.
+                            </p>
+                            <li>Reviews that attack other reviewers</li>
+                            <p class="text">
+                                Statements like "Other reviews have said this course is wonderful, but I disagree" are
+                                fine, we do not tolerate reviews whose primary purpose is to mock or harass Edunaut
+                                member(s).
+                            </p>
+                            <li>Abuse of our ratings system</li>
+                            <p class="text">
+                                We do not tolerate artificial inflation/deflation techniques. We will remove those
+                                ratings we determine to be abusive.
+                            </p>
+                        </ul>
+                    </div>
+                    <div class="bottom">
+                        Edunaut reserves the right to remove a review at any time for any reason. It is at our sole
+                        discretion and no one else's, that we decide when a review is against our guidelines.
+                        <p class="bottom1">
+                            Please keep in mind the spirit in which these guidelines were written, and know that looking
+                            for loopholes is a waste of time.
+                        </p>
+                        <p class="bottom2">
+                            Thanks,<br>
+                            Team Edunaut
+                        </p>
+                    </div>
+                    <div class="footer">
+                        Please note that the reviews posted on Edunaut are individual and subjective opinions. The
+                        opinions expressed in reviews are those of Edunaut members and not of Edunaut LLP. We do not
+                        endorse any of the opinions expressed by reviewers.
+                    </div>
+                    <div class="footer2">
+                        Suggestions to improve this policy are welcome. Reach out to us at <span class="link1">content@edunaut.in</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-12 text-justify">
-            <ul>
-                <li>Friendly</li>
-                We value critical dialogue. Disagree, but do so with credible references to back up your claim and do
-                not attack other learners for their opinions. Hate speech is prohibited.
-                <li>Non-commercial</li>
-                Spam and self-promotional content are prohibited. We reserve the right to remove any URLs from the
-                comments.
-                <li>Respectful of privacy</li>
-                Content containing personal financial information including Credit Card details, Loyalty Rewards
-                numbers, or other financial information can be removed.
-                We allow multiple people to log-in using a single account (and therefore, share passwords).
-                <li>Original</li>
-                Any content plagiarized from other websites, reviewers, emails, or printed materials will be removed.
-            </ul>
-        </div>
-        <div class="col-12 text-justify right">
-            Edunaut reserves the right to remove any content which violates our rules. Please keep in mind the spirit in
-            which these
-            were written, and know that looking for loopholes is a waste of time.
-        </div>
-        <div class="col-12 text-justify">
-            *Individual communities on Edunaut may have their own rules in addition to ours and their moderators to enforce them.
-        </div>
-        <div class="col-12 text-justify thanks">
-            Thanks,
-        </div>
-        <div class="col-12 text-justify">
-            Team Edunaut
-        </div>
-        <div class="col-12 text-justify think">
-            Think you can help us improve our Content Policy, then reach out to us at content@edunaut.in
-        </div>
+        <br>
     </div>
 </div>

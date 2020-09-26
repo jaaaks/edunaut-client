@@ -14,4 +14,14 @@ export class PolicyComponent implements OnInit {
   ngOnInit() {
   }
 
+  currentSection = 'section1';
+
+  onSectionChange(sectionId: string) {
+    this.currentSection = sectionId;
+  }
+
+  scrollTo(section) {
+    document.querySelector('#' + section)
+    .scrollIntoView();
+  }
 }
