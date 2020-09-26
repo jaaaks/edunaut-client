@@ -7,7 +7,7 @@
 
       <mat-divider></mat-divider>
       <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl" class="example-tree">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="20">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle  matTreeNodePaddingIndent="20">
 
           <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
             (change)="todoLeafItemSelectionToggle(node,$event)">{{node.item}}</mat-checkbox>
@@ -15,14 +15,14 @@
 
         <mat-tree-node *matTreeNodeDef="let node; when: isHeader" isExpanded=true
           fxLayout="row wrap" fxLayoutAlign="space-between center">
-          <div>
-            <strong>{{node.item}}</strong>
+          <div class="tree-header">
+            {{node.item}}
           </div>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isAdvanceHeader" isExpanded=true matTreeNodeToggle
         fxLayout="row wrap" fxLayoutAlign="space-between center" >
-        <div>
-          <strong>{{node.item}}</strong>
+        <div class="tree-header">
+          {{node.item}}
         </div>
 
         <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
@@ -33,8 +33,8 @@
       </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isAdvance"  isExpanded=true
         fxLayout="row wrap" fxLayoutAlign="center center" matTreeNodeToggle >
-        <div>
-          <strong>{{node.item}}</strong>
+        <div class="tree-header">
+          {{node.item}}
         </div>
         <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
           <mat-icon class="icon-display">
