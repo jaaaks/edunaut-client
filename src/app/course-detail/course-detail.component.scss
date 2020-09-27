@@ -754,3 +754,20 @@ margin-left: 3%;
   left: 110px;
   }
 }
+.dom{
+  background: #E2F1FF !important;
+border-radius: 5px ;
+font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 20px;
+/* identical to box height, or 167% */
+
+padding: 0.5% 0.5%;
+color: #0376FE;
+}
+.dom:hover{
+  color: #0376dd !important;
+  background-color:  #cadbeb !important;
+}

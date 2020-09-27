@@ -24,8 +24,8 @@
     </div>
     <div class="row">
         <div class="col-12 title-footer">
-            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="primary"
-                mdbWavesEffect><a href="/find?search={{j}}">{{j}}{{" "}}</a></button>
+            <span *ngFor="let j of courseDomain"><a href="/find?search={{j}}"><button *ngIf="j != '-'" type="button" class="z-depth-0 dom" mdbBtn color="primary"
+                mdbWavesEffect>{{j}}{{" "}}</button></a></span>
         </div>
     </div>
     <div class="row">
