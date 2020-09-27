@@ -14,32 +14,23 @@
                 [ngClass]="{ 'current-section': currentSection === 'section1' }">General
             </div>
             <div (click)="scrollTo('section2')" class="click"
-                [ngClass]="{ 'current-section': currentSection === 'section2' }">Account
+                [ngClass]="{ 'current-section': currentSection === 'section2' }">Getting Started
             </div>
             <div (click)="scrollTo('section3')" class="click"
-                [ngClass]="{ 'current-section': currentSection === 'section3' }">Getting Started
+                [ngClass]="{ 'current-section': currentSection === 'section3' }">Report
             </div>
             <div (click)="scrollTo('section4')" class="click"
-                [ngClass]="{ 'current-section': currentSection === 'section4' }">Course
-            </div>
-            <div (click)="scrollTo('section5')" class="click"
-                [ngClass]="{ 'current-section': currentSection === 'section5' }">Privacy
-            </div>
-            <div (click)="scrollTo('section6')" class="click"
-                [ngClass]="{ 'current-section': currentSection === 'section6' }">T&C
-            </div>
-            <div (click)="scrollTo('section7')" class="click"
-                [ngClass]="{ 'current-section': currentSection === 'section7' }">Educoins
+                [ngClass]="{ 'current-section': currentSection === 'section4' }">Coming Soon
             </div>
         </div>
         <div class="col-8 col-md-9  ">
             <div id="parentDiv" scrollSpy [spiedTags]="['DIV']" (sectionChange)="onSectionChange($event)">
                 <div id="section1">
+                    <div class="title1">General</div>
                     <ngb-accordion [closeOthers]="true" activeIds="static-1">
-                        <ngb-panel class="test" id="static-1"
-                            title="How can I bookmark a course?">
+                        <ngb-panel class="test" id="static-1" title="How can I bookmark a course?">
                             <ng-template ngbPanelContent>
-                                There are primarily 2 ways to bookmark a course:
+                               <p> There are primarily 2 ways to bookmark a course:</p>
                                 <ul>
                                     <li>From the listing page - To bookmark a course from the listing page, click on the
                                         “Bookmark” button which appears upon hovering over the course tile.</li>
@@ -48,317 +39,116 @@
                                         top of every course page.</li>
                                 </ul>
 
-                                Any one of these two actions would add the corresponding course to your bookmarks, which
-                                can be viewed on your profile page under the ‘Bookmarks’ section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-2" title="How can I review a course?">
-                            <ng-template ngbPanelContent>
-                                <p> Every course listed on our platform has its own content page (we call it the “course
-                                    content page” or “content page”, in short). Here, learners can find all the details
-                                    related to the course, including what reviews it has received on our platform.
-                                </p>
-                                Any logged-in user can review a course from its content page. Adding a review does not
-                                have any pre-requisites and so, feel free to write down your experience of the course.
-                                In case you do add a review, we will assume that you have completed the course, and
-                                therefore add it to your completed courses.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-3" title="How can I add a course to my list of completed courses?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to add a course to your list of completed courses:
-                                <ul>
-                                    <li>Review a course - Reviewing a course directly adds it to your list of completed
-                                        courses.</li>
-                                    <li>Changing course status - Click on the “Completed” button present at the top of
-                                        every
-                                    course page (along with the “Bookmark” button).</li>
-                                </ul>
-
-                                You can check out your completed courses on your profile page under the “Completed”
+                                You can find all your bookmarked courses on your profile page under the ‘Bookmarks’
                                 section.
+
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="static-2" title="How can I complete a course?">
+                            <ng-template ngbPanelContent>
+                                You can mark a course as ‘complete’ from the course’s description page and it will be
+                                added to your list of completed courses on the Profile Page. Apart from this, we also
+                                mark a course ‘complete’ after you review it.
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="static-3" title="How can I review a course?">
+                            <ng-template ngbPanelContent>
+                                <p>
+                                    Every course listed on our platform has its own description page (we call it the
+                                    “course description page” or “description page”, in short). Here, learners can find
+                                    all the details related to the course, including what reviews it has received on our
+                                    platform.
+                                </p>
+                                <p>
+                                    Any logged-in user can review a course from its description page. Adding a review
+                                    does not have any prerequisites and so, feel free to write down your experience of
+                                    the course. In case you do add a review, we will assume that you have completed the
+                                    course, and therefore add it to your completed courses.
+                                </p>
 
                             </ng-template>
                         </ngb-panel>
                         <ngb-panel id="static-4" title="How can I compare courses?">
                             <ng-template ngbPanelContent>
-                                Before you can compare course, you would need to select the courses you wish to compare.
-                                You can select courses in 2 ways -
+                                Before you compare multiple courses, you’d need to select the courses you wish to
+                                compare. You can select courses in 2 ways -
                                 <ul>
                                     <li>From the listing page - To select a course from the listing page, click on the
-                                        “Add for Comparison” button which appears upon hovering over the course tile.
+                                        “Compare” button which appears on hovering over the course tile.
                                     </li>
                                     <li>
-                                        From the course content page - Click on the “Add for Comparison” button which is
-                                        present at the top of every course page.
+                                        From the course content page - Click on the “Compare” button which is present at
+                                        the top of every course page.
                                     </li>
                                 </ul>
                                 After you have selected the courses you wish to compare, just click on the “Compare”
-                                button present on the top right corner of the listing page or the course content page!
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-5" title="How many courses can I compare at once?">
-                            <ng-template ngbPanelContent>
-                                In order to use our Compare feature, you must select a minimum of 2 courses and a
-                                maximum of
-                                5 courses. To ensure the maximum limit, we only allow you to select 5 courses at a time.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-6" title=" How can I report a course review?">
-                            <ng-template ngbPanelContent>
-                                We encourage learners to report a review in case they violate our Content Guidelines. To
-                                report a course review, follow these steps:
-
-                                <ol>
-                                    <li>Click on &#60; hamburger &gt; at the top right corner of the review box and
-                                        select “Report”.
-                                    </li>
-                                    <li>
-                                        Select the category of the breach (and give an explanation, if needed).
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                We only allow signed-in users to report a review so that we can assign reward points.
-                                These reward points, in turn, are used to assign badges to learners.
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-7" title="How can I report changes in course content?">
-                            <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
-                                <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
-                                    </li>
-                                    <li>
-                                        Select the nature of the breach and mention which fields are affected.
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
+                                button on the compare tray, and voila, this is done!
                             </ng-template>
                         </ngb-panel>
                     </ngb-accordion>
                 </div>
                 <div id="section2">
-                    <ngb-accordion [closeOthers]="true" activeIds="static-1">
-                        <ngb-panel class="test" id="static-1"
-                            title="How can I bookmark a course?">
+                    <div class="title1">Getting Started</div>
+                    <ngb-accordion [closeOthers]="true" activeIds="static-2">
+                        <ngb-panel class="test" id="static-1" title="How can I create an account?">
                             <ng-template ngbPanelContent>
-                                There are primarily 2 ways to bookmark a course:
-                                <ul>
-                                    <li>From the listing page - To bookmark a course from the listing page, click on the
-                                        “Bookmark” button which appears upon hovering over the course tile.</li>
-                                    <li>From the course content page - Click on the Bookmark button which is present at
-                                        the
-                                        top of every course page.</li>
-                                </ul>
-
-                                Any one of these two actions would add the corresponding course to your bookmarks, which
-                                can be viewed on your profile page under the ‘Bookmarks’ section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-2" title="How can I review a course?">
-                            <ng-template ngbPanelContent>
-                                <p> Every course listed on our platform has its own content page (we call it the “course
-                                    content page” or “content page”, in short). Here, learners can find all the details
-                                    related to the course, including what reviews it has received on our platform.
+                                <p>
+                                    Creating an account helps you save your preferences, bookmark, track and review
+                                    courses. It also allows you to interact with other users who are interested in the
+                                    same field as you via the Discussion Forum (coming soon). Finally, it also helps us
+                                    understand which courses to recommend to you.
                                 </p>
-                                Any logged-in user can review a course from its content page. Adding a review does not
-                                have any pre-requisites and so, feel free to write down your experience of the course.
-                                In case you do add a review, we will assume that you have completed the course, and
-                                therefore add it to your completed courses.
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="static-2" title="Why should I create an account?">
+                            <ng-template ngbPanelContent>
+                                <p>
+                                    Every course listed on our platform has its own description page (we call it the
+                                    “course description page” or “description page”, in short). Here, learners can find
+                                    all the details related to the course, including what reviews it has received on our
+                                    platform.
+                                </p>
 
                             </ng-template>
                         </ngb-panel>
-                        <ngb-panel id="static-3" title="How can I add a course to my list of completed courses?">
+                        <ngb-panel id="static-3" title="I forgot my password. What should I do?">
                             <ng-template ngbPanelContent>
-                                There are primarily 2 ways to add a course to your list of completed courses:
-                                <ul>
-                                    <li>Review a course - Reviewing a course directly adds it to your list of completed
-                                        courses.</li>
-                                    <li>Changing course status - Click on the “Completed” button present at the top of
-                                        every</li>
-                                    course page (along with the “Bookmark” button).
-                                </ul>
-
-                                You can check out your completed courses on your profile page under the “Completed”
-                                section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-4" title="How can I compare courses?">
-                            <ng-template ngbPanelContent>
-                                Before you can compare course, you would need to select the courses you wish to compare.
-                                You can select courses in 2 ways -
-                                <ul>
-                                    <li>From the listing page - To select a course from the listing page, click on the
-                                        “Add for Comparison” button which appears upon hovering over the course tile.
-                                    </li>
-                                    <li>
-                                        From the course content page - Click on the “Add for Comparison” button which is
-                                        present at the top of every course page.
-                                    </li>
-                                </ul>
-                                After you have selected the courses you wish to compare, just click on the “Compare”
-                                button present on the top right corner of the listing page or the course content page!
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-5" title="How many courses can I compare at once?">
-                            <ng-template ngbPanelContent>
-                                In order to use our Compare feature, you must select a minimum of 2 courses and a
-                                maximum of
-                                5 courses. To ensure the maximum limit, we only allow you to select 5 courses at a time.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-6" title=" How can I report a course review?">
-                            <ng-template ngbPanelContent>
-                                We encourage learners to report a review in case they violate our Content Guidelines. To
-                                report a course review, follow these steps:
-
-                                <ol>
-                                    <li>Click on &#60; hamburger &gt; at the top right corner of the review box and
-                                        select “Report”.
-                                    </li>
-                                    <li>
-                                        Select the category of the breach (and give an explanation, if needed).
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                We only allow signed-in users to report a review so that we can assign reward points.
-                                These reward points, in turn, are used to assign badges to learners.
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-7" title="How can I report changes in course content?">
-                            <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
-                                <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
-                                    </li>
-                                    <li>
-                                        Select the nature of the breach and mention which fields are affected.
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
+                                <p>
+                                    On the Log In page, just click “Forgot Password?” Enter your Email ID, and a link
+                                    will be sent to your email to reset your password. Simple.
+                                </p>
                             </ng-template>
                         </ngb-panel>
                     </ngb-accordion>
                 </div>
                 <div id="section3">
+                    <div class="title1">Report</div>
                     <ngb-accordion [closeOthers]="true" activeIds="static-1">
-                        <ngb-panel class="test" id="static-1"
-                            title="How can I bookmark a course?">
+                        <ngb-panel class="test" id="static-1" title="How can I report a course review?">
                             <ng-template ngbPanelContent>
-                                There are primarily 2 ways to bookmark a course:
-                                <ul>
-                                    <li>From the listing page - To bookmark a course from the listing page, click on the
-                                        “Bookmark” button which appears upon hovering over the course tile.</li>
-                                    <li>From the course content page - Click on the Bookmark button which is present at
-                                        the
-                                        top of every course page.</li>
-                                </ul>
-
-                                Any one of these two actions would add the corresponding course to your bookmarks, which
-                                can be viewed on your profile page under the ‘Bookmarks’ section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-2" title="How can I review a course?">
-                            <ng-template ngbPanelContent>
-                                <p> Every course listed on our platform has its own content page (we call it the “course
-                                    content page” or “content page”, in short). Here, learners can find all the details
-                                    related to the course, including what reviews it has received on our platform.
+                                <p>
+                                    We encourage learners to report a review in case they violate our Content Policy or
+                                    Review Guidelines. To report a course review, follow these steps:
                                 </p>
-                                Any logged-in user can review a course from its content page. Adding a review does not
-                                have any pre-requisites and so, feel free to write down your experience of the course.
-                                In case you do add a review, we will assume that you have completed the course, and
-                                therefore add it to your completed courses.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-3" title="How can I add a course to my list of completed courses?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to add a course to your list of completed courses:
-                                <ul>
-                                    <li>Review a course - Reviewing a course directly adds it to your list of completed
-                                        courses.</li>
-                                    <li>Changing course status - Click on the “Completed” button present at the top of
-                                        every</li>
-                                    course page (along with the “Bookmark” button).
-                                </ul>
-
-                                You can check out your completed courses on your profile page under the “Completed”
-                                section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-4" title="How can I compare courses?">
-                            <ng-template ngbPanelContent>
-                                Before you can compare course, you would need to select the courses you wish to compare.
-                                You can select courses in 2 ways -
-                                <ul>
-                                    <li>From the listing page - To select a course from the listing page, click on the
-                                        “Add for Comparison” button which appears upon hovering over the course tile.
-                                    </li>
-                                    <li>
-                                        From the course content page - Click on the “Add for Comparison” button which is
-                                        present at the top of every course page.
-                                    </li>
-                                </ul>
-                                After you have selected the courses you wish to compare, just click on the “Compare”
-                                button present on the top right corner of the listing page or the course content page!
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-5" title="How many courses can I compare at once?">
-                            <ng-template ngbPanelContent>
-                                In order to use our Compare feature, you must select a minimum of 2 courses and a
-                                maximum of
-                                5 courses. To ensure the maximum limit, we only allow you to select 5 courses at a time.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-6" title=" How can I report a course review?">
-                            <ng-template ngbPanelContent>
-                                We encourage learners to report a review in case they violate our Content Guidelines. To
-                                report a course review, follow these steps:
-
                                 <ol>
-                                    <li>Click on &#60; hamburger &gt; at the top right corner of the review box and
-                                        select “Report”.
-                                    </li>
-                                    <li>
-                                        Select the category of the breach (and give an explanation, if needed).
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
+                                    <li>Click on three vertical dots at the top right corner of the review box and
+                                        select “Report”.</li>
+                                    <li>Select the category of the breach (and give an explanation, if needed).</li>
+                                    <li>Click on “Submit Report” once you are done.</li>
                                 </ol>
-                                We only allow signed-in users to report a review so that we can assign reward points.
-                                These reward points, in turn, are used to assign badges to learners.
+                                <p>
+                                    We only allow signed-in users to report a review so that we can assign reward
+                                    points. These reward points, in turn, are used to assign badges to learners.
+                                </p>
                             </ng-template>
                         </ngb-panel>
-                        <ngb-panel id="static-7" title="How can I report changes in course content?">
+                        <ngb-panel id="static-2" title="How can I report changes in course content?">
                             <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
+                                <p>
+                                    To do this, follow these steps:
+                                </p>
                                 <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
+                                    <li>Click on the “Report” on the top-right corner of every page.
                                     </li>
                                     <li>
                                         Select the nature of the breach and mention which fields are affected.
@@ -367,482 +157,45 @@
                                         Click on “Submit Report” once you are done.
                                     </li>
                                 </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
+
                             </ng-template>
                         </ngb-panel>
+
                     </ngb-accordion>
                 </div>
                 <div id="section4">
+                    <div class="title1">Coming Soon</div>
                     <ngb-accordion [closeOthers]="true" activeIds="static-1">
                         <ngb-panel class="test" id="static-1"
-                            title="How can I bookmark a course?">
+                            title="It seems a lot of features are coming soon. Do you have a list of features you would be adding going forward?">
                             <ng-template ngbPanelContent>
-                                There are primarily 2 ways to bookmark a course:
-                                <ul>
-                                    <li>From the listing page - To bookmark a course from the listing page, click on the
-                                        “Bookmark” button which appears upon hovering over the course tile.</li>
-                                    <li>From the course content page - Click on the Bookmark button which is present at
-                                        the
-                                        top of every course page.</li>
-                                </ul>
-
-                                Any one of these two actions would add the corresponding course to your bookmarks, which
-                                can be viewed on your profile page under the ‘Bookmarks’ section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-2" title="How can I review a course?">
-                            <ng-template ngbPanelContent>
-                                <p> Every course listed on our platform has its own content page (we call it the “course
-                                    content page” or “content page”, in short). Here, learners can find all the details
-                                    related to the course, including what reviews it has received on our platform.
+                                <p>
+                                    While we cannot disclose the complete list of features we would be adding, here is a
+                                    list of 5 features you might see soon -
                                 </p>
-                                Any logged-in user can review a course from its content page. Adding a review does not
-                                have any pre-requisites and so, feel free to write down your experience of the course.
-                                In case you do add a review, we will assume that you have completed the course, and
-                                therefore add it to your completed courses.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-3" title="How can I add a course to my list of completed courses?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to add a course to your list of completed courses:
                                 <ul>
-                                    <li>Review a course - Reviewing a course directly adds it to your list of completed
-                                        courses.</li>
-                                    <li>Changing course status - Click on the “Completed” button present at the top of
-                                        every</li>
-                                    course page (along with the “Bookmark” button).
+                                    <li>Upvoting Reviews (We almost launched this in the first phase)</li>
+                                    <li>Learning Pathways</li>
+                                    <li>Discussion Forum</li>
+                                    <li>EduCoins and Badges</li>
+                                    <li>Add Your Course</li>
                                 </ul>
-
-                                You can check out your completed courses on your profile page under the “Completed”
-                                section.
-
                             </ng-template>
                         </ngb-panel>
-                        <ngb-panel id="static-4" title="How can I compare courses?">
+                        <ngb-panel id="static-2" title="Are you looking for new members to join your team?">
                             <ng-template ngbPanelContent>
-                                Before you can compare course, you would need to select the courses you wish to compare.
-                                You can select courses in 2 ways -
-                                <ul>
-                                    <li>From the listing page - To select a course from the listing page, click on the
-                                        “Add for Comparison” button which appears upon hovering over the course tile.
-                                    </li>
-                                    <li>
-                                        From the course content page - Click on the “Add for Comparison” button which is
-                                        present at the top of every course page.
-                                    </li>
-                                </ul>
-                                After you have selected the courses you wish to compare, just click on the “Compare”
-                                button present on the top right corner of the listing page or the course content page!
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-5" title="How many courses can I compare at once?">
-                            <ng-template ngbPanelContent>
-                                In order to use our Compare feature, you must select a minimum of 2 courses and a
-                                maximum of
-                                5 courses. To ensure the maximum limit, we only allow you to select 5 courses at a time.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-6" title=" How can I report a course review?">
-                            <ng-template ngbPanelContent>
-                                We encourage learners to report a review in case they violate our Content Guidelines. To
-                                report a course review, follow these steps:
-
-                                <ol>
-                                    <li>Click on &#60; hamburger &gt; at the top right corner of the review box and
-                                        select “Report”.
-                                    </li>
-                                    <li>
-                                        Select the category of the breach (and give an explanation, if needed).
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                We only allow signed-in users to report a review so that we can assign reward points.
-                                These reward points, in turn, are used to assign badges to learners.
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-7" title="How can I report changes in course content?">
-                            <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
-                                <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
-                                    </li>
-                                    <li>
-                                        Select the nature of the breach and mention which fields are affected.
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
+                                <p>
+                                    Yes! We want people to help us build our product. At present, our team is divided
+                                    into 5 verticals - Revenue, Marketing, Technology, Experience and Content. Feel free
+                                    to drop us a message on LinkedIn (find our LinkedIn profiles in About Us section) or
+                                    Quora (drop us a text on Edunaut space) and let us know what you would like to work
+                                    on.
+                                </p>
                             </ng-template>
                         </ngb-panel>
                     </ngb-accordion>
                 </div>
-                <div id="section5">
-                    <ngb-accordion [closeOthers]="true" activeIds="static-1">
-                        <ngb-panel class="test" id="static-1"
-                            title="How can I bookmark a course?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to bookmark a course:
-                                <ul>
-                                    <li>From the listing page - To bookmark a course from the listing page, click on the
-                                        “Bookmark” button which appears upon hovering over the course tile.</li>
-                                    <li>From the course content page - Click on the Bookmark button which is present at
-                                        the
-                                        top of every course page.</li>
-                                </ul>
 
-                                Any one of these two actions would add the corresponding course to your bookmarks, which
-                                can be viewed on your profile page under the ‘Bookmarks’ section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-2" title="How can I review a course?">
-                            <ng-template ngbPanelContent>
-                                <p> Every course listed on our platform has its own content page (we call it the “course
-                                    content page” or “content page”, in short). Here, learners can find all the details
-                                    related to the course, including what reviews it has received on our platform.
-                                </p>
-                                Any logged-in user can review a course from its content page. Adding a review does not
-                                have any pre-requisites and so, feel free to write down your experience of the course.
-                                In case you do add a review, we will assume that you have completed the course, and
-                                therefore add it to your completed courses.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-3" title="How can I add a course to my list of completed courses?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to add a course to your list of completed courses:
-                                <ul>
-                                    <li>Review a course - Reviewing a course directly adds it to your list of completed
-                                        courses.</li>
-                                    <li>Changing course status - Click on the “Completed” button present at the top of
-                                        every</li>
-                                    course page (along with the “Bookmark” button).
-                                </ul>
-
-                                You can check out your completed courses on your profile page under the “Completed”
-                                section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-4" title="How can I compare courses?">
-                            <ng-template ngbPanelContent>
-                                Before you can compare course, you would need to select the courses you wish to compare.
-                                You can select courses in 2 ways -
-                                <ul>
-                                    <li>From the listing page - To select a course from the listing page, click on the
-                                        “Add for Comparison” button which appears upon hovering over the course tile.
-                                    </li>
-                                    <li>
-                                        From the course content page - Click on the “Add for Comparison” button which is
-                                        present at the top of every course page.
-                                    </li>
-                                </ul>
-                                After you have selected the courses you wish to compare, just click on the “Compare”
-                                button present on the top right corner of the listing page or the course content page!
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-5" title="How many courses can I compare at once?">
-                            <ng-template ngbPanelContent>
-                                In order to use our Compare feature, you must select a minimum of 2 courses and a
-                                maximum of
-                                5 courses. To ensure the maximum limit, we only allow you to select 5 courses at a time.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-6" title=" How can I report a course review?">
-                            <ng-template ngbPanelContent>
-                                We encourage learners to report a review in case they violate our Content Guidelines. To
-                                report a course review, follow these steps:
-
-                                <ol>
-                                    <li>Click on &#60; hamburger &gt; at the top right corner of the review box and
-                                        select “Report”.
-                                    </li>
-                                    <li>
-                                        Select the category of the breach (and give an explanation, if needed).
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                We only allow signed-in users to report a review so that we can assign reward points.
-                                These reward points, in turn, are used to assign badges to learners.
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-7" title="How can I report changes in course content?">
-                            <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
-                                <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
-                                    </li>
-                                    <li>
-                                        Select the nature of the breach and mention which fields are affected.
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
-                            </ng-template>
-                        </ngb-panel>
-                    </ngb-accordion>
-                </div>
-                <div id="section6">
-                    <ngb-accordion [closeOthers]="true" activeIds="static-1">
-                        <ngb-panel class="test" id="static-1"
-                            title="How can I bookmark a course?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to bookmark a course:
-                                <ul>
-                                    <li>From the listing page - To bookmark a course from the listing page, click on the
-                                        “Bookmark” button which appears upon hovering over the course tile.</li>
-                                    <li>From the course content page - Click on the Bookmark button which is present at
-                                        the
-                                        top of every course page.</li>
-                                </ul>
-
-                                Any one of these two actions would add the corresponding course to your bookmarks, which
-                                can be viewed on your profile page under the ‘Bookmarks’ section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-2" title="How can I review a course?">
-                            <ng-template ngbPanelContent>
-                                <p> Every course listed on our platform has its own content page (we call it the “course
-                                    content page” or “content page”, in short). Here, learners can find all the details
-                                    related to the course, including what reviews it has received on our platform.
-                                </p>
-                                Any logged-in user can review a course from its content page. Adding a review does not
-                                have any pre-requisites and so, feel free to write down your experience of the course.
-                                In case you do add a review, we will assume that you have completed the course, and
-                                therefore add it to your completed courses.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-3" title="How can I add a course to my list of completed courses?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to add a course to your list of completed courses:
-                                <ul>
-                                    <li>Review a course - Reviewing a course directly adds it to your list of completed
-                                        courses.</li>
-                                    <li>Changing course status - Click on the “Completed” button present at the top of
-                                        every</li>
-                                    course page (along with the “Bookmark” button).
-                                </ul>
-
-                                You can check out your completed courses on your profile page under the “Completed”
-                                section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-4" title="How can I compare courses?">
-                            <ng-template ngbPanelContent>
-                                Before you can compare course, you would need to select the courses you wish to compare.
-                                You can select courses in 2 ways -
-                                <ul>
-                                    <li>From the listing page - To select a course from the listing page, click on the
-                                        “Add for Comparison” button which appears upon hovering over the course tile.
-                                    </li>
-                                    <li>
-                                        From the course content page - Click on the “Add for Comparison” button which is
-                                        present at the top of every course page.
-                                    </li>
-                                </ul>
-                                After you have selected the courses you wish to compare, just click on the “Compare”
-                                button present on the top right corner of the listing page or the course content page!
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-5" title="How many courses can I compare at once?">
-                            <ng-template ngbPanelContent>
-                                In order to use our Compare feature, you must select a minimum of 2 courses and a
-                                maximum of
-                                5 courses. To ensure the maximum limit, we only allow you to select 5 courses at a time.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-6" title=" How can I report a course review?">
-                            <ng-template ngbPanelContent>
-                                We encourage learners to report a review in case they violate our Content Guidelines. To
-                                report a course review, follow these steps:
-
-                                <ol>
-                                    <li>Click on &#60; hamburger &gt; at the top right corner of the review box and
-                                        select “Report”.
-                                    </li>
-                                    <li>
-                                        Select the category of the breach (and give an explanation, if needed).
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                We only allow signed-in users to report a review so that we can assign reward points.
-                                These reward points, in turn, are used to assign badges to learners.
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-7" title="How can I report changes in course content?">
-                            <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
-                                <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
-                                    </li>
-                                    <li>
-                                        Select the nature of the breach and mention which fields are affected.
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
-                            </ng-template>
-                        </ngb-panel>
-                    </ngb-accordion>
-                </div>
-                <div id="section7">
-                    <ngb-accordion [closeOthers]="true" activeIds="static-1">
-                        <ngb-panel class="test" id="static-1"
-                            title="How can I bookmark a course?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to bookmark a course:
-                                <ul>
-                                    <li>From the listing page - To bookmark a course from the listing page, click on the
-                                        “Bookmark” button which appears upon hovering over the course tile.</li>
-                                    <li>From the course content page - Click on the Bookmark button which is present at
-                                        the
-                                        top of every course page.</li>
-                                </ul>
-
-                                Any one of these two actions would add the corresponding course to your bookmarks, which
-                                can be viewed on your profile page under the ‘Bookmarks’ section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-2" title="How can I review a course?">
-                            <ng-template ngbPanelContent>
-                                <p> Every course listed on our platform has its own content page (we call it the “course
-                                    content page” or “content page”, in short). Here, learners can find all the details
-                                    related to the course, including what reviews it has received on our platform.
-                                </p>
-                                Any logged-in user can review a course from its content page. Adding a review does not
-                                have any pre-requisites and so, feel free to write down your experience of the course.
-                                In case you do add a review, we will assume that you have completed the course, and
-                                therefore add it to your completed courses.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-3" title="How can I add a course to my list of completed courses?">
-                            <ng-template ngbPanelContent>
-                                There are primarily 2 ways to add a course to your list of completed courses:
-                                <ul>
-                                    <li>Review a course - Reviewing a course directly adds it to your list of completed
-                                        courses.</li>
-                                    <li>Changing course status - Click on the “Completed” button present at the top of
-                                        every</li>
-                                    course page (along with the “Bookmark” button).
-                                </ul>
-
-                                You can check out your completed courses on your profile page under the “Completed”
-                                section.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-4" title="How can I compare courses?">
-                            <ng-template ngbPanelContent>
-                                Before you can compare course, you would need to select the courses you wish to compare.
-                                You can select courses in 2 ways -
-                                <ul>
-                                    <li>From the listing page - To select a course from the listing page, click on the
-                                        “Add for Comparison” button which appears upon hovering over the course tile.
-                                    </li>
-                                    <li>
-                                        From the course content page - Click on the “Add for Comparison” button which is
-                                        present at the top of every course page.
-                                    </li>
-                                </ul>
-                                After you have selected the courses you wish to compare, just click on the “Compare”
-                                button present on the top right corner of the listing page or the course content page!
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-5" title="How many courses can I compare at once?">
-                            <ng-template ngbPanelContent>
-                                In order to use our Compare feature, you must select a minimum of 2 courses and a
-                                maximum of
-                                5 courses. To ensure the maximum limit, we only allow you to select 5 courses at a time.
-
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-6" title=" How can I report a course review?">
-                            <ng-template ngbPanelContent>
-                                We encourage learners to report a review in case they violate our Content Guidelines. To
-                                report a course review, follow these steps:
-
-                                <ol>
-                                    <li>Click on &#60; hamburger &gt; at the top right corner of the review box and
-                                        select “Report”.
-                                    </li>
-                                    <li>
-                                        Select the category of the breach (and give an explanation, if needed).
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                We only allow signed-in users to report a review so that we can assign reward points.
-                                These reward points, in turn, are used to assign badges to learners.
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-7" title="How can I report changes in course content?">
-                            <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
-                                <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
-                                    </li>
-                                    <li>
-                                        Select the nature of the breach and mention which fields are affected.
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
-                            </ng-template>
-                        </ngb-panel>
-                        <ngb-panel id="static-8" title="How can I report changes in course content?">
-                            <ng-template ngbPanelContent>
-                                While we only allow logged-in users to report a review, anyone can report a change in a
-                                course’s content. To do this, follow these steps
-                                <ol>
-                                    <li>Click on the “Report Content” on the top-right corner of every page.
-                                    </li>
-                                    <li>
-                                        Select the nature of the breach and mention which fields are affected.
-                                    </li>
-                                    <li>
-                                        Click on “Submit Report” once you are done.
-                                    </li>
-                                </ol>
-                                While we try and ensure that our content remains up-to-date, we may still slip up.
-                                Please feel comfortable to let us know whenever you notice it.
-                            </ng-template>
-                        </ngb-panel>
-                    </ngb-accordion>
-                </div>
             </div>
         </div>
         <br>
