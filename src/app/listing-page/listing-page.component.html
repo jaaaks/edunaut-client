@@ -7,7 +7,7 @@
 
       <mat-divider></mat-divider>
       <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl" class="example-tree">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="20">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle  matTreeNodePaddingIndent="20">
 
           <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
             (change)="todoLeafItemSelectionToggle(node,$event)">{{node.item}}</mat-checkbox>
@@ -15,14 +15,14 @@
 
         <mat-tree-node *matTreeNodeDef="let node; when: isHeader" isExpanded=true
           fxLayout="row wrap" fxLayoutAlign="space-between center">
-          <div>
-            <strong>{{node.item}}</strong>
+          <div class="tree-header">
+            {{node.item}}
           </div>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isAdvanceHeader" isExpanded=true matTreeNodeToggle
-        fxLayout="row wrap" fxLayoutAlign="space-between center" >
-        <div>
-          <strong>{{node.item}}</strong>
+         >
+        <div class="tree-header">
+          {{node.item}}
         </div>
 
         <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
@@ -32,12 +32,12 @@
         </button>
       </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: isAdvance"  isExpanded=true
-        fxLayout="row wrap" fxLayoutAlign="center center" matTreeNodeToggle >
-        <div>
-          <strong>{{node.item}}</strong>
+        matTreeNodeToggle >
+        <div class="tree-header-advance">
+          {{node.item}}
         </div>
         <button mat-icon-button class="tree-icon" *ngIf="node.expandable" [attr.aria-label]="'toggle ' + node.filename">
-          <mat-icon class="icon-display">
+          <mat-icon class="icon-display-advance">
             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </button>
@@ -48,7 +48,7 @@
 
         <mat-tree-node *matTreeNodeDef="let node; when: isDuration" matTreeNodeToggle>
           <div fxLayout="column">
-            <ng5-slider [(value)]="minDuration" [(highValue)]="maxDuration" [options]="options1"></ng5-slider>
+            <ng5-slider [(value)]="minDuration" [(highValue)]="maxDuration"(valueChange)="onSliderScroll($event)" [options]="options1"></ng5-slider>
            <div flexLayout="row" fxLayoutGap="20px" class="duration-input" fxLayoutAlign="space-around center">
             <input fxFlex="40" class="example-margin"  matInput [(ngModel)]="minDuration">
           <input  fxFlex="40" class="example-margin" matInput [(ngModel)]="maxDuration">
@@ -169,8 +169,8 @@
                <div class="card-icons">
                 <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>
                   <div class="bulb" fxFlex="70"><img src="../../assets/profile/bag.png">
-                    <span *ngIf="course.course_dur===-1" class="icon-body">{{" "}}{{course.course_fee}}</span>
-                    <span *ngIf="course.course_dur!==-1" class="icon-body">{{" "}}Free</span></div>
+                    <span *ngIf="course.course_fee!==-1" class="icon-body">{{" "}}{{course.course_fee}}</span>
+                    <span *ngIf="course.course_fee===-1" class="icon-body">{{" "}}Free</span></div>
                   <div class="star"><img src="../../assets/profile/clock.png"><span *ngIf="course.course_dur===-1" class="icon-body">{{"   "}}Flexible</span><span  *ngIf="course.course_dur!==-1" class="icon-body">{{"   "}}{{course.course_dur}}{{" "}}h</span></div>
                 </div>
                       <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap>

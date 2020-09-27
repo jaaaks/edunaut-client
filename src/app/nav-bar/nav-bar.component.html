@@ -10,7 +10,7 @@
  <div class="sample one" >
    
       <input type="text" id="search" name="search" (keyup.enter)="sendMessage()" placeholder="Search and Explore Courses" [(ngModel)]='searchParameter'>
-     <button type="submit"   [routerLink]="['/find']" [queryParams]="{search: searchParameter}" class="fab fa-sistrix btn btn-search"></button>
+    <a  href="/find?search={{searchParameter}}"> <button type="button"   class="btn-search"></button></a>
     </div>
    
     
@@ -20,7 +20,7 @@
  <!-- Dropdown -->
      
       <li  *ngIf="!loggedIn"  class="nav-item m-2 menu-item">
-        <button mat-raised-button color="primary" (click)="openDialog()" mdbWavesEffect>Log In</button>
+        <button mat-stroked-button  (click)="openDialog()" >Sign Up</button>
       </li>
       
     

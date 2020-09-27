@@ -37,7 +37,9 @@ input {
       outline: none;
     }
     &.btn-search {
-      background:  #0376FE;
+     background-image: url('../../assets/logos/searchLogo.svg');
+     background-repeat: no-repeat;
+
       border: none;
       height: 30px;
       font-size: 12px;
@@ -141,15 +143,19 @@ input {
     &.one,
     &.two {
       input {
-        border-radius: 15px;
+       
+        background: #FAFBFC;
+border: 2px solid #E0E2E8;
+box-sizing: border-box;
+border-radius: 16px;
         right: 0;
        width: 100%;
         &:focus {
           width: 100%;
           ~ button {
             &.btn-search {
-              background:  #0376FE;;
-              color: #fff;
+              background-image: url('../../assets/logos/searchLogo.svg');
+              background-color: #FAFBFC;
             }
             
           }
@@ -158,12 +164,13 @@ input {
       button {
         transition: all .3s ease-in-out;
         &.btn-search {
-          background: #ccc;
-          border-radius: 50%;
-          height: 30px;
+          background-image: url('../../assets/logos/searchLogo.svg');
+          height: 18px;
+          background-color: #FAFBFC;
           transition: all .3s ease-in-out;
-          width: 30px;
-        right: -4px;
+          width: 18px;
+        right: 8px;
+        top:7px;
         }
       
       }
@@ -189,6 +196,31 @@ input {
 .rounded-circle{
 widows: 40px;
 height: 40px;
+}
+
+li{
+  button{
+    right:70px
+  }
+
+  .mat-stroked-button{
+   
+    width: 85px;
+font-size: 24px;
+line-height: 20px;
+color: #FFFFFF;
+background: #0376FE;
+border-radius: 5px;
+::ng-deep .mat-button-wrapper{
+  font-size: 12px;
+  font-family: Mulish;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 20px;
+}
+
+  }
 }
 
 

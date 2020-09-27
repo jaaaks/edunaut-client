@@ -62,22 +62,25 @@ export class NavBarComponent implements OnInit {
  
   sendMessage(): void {
     const search='find?search='+this.searchParameter;
-    this.router.navigate(['find'],{
-      queryParams:{
-        search:this.searchParameter
-      }
-    })
+    window.location.href=search;
  }
+
+
 openDialog() {
+     var dialogOpenState=false;
+  if(this.dialog.openDialogs.length>=1){
+    return ;
+  }
+  
   const dialogRef = this.dialog.open(LoginComponent,{
     maxHeight:'520px',
     minWidth:'411px',
     position:{
-      top: '15vh',
-       },
-       disableClose: true
-  }
-  );
+      top: '15vh'
+       }
+    
+    }
+  )
 
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);

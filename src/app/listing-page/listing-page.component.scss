@@ -175,7 +175,7 @@ padding: 0px 16px 0px 19px;
 }
 .content{
   padding:34px 16px 16px 19px;
- 
+   position: relative;
   }
 
 
@@ -400,6 +400,12 @@ color: #000000;
       position: relative;
       top:-12px;
     }
+    .icon-display-advance{
+      transform: scale(0.80);
+      position: relative;
+      top:-12px;
+      color:#A19F9D
+    }
 .tree-icon{
   height: 15px;
 }
@@ -452,3 +458,32 @@ color: #000000;
   color: #0376FE !important;
 
 }
+.tree-header{
+  font-family: Mulish;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 18px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.02em;
+
+color: #000000;
+}
+
+.tree-header-advance{
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height */
+  
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  
+  color: #A19F9D;
+  }

@@ -13,7 +13,7 @@ export class MessageService {
   private sendFromLoginToListing= new Subject<any>();
   private courseDetail = new Subject<any>();
 
-    sendMessage(message: string) {
+    sendMessage(message) {
         this.subject.next({ text: message });
     }
 

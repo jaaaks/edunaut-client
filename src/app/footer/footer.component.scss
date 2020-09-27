@@ -46,31 +46,36 @@
 .footer-links {
   padding-left: 0;
   list-style: none;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
   /* or 157% */
+  
 
-  letter-spacing: -0.015em;
+
 
   li {
     display: block;
   }
   a {
-    color: #000000;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    
+    letter-spacing: 0.004em;
+    
+    color: #0376FE;
 
     &:active {
-      color: #4ba4ec;
+      color:  #0367DD;
       text-decoration: none;
     }
     &:focus {
-      color: #4ba4ec;
+      color:  #0367DD;
       text-decoration: none;
     }
     &:hover {
-      color: #4ba4ec;
+      color: #0367DD;
       text-decoration: none;
     }
   }
@@ -84,11 +89,18 @@
   text-align: center;
 }
 .copyright {
-  display: flex;
-  padding-top: 3%;
-  padding-left: 45%;
-  color: rgba(0,0,0,0.8);
-  font-family: Montserrat;
+  font-family: Mulish;
+font-style: normal;
+font-weight: 300;
+font-size: 12px;
+line-height: 15px;
+margin-top:100px;
+/* identical to box height */
+
+text-align: center;
+letter-spacing: 0.004em;
+
+color: #8A8886;
 }
 .copyright-text {
   margin: 0;
@@ -140,25 +152,33 @@
    
   }
   a.facebook {
-    background-image: url('../../assets/logos/fbLogo.PNG');
+    background-image: url('../../assets/logos/fbLogo.svg');
     background-repeat: no-repeat;
     background-size: 50px;
     background-position: center;
-    
+    &:hover{
+      background-image: url('../../assets/logos/fbLogoHover.svg');
+    }
   }
  
   a.linkedin {
-    background-image: url('../../assets/logos/linkedinLogo.PNG');
-    background-repeat: no-repeat;
-    background-size: 47px;
-    background-position: center;
-    
-  }
-  a.dribble {
-    background-image: url('../../assets/logos/instaLogo.PNG');
+    background-image: url('../../assets/logos/linkedinLogo.svg');
     background-repeat: no-repeat;
     background-size: 50px;
     background-position: center;
+    &:hover{
+      background-image: url('../../assets/logos/linkedinLogoHover.svg');
+    }
+    
+  }
+  a.dribble {
+    background-image: url('../../assets/logos/instaLogo.svg');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    &:hover{
+      background-image: url('../../assets/logos/instaLogoHover.svg');
+    }
   }
 }
 .social-icons.size-sm {
@@ -252,6 +272,9 @@ color: #A19F9D;
     position: relative;
     left: 10%;
     padding: 0 !important;
+  }
+  .copyright{
+    margin-top: 10px;
   }
 }
 
@@ -446,4 +469,18 @@ letter-spacing: 0.0015em;
 
 color: #000000;
 
+}
+
+.title{
+  font-family: Mulish;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 18px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #494949;
 }
