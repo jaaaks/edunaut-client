@@ -9,6 +9,11 @@
 		overflow-x: hidden;
 }
 }
+html,body{
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: crisp-edges;
+	
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

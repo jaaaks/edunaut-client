@@ -142,6 +142,7 @@ export class ProfileComponent implements OnInit {
   getprofileInformation(uid){
   this.userService.profileInformation(uid).subscribe((data) => {
     this.profileData= data;
+    console.log(data);
     this.firstname = this.profileData.firstname;
     this.lastname = this.profileData.lastname;
     this.bio = this.profileData.bio;

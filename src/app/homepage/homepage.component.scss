@@ -60,13 +60,18 @@ text-transform: none;
   color: #0376fe;
 }
 .brands-footer {
-  font-family: $font1;
-  font-size: 1.12em;
-  background-color: #DDF2FE;
-  letter-spacing: -0.015em;
-  font-style: normal;
-  font-weight: normal;
-  color: #000000;
+  font-family: Muli;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 30px;
+/* identical to box height, or 167% */
+
+text-align: center;
+letter-spacing: -0.015em;
+
+color: #000000;
+  background-color: #EEF9FF;
   padding-top: 0.7%;
   padding-bottom: 0.7%;
   margin-top: 2%;

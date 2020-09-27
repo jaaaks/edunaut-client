@@ -58,31 +58,34 @@
                 <div class="details">
                     <div>
                         <span class="time"><img src="../../assets/course-detail/clock.png"></span><span *ngIf="course.course_dur > 0"
-                            class="time-detail">{{course.course_dur}} Hrs</span><span *ngIf="course.course_dur<=0" class="time-detail">Information Unavailable</span>
+                            class="time-detail">{{course.course_dur}} Hrs</span><span *ngIf="course.course_dur<=0" class="time-detail">Duration Unspecified</span>
                     </div>
                     <hr>
                     <div>
                         <span class="time"><img src="../../assets/course-detail/ratings.png"></span><span
                             *ngIf="course.course_review == -1" class="time-detail">No Reviews on
                             {{course.course_provider}}</span>
-                        <span *ngIf="course.course_review != -1" class="time-detail">{{course.course_review}} on
+                        <span *ngIf="course.course_review != -1" class="time-detail">{{course.course_review}}({{course.course_rating}}) on
                             {{course.course_provider}}</span>
                     </div>
                     <hr>
                     <div>
                         <span class="time"><img src="../../assets/course-detail/price.png"></span><span
-                            *ngIf="course.course_fee == -1" class="time-detail">Free</span><span
-                            *ngIf="course.course_fee != -1" class="time-detail">{{course.course_fee}}{{" "}}INR</span>
+                            *ngIf="course.course_fee  <1" class="time-detail">Free</span><span
+                            *ngIf="course.course_fee >= 1" class="time-detail">{{course.course_fee}}{{" "}}INR</span>
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/university.png"></span><span
+                        <span class="time"><img src="../../assets/course-detail/university.png"></span><span *ngIf="course.course_col == '-'"
+                            class="time-detail">Collaborator Unspecified </span>
+                            <span *ngIf="course.course_col != '-'"
                             class="time-detail">{{course.course_col}} </span>
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/certificate.png"></span><span
-                            class="time-detail">Certification{{" "}}{{course.course_certi}} </span>
+                        <span class="time"><img src="../../assets/course-detail/certificate.png"></span><span *ngIf="course.course_certi=='Available'"
+                            class="time-detail">Certification Available </span><span *ngIf="course.course_certi != 'Available'" class="time-detail">
+                                Certification Unavailable </span>
                     </div>
                     <hr>
                     <div>
@@ -93,28 +96,26 @@
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/compass.png"></span><span
-                            class="time-detail">This course is self paced</span>
+                        <span class="time"><img src="../../assets/course-detail/compass.png"></span><span *ngIf="course.course_deadline == '-'"
+                            class="time-detail">This course is self paced</span><span *ngIf="course.course_deadline != '-'" class="time-detail">Enrollment Ends On {{course.course_deadline}}</span>
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/calendar.png"></span><span
-                            class="time-detail">Start Any Time</span>
-                    </div>
-                    <hr>
-                    <div>
-                        <span class="time"><img src="../../assets/course-detail/bulb.png"></span><span
+                        <span class="time"><img src="../../assets/course-detail/bulb.png"></span><span *ngIf="course.course_diff == '-'"
+                            class="time-detail">Difficulty Unspecified</span><span *ngIf="course.course_diff != '-'"
                             class="time-detail">{{course.course_diff}}</span>
                     </div>
                     <hr>
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/language.png"></span><span
-                            class="time-detail">{{course.course_lang}}</span>
+                        <span class="time"><img src="../../assets/course-detail/language.png"></span><span *ngIf="course.course_lang != '-'"
+                            class="time-detail">{{course.course_lang}}</span><span *ngIf="course.course_lang == '-'">Language Unspecified</span>
                     </div>
                     <hr>
                     <div class="bottom">
-                        <span class="time"><img src="../../assets/course-detail/transcript.png"></span><span
-                            class="time-detail">{{course.course_trnsc}} Transcripts</span>
+                        <span class="time"><img src="../../assets/course-detail/transcript.png"></span><span *ngIf="course.course_trnsc != '-'"
+                            class="time-detail">{{course.course_trnsc}} Transcripts</span><span *ngIf="course.course_trnsc == '-'" class="time-detail">
+                                Transcript Unavailable
+                            </span>
                     </div>
                 </div>
             </div>
