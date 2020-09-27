@@ -274,29 +274,31 @@ border-radius: 5px;
     color: red;
 }
 .leftRs {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-    border-radius: 999px;
-  }
-  .rightRs {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-    border-radius: 999px;
-    right: 0;
-  }
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 30px;
+  border-style: none !important;
+  background-color: #f5f5f5;
+  left: 0;
+}
+
+.rightRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 30px;
+  border-style: none !important;
+  background-color: #f5f5f5;
+  right: 0;
+}
   .card{
-      margin-left: 6%;
-      margin-right: 6%;
+      margin-left: 10%;
+      margin-right: 10%;
       margin-bottom: 8%;
       border-radius: 5px;
   }
@@ -495,6 +497,13 @@ a:hover{
 
   color: #ffffff;
 }
-button:hover{
+.but:hover{
   background-color: #0376dd !important;
+}
+.save:hover{
+  background-color: #0376dd !important;
+}
+.button1:hover,.button2:hover, .button3:hover{
+  border-color: #0376dd !important;
+  color: #0376dd !important;
 }

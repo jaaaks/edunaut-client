@@ -1,10 +1,12 @@
 .container-fluid{
     background: #f5f5f5;
-    font-family: Montserrat;
 }
 .title{
-    font-size: 1.6em;
-    color: #A2A2A2;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 40px;
     font-weight: bold;
     padding-left: 6%;
     padding-top: 2%;
@@ -12,29 +14,37 @@
 .help{
     padding-left: 59.5%;
     padding-top: 2.7%;
-    font-size: 0.9em;
-    line-height: 0.98em;
+    font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+color: #8A8886;
 }
 a{
   color: #0376FE;
 }
 hr{
     width: 90%;
-    border-top: 1px solid rgba(0,0,0,0.2);
+    border-top: 2px solid #E0E2E8;
     margin-bottom: 0px;
 }
 .tabs{
   padding-left: 6%;
-  font-size: 1.2em;
-  font-weight: 600;
-  font-style: normal;
+  font-family: Muli;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 20px;
+letter-spacing: 0.005em;
   margin-right: 0px;;
   padding-right: 0px;
   padding-top: 2%;
-  border-right: 1px solid rgba(0,0,0,0.2);
+  border-right: 2px solid #E0E2E8;
 }
 .click{
   cursor: pointer;
+  padding-bottom: 5%;
 }
 #parentDiv{
   height:550px;
@@ -48,22 +58,29 @@ hr{
     color: #0087E5;
   }
   ngb-accordion::ng-deep.card::ng-deep{
+    margin-left: -18px;
     background-color: #f5f5f5 !important;
     border-style: none;
     color: black !important;
     .btn{
-      color: black;
-      font-size: 1.2em;
+      font-family: Muli !important;
+      font-style: normal !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      line-height: 20px !important;
+      letter-spacing: 0.005em !important;
+      margin-left: 0px !important;
+      color: #494949 !important;
       padding-left: 0px;
-      font-weight: 600;
       background-color: #f5f5f5;
-      border-style: none !important;
+      border: 0px solid #f5f5f5 !important;
     }
     .btn:focus,.btn:active, .btn:hover {
       outline: none !important;
       box-shadow: none;
       text-decoration: none;
       color: #0087E5;
+      border: 0px solid #f5f5f5 !important;
    }
    ul{
      list-style-type: lower-alpha;
@@ -74,12 +91,23 @@ hr{
       padding-top: 0px;
     }
     .collapse{
-      font-size: 1.1em;
-      line-height: 1.3em;
+      font-family: Muli;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: -0.015em;
+      color: #8A8886;
+      border: 0px;
     }
   }
-  #section2, #section3, #section4, #section5, #section5, #section6, #section7{
-    padding-top: 7%;
+  #section1,#section2,#section3,#section4{
+    font-family: Muli;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 28px;
+    color: #494949;
   }
   @media screen and (max-width: 1247px){
     .help{
@@ -133,4 +161,10 @@ hr{
         font-size: 0.85em;
       }
     }
+  }
+  .title1{
+    margin-bottom: 1%;
+  }
+  #section2,#section3,#section4{
+    margin-top: 5%;
   }

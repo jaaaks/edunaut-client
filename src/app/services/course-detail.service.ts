@@ -27,5 +27,8 @@ export class CourseDetailService {
   public courseComplete(bid){
     return this.http.put(this.url+"/bookmark/update",bid);
   }
+  public reportCourse(report){
+    return this.http.post(this.url+"/contactus/reportcourse",report);
+  }
 }
 

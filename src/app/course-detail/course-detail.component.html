@@ -24,13 +24,13 @@
     </div>
     <div class="row">
         <div class="col-12 title-footer">
-            <button *ngFor="let j of courseDomain" type="button" class="z-depth-0" mdbBtn color="primary"
-                mdbWavesEffect><a href="/find?search={{j}}">{{j}}{{" "}}</a></button>
+            <span *ngFor="let j of courseDomain"><a href="/find?search={{j}}"><button *ngIf="j != '-'" type="button" class="z-depth-0 dom" mdbBtn color="primary"
+                mdbWavesEffect>{{j}}{{" "}}</button></a></span>
         </div>
     </div>
     <div class="row">
         <div class="col-8">
-            <div class="col-12"><a [href]="course.course_link" target="_blank"><button type="button" class="go" mdbBtn
+            <div class="col-12"><a [href]="course.course_link" target="_blank"><button type="button" class="go z-depth-0" mdbBtn
                         color="info" mdbWavesEffect>Go To
                         Course</button></a></div>
             <div class="col-12 about">About The Course</div>
@@ -57,8 +57,8 @@
                 </div>
                 <div class="details">
                     <div>
-                        <span class="time"><img src="../../assets/course-detail/clock.png"></span><span
-                            class="time-detail">{{course.course_dur}} Hrs</span>
+                        <span class="time"><img src="../../assets/course-detail/clock.png"></span><span *ngIf="course.course_dur > 0"
+                            class="time-detail">{{course.course_dur}} Hrs</span><span *ngIf="course.course_dur<=0" class="time-detail">Information Unavailable</span>
                     </div>
                     <hr>
                     <div>
@@ -88,7 +88,7 @@
                     <div>
                         <span class="time"><img src="../../assets/course-detail/audit.png"></span><span
                             *ngIf="course.course_audit == '-'" class="time-detail">You cannot audit this course
-                        </span><span *ngIf="course.course_audit != '-'" class="time-detail">You cannot audit this course
+                        </span><span *ngIf="course.course_audit != '-'" class="time-detail">You can audit this course
                         </span>
                     </div>
                     <hr>
@@ -137,13 +137,13 @@
                     better learning platform for all.</p>
                 <div class="md-form">
                     <textarea type="text" id="form7" class="md-textarea form-control"
-                        placeholder="Explain this report. Link appropriate resources if necessary." mdbInput></textarea>
+                        placeholder="Explain this report. Link appropriate resources if necessary." [(ngModel)]="courseReport"></textarea>
                 </div>
             </div>
             <div class="modal-footer mod-footer">
                 <button type="button" mdbBtn color="secondary" class="waves-light cancel z-depth-0" aria-label="Close"
                     (click)="basicModal.hide()" mdbWavesEffect>Cancel</button>
-                <button type="button" mdbBtn (click)="showAndHideModal()" (click)="basicModal.hide()" color="primary"
+                <button type="button" mdbBtn (click)="reportCourse()" (click)="showAndHideModal()" (click)="basicModal.hide()" color="primary"
                     class="relative waves-light submit" mdbWavesEffect>Submit</button>
             </div>
         </div>
@@ -398,14 +398,13 @@
                 <form *ngIf="!isReview" #writeReview="ngForm" (ngSubmit)="onPost(writeReview.value)">
                     <textarea type="text" name="review" class="md-textarea form-control rev"
                         placeholder="Write Your Review" ngModel></textarea>
-                    <button class="tips z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Tips</button>
                     <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Post</button>
                 </form>
                 <form *ngIf="isReview" #writeReview1="ngForm" (ngSubmit)="onEdit(writeReview1.value)">
                     <textarea type="text" name="review" class="md-textarea form-control rev"
                         placeholder="Write Your Review" [(ngModel)]="userReview"></textarea>
+                        <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Edit</button>
                     <button class="tips1 z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Delete</button>
-                    <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Edit</button>
                 </form>
             </div>
         </div>

@@ -40,7 +40,10 @@ export class ProfileComponent implements OnInit {
   isBookmark = false;
   public sameUser = false;
   public coursedata;
+  public bid;
+  public completedata;
   public bookmarks= [0];
+  public complete=[0];
   public uid;
   public tem;
   public carouselTileItems$: Observable<number[]>;
@@ -54,7 +57,7 @@ export class ProfileComponent implements OnInit {
     touch: true,
     loop: true,
     interval: { timing: 15000 },
-    animation: 'lazy'
+    
   };
   tempData: any[];
   tempData1: any[];
@@ -76,22 +79,7 @@ export class ProfileComponent implements OnInit {
       this.profileId={...params};
     })
     this.getprofileInformation(this.profileId.params.uid);
-
-    this.tempData = [];
-    
-    /*this.carouselTileItems1$ = interval(20).pipe(
-      startWith(-1),
-      take(this.coursedata.length),
-      map(val => {
-        const data = (this.tempData = [
-          ...this.tempData,
-          this.coursedata[val + 1]
-        ]);
-        return data;
-
-      })
-    );*/
-   
+      
   }
   carousel(){
     this.tempData1 = [];
@@ -110,6 +98,25 @@ export class ProfileComponent implements OnInit {
     );
     if(this.bookmarks[0] != 0){
     this.isBookmark = true;}
+  }
+
+  completeCarousel(){
+    this.tempData = [];
+
+     this.carouselTileItems$ = interval(20).pipe(
+      startWith(-1),
+      take(this.completedata.length),
+      map(val => {
+        const data = (this.tempData = [
+          ...this.tempData,
+          this.completedata[val + 1]
+        ]);
+        return data;
+
+      })
+    );
+    if(this.complete[0] != 0){
+      this.isCompleted = true;}
   }
   onClickSubmit(data) {
     this.userService.updateProfile({
@@ -139,18 +146,31 @@ export class ProfileComponent implements OnInit {
     this.lastname = this.profileData.lastname;
     this.bio = this.profileData.bio;
     var count =0;
+    var count1=0;
     for(var i=0; i< this.profileData.bookmarks.length; i++ )
     {
-      if(count==0 && this.profileData.bookmarks[i].courseid != null){
+      if(count==0 && this.profileData.bookmarks[i].courseid != null && this.profileData.bookmarks[i].status != 1){
         this.bookmarks[0] =(this.profileData.bookmarks[i].courseid);
         count++;
       }
-      if(count>0 && this.profileData.bookmarks[i].courseid != null){
+      if(count>0 && this.profileData.bookmarks[i].courseid != null && this.profileData.bookmarks[i].status != 1){
         this.bookmarks.push(this.profileData.bookmarks[i].courseid);
       }
     }
+    for(var j=0; j< this.profileData.bookmarks.length; j++ )
+    {
+      if(count1==0 && this.profileData.bookmarks[j].courseid != null && this.profileData.bookmarks[j].status == 1){
+        this.complete[0] =(this.profileData.bookmarks[j].courseid);
+        count1++;
+      }
+      if(count1>0 && this.profileData.bookmarks[j].courseid != null && this.profileData.bookmarks[j].status == 1){
+        this.complete.push(this.profileData.bookmarks[j].courseid);
+      }
+    }
     this.getBookmarks(this.bookmarks);
+    this.getComplete(this.complete);
     console.log(this.bookmarks);
+    console.log(this.complete);
     console.log(data);
     });
   }
@@ -160,6 +180,13 @@ export class ProfileComponent implements OnInit {
       this.coursedata = data;
       console.log(this.coursedata);
       this.carousel();
+    })
+  }
+  getComplete(bookmarks){
+    this.courseService.getCourseById(bookmarks).subscribe((data)=>{
+      this.completedata = data;
+      console.log(this.completedata);
+      this.completeCarousel();
     })
   }
   sendCourse(cid){
@@ -181,8 +208,24 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  comparator(course){
-    this.messageservice.addToCompare(course);
+  onComplete(course){
+    for(var i=0;i<this.profileData.bookmarks.length;i++){
+      if(this.profileData.bookmarks[i].courseid == course.course_id){
+        this.bid = this.profileData.bookmarks[i].bid;
+        break;
+      }
+    }
+    this.courseService.courseComplete({
+      bid: this.bid,
+      status: 1
+    }).subscribe(data=>{},
+      err =>{
+        console.log(err);
+        if(err.error.text =='Updated'){
+          alert("Course added to completd row");
+          location.reload();
+        }
+      })
   }
 
   

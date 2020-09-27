@@ -26,7 +26,7 @@
                 <p class="right-body text-justify">A single online platform to find, compare, track and review the
                     course right for
                     you, efficiently.</p>
-                <p class="but1"><a hre="/right-course"><button mdbBtn type="button" class="but z-depth-0" color="primary" mdbWavesEffect>Start
+                <p class="but1"><a href="/right-course"><button mdbBtn type="button" class="but z-depth-0" color="primary" mdbWavesEffect>Start
                         Now</button></a></p>
             </div>
         </div>
@@ -59,14 +59,14 @@
                                         <a href="/course-detail?cid={{item.course_id}}">
                                         <div class="row fade1">
                                           <div class="col-6 bag"><img src="../../assets/profile/bag.png">
-                                            <span *ngIf="item.course_fee != -1"
+                                            <span *ngIf="item.course_fee >= 1"
                                                             class="icon-body">{{" "}}{{item.course_fee}}</span>
-                                                        <span *ngIf="item.course_fee == -1"
+                                                        <span *ngIf="item.course_fee < 1"
                                                             class="icon-body">{{" "}}Free</span>
                                                         </div>
-                                          <div class="col-6 clock"><img src="../../assets/profile/clock.png"><span
-                                            class="icon-body">{{" "}}{{item.course_dur}} Hrs
-                                        </span>
+                                          <div class="col-6 clock"><img src="../../assets/profile/clock.png"><span *ngIf="item.course_dur>=1"
+                                            class="icon-body">{{" "}}{{item.course_dur}} Hrs 
+                                        </span><span *ngIf="item.course_dur<1">{{" "}}N/A</span>
                                             </div>
                                           <div class="col-6 bulb"><img src="../../assets/profile/bulb.png"><span
                                             class="icon-body">{{" "}}{{item.course_diff}}</span>
@@ -82,7 +82,7 @@
                                         <hr class="footer">
                                         <div class="row uni">
                                           <div class="university">{{item.course_col}}</div>
-                                          <button mdbBtn type="button" (click)="comparator(item)" class="button2" color="info" outline="true" mdbWavesEffect>Complete</button>
+                                          <button mdbBtn type="button" (click)="onComplete(item)" class="button2" color="info" outline="true" mdbWavesEffect>Complete</button>
                                           <button mdbBtn type="button" (click)="removeBookmark(item)" class="button3" color="info" outline="true" mdbWavesEffect>Remove</button>
                                         </div>
                                       </mdb-card-text>
@@ -90,12 +90,12 @@
                                   </mdb-card>
                                 </div>
                               
-                                <button NguCarouselPrev class="leftRs" [style.opacity]="0.5">
-                                  &lt;
-                                </button>
-                                <button NguCarouselNext class="rightRs" [style.opacity]="0.5">
-                                  &gt;
-                                </button>
+                                <button NguCarouselPrev class="leftRs d-none d-md-block" >
+                                    <img src="../../assets/homepage/left.png">
+                                  </button>
+                                  <button NguCarouselNext class="rightRs d-none d-md-block" >
+                                    <img src="../../assets/homepage/right.png">
+                                  </button>
                               
                               
                               </ngu-carousel>
@@ -112,8 +112,9 @@
                     </div>
                     <hr class="completed-line">
                     <div class="col-12 body1">
-                        <img src="../../assets/profile/Frame 94.png" class="img-fluid no-comp">
-                       <!-- <ngu-carousel #myCarousel [inputs]="carouselTileConfig"
+                        <img *ngIf="!isCompleted" src="../../assets/profile/Frame 94.png" class="img-fluid no-comp">
+                        <div *ngIf="isCompleted">
+                       <ngu-carousel #myCarousel [inputs]="carouselTileConfig"
                             [dataSource]="carouselTileItems$ | async">
                             <div class="item" *nguCarouselDef="let item; index as i; let ani = animate" [@slider]="ani">
                                 <mdb-card class="card ">
@@ -121,7 +122,7 @@
                                         <img class="icon" src="../../assets/profile/{{item.course_provider}}.png">
                                     </div>
                                     <mdb-card-body class="bod">
-                                        <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
+                                        <a href="/course-detail?cid={{item.course_id}}">
                                             <mdb-card-title class="title-card">
                                                 {{item.course_name | slice:0:68}}...
                                             </mdb-card-title>
@@ -131,15 +132,18 @@
                                             <a [routerLink]="['/course-detail']" [queryParams]="{ cid: item.course_id}">
                                                 <div class="row fade1">
                                                     <div class="col-6 bag"><img src="../../assets/profile/bag.png">
-                                                        <span *ngIf="item.course_fee != '-'"
+                                                        <span *ngIf="item.course_fee >= 1"
                                                             class="icon-body">{{" "}}{{item.course_fee}}</span>
-                                                        <span *ngIf="item.course_fee == '-'"
+                                                        <span *ngIf="item.course_fee < 1"
                                                             class="icon-body">{{" "}}Free</span>
                                                     </div>
                                                     <div class="col-6 clock"><img
                                                             src="../../assets/profile/clock.png"><span
-                                                            class="icon-body">{{" "}}{{item.course_dur}} Hrs
-                                                        </span></div>
+                                                            *ngIf="item.course_dur>=1" class="icon-body">{{" "}}{{item.course_dur}} Hrs
+                                                        </span>
+                                                        <span
+                                                        *ngIf="item.course_dur<1" class="icon-body">{{" "}}N/A
+                                                    </span></div>
                                                     <div class="col-6 bulb"><img
                                                             src="../../assets/profile/bulb.png"><span
                                                             class="icon-body">{{" "}}{{item.course_diff}}</span></div>
@@ -164,15 +168,16 @@
                                 </mdb-card>
                             </div>
 
-                            <button NguCarouselPrev class="leftRs" [style.opacity]="0.5">
-                                &lt;
-                            </button>
-                            <button NguCarouselNext class="rightRs" [style.opacity]="0.5">
-                                &gt;
-                            </button>
+                            <button NguCarouselPrev class="leftRs d-none d-md-block" >
+                                <img src="../../assets/homepage/left.png">
+                              </button>
+                              <button NguCarouselNext class="rightRs d-none d-md-block" >
+                                <img src="../../assets/homepage/right.png">
+                              </button>
 
 
-                        </ngu-carousel>-->
+                        </ngu-carousel>
+                    </div>
                     </div>
                     <!-- <div *ngIf="sameUser" class="col-12">
                         <div class="col-12 complete">
