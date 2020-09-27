@@ -487,6 +487,7 @@ color: #8A8886;
   color: #0376fe;
 }
 .post {
+  margin-top: 20px;
   font-family: Muli;
   font-style: normal;
   font-weight: 600;
@@ -496,9 +497,12 @@ color: #8A8886;
   text-transform: none;
   text-align: center;
   color: #ffffff;
-  padding: 1.5% 3.5%;
+  padding: 1.25% 4.5%;
   background: #0376FE !important;
 border-radius: 5px;
+}
+.post:hover{
+  background-color: #0367dd !important;
 }
 .name{
   padding-top: 1.75%;
@@ -620,7 +624,10 @@ letter-spacing: 0.004em;
 color: #8A8886;
 }
 .tips1{
-  margin-left: 56%;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding-left: 0;
+  padding-right: 0;
   font-family: Muli;
   font-style: normal;
   font-weight: 600;
@@ -735,4 +742,15 @@ margin-left: 3%;
 }
 .rep-review{
   margin-top: 5%;
+}
+.go:hover{
+  background-color: #0367DD !important;
+}
+@media screen and (max-width: 1650px){
+  .rep-drop{
+    cursor: pointer;
+  position: absolute;
+  top: -30px;
+  left: 110px;
+  }
 }

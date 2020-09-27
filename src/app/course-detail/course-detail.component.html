@@ -30,7 +30,7 @@
     </div>
     <div class="row">
         <div class="col-8">
-            <div class="col-12"><a [href]="course.course_link" target="_blank"><button type="button" class="go" mdbBtn
+            <div class="col-12"><a [href]="course.course_link" target="_blank"><button type="button" class="go z-depth-0" mdbBtn
                         color="info" mdbWavesEffect>Go To
                         Course</button></a></div>
             <div class="col-12 about">About The Course</div>
@@ -398,14 +398,13 @@
                 <form *ngIf="!isReview" #writeReview="ngForm" (ngSubmit)="onPost(writeReview.value)">
                     <textarea type="text" name="review" class="md-textarea form-control rev"
                         placeholder="Write Your Review" ngModel></textarea>
-                    <button class="tips z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Tips</button>
                     <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Post</button>
                 </form>
                 <form *ngIf="isReview" #writeReview1="ngForm" (ngSubmit)="onEdit(writeReview1.value)">
                     <textarea type="text" name="review" class="md-textarea form-control rev"
                         placeholder="Write Your Review" [(ngModel)]="userReview"></textarea>
+                        <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Edit</button>
                     <button class="tips1 z-depth-0" type="button" mdbBtn color="primary" mdbWavesEffect>Delete</button>
-                    <button class="post z-depth-0" type="submit" mdbBtn color="primary" mdbWavesEffect>Edit</button>
                 </form>
             </div>
         </div>
