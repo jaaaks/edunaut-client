@@ -241,7 +241,7 @@ input:checked ~ svg{
 .art{
   position: relative;
   top: 30px;
-  left: 0px;
+  left: -30px;
 
 font-family: Muli;
 font-style: normal;
@@ -250,7 +250,7 @@ font-size: 14px;
 line-height: 15px;
 /* identical to box height */
 
-text-align: center;
+
 letter-spacing: -0.015em;
 
 }

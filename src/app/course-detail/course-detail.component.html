@@ -74,8 +74,8 @@
                             *ngIf="course.course_fee  <1" class="time-detail">Free</span><span
                             *ngIf="course.course_fee >= 1" class="time-detail">{{course.course_fee}}{{" "}}INR</span>
                     </div>
-                    <hr>
-                    <div>
+                    <hr *ngIf="course.course_col != '-'">
+                    <div *ngIf="course.course_col != '-'">
                         <span class="time"><img src="../../assets/course-detail/university.png"></span><span *ngIf="course.course_col == '-'"
                             class="time-detail">Collaborator Unspecified </span>
                             <span *ngIf="course.course_col != '-'"
@@ -383,12 +383,20 @@
                     [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating>
                 <div class="rate-text"><span *ngIf="!current">
                         <span *ngIf="currentRate==5">Excellent</span>
-                        <span *ngIf="currentRate>2 && currentRate<5">Fair</span>
-                        <span *ngIf="currentRate<3 && currentRate>0">Bad</span></span>
+                        <span *ngIf="currentRate==4">Good</span>
+                        <span *ngIf="currentRate==3">Average</span>
+                        <span *ngIf="currentRate==2">Bad</span>
+                        <span *ngIf="currentRate==1">Poor</span>
+                            <span class="dummy" *ngIf="currentRate==0">0</span>
+                        </span>
                     <span *ngIf="current">
                         <span *ngIf="hovered==5">Excellent</span>
-                        <span *ngIf="hovered>2 && hovered<5">Fair</span>
-                        <span *ngIf="hovered<3 && hovered>0">Bad</span></span>
+                        <span *ngIf="hovered==4">Good</span>
+                        <span *ngIf="hovered==3">Average</span>
+                        <span *ngIf="hovered==2">Bad</span>
+                        <span *ngIf="hovered==1">Poor</span>
+                            <span class="dummy" *ngIf="hovered==0">0</span>
+                        </span>
                 </div>
             </div>
             <div class="col-12 review-write">

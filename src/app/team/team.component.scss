@@ -11,19 +11,35 @@
    border-radius: 50% !important;
   }
   .name{
-      font-family: Montserrat;
-      font-weight: 600;
-      font-size: 1em;
-      line-height: 20px;
-      letter-spacing: 0.005em;
-      color: #333333;
-      padding-top: 5%;
+    font-family: Muli;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    
+    color: #000000;
+    
+      padding-top: 0.2%;
   }
   .designation{
-      font-family: Montserrat;
-      font-size: 0.9em;
-      font-style: normal;
-      padding-top: 4%;
+    padding-top: 10%;
+    font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 18px;
+color: #8A8886;
+  }
+  .hobby{
+    font-family: Muli;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+letter-spacing: 0.005em;
+padding-top: 2.5%;
+color: #8A8886;
   }
   a{
     color: rgb(71, 71, 71);
@@ -32,7 +48,7 @@
     text-decoration: none;
   }
 .img-fluid{
-    width: 70%;
+    width: 80%;
     height: auto;
     border-radius: 50%;
 }
@@ -46,6 +62,7 @@
   margin: auto;
   top: 0;
   bottom: 0;
+  left: 10px !important;
   width: 20px;
   height: 30px;
   border-style: none !important;
@@ -57,6 +74,7 @@
   position: absolute;
   margin: auto;
   top: 0;
+  right: 18px !important;
   bottom: 0;
   width: 20px;
   height: 30px;
@@ -87,3 +105,4 @@
     }
   }
 }
+button:focus{ outline: none; }

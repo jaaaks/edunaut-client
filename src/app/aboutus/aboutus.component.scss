@@ -40,18 +40,12 @@ $spacing: -0.015em;
   padding-left: 13%;
 }
 .explore {
-  padding-left: 41%;
+  text-align: center;
   padding-top: 2%;
   padding-bottom: 2%;
-  font-size: 0.6em;
   margin-bottom: 2%;
 }
-.btn-primary {
-  background-color: #0087e5 !important;
-  border-radius: 5px !important;
-  padding: 1.15% 6%;
-  font-family: Montserrat;
-}
+
 .vision-img {
   margin-left: 32.5%;
   margin-top: 9.5%;
@@ -98,7 +92,7 @@ $spacing: -0.015em;
 .team-title {
   padding-top: 3.5%;
   padding-bottom: 3.5%;
-  padding-left: 44.5%;
+  text-align: center;
   font-size: 1.4em;
   font-family: Montserrat;
   font-weight: 600;
@@ -182,9 +176,6 @@ $spacing: -0.015em;
   .courses {
     padding-left: 10%;
   }
-  .explore {
-    padding-left: 35%;
-  }
 }
 @media screen and (max-width: 794px) {
   .title {
@@ -204,9 +195,7 @@ $spacing: -0.015em;
   .numbers-footer {
     font-size: 0.7em;
   }
-  .explore {
-    padding-left: 35%;
-  }
+ 
   .btn-primary {
     font-size: 1em;
   }
@@ -221,9 +210,6 @@ $spacing: -0.015em;
   .team-title {
     font-size: 1.4em;
     padding-left: 37%;
-  }
-  .explore{
-      margin-left: 2.2%;
   }
   .team-img {
     padding-left: 13%;
@@ -255,7 +241,47 @@ $spacing: -0.015em;
     .page{
         padding-left: 3%;
     }
-    .explore{
-        font-size: 0.6em;
-    }
+}
+.metrics{
+  text-align: center;
+}
+.top1{
+  padding-top: 5%;
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 42px;
+line-height: 51px;
+color: #494949;
+word-spacing: 200px !important;
+}
+.bottom{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 32px;
+line-height: 39px;
+color: #A1A1A1;
+word-spacing: 150px !important;
+}
+.courses{
+  word-spacing: 20px;
+}
+.butt1{
+  font-family: Muli;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+background: #0376FE !important;
+border-radius: 5px;
+text-transform: none;
+padding-top: 0.5%;
+padding-bottom: 0.5%;
+padding-left: 1.25%;
+padding-right: 1.25%;
+}
+.butt1:hover{
+  background-color: #0376dd !important;
+  
 }
